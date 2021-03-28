@@ -1,0 +1,16 @@
+title: Currency
+type: object
+description: 'In schemas where a Currency field occurs it''s value determines the currency used for the Money fields in the same schema. If the schema has a nested structure, the Currency field only affects the Money fields at the same nesting level. The currency field takes a string of 3 chars representing a currency code according to the [ISO 4217 standard](https://www.iso.org/iso-4217-currency-codes.html)'
+properties:
+  alph_code:
+    type: string
+    maxLength: 3
+    pattern: '^[A-Z]'
+    default: 'null'
+    minLength: 3
+  num_code:
+    type: integer
+    maximum: 3
+    minimum: 3
+required:
+  - alph_code

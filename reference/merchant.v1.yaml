@@ -1,0 +1,51 @@
+openapi: 3.0.0
+info:
+  title: merchant
+  version: '1.0'
+  contact:
+    name: Settle Group
+    url: 'https://settle.eu'
+    email: hello@settle.eu
+  license:
+    name: MIT
+  description: Lorem ipsum
+servers:
+  - url: 'http://localhost:3000'
+paths:
+  /payment_request:
+    post:
+      summary: merchant.payment.request.create
+      operationId: merchant.payment.request.create
+      responses:
+        '200':
+          description: 'OK, identical payment request already created.'
+        '201':
+          description: 'OK, new payment request.'
+        '400':
+          description: 'Bad Request, validation error.'
+        '409':
+          description: 'Conflict, same pos_id and pos_tid used for a request earlier.'
+      description: Create a Payment Request.
+      parameters:
+        - $ref: '#/components/parameters/action'
+      tags:
+        - merchant.payment
+components:
+  schemas: {}
+  responses: {}
+  securitySchemes: {}
+  parameters:
+    action:
+      name: action
+      in: query
+      schema:
+        type: string
+        enum:
+          - sale
+          - auth
+          - SALE
+          - AUTH
+      description: 'Action to perform, the main difference is what it looks like in App UI.'
+      required: true
+tags:
+  - name: merchant
