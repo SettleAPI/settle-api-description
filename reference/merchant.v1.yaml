@@ -80,7 +80,7 @@ paths:
             schema:
               $ref: '#/components/schemas/CreatePaymentRequest'
       tags:
-        - Payment
+        - Payments
   '/payment_request/{tid}/outcome':
     parameters:
       - schema:
@@ -100,7 +100,7 @@ paths:
 
         If the callback URI registered for the payment request was secure (https), the contents of this form was sent along with the callback. If the callback URI was insecure, a notification pointing to this endpoint was sent instead.
       tags:
-        - Payment
+        - Payments
 components:
   schemas:
     CreatePaymentRequest:
@@ -212,7 +212,7 @@ tags:
   - name: Info
   - name: Balance
   - name: Logo
-  - name: Payment
+  - name: Payments
   - name: Pos
   - name: Sales
   - name: Settlement
