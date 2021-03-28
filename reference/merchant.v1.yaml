@@ -28,6 +28,9 @@ paths:
       description: Create a Payment Request.
       parameters:
         - $ref: '#/components/parameters/action'
+        - schema:
+            type: string
+          in: query
       tags:
         - merchant.payment
 components:
@@ -49,3 +52,4 @@ components:
       required: true
 tags:
   - name: merchant
+  - name: merchant.payment

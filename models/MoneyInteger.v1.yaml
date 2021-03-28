@@ -1,0 +1,7 @@
+title: MoneyInteger
+type: object
+description: 'Type that represents a monetary amount as an integer. In schemas where one or more Money fields appears there will always be a Currency field present, that determines the currency of the Money fields.'
+properties:
+  amount:
+    type: integer
+    description: Monetary amount as an integer.
