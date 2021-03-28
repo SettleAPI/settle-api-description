@@ -131,11 +131,11 @@ paths:
 components:
   schemas:
     CreatePaymentRequest:
-      title: ''
+      title: 'Request Body: merchant.paymentRequest.create'
       type: object
       x-tags:
         - Schemas
-      description: Create a Payment Request.
+      description: 'A payment request goes through several stages. After being registered, the customer can either reject or authorize. An authorization is valid for 3 days, but can be reauthorized before it expires to be valid for 3 new days. Once authorized, it can be captured to be included in the next settlement.'
       properties:
         action:
           type: string
@@ -235,13 +235,19 @@ components:
         - pos_id
         - pos_tid
     CreatePaymentOutcome:
-      title: CreatePaymentOutcome
+      title: 'Request Body: merchant.paymentRequest.outcome.get'
       type: object
       x-tags:
         - Schemas
       properties:
         id:
           type: string
+      description: |-
+        The Payment Request Outcome endpoint shows the outcome info for a Payment Request, ReAuth or Capture.
+
+        This endpoints includes specified fee and/or interchange that will be deducted from payout, and also updated additional amount field if the user added gratuity.
+
+        If the callback URI registered for the payment request was secure (https), the contents of this form was sent along with the callback. If the callback URI was insecure, a notification pointing to this endpoint was sent instead.
     UpdatePaymentRequest:
       description: |-
         Capturing an authorized payment or reauthorizing is done with the action field.
@@ -278,6 +284,7 @@ components:
         - page_size
         - only_ok
         - status
+      title: 'Request Body: merchant.paymentRequest.update'
   responses: {}
   securitySchemes: {}
   parameters: {}
