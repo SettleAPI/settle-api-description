@@ -81,6 +81,18 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/CreatePaymentRequest'
+  '/payment_request/{tid}/outcome':
+    parameters:
+      - schema:
+          type: string
+        name: tid
+        in: path
+        required: true
+    get:
+      summary: merchant.paymentRequest.outcome.get
+      tags: []
+      responses: {}
+      operationId: get-payment_request-tid-outcome
 components:
   schemas:
     CreatePaymentRequest:
