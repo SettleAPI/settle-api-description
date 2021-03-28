@@ -106,6 +106,8 @@ components:
     CreatePaymentRequest:
       title: ''
       type: object
+      x-tags:
+        - Schemas
       description: Create a Payment Request.
       properties:
         action:
@@ -205,6 +207,14 @@ components:
         - currency
         - pos_id
         - pos_tid
+    CreatePaymentOutcome:
+      title: CreatePaymentOutcome
+      type: object
+      x-tags:
+        - Schemas
+      properties:
+        id:
+          type: string
   responses: {}
   securitySchemes: {}
   parameters: {}
