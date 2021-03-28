@@ -250,6 +250,8 @@ components:
 
         Note that the REFUND action will require that the API call is made with the KEY authorization mode, not SECRET.
       type: object
+      x-tags:
+        - Schemas
       properties:
         created_from:
           type: string
