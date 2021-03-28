@@ -1,0 +1,20 @@
+title: PaymentRequestLink
+type: object
+description: Link to be displayed for this payment request.
+properties:
+  uri:
+    type: string
+    description: 'These links will be displayed in the app during the whole payment process: from before auth until after capture.'
+    default: 'null'
+  caption:
+    type: string
+    default: 'null'
+    description: This text will be displayed in a button in the web to open the respective link.
+  show_on:
+    type: string
+    default: 'null'
+    enum:
+      - pending
+      - ok
+      - fail
+    pattern: '^[a-z]'

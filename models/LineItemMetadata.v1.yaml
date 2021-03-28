@@ -1,0 +1,12 @@
+title: LineItemMetadata
+type: object
+properties:
+  key:
+    type: string
+    description: Key.
+  value:
+    type: string
+    description: Value.
+required:
+  - key
+  - value

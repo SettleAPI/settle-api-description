@@ -1,0 +1,4 @@
+type: object
+title: PersonIdentifier
+description: No info available for PersonIdentifier at of this moment. Please contact us for more information.
+default: 'null'

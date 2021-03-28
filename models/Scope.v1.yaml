@@ -1,0 +1,15 @@
+type: object
+title: Scope
+description: 'Space-delimited list of scopes. Any of: "openid" (static id, "address" (user preferred address), "profile" (name), "phone", "email", "shipping_address", "fodselsnummer".'
+properties:
+  scopes:
+    type: string
+    enum:
+      - address
+      - bankid
+      - email
+      - fodselsnr
+      - openid
+      - phone
+      - profile
+      - shipping_address

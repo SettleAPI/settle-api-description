@@ -1,0 +1,29 @@
+title: LineItem
+type: object
+properties:
+  product_id:
+    type: string
+    description: External id for the product in the line item.
+  description:
+    type: string
+    description: Description of the line item.
+  metadata:
+    $ref: ./LineItemMetadata.v1.yaml
+  vat_rate:
+    type: string
+    default: 'null'
+    description: VAT rate for the line item.
+  quantity:
+    type: string
+    description: Quantity of the item.
+  vat:
+    $ref: ./MoneyInteger.v1.yaml
+  item_cost:
+    $ref: ./MoneyInteger.v1.yaml
+  total:
+    $ref: ./MoneyInteger.v1.yaml
+required:
+  - product_id
+  - quantity
+  - item_cost
+  - total
