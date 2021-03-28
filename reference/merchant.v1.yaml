@@ -76,6 +76,7 @@ paths:
           description: The value of this field depends on what kind of authentication scheme is being used. Currently the supported schemes are SECRET and RSA-SHA256.
       tags:
         - merchant.payment
+        - Endpoints
       requestBody:
         content:
           application/json:
