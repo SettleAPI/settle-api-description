@@ -26,7 +26,49 @@ paths:
         '409':
           description: 'Conflict, same pos_id and pos_tid used for a request earlier.'
       description: Create a Payment Request.
-      parameters: []
+      parameters:
+        - schema:
+            type: string
+            default: application/vnd.mcash.api.merchant.v1+json
+          in: header
+          name: Accept
+          required: true
+        - schema:
+            type: string
+            default: application/json
+          in: header
+          name: Content-Type
+          required: true
+        - schema:
+            type: string
+            example: fzkmhy0q
+          in: header
+          name: X-Auka-Merchant
+          required: true
+        - schema:
+            type: string
+            example: wtvrad79
+          in: header
+          name: X-Auka-User
+          required: true
+        - schema:
+            type: string
+            example: '2021-03-28 18:06:05'
+          in: header
+          name: X-Auka-Timestamp
+          required: true
+        - schema:
+            type: string
+            example: SHA256=47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=
+          in: header
+          name: X-Auka-Content-Digest
+          required: true
+        - schema:
+            type: string
+            example: RSA-SHA256 R/O6YTy/QBgxHpNxSGCDKg8TKONtCof0jVDuqAkdLGsEdLrDQO7+9EZnDZ+x/Ce0e/F+dTfgbBujKN1zRoZzw2mlStIxTa9/kKTQ4IEZH+ym9z9dv6ZA+R17JN+/yT56O1O50pQbhIfk4ibln4bf3iwkodyP2fFIuBZ74CUeS0Q=
+          in: header
+          name: Authorization
+          required: true
       tags:
         - merchant.payment
       requestBody:
