@@ -74,14 +74,15 @@ paths:
           name: Authorization
           required: true
           description: The value of this field depends on what kind of authentication scheme is being used. Currently the supported schemes are SECRET and RSA-SHA256.
-      tags:
-        - merchant.payment
-        - Endpoints
       requestBody:
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/CreatePaymentRequest'
+      tags:
+        - Endpoints
+        - merchant.payment
+        - merchant.payment.request
   '/payment_request/{tid}/outcome':
     parameters:
       - schema:
@@ -89,12 +90,21 @@ paths:
         name: tid
         in: path
         required: true
+        description: Transaction ID assigned by Settle.
     get:
       summary: merchant.paymentRequest.outcome.get
       tags:
         - Endpoints
+        - merchant.payment
+        - merchant.payment.request
       responses: {}
-      operationId: get-payment_request-tid-outcome
+      operationId: merchant.paymentRequest.outcome.get
+      description: |-
+        The Payment Request Outcome endpoint shows the outcome info for a Payment Request, ReAuth or Capture.
+
+        This endpoints includes specified fee and/or interchange that will be deducted from payout, and also updated additional amount field if the user added gratuity.
+
+        If the callback URI registered for the payment request was secure (https), the contents of this form was sent along with the callback. If the callback URI was insecure, a notification pointing to this endpoint was sent instead.
 components:
   schemas:
     CreatePaymentRequest:
@@ -203,5 +213,8 @@ components:
   securitySchemes: {}
   parameters: {}
 tags:
+  - name: Endpoints
   - name: merchant
   - name: merchant.payment
+  - name: merchant.payment.request
+  - name: merchant.payment.send
