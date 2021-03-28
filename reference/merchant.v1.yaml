@@ -101,6 +101,33 @@ paths:
         If the callback URI registered for the payment request was secure (https), the contents of this form was sent along with the callback. If the callback URI was insecure, a notification pointing to this endpoint was sent instead.
       tags:
         - Payments
+  '/payment_request/{tid}/':
+    parameters:
+      - schema:
+          type: string
+        name: tid
+        in: path
+        required: true
+        description: Transaction ID assigned by Settle.
+    put:
+      summary: merchant.paymentRequest.update
+      operationId: merchant.paymentRequest.update
+      responses:
+        '204':
+          description: 'OK, (no content).'
+        '400':
+          description: 'Bad Request, illegal input.'
+        '409':
+          description: 'Conflict, illegal action at this time (capture before authorization, abort after capture).'
+      description: 'Update, reauthorize, capture, release or abort payment request.'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreatePaymentOutcome'
+      tags:
+        - Payments
+      parameters: []
 components:
   schemas:
     CreatePaymentRequest:
@@ -215,6 +242,40 @@ components:
       properties:
         id:
           type: string
+    UpdatePaymentRequest:
+      description: |-
+        Capturing an authorized payment or reauthorizing is done with the action field.
+
+        The call is idempotent; that is, if one posts the same amount, additional_amount and capture_id twice with action CAPTURE, only one capture is performed. Similarly, if one posts twice with action CAPTURE without any amount stated, to capture the full amount, only one full capture is performed.
+
+        Note that the REFUND action will require that the API call is made with the KEY authorization mode, not SECRET.
+      type: object
+      properties:
+        created_from:
+          type: string
+          minLength: 1
+        created_to:
+          type: string
+          minLength: 1
+        cursor:
+          type: string
+          minLength: 1
+        page_size:
+          type: string
+          minLength: 1
+        only_ok:
+          type: string
+          minLength: 1
+        status:
+          type: string
+          minLength: 1
+      required:
+        - created_from
+        - created_to
+        - cursor
+        - page_size
+        - only_ok
+        - status
   responses: {}
   securitySchemes: {}
   parameters: {}
