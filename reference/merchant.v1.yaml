@@ -83,7 +83,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/CreatePaymentRequest'
+              $ref: '#/components/schemas/payment.request.create'
       tags:
         - Payments
   '/payment_request/{tid}/outcome':
@@ -135,8 +135,8 @@ paths:
       parameters: []
 components:
   schemas:
-    CreatePaymentRequest:
-      title: 'Request Body: merchant.paymentRequest.create'
+    payment.request.create:
+      title: 'Request Body: merchant.payment.request.create'
       type: object
       x-tags:
         - Schemas
@@ -239,8 +239,8 @@ components:
         - currency
         - pos_id
         - pos_tid
-    CreatePaymentOutcome:
-      title: 'Request Body: merchant.paymentRequest.outcome.get'
+    payment.request.outcome.get:
+      title: 'Request Body: merchant.payment.request.outcome.get'
       type: object
       x-tags:
         - Schemas
@@ -253,7 +253,7 @@ components:
         This endpoints includes specified fee and/or interchange that will be deducted from payout, and also updated additional amount field if the user added gratuity.
 
         If the callback URI registered for the payment request was secure (https), the contents of this form was sent along with the callback. If the callback URI was insecure, a notification pointing to this endpoint was sent instead.
-    UpdatePaymentRequest:
+    payment.request.update:
       description: |-
         Capturing an authorized payment or reauthorizing is done with the action field.
 
@@ -289,7 +289,7 @@ components:
         - page_size
         - only_ok
         - status
-      title: 'Request Body: merchant.paymentRequest.update'
+      title: 'Request Body: merchant.payment.request.update'
   responses: {}
   securitySchemes: {}
   parameters: {}
