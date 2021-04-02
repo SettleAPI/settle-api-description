@@ -11,6 +11,11 @@ info:
   description: Lorem ipsum
 servers:
   - url: 'http://localhost:3000'
+    description: Mock
+  - url: 'https://api.settle.eu/merchant/v1'
+    description: Production
+  - url: 'https://api.sandbox.settle.eu/merchant/v1'
+    description: Sandbox
 paths:
   /payment_request:
     post:
