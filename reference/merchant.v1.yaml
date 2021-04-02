@@ -90,9 +90,9 @@ paths:
         required: true
         description: Transaction ID assigned by Settle.
     get:
-      summary: merchant.paymentRequest.outcome.get
+      summary: merchant.payment.request.outcome.get
       responses: {}
-      operationId: merchant.paymentRequest.outcome.get
+      operationId: merchant.payment.request.outcome.get
       description: |-
         The Payment Request Outcome endpoint shows the outcome info for a Payment Request, ReAuth or Capture.
 
@@ -110,8 +110,8 @@ paths:
         required: true
         description: Transaction ID assigned by Settle.
     put:
-      summary: merchant.paymentRequest.update
-      operationId: merchant.paymentRequest.update
+      summary: merchant.payment.request.update
+      operationId: merchant.payment.request.update
       responses:
         '204':
           description: 'OK, (no content).'
