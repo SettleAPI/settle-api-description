@@ -94,7 +94,7 @@ paths:
       responses: {}
       operationId: merchant.payment.request.outcome.get
       description: |-
-        The Payment Request Outcome endpoint shows the outcome info for a Payment Request, ReAuth or Capture.
+        Shows the outcome info for a Payment Request, ReAuth or Capture.
 
         This endpoints includes specified fee and/or interchange that will be deducted from payout, and also updated additional amount field if the user added gratuity.
 
