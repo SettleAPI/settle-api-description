@@ -9,7 +9,7 @@ properties:
     description: Description of the line item.
   metadata:
     $ref: ./LineItemMetadata.v1.yaml
-    description: List of product metadata
+    description: List of product metadata.
   vat_rate:
     type: string
     default: 'null'
