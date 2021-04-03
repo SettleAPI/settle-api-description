@@ -20,7 +20,7 @@ properties:
   vat:
     $ref: ./MoneyInteger.v1.yaml
     minimum: 0
-    description: Total vat for the line item
+    description: Total vat for the line item.
   item_cost:
     $ref: ./MoneyInteger.v1.yaml
     description: Cost pr item or base quantity of product in line item.
