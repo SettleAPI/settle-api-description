@@ -9,6 +9,7 @@ properties:
     description: Description of the line item.
   metadata:
     $ref: ./LineItemMetadata.v1.yaml
+    description: List of product metadata
   vat_rate:
     type: string
     default: 'null'
@@ -18,10 +19,14 @@ properties:
     description: Quantity of the item.
   vat:
     $ref: ./MoneyInteger.v1.yaml
+    minimum: 0
+    description: Total vat for the line item
   item_cost:
     $ref: ./MoneyInteger.v1.yaml
+    description: Cost pr item or base quantity of product in line item.
   total:
     $ref: ./MoneyInteger.v1.yaml
+    description: Total cost, including vat, for line item.
 required:
   - product_id
   - quantity

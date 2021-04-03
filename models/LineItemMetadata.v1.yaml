@@ -1,5 +1,6 @@
-title: LineItemMetadata
 type: object
+title: LineItemMetadata
+description: List of product metadata.
 properties:
   key:
     type: string

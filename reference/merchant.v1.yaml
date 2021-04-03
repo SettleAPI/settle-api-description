@@ -24,6 +24,11 @@ paths:
       responses:
         '200':
           description: 'OK, identical payment request already created.'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
         '201':
           description: 'OK, new payment request.'
         '400':
