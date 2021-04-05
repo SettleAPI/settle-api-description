@@ -28,9 +28,20 @@ paths:
             application/json:
               schema:
                 type: object
-                properties: {}
+                properties:
+                  id:
+                    type: string
+                  uri:
+                    type: string
         '201':
           description: 'OK, new payment request.'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
         '400':
           description: 'Bad Request, validation error.'
         '409':
