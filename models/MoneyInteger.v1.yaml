@@ -1,8 +1,3 @@
 title: MoneyInteger
-type: object
+type: integer
 description: 'Type that represents a monetary amount as an integer. In schemas where one or more Money fields appears there will always be a Currency field present, that determines the currency of the Money fields.'
-properties:
-  amount:
-    type: integer
-    description: Monetary amount as an integer.
-    minimum: 0

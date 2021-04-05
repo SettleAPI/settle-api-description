@@ -33,6 +33,7 @@ paths:
                     type: string
                   uri:
                     type: string
+              examples: {}
         '201':
           description: 'OK, new payment request.'
           content:
@@ -100,6 +101,50 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/payment.request.create'
+            examples:
+              Example:
+                value:
+                  action: SALE
+                  additional_amount: 0
+                  additional_edit: false
+                  allow_credit: true
+                  amount: 0
+                  callback_uri: 'null'
+                  cid: 'null'
+                  currency:
+                    alph_code: 'null'
+                    num_code: 3
+                  customer: 'null'
+                  display_message_uri: 'null'
+                  expires_in: 21600
+                  failure_return_uri: 'null'
+                  line_items:
+                    product_id: string
+                    description: string
+                    metadata:
+                      key: string
+                      value: string
+                    vat_rate: 'null'
+                    quantity: string
+                    vat: 0
+                    item_cost: 0
+                    total: 0
+                  links:
+                    uri: 'null'
+                    caption: 'null'
+                    show_on: 'null'
+                  max_scan_age: 60
+                  pos_id: string
+                  pos_tid: string
+                  required_scope:
+                    scopes: address
+                  required_scope_text: 'null'
+                  success_return_uri: 'null'
+                  text: 'null'
+                  uri: 'null'
+                  'null': string
+                  scope:
+                    scopes: address
       tags:
         - Payments
   '/payment_request/{tid}/outcome':
@@ -157,15 +202,58 @@ components:
       x-tags:
         - Schemas
       description: 'A payment request goes through several stages. After being registered, the customer can either reject or authorize. An authorization is valid for 3 days, but can be reauthorized before it expires to be valid for 3 new days. Once authorized, it can be captured to be included in the next settlement.'
+      x-examples:
+        Example:
+          action: SALE
+          additional_amount: 0
+          additional_edit: false
+          allow_credit: true
+          amount: 0
+          callback_uri: 'null'
+          cid: 'null'
+          currency:
+            alph_code: 'null'
+            num_code: 3
+          customer: 'null'
+          display_message_uri: 'null'
+          expires_in: 21600
+          failure_return_uri: 'null'
+          line_items:
+            product_id: string
+            description: string
+            metadata:
+              key: string
+              value: string
+            vat_rate: 'null'
+            quantity: string
+            vat: 0
+            item_cost: 0
+            total: 0
+          links:
+            uri: 'null'
+            caption: 'null'
+            show_on: 'null'
+          max_scan_age: 60
+          pos_id: string
+          pos_tid: string
+          required_scope:
+            scopes: address
+          required_scope_text: 'null'
+          success_return_uri: 'null'
+          text: 'null'
+          uri: 'null'
+          'null': string
+          scope:
+            scopes: address
       properties:
         action:
           type: string
           description: 'Action to perform, the main difference is what it looks like in App UI.'
           enum:
-            - sale
-            - auth
             - SALE
             - AUTH
+            - sale
+            - auth
         additional_amount:
           $ref: ../models/MoneyInteger.v1.yaml
         additional_edit:
