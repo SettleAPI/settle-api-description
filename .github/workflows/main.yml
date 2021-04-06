@@ -1,0 +1,12 @@
+name: CURL CLI ACTION
+on: push
+jobs:
+  curl:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - name: curl
+      uses: enflo/curl-action@master
+      with:
+        curl: -X POST -d '{}' https://api.netlify.com/build_hooks/606c15166e6c0803ef4bf1b3
+        
