@@ -167,7 +167,7 @@ paths:
         If the callback URI registered for the payment request was secure (https), the contents of this form was sent along with the callback. If the callback URI was insecure, a notification pointing to this endpoint was sent instead.
       tags:
         - Payments
-  '/payment_request/{tid}/':
+  '/payment_request/{tid}':
     parameters:
       - schema:
           type: string
