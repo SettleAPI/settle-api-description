@@ -109,12 +109,12 @@ paths:
                   additional_edit: false
                   allow_credit: true
                   amount: 0
-                  callback_uri: 'null'
+                  callback_uri: ''
                   cid: 'null'
                   currency:
-                    alph_code: 'null'
-                    num_code: 3
-                  customer: 'null'
+                    alph_code: 'EUR'
+                    num_code: 978
+                  customer: ''
                   display_message_uri: 'null'
                   expires_in: 21600
                   failure_return_uri: 'null'
