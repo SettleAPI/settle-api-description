@@ -1,0 +1,27 @@
+title: PaymentRequestListItem
+type: object
+properties:
+  tid:
+    type: string
+    description: Tid
+    default: 'null'
+  created:
+    $ref: ./DateTime.yaml
+  total:
+    $ref: ./MoneyInteger.v1.yaml
+  message:
+    type: string
+    description: Message
+    default: 'null'
+  status:
+    type: string
+    description: Status
+    default: 'null'
+  currency:
+    type: string
+    description: Currency
+    default: 'null'
+  link:
+    type: string
+    description: Link
+    default: 'null'
