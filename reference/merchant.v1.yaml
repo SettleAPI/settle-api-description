@@ -157,6 +157,11 @@ paths:
         '200':
           $ref: '#/components/responses/payment.request.get'
       description: List Payment Requests
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/payment.request.list'
   '/payment_request/{tid}/outcome':
     parameters:
       - schema:
@@ -167,7 +172,11 @@ paths:
         description: Transaction ID assigned by Settle.
     get:
       summary: merchant.payment.request.outcome.get
-      responses: {}
+      responses:
+        '200':
+          description: OK
+        '404':
+          description: TID not found (or unauthorized for this merchant)
       operationId: merchant.payment.request.outcome.get
       description: |-
         Shows the outcome info for a Payment Request, ReAuth or Capture.
@@ -177,6 +186,12 @@ paths:
         If the callback URI registered for the payment request was secure (https), the contents of this form was sent along with the callback. If the callback URI was insecure, a notification pointing to this endpoint was sent instead.
       tags:
         - Payments
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/payment.request.outcome.get'
+        description: Retrieve payment request outcome
   '/payment_request/{tid}/':
     parameters:
       - schema:
@@ -207,7 +222,9 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/CreatePaymentOutcome'
+              $ref: '#/components/schemas/payment.request.update'
+            examples:
+              example-1: {}
       tags:
         - Payments
       parameters: []
@@ -378,15 +395,74 @@ components:
       type: object
       x-tags:
         - Schemas
+      description: ''
       properties:
-        id:
+        currency:
+          $ref: ../models/Currency.v1.yaml
+        amount:
+          $ref: ../models/MoneyInteger.v1.yaml
+        additional_amount:
+          $ref: ../models/MoneyInteger.v1.yaml
+        auth_amount:
+          $ref: ../models/MoneyInteger.v1.yaml
+        auth_additional_amount:
+          $ref: ../models/MoneyInteger.v1.yaml
+        captures:
+          $ref: ../models/Capture.yaml
+        refunds:
+          $ref: ../models/Refund.yaml
+        status:
           type: string
-      description: |-
-        The Payment Request Outcome endpoint shows the outcome info for a Payment Request, ReAuth or Capture.
-
-        This endpoints includes specified fee and/or interchange that will be deducted from payout, and also updated additional amount field if the user added gratuity.
-
-        If the callback URI registered for the payment request was secure (https), the contents of this form was sent along with the callback. If the callback URI was insecure, a notification pointing to this endpoint was sent instead.
+          description: Payment request status (see above)
+          default: 'null'
+          enum:
+            - ok
+            - fail
+            - auth
+            - pending
+        status_code:
+          type: integer
+          description: Payment request status code (see above).
+          default: null
+        customer:
+          $ref: ../models/PersonIdentifier.v1.yaml
+        date_modified:
+          $ref: ../models/DateTime.yaml
+        date_expires:
+          $ref: ../models/DateTime.yaml
+        credit:
+          type: boolean
+          default: false
+          description: Whether the received payment was a credit payment.
+        interchange_fee:
+          $ref: ../models/MoneyInteger.v1.yaml
+        transaction_fee:
+          $ref: ../models/MoneyInteger.v1.yaml
+        attachment_uri:
+          type: string
+          format: uri
+          default: 'null'
+          description: 'Endpoint for Attachment uploads, such as electronic receipts. This URI has a limited time to live, and a new URI is generated each time outcome is retrieved.'
+        pos_id:
+          type: string
+          description: 'The POS this request originates from, used for informing user about origin'
+        pos_tid:
+          type: string
+          description: |
+            Local transaction id for POS. This must be unique for the POS
+          pattern: '^[a-zA-Z0-9_.-]+$'
+          maxLength: 64
+        tid:
+          type: string
+          description: Settle transaction id
+          pattern: '^[a-zA-Z0-9_.-]+$'
+          maxLength: 64
+        permissions:
+          $ref: ../models/AccessTokenResponse.v1.yaml
+      required:
+        - pos_id
+        - pos_tid
+        - tid
     payment.request.update:
       description: |-
         Capturing an authorized payment or reauthorizing is done with the action field.

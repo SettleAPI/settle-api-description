@@ -1,0 +1,11 @@
+title: Capture
+type: object
+properties:
+  id:
+    type: string
+    description: Local capture id. Null if the full amount in the payment request is captured in one step.
+    default: 'null'
+  amount:
+    $ref: ./MoneyInteger.v1.yaml
+  additional_amount:
+    $ref: ./MoneyInteger.v1.yaml

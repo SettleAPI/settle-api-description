@@ -1,0 +1,15 @@
+title: Refund
+type: object
+properties:
+  id:
+    type: string
+    description: Local refund id. Null if the full amount in the payment request is refunded in one step.
+    default: 'null'
+  amount:
+    $ref: ./MoneyInteger.v1.yaml
+  additional_amount:
+    $ref: ./MoneyInteger.v1.yaml
+  chat_message_data_text:
+    type: string
+    description: Given text reason for refund
+    default: 'null'
