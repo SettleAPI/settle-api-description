@@ -145,14 +145,11 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/payment.request.list'
+      tags:
+        - Payments
   '/payment_request/{tid}/outcome':
     parameters:
-      - schema:
-          type: string
-        name: tid
-        in: path
-        required: true
-        description: Transaction ID assigned by Settle.
+      - $ref: '#/components/parameters/tid'
     get:
       summary: merchant.payment.request.outcome.get
       responses:
@@ -175,14 +172,9 @@ paths:
             schema:
               $ref: '#/components/schemas/payment.request.outcome.get'
         description: Retrieve payment request outcome
-  '/payment_request/{tid}/':
+  '/payment_request/{tid}':
     parameters:
-      - schema:
-          type: string
-        name: tid
-        in: path
-        required: true
-        description: Transaction ID assigned by Settle.
+      - $ref: '#/components/parameters/tid'
     put:
       summary: merchant.payment.request.update
       operationId: merchant.payment.request.update
@@ -224,6 +216,8 @@ paths:
             schema:
               $ref: '#/components/schemas/payment.request.get'
         description: Retrieve payment request info
+      tags:
+        - Payments
   /pos:
     post:
       summary: merchant.pos.create
@@ -240,6 +234,8 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/pos.create'
+      tags:
+        - Pos
     get:
       summary: merchant.pos.list
       operationId: merchant.pos.list
@@ -247,14 +243,11 @@ paths:
         '200':
           $ref: '#/components/responses/pos.list.200'
       description: List all Point of Sales for merchant.
+      tags:
+        - Pos
   '/pos/{pos_id}':
     parameters:
-      - schema:
-          type: string
-        name: pos_id
-        in: path
-        required: true
-        description: POS id as chosen on registration
+      - $ref: '#/components/parameters/pos_id'
     put:
       summary: merchant.pos.update
       operationId: merchant.pos.update
@@ -269,6 +262,8 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/pos.update'
+      tags:
+        - Pos
     delete:
       summary: merchant.pos.delete
       operationId: merchant.pos.delete
@@ -276,6 +271,8 @@ paths:
         '204':
           description: No Content
       description: Delete POS
+      tags:
+        - Pos
     get:
       summary: merchant.pos.get
       operationId: merchant.pos.get
@@ -283,6 +280,22 @@ paths:
         '200':
           $ref: '#/components/responses/pos.get.200'
       description: Retrieve POS info
+      tags:
+        - Pos
+  '/merchant/{merchant_id}':
+    parameters:
+      - $ref: '#/components/parameters/merchant_id'
+    get:
+      summary: merchant.profile.get
+      tags: []
+      responses: {}
+      operationId: merchant.profile.get
+      description: Get merchant info
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/profile.get'
 components:
   schemas:
     payment.request.create:
@@ -703,6 +716,57 @@ components:
       required:
         - name
         - type
+    profile.get:
+      title: 'Request Body: merchant.profile.get'
+      type: object
+      description: Get merchant info
+      properties:
+        id:
+          type: string
+          description: ID
+          default: 'null'
+        legal_entity:
+          $ref: ../models/NdbKey.yaml
+        business_name:
+          type: string
+          description: Business Name.
+          default: 'null'
+        organization_id:
+          type: string
+          description: Organization ID.
+          default: 'null'
+        jurisdiction:
+          type: string
+          description: Jurisdiction.
+          default: 'null'
+        mcc:
+          type: integer
+          default: null
+          description: Mcc
+        integrator:
+          $ref: ../models/NdbKey.yaml
+        settlement_account:
+          $ref: ../models/NdbKey.yaml
+        auth_duration:
+          type: integer
+          default: null
+          description: Auth Duration.
+        profile:
+          $ref: ../models/MerchantProfileRegistration.yaml
+        application:
+          $ref: ''
+        business_documents:
+          $ref: ''
+        per_payment_amount_limit:
+          $ref: ../models/MoneyInteger.v1.yaml
+        integration_type:
+          type: string
+          default: 'null'
+          description: Integration Type
+        approved:
+          type: boolean
+          default: false
+          description: Approved
   responses:
     payment.request.list.200:
       description: Example response
@@ -808,7 +872,28 @@ components:
             required:
               - id
   securitySchemes: {}
-  parameters: {}
+  parameters:
+    merchant_id:
+      name: merchant_id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: Merchant id assigned by Settle.
+    tid:
+      name: tid
+      in: path
+      required: true
+      schema:
+        type: string
+      description: Transaction ID assigned by Settle.
+    pos_id:
+      name: pos_id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: POS id as chosen on registration.
 tags:
   - name: Info
   - name: Balance
