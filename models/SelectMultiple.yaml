@@ -1,5 +1,2 @@
 title: SelectMultiple
-type: object
-properties:
-  id:
-    type: string
+type: string

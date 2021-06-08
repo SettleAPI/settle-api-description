@@ -1,5 +1,2 @@
 title: Cursor
-type: object
-properties:
-  id:
-    type: string
+type: string

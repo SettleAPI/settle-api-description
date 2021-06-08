@@ -23,26 +23,9 @@ paths:
       operationId: merchant.payment.request.create
       responses:
         '200':
-          description: 'OK, identical payment request already created.'
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  id:
-                    type: string
-                  uri:
-                    type: string
-              examples: {}
+          $ref: '#/components/responses/payment.request.create.200'
         '201':
-          description: 'OK, new payment request.'
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  id:
-                    type: string
+          $ref: '#/components/responses/payment.request.create.201'
         '400':
           description: 'Bad Request, validation error.'
         '409':
@@ -151,11 +134,11 @@ paths:
       tags:
         - Payments
     get:
-      summary: ''
+      summary: merchant.payment.request.list
       operationId: merchant.payment.request.list
       responses:
         '200':
-          $ref: '#/components/responses/payment.request.get'
+          $ref: '#/components/responses/payment.request.list.200'
       description: List Payment Requests
       requestBody:
         content:
@@ -229,7 +212,7 @@ paths:
         - Payments
       parameters: []
     get:
-      summary: ''
+      summary: merchant.payment.request.get
       operationId: merchant.payment.request.get
       responses:
         '200':
@@ -241,6 +224,65 @@ paths:
             schema:
               $ref: '#/components/schemas/payment.request.get'
         description: Retrieve payment request info
+  /pos:
+    post:
+      summary: merchant.pos.create
+      operationId: merchant.pos.create
+      responses:
+        '201':
+          $ref: '#/components/responses/pos.create.201'
+        '400':
+          description: 'Bad Request, validation error'
+      description: Create POS resource
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/pos.create'
+    get:
+      summary: merchant.pos.list
+      operationId: merchant.pos.list
+      responses:
+        '200':
+          $ref: '#/components/responses/pos.list.200'
+      description: List all Point of Sales for merchant.
+  '/pos/{pos_id}':
+    parameters:
+      - schema:
+          type: string
+        name: pos_id
+        in: path
+        required: true
+        description: POS id as chosen on registration
+    put:
+      summary: merchant.pos.update
+      operationId: merchant.pos.update
+      responses:
+        '204':
+          description: No Content
+        '400':
+          description: 'Bad request, validation error'
+      description: Update POS resource
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/pos.update'
+    delete:
+      summary: merchant.pos.delete
+      operationId: merchant.pos.delete
+      responses:
+        '204':
+          description: No Content
+      description: Delete POS
+    get:
+      summary: merchant.pos.get
+      operationId: merchant.pos.get
+      responses:
+        '200':
+          $ref: '#/components/responses/pos.get.200'
+      description: Retrieve POS info
 components:
   schemas:
     payment.request.create:
@@ -607,8 +649,62 @@ components:
         - id
         - currency
         - pos_id
+    pos.create:
+      title: 'Request Body: merchant.pos.create'
+      type: object
+      properties:
+        name:
+          type: string
+          description: 'Human-readable name of the POS, used for displaying payment request origin to end user.'
+          maxLength: 100
+        type:
+          type: string
+          description: POS type.
+          maxLength: 50
+          enum:
+            - store
+            - webshop
+            - mobile
+            - vending
+            - poster
+        location:
+          $ref: ../models/Location.yaml
+        id:
+          type: string
+          description: The ID of the POS that is to be created. Has to be unique for the merchant.
+          maxLength: 100
+      required:
+        - name
+        - type
+        - id
+    pos.update:
+      title: 'Request Body: merchant.pos.update'
+      type: object
+      description: Update POS resource
+      properties:
+        name:
+          type: string
+          description: 'Human-readable name of the POS, used for displaying payment request origin to end user.'
+          maxLength: 100
+        type:
+          type: string
+          description: POS type.
+          maxLength: 50
+          enum:
+            - store
+            - webshop
+            - mobile
+            - vending
+            - poster
+        location:
+          type: string
+          default: 'null'
+          description: Merchant location.
+      required:
+        - name
+        - type
   responses:
-    payment.request.list:
+    payment.request.list.200:
       description: Example response
       content:
         application/json:
@@ -619,7 +715,7 @@ components:
                 $ref: ../models/PaymentRequestListItem.yaml
               cursor:
                 $ref: ../models/Cursor.yaml
-    payment.request.create:
+    payment.request.create.200:
       description: Example response
       content:
         application/json:
@@ -634,6 +730,81 @@ components:
                 default: 'null'
                 format: uri
                 description: 'If payment request was posted without a customer, user can claim it on this uri'
+            required:
+              - id
+    pos.create.201:
+      description: Example response
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+                default: 'null'
+                description: Id
+    pos.list.200:
+      description: Example response
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              uris:
+                type: string
+                description: A list of absolute paths to the requested resources.
+              next:
+                type: string
+                default: 'null'
+                description: Path to the next list chunk.
+              prev:
+                type: string
+                default: 'null'
+                description: Path to the previous list chunk.
+            required:
+              - uris
+    pos.get.200:
+      description: Example response
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+                default: 'null'
+                description: ID
+              name:
+                type: string
+                maxLength: 100
+                description: 'Human-readable name of the POS, used for displaying payment request origin to end user.'
+              type:
+                type: string
+                maxLength: 50
+                description: POS type.
+                enum:
+                  - store
+                  - webshop
+                  - mobile
+                  - vending
+                  - poster
+              location:
+                $ref: ../models/Location.yaml
+    payment.request.create.201:
+      description: Example response
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+                description: Transaction id.
+              uri:
+                type: string
+                format: uri
+                default: 'null'
+                description: 'If payment request was posted without a customer, user can claim it on this uri.'
             required:
               - id
   securitySchemes: {}
