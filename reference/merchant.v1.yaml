@@ -296,6 +296,15 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/profile.get'
+  '/merchant_lookup/{lookup_id}':
+    parameters:
+      - $ref: '#/components/parameters/lookup_id'
+    get:
+      summary: merchant.profile.lookup
+      tags: []
+      responses: {}
+      operationId: get-merchant_lookup-lookup_id
+      description: Handle merchant lookup on secondary ID. This is endpoint can only be used by integrators.
 components:
   schemas:
     payment.request.create:
@@ -894,6 +903,13 @@ components:
       schema:
         type: string
       description: POS id as chosen on registration.
+    lookup_id:
+      name: lookup_id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: Merchant lookup ID assigned by Settle.
 tags:
   - name: Info
   - name: Balance
