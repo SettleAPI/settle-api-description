@@ -425,11 +425,45 @@ paths:
       summary: merchant.shortlink.delete
       operationId: merchant.shortlink.delete
       responses:
-        '200':
-          description: OK
         '204':
-          description: No Content
+          $ref: '#/components/responses/shortlink.delete.204'
       description: Delete shortlink
+  /merchant_ssp_user:
+    post:
+      summary: merchant.ssp.users.create
+      tags: []
+      responses:
+        '201':
+          $ref: '#/components/responses/ssp.users.create.201'
+        '409':
+          $ref: '#/components/responses/ssp.users.create.409'
+      operationId: merchant.ssp.users.create
+      description: Creates a MerchantSspUser.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ssp.users.create'
+        description: 'Returns 201 CREATED (unless a user with the same email already exists, which results in a 409 CONFLICT response).'
+    get:
+      summary: merchant.ssp.users.get
+      tags: []
+      operationId: merchant.ssp.users.get
+      description: Gets a MerchantSspUser.
+      responses:
+        '200':
+          $ref: '#/components/responses/ssp.users.get.200'
+    delete:
+      summary: merchant.ssp.users.delete
+      tags: []
+      responses:
+        '204':
+          $ref: '#/components/responses/ssp.users.delete.204'
+      operationId: merchant.ssp.users.delete
+      description: |-
+        Deletes a MerchantSspUser and returns 204 NO CONTENT
+
+        Currently only deletes if MerchantSspUser does not have any LegalEntities to avoid side effects Used to avoid inconsistencies between core and merchant console.
 components:
   schemas:
     payment.request.create:
@@ -968,6 +1002,23 @@ components:
           type: string
           default: 'null'
           description: URI called by Settle when user scans shortlink.
+    ssp.users.create:
+      title: ssp.users.create
+      type: object
+      description: 'Creates a MerchantSspUser and returns 201 CREATED (unless a user with the same email already exists, which results in a 409 CONFLICT response).'
+      properties:
+        email:
+          type: string
+          description: Email
+          pattern: '^.+@[^.].*.[a-z]{2,10}$'
+        phone:
+          type: string
+          default: 'null'
+          description: Phone
+        name:
+          $ref: ../models/Name.yaml
+      required:
+        - email
   responses:
     payment.request.list.200:
       description: Example response
@@ -1287,6 +1338,91 @@ components:
                 description: Text to be displayed as QR code.
             required:
               - shortlink_value
+    shortlink.delete.204:
+      description: Delete shortlink
+      content:
+        application/json:
+          schema:
+            properties:
+              id:
+                type: string
+        application/xml:
+          schema:
+            type: object
+            properties: {}
+    ssp.users.create.201:
+      description: Example response
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+                default: 'null'
+                description: ID
+              email:
+                type: string
+                default: 'null'
+                pattern: '^.+@[^.].*.[a-z]{2,10}$'
+                description: Email
+              phone:
+                type: string
+                default: 'null'
+                description: Phone
+              name:
+                $ref: ../models/NameResponse.yaml
+              legal_entities:
+                $ref: ../models/NdbKey.yaml
+              bankid:
+                type: string
+                default: 'null'
+                description: Bankid
+    ssp.users.create.409:
+      description: User with the same email already exists
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              response:
+                type: string
+    ssp.users.delete.204:
+      description: Currently only deletes if MerchantSspUser does not have any LegalEntities to avoid side effects Used to avoid inconsistencies between core and merchant console.
+      content:
+        application/json:
+          schema:
+            properties:
+              id:
+                type: string
+    ssp.users.get.200:
+      description: Gets a MerchantSspUser.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+                description: ID
+                default: 'null'
+              email:
+                type: string
+                pattern: '^.+@[^.].*.[a-z]{2,10}$'
+                description: Email
+                default: 'null'
+              phone:
+                type: string
+                description: Phone
+                default: 'null'
+              name:
+                $ref: ../models/NameResponse.yaml
+              legal_entities:
+                $ref: ../models/NdbKey.yaml
+              bankid:
+                type: string
+                description: Bankid
+                default: 'null'
   securitySchemes: {}
   parameters:
     merchant_id:

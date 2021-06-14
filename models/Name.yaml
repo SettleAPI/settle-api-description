@@ -1,0 +1,15 @@
+title: Name
+type: object
+properties:
+  given_name:
+    type: string
+    description: Given Name
+  family_name:
+    type: string
+    description: Family Name
+  middle_name:
+    type: string
+    description: Middle Name
+required:
+  - given_name
+  - family_name
