@@ -321,12 +321,12 @@ paths:
               $ref: '#/components/schemas/sales.summary.get'
   /settlement:
     get:
-      summary: merchant.settlement.list
+      summary: merchant.settlement.latest.get
       tags: []
       responses:
         '200':
           $ref: '#/components/responses/settlement.list.200'
-      operationId: merchant.settlement.list
+      operationId: merchant.settlement.latest.get
       description: List settlements.
   '/settlement/{settlement_id}':
     parameters:
@@ -336,7 +336,7 @@ paths:
       tags: []
       responses:
         '200':
-          $ref: '#/components/responses/settlement.get.200'
+          $ref: '#/components/responses/settlement.latest.get.200'
         '404':
           $ref: '#/components/responses/settlement.get.404'
       operationId: merchant.settlement.get
@@ -990,7 +990,7 @@ components:
                 $ref: ../models/SalesSummaryProduct.yaml
               max_timestamp:
                 $ref: ../models/DateTime.yaml
-    settlement.list.200:
+    settlement.latest.get.200:
       description: Example response
       content:
         application/json:
