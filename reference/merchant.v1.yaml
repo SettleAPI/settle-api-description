@@ -484,6 +484,49 @@ paths:
           $ref: '#/components/responses/statusCodes.get.200'
       operationId: merchant.statusCodes.get
       description: Get details about a spesific Status Code
+  /user:
+    post:
+      summary: merchant.users.create
+      operationId: merchant.users.create
+      responses:
+        '201':
+          $ref: '#/components/responses/users.create.201'
+      description: Create user for the Merchant given in the X-Settle-Merchant header.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/users.create'
+  '/user/{user_id}':
+    parameters:
+      - $ref: '#/components/parameters/user_id'
+    get:
+      summary: merchant.users.get
+      tags: []
+      responses:
+        '200':
+          $ref: '#/components/responses/users.get.201'
+      operationId: merchant.users.get
+      description: Get user info
+    put:
+      summary: merchant.users.update
+      operationId: merchant.users.update
+      responses:
+        '200':
+          description: OK
+      description: Update user
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/users.update'
+    delete:
+      summary: merchant.users.delete
+      operationId: merchant.users.delete
+      responses:
+        '200':
+          description: OK
+      description: Delete USer
 components:
   schemas:
     payment.request.create:
@@ -1039,6 +1082,54 @@ components:
           $ref: ../models/Name.yaml
       required:
         - email
+    users.create:
+      title: users.create
+      type: object
+      description: Create user for the Merchant given in the X-Settle-Merchant header.
+      properties:
+        id:
+          type: string
+          default: 'null'
+          description: User ID
+        netmask:
+          type: string
+          default: 'null'
+          description: 'Limit user connections by netmask, for example 192.168.1.0/24'
+          format: ipv4
+          example: 192.168.1.0/24
+        label:
+          type: string
+          default: 'null'
+          description: User given name to RSA key/secret
+        secret:
+          type: string
+          default: 'null'
+          description: Secret used when authenticating with Settle.
+          minLength: 8
+          maxLength: 64
+        pubkey:
+          $ref: ../models/PubKey.yaml
+    users.update:
+      title: users.update
+      type: object
+      description: Update user
+      properties:
+        netmask:
+          type: string
+          description: 'Limit user connections by netmask, for example 192.168.1.0/24'
+          format: ipv4
+          example: 192.168.1.0/24
+        label:
+          type: string
+          description: User given name to RSA key/secret.
+        secret:
+          type: string
+          minLength: 8
+          maxLength: 64
+          description: Secret used when authenticating with Settle.
+        pubkey:
+          $ref: ../models/PubKey.yaml
+      x-examples: {}
   responses:
     payment.request.list.200:
       description: Example response
@@ -1473,6 +1564,53 @@ components:
                 type: string
                 default: 'null'
                 description: Name
+    users.create.201:
+      description: Example response
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+                description: User ID
+                default: 'null'
+    users.get.201:
+      description: Get user info
+      content:
+        application/json:
+          schema:
+            description: ''
+            type: object
+            x-examples:
+              example-1:
+                netmask: 192.168.1.0/24
+                label: string
+                secret: stringst
+                pubkey:
+                  id: string
+            properties:
+              id:
+                type: string
+                default: 'null'
+                description: User ID.
+              netmask:
+                type: string
+                minLength: 1
+                format: ipv4
+                example: 192.168.1.0/24
+                default: 'null'
+                description: 'Limit user connections by netmask, for example 192.168.1.0/24.'
+              label:
+                type: string
+                minLength: 1
+                default: 'null'
+                description: User given name to RSA key/secret.
+              has_secret:
+                type: boolean
+                description: Whether user has secret set.
+              pubkey:
+                $ref: ../models/PubKey.yaml
   securitySchemes: {}
   parameters:
     merchant_id:
@@ -1537,6 +1675,13 @@ components:
       schema:
         type: string
       description: Status Code provided by Settle.
+    user_id:
+      name: user_id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: Merchant User ID provided by Settle.
 tags:
   - name: Info
   - name: Balance

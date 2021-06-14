@@ -1,0 +1,16 @@
+title: PubKey
+type: object
+properties:
+  id:
+    type: string
+description: |-
+  Field for Public Key.
+
+  Settle accepts the following formats:
+
+  - OpenSSH public key format (the format in ~/.ssh/authorized_keys)
+  - PEM format
+
+  Max bit size: 4096.
+
+  The validator will try to add a BEGIN/END wrapper if the key lacks one. If the wrapper provided is wrong, the validation will fail.
