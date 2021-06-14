@@ -1,0 +1,7 @@
+title: RunningSum
+type: object
+properties:
+  refund:
+    $ref: ./QuantitySum.yaml
+  capture:
+    $ref: ./QuantitySum.yaml

@@ -362,6 +362,13 @@ paths:
             schema:
               $ref: '#/components/schemas/settlement.account.update'
         description: Updates a SettlementAccount.
+  /settlement_report:
+    get:
+      summary: merchant.settlement.report.get
+      tags: []
+      responses: {}
+      operationId: merchant.settlement.report.get
+      description: Endpoint accepts arguments for filtering the list of settlements and can omit empty settlements.
 components:
   schemas:
     payment.request.create:
@@ -861,6 +868,23 @@ components:
           $ref: ../models/SettlementAccountFrequency.yaml
       required:
         - payout_account
+    settlement.report.get:
+      title: 'Request Body: settlement.report.get'
+      type: object
+      description: Endpoint accepts arguments for filtering the list of settlements and can omit empty settlements.
+      properties:
+        created_from:
+          type: string
+          description: Created From
+          default: 'null'
+        created_to:
+          type: string
+          description: Created To
+          default: 'null'
+        non_empty_only:
+          type: boolean
+          description: Non Empty Only
+          default: false
   responses:
     payment.request.list.200:
       description: Example response
@@ -1073,6 +1097,19 @@ components:
                 default: 'null'
               frequency:
                 $ref: ../models/SettlementAccountFrequency.yaml
+    settlement.report.get.200:
+      description: Example response
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              items:
+                $ref: ../models/SettlementListItem.yaml
+              summary:
+                $ref: ../models/SettlementListSummary.yaml
+              report_context:
+                $ref: ../models/SettlementListReportContext.yaml
   securitySchemes: {}
   parameters:
     merchant_id:

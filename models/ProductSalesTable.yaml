@@ -1,0 +1,7 @@
+title: ProductSalesTable
+type: object
+properties:
+  refund:
+    $ref: ./ProductSalesTableEntry.yaml
+  capture:
+    $ref: ./ProductSalesTableEntry.yaml

@@ -1,0 +1,34 @@
+title: SettlementListSummary
+type: object
+properties:
+  settlement_account_id:
+    type: integer
+    description: Num Settlements
+  currency:
+    $ref: ./Currency.v1.yaml
+  payout:
+    $ref: ./MoneyInteger.v1.yaml
+  neg_payout:
+    $ref: ./MoneyInteger.v1.yaml
+  balance_before:
+    $ref: ./MoneyInteger.v1.yaml
+  balance_after:
+    $ref: ./MoneyInteger.v1.yaml
+  sales:
+    $ref: ./MoneyInteger.v1.yaml
+  gross:
+    $ref: ./MoneyInteger.v1.yaml
+  fixed_fees:
+    $ref: ./MoneyInteger.v1.yaml
+  variable_fees:
+    $ref: ./MoneyInteger.v1.yaml
+  refunds:
+    $ref: ./MoneyInteger.v1.yaml
+  capture_count:
+    type: integer
+    description: Capture Count
+    default: null
+  refund_count:
+    type: integer
+    default: null
+    description: Refund Count

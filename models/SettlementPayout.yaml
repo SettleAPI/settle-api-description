@@ -1,0 +1,17 @@
+title: SettlementPayout
+type: object
+properties:
+  account:
+    type: string
+    default: 'null'
+    description: Account
+  amount:
+    $ref: ./MoneyInteger.v1.yaml
+  id:
+    type: string
+    default: 'null'
+    description: Id
+  text:
+    type: string
+    default: 'null'
+    description: Text

@@ -1,0 +1,9 @@
+title: VatSalesTableEntry
+type: object
+properties:
+  vat_rate:
+    type: string
+    default: 'null'
+    description: Vat Rate
+  entry:
+    $ref: ./QuantitySum.yaml

@@ -1,0 +1,9 @@
+title: ProductSalesTableEntry
+type: object
+properties:
+  product_id:
+    type: string
+    default: 'null'
+    description: Product ID
+  product:
+    $ref: ./Product.yaml

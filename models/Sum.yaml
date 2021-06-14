@@ -1,0 +1,7 @@
+title: Sum
+type: object
+properties:
+  total:
+    $ref: ./MoneyInteger.v1.yaml
+  vat:
+    $ref: ./MoneyInteger.v1.yaml

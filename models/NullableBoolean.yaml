@@ -1,0 +1,5 @@
+title: NullableBoolean
+type: object
+properties:
+  id:
+    type: string

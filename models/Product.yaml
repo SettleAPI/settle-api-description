@@ -1,0 +1,15 @@
+title: Product
+type: object
+properties:
+  total:
+    $ref: ./MoneyInteger.v1.yaml
+  vat:
+    $ref: ./MoneyInteger.v1.yaml
+  qty:
+    type: integer
+    default: null
+    description: Qty
+  description:
+    type: string
+    default: 'null'
+    description: Description

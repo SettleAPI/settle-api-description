@@ -1,0 +1,15 @@
+title: SettlementListItem
+type: object
+properties:
+  index:
+    $ref: ./DateTime.yaml
+  end_date:
+    $ref: ./DateTime.yaml
+  gross:
+    $ref: ./MoneyInteger.v1.yaml
+  fixed_fees:
+    $ref: ./MoneyInteger.v1.yaml
+  variable_fees:
+    $ref: ./MoneyInteger.v1.yaml
+  payout:
+    $ref: ./MoneyInteger.v1.yaml

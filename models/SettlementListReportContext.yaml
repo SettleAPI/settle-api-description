@@ -1,0 +1,35 @@
+title: SettlementListReportContext
+type: object
+properties:
+  from_date:
+    type: string
+    description: From Date
+    default: 'null'
+  to_date:
+    type: string
+    description: To Date
+    default: 'null'
+  include_sales:
+    type: boolean
+    description: Include Sales
+    default: false
+  show_sale_refund:
+    type: boolean
+    description: Show Sale Refund
+    default: false
+  total_sum:
+    $ref: ''
+  running_sum:
+    $ref: ./RunningSum.yaml
+  unspecified:
+    $ref: ./RunningSum.yaml
+  settlement_payouts:
+    $ref: ./SettlementPayout.yaml
+  product_sales_table:
+    $ref: ./ProductSalesTable.yaml
+  vat_sales_table:
+    $ref: ./VatSalesTable.yaml
+  single_format:
+    $ref: ./NullableBoolean.yaml
+  single_payout:
+    $ref: ./SettlementPayout.yaml

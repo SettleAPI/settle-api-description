@@ -1,0 +1,7 @@
+title: VatSalesTable
+type: object
+properties:
+  refund:
+    $ref: ./VatSalesTableEntry.yaml
+  capture:
+    $ref: ./VatSalesTableEntry.yaml
