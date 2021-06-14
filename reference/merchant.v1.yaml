@@ -8,6 +8,7 @@ info:
     email: hello@settle.eu
   license:
     name: MIT
+    url: 'https://raw.githubusercontent.com/SettleAPI/settle-api-description/main/LICENSE'
   description: Lorem ipsum
 servers:
   - url: 'http://localhost:3000'
@@ -369,6 +370,66 @@ paths:
       responses: {}
       operationId: merchant.settlement.report.get
       description: Endpoint accepts arguments for filtering the list of settlements and can omit empty settlements.
+  /shortlink:
+    get:
+      summary: merchant.shortlink.list
+      tags: []
+      operationId: merchant.shortlink.list
+      parameters: []
+      description: List shortlink registrations.
+      responses:
+        '200':
+          $ref: '#/components/responses/shortlink.list.200'
+    post:
+      summary: merchant.shortlink.create
+      operationId: merchant.shortlink.create
+      responses:
+        '201':
+          $ref: '#/components/responses/shortlink.create.201'
+        '400':
+          $ref: '#/components/responses/shortlink.create.400'
+      description: Register new shortlink.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/shortlink.create'
+  '/shortlink/{shortlink_id}':
+    parameters:
+      - $ref: '#/components/parameters/shortlink_id'
+    get:
+      summary: merchant.shortlink.get
+      tags: []
+      responses:
+        '200':
+          $ref: '#/components/responses/shortlink.get.200'
+      operationId: merchant.shortlink.get
+      description: Retrieve registered shortlink info.
+    put:
+      summary: merchant.shortlink.update
+      operationId: merchant.shortlink.update
+      responses:
+        '200':
+          $ref: '#/components/responses/shortlink.update.200'
+        '204':
+          $ref: '#/components/responses/shortlink.update.204'
+        '400':
+          $ref: '#/components/responses/shortlink.update.400'
+      description: Update existing shortlink registration.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/shortlink.update'
+    delete:
+      summary: merchant.shortlink.delete
+      operationId: merchant.shortlink.delete
+      responses:
+        '200':
+          description: OK
+        '204':
+          description: No Content
+      description: Delete shortlink
 components:
   schemas:
     payment.request.create:
@@ -885,6 +946,28 @@ components:
           type: boolean
           description: Non Empty Only
           default: false
+    shortlink.create:
+      title: 'Request Body: shortlink.create'
+      type: object
+      properties:
+        callback_uri:
+          type: string
+          default: 'null'
+          description: URI called by Settle when user scans shortlink.
+        serial_number:
+          type: string
+          default: 'null'
+          description: Serial number on printed QR codes.This field is only used when registering printed stickers issued by Settle.
+      description: Register new shortlink.
+    shortlink.update:
+      title: 'Request Body: shortlink.update'
+      type: object
+      description: Update existing shortlink registration.
+      properties:
+        callback_uri:
+          type: string
+          default: 'null'
+          description: URI called by Settle when user scans shortlink.
   responses:
     payment.request.list.200:
       description: Example response
@@ -1110,6 +1193,100 @@ components:
                 $ref: ../models/SettlementListSummary.yaml
               report_context:
                 $ref: ../models/SettlementListReportContext.yaml
+    shortlink.create.201:
+      description: Register new shortlink.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+                description: ID
+                default: 'null'
+      headers:
+        Location:
+          schema:
+            type: string
+          description: URI to shortlink resource.
+    shortlink.create.400:
+      description: 'Bad request, validation error.'
+      content:
+        application/json:
+          schema:
+            properties:
+              id:
+                type: string
+      headers: {}
+    shortlink.list.200:
+      description: List shortlink registrations.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              uris:
+                type: string
+                description: A list of absolute paths to the requested resources.
+              next:
+                type: string
+                default: 'null'
+                description: Path to the next list chunk.
+              prev:
+                type: string
+                default: 'null'
+                description: Path to the previous list chunk.
+            required:
+              - uris
+    shortlink.update.200:
+      description: Example response
+      content:
+        application/json:
+          schema:
+            properties:
+              id:
+                type: string
+    shortlink.update.204:
+      description: No content
+      content:
+        application/json:
+          schema:
+            properties:
+              id:
+                type: string
+    shortlink.update.400:
+      description: 'Bad request, validation error.'
+      content:
+        application/json:
+          schema:
+            properties:
+              id:
+                type: string
+    shortlink.get.200:
+      description: Retrieve registered shortlink info.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+                default: 'null'
+                description: ID
+              callback_uri:
+                type: string
+                default: 'null'
+                description: URI called by Settle when user scans shortlink.
+              serial_number:
+                type: string
+                default: 'null'
+                description: Serial number on printed QR codes.This field is only used when registering printed stickers issued by Settle.
+              shortlink_value:
+                type: string
+                default: 'null'
+                description: Text to be displayed as QR code.
+            required:
+              - shortlink_value
   securitySchemes: {}
   parameters:
     merchant_id:
@@ -1153,6 +1330,20 @@ components:
       required: true
       schema:
         type: string
+    location:
+      name: location
+      in: header
+      required: false
+      schema:
+        type: string
+      description: URI to shortlink resource.
+    shortlink_id:
+      name: shortlink_id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: Shortlink ID assigned by Settle.
 tags:
   - name: Info
   - name: Balance
