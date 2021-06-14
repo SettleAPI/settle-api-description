@@ -1,0 +1,20 @@
+title: PayoutDetail
+type: object
+description: Settle generates this during settlement based on the settlement logs and previously unsettled fees.
+properties:
+  currency:
+    $ref: ./Currency.v1.yaml
+  unsettled_fees_before:
+    $ref: ./MoneyInteger.v1.yaml
+  unsettled_fees_after:
+    $ref: ./MoneyInteger.v1.yaml
+  payout:
+    $ref: ./MoneyInteger.v1.yaml
+  net:
+    $ref: ./MoneyInteger.v1.yaml
+  gross:
+    $ref: ./MoneyInteger.v1.yaml
+  billed:
+    $ref: ./MoneyInteger.v1.yaml
+  invoice_id:
+    $ref: ./MoneyInteger.v1.yaml

@@ -279,7 +279,7 @@ paths:
       responses:
         '200':
           $ref: '#/components/responses/pos.get.200'
-      description: Retrieve POS info
+      description: Retrieve POS info.
       tags:
         - Pos
   '/merchant/{merchant_id}':
@@ -303,8 +303,65 @@ paths:
       summary: merchant.profile.lookup
       tags: []
       responses: {}
-      operationId: get-merchant_lookup-lookup_id
+      operationId: merchant.profile.lookup
       description: Handle merchant lookup on secondary ID. This is endpoint can only be used by integrators.
+  /sales_summary:
+    get:
+      summary: merchant.sales.summary
+      tags: []
+      responses:
+        '200':
+          $ref: '#/components/responses/sales.summary.200'
+      operationId: merchant.sales.summary
+      description: Retrieve sales report.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/sales.summary.get'
+  /settlement:
+    get:
+      summary: merchant.settlement.list
+      tags: []
+      responses:
+        '200':
+          $ref: '#/components/responses/settlement.list.200'
+      operationId: merchant.settlement.list
+      description: List settlements.
+  '/settlement/{settlement_id}':
+    parameters:
+      - $ref: '#/components/parameters/settlement_id'
+    get:
+      summary: merchant.settlement.get
+      tags: []
+      responses:
+        '200':
+          $ref: '#/components/responses/settlement.get.200'
+        '404':
+          $ref: '#/components/responses/settlement.get.404'
+      operationId: merchant.settlement.get
+      description: 'Retrieve information regarding one settlement. The settlement contains detailed information about the amount paid out in the payout_details form. In case merchant has unsettled fees from previous settlements, Settle will attempt to settle these before paying out. If there are still unsettled fees after settlement is done, this amount will be transferred to the next settlement, or billed by Settle.'
+  '/settlement_account/{settlement_account_id}':
+    parameters:
+      - $ref: '#/components/parameters/settlement_account_id'
+    get:
+      summary: merchant.settlement.account.get
+      tags: []
+      responses:
+        '200':
+          $ref: '#/components/responses/settlement.account.get.200'
+      operationId: merchant.settlement.account.get
+      description: Gets a SettlementAccount by ID.
+    put:
+      summary: merchant.settlement.account.update
+      operationId: merchant.settlement.account.update
+      description: Updates a SettlementAccount
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/settlement.account.update'
+        description: Updates a SettlementAccount.
 components:
   schemas:
     payment.request.create:
@@ -776,6 +833,34 @@ components:
           type: boolean
           default: false
           description: Approved
+    sales.summary.get:
+      title: 'Request Body: sales.summary'
+      type: object
+      description: Retrieve sales report.
+      properties:
+        from_date:
+          $ref: ../models/Date.yaml
+        to_date:
+          $ref: ../models/Date.yaml
+        merchant_time:
+          description: Merchant Time
+          type: boolean
+        frequency:
+          $ref: ../models/Select.yaml
+      required:
+        - from_date
+    settlement.account.update:
+      title: 'Request Body: settlement.account.update'
+      type: object
+      description: Updates a SettlementAccount.
+      properties:
+        payout_account:
+          type: string
+          description: Payout Account
+        frequency:
+          $ref: ../models/SettlementAccountFrequency.yaml
+      required:
+        - payout_account
   responses:
     payment.request.list.200:
       description: Example response
@@ -880,6 +965,114 @@ components:
                 description: 'If payment request was posted without a customer, user can claim it on this uri.'
             required:
               - id
+    sales.summary.200:
+      description: Example response
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              merchant_timezone:
+                type: string
+                description: Merchant Timezone
+                default: 'null'
+              result_timezone:
+                type: string
+                description: Result Timezone
+                default: 'null'
+              start_of_day:
+                $ref: ../models/Time.yaml
+              periods:
+                $ref: ../models/DateTime.yaml
+              data_until:
+                $ref: ../models/DateTime.yaml
+              products:
+                $ref: ../models/SalesSummaryProduct.yaml
+              max_timestamp:
+                $ref: ../models/DateTime.yaml
+    settlement.list.200:
+      description: Example response
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              uris:
+                type: string
+                description: A list of absolute paths to the requested resources.
+                default: 'null'
+              next:
+                type: string
+                description: Path to the next list chunk.
+                default: 'null'
+              prev:
+                type: string
+                description: Path to the previous list chunk.
+                default: 'null'
+            required:
+              - uris
+    settlement.get.200:
+      description: OK
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+                description: The ID of the settlement.
+              date_created:
+                $ref: ../models/DateTime.yaml
+              transaction_log_uris:
+                type: string
+                description: 'List of download URIs for the Transaction log blob object in CSV format.The Transaction log is divided in sizable chunks, and each URI points to its own chunk.'
+                pattern: '(^|^w+://(localhost|[^/:]+.[a-z]{2,10}|([0-9]{1,3}.){3}[0-9]{1,3})(:[0-9]+)?)(/.*)?$'
+              scope_log_uris:
+                description: 'List of download URI`s for the Scope log blob object in CSV format. The Scope log is divided in sizable chunks, and each URI points to its own chunk.'
+                pattern: '(^|^w+://(localhost|[^/:]+.[a-z]{2,10}|([0-9]{1,3}.){3}[0-9]{1,3})(:[0-9]+)?)(/.*)?$'
+                type: string
+              settlement_summary:
+                $ref: ../models/ReportSummary.yaml
+              payout_details:
+                $ref: ../models/PayoutDetail.yaml
+            required:
+              - id
+              - date_created
+              - transaction_log_uris
+              - scope_log_uris
+    settlement.get.404:
+      description: No settlement with this ID
+      content:
+        application/json:
+          schema:
+            properties:
+              id:
+                type: string
+    settlement.account.get.200:
+      description: Gets a SettlementAccount by ID.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+                description: ID
+                default: 'null'
+              start_of_day:
+                $ref: ../models/Time.yaml
+              currency:
+                type: string
+                description: Currency
+                default: 'null'
+              payout_delay:
+                $ref: ../models/TimeDelta.yaml
+              payout_account:
+                type: string
+                description: Payout Account
+                default: 'null'
+              frequency:
+                $ref: ../models/SettlementAccountFrequency.yaml
   securitySchemes: {}
   parameters:
     merchant_id:
@@ -910,6 +1103,19 @@ components:
       schema:
         type: string
       description: Merchant lookup ID assigned by Settle.
+    settlement_id:
+      name: settlement_id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The ID of the settlement to retrieve.
+    settlement_account_id:
+      name: settlement_account_id
+      in: path
+      required: true
+      schema:
+        type: string
 tags:
   - name: Info
   - name: Balance

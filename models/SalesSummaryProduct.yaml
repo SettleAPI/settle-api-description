@@ -1,0 +1,42 @@
+title: SalesSummaryProduct
+type: object
+properties:
+  product_id:
+    type: string
+    description: Product ID
+  description:
+    type: string
+    description: Description
+  reserved_vat:
+    type: string
+    description: Reserved Vat
+  capture_vat:
+    type: string
+    description: Capture Vat
+  refund_vat:
+    type: string
+    description: Refund Vat
+  reserved_quantity:
+    type: string
+    description: Reserved Quantity
+  capture_quantity:
+    type: string
+    description: Capture Quantity
+  refund_quantity:
+    type: string
+    description: Refund Quantity
+  reserved_total:
+    type: string
+    description: Reserved Total
+  capture_total:
+    type: string
+    description: Capture Total
+  refund_total:
+    type: string
+    description: Refund Total
+  currency:
+    type: string
+    description: Currency
+  vat_rate:
+    type: string
+    description: Vat Rate

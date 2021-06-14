@@ -1,0 +1,22 @@
+title: ReportSummary
+type: object
+description: A summary of the set of transactions carried out in the same Report. Settle generates this after a report is closed.
+properties:
+  gross:
+    $ref: ./MoneyInteger.v1.yaml
+  amount_total:
+    $ref: ./MoneyInteger.v1.yaml
+  additional_amount_total:
+    $ref: ./MoneyInteger.v1.yaml
+  fees:
+    $ref: ./Fee.yaml
+  interchange:
+    $ref: ./MoneyInteger.v1.yaml
+  currency:
+    $ref: ./Currency.v1.yaml
+  net:
+    $ref: ./MoneyInteger.v1.yaml
+  taxcode:
+    type: string
+    description: 'Tax laws that apply for this part of the summary, e.g., "NO:2013".'
+    default: 'null'

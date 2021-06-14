@@ -1,0 +1,5 @@
+title: Select
+type: object
+properties:
+  id:
+    type: string

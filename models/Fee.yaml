@@ -1,0 +1,16 @@
+title: Fee
+type: object
+description: Fees and their corresponding VAT amounts for summaries of merchant settlements.
+properties:
+  scope_fee:
+    $ref: ./MoneyInteger.v1.yaml
+  scope_fee_vat:
+    $ref: ./MoneyInteger.v1.yaml
+  settlement_fee:
+    $ref: ./MoneyInteger.v1.yaml
+  settlement_fee_vat:
+    $ref: ./MoneyInteger.v1.yaml
+  transaction_fee:
+    $ref: ./MoneyInteger.v1.yaml
+  transaction_fee_vat:
+    $ref: ./MoneyInteger.v1.yaml
