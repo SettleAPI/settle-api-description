@@ -464,6 +464,26 @@ paths:
         Deletes a MerchantSspUser and returns 204 NO CONTENT
 
         Currently only deletes if MerchantSspUser does not have any LegalEntities to avoid side effects Used to avoid inconsistencies between core and merchant console.
+  /status_code:
+    get:
+      summary: merchant.statusCodes.list
+      tags: []
+      responses:
+        '200':
+          $ref: '#/components/responses/statusCodes.list.200'
+      operationId: merchant.statusCodes.list
+      description: List Status Codes
+  '/status_code/{status_code}':
+    parameters:
+      - $ref: '#/components/parameters/status_code'
+    get:
+      summary: merchant.statusCodes.get
+      tags: []
+      responses:
+        '200':
+          $ref: '#/components/responses/statusCodes.get.200'
+      operationId: merchant.statusCodes.get
+      description: Get details about a spesific Status Code
 components:
   schemas:
     payment.request.create:
@@ -1423,6 +1443,36 @@ components:
                 type: string
                 description: Bankid
                 default: 'null'
+    statusCodes.list.200:
+      description: 'A list of objects containing the following data:'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              code:
+                type: string
+                default: 'null'
+                description: Code
+              name:
+                type: string
+                default: 'null'
+                description: Name
+    statusCodes.get.200:
+      description: 'An object containing the following data:'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              code:
+                type: string
+                default: 'null'
+                description: Code
+              name:
+                type: string
+                default: 'null'
+                description: Name
   securitySchemes: {}
   parameters:
     merchant_id:
@@ -1480,6 +1530,13 @@ components:
       schema:
         type: string
       description: Shortlink ID assigned by Settle.
+    status_code:
+      name: status_code
+      in: path
+      required: true
+      schema:
+        type: string
+      description: Status Code provided by Settle.
 tags:
   - name: Info
   - name: Balance
