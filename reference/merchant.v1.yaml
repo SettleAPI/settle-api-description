@@ -526,7 +526,7 @@ paths:
       responses:
         '200':
           description: OK
-      description: Delete USer
+      description: Delete User
 components:
   schemas:
     payment.request.create:
