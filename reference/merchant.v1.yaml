@@ -288,7 +288,8 @@ paths:
       - $ref: '#/components/parameters/merchant_id'
     get:
       summary: merchant.profile.get
-      tags: []
+      tags:
+        - Merchant
       responses: {}
       operationId: merchant.profile.get
       description: Get merchant info
@@ -302,14 +303,14 @@ paths:
       - $ref: '#/components/parameters/lookup_id'
     get:
       summary: merchant.profile.lookup
-      tags: []
       responses: {}
       operationId: merchant.profile.lookup
       description: Handle merchant lookup on secondary ID. This is endpoint can only be used by integrators.
+      tags:
+        - Merchant
   /sales_summary:
     get:
       summary: merchant.sales.summary
-      tags: []
       responses:
         '200':
           $ref: '#/components/responses/sales.summary.200'
@@ -320,10 +321,13 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/sales.summary.get'
+      tags:
+        - Sales
   /settlement:
     get:
       summary: merchant.settlement.latest.get
-      tags: []
+      tags:
+        - Settlement
       responses:
         '200':
           $ref: '#/components/responses/settlement.list.200'
@@ -334,7 +338,8 @@ paths:
       - $ref: '#/components/parameters/settlement_id'
     get:
       summary: merchant.settlement.get
-      tags: []
+      tags:
+        - Settlement
       responses:
         '200':
           $ref: '#/components/responses/settlement.latest.get.200'
@@ -347,7 +352,8 @@ paths:
       - $ref: '#/components/parameters/settlement_account_id'
     get:
       summary: merchant.settlement.account.get
-      tags: []
+      tags:
+        - Settlement
       responses:
         '200':
           $ref: '#/components/responses/settlement.account.get.200'
@@ -366,7 +372,8 @@ paths:
   /settlement_report:
     get:
       summary: merchant.settlement.report.get
-      tags: []
+      tags:
+        - Settlement
       responses:
         '200':
           $ref: '#/components/responses/settlement.report.get.200'
@@ -375,7 +382,8 @@ paths:
   /shortlink:
     get:
       summary: merchant.shortlink.list
-      tags: []
+      tags:
+        - Shortlink
       operationId: merchant.shortlink.list
       parameters: []
       description: List shortlink registrations.
@@ -401,7 +409,8 @@ paths:
       - $ref: '#/components/parameters/shortlink_id'
     get:
       summary: merchant.shortlink.get
-      tags: []
+      tags:
+        - Shortlink
       responses:
         '200':
           $ref: '#/components/responses/shortlink.get.200'
@@ -449,7 +458,8 @@ paths:
         description: 'Returns 201 CREATED (unless a user with the same email already exists, which results in a 409 CONFLICT response).'
     get:
       summary: merchant.ssp.users.get
-      tags: []
+      tags:
+        - Merchant
       operationId: merchant.ssp.users.get
       description: Gets a MerchantSspUser.
       responses:
@@ -469,7 +479,8 @@ paths:
   /status_code:
     get:
       summary: merchant.statusCodes.list
-      tags: []
+      tags:
+        - Status Codes
       responses:
         '200':
           $ref: '#/components/responses/statusCodes.list.200'
@@ -480,7 +491,8 @@ paths:
       - $ref: '#/components/parameters/status_code'
     get:
       summary: merchant.statusCodes.get
-      tags: []
+      tags:
+        - Status Codes
       responses:
         '200':
           $ref: '#/components/responses/statusCodes.get.200'
@@ -499,12 +511,15 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/users.create'
+      tags:
+        - Users
   '/user/{user_id}':
     parameters:
       - $ref: '#/components/parameters/user_id'
     get:
       summary: merchant.users.get
-      tags: []
+      tags:
+        - Users
       responses:
         '200':
           $ref: '#/components/responses/users.get.201'
