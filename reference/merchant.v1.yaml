@@ -367,7 +367,9 @@ paths:
     get:
       summary: merchant.settlement.report.get
       tags: []
-      responses: {}
+      responses:
+        '200':
+          $ref: '#/components/responses/settlement.report.get.200'
       operationId: merchant.settlement.report.get
       description: Endpoint accepts arguments for filtering the list of settlements and can omit empty settlements.
   /shortlink:
@@ -1611,6 +1613,7 @@ components:
                 description: Whether user has secret set.
               pubkey:
                 $ref: ../models/PubKey.yaml
+          examples: {}
   securitySchemes: {}
   parameters:
     merchant_id:
