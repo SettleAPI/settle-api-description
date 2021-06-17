@@ -5,184 +5,144 @@ info:
 servers:
   - url: 'http://localhost:3000'
 paths:
-  '/users/{userId}':
+  /permission_request:
+    post:
+      summary: users.permissions.request.create
+      operationId: users.permissions.request.create
+      responses:
+        '200':
+          description: 'OK, identical permission request already created'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    description: Permission Request ID
+                    default: 'null'
+        '201':
+          description: Permission request created
+        '400':
+          description: 'Bad request, validation error'
+      description: |-
+        Create permission request.
+
+        The call is idempotent; that is, if one posts the same pos_id and pos_tid twice, only one Permission request is created.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/permissions.request.create'
+  '/permission_request/{rid}':
     parameters:
-      - schema:
-          type: integer
-        name: userId
-        in: path
-        required: true
-        description: Id of an existing user.
+      - $ref: '#/components/parameters/rid'
     get:
-      summary: Get User Info by User ID
+      summary: users.permissions.request.get
       tags: []
       responses:
         '200':
-          description: User Found
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/User'
-              examples:
-                Get User Alice Smith:
-                  value:
-                    id: 142
-                    firstName: Alice
-                    lastName: Smith
-                    email: alice.smith@gmail.com
-                    dateOfBirth: '1997-10-31'
-                    emailVerified: true
-                    signUpDate: '2019-08-24'
-        '404':
-          description: User Not Found
-      operationId: get-users-userId
-      description: Retrieve the information of the user with the matching user ID.
-    patch:
-      summary: Update User Information
-      operationId: patch-users-userId
-      responses:
-        '200':
-          description: User Updated
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/User'
-              examples:
-                Updated User Rebecca Baker:
-                  value:
-                    id: 13
-                    firstName: Rebecca
-                    lastName: Baker
-                    email: rebecca@gmail.com
-                    dateOfBirth: '1985-10-02'
-                    emailVerified: false
-                    createDate: '2019-08-24'
-        '404':
-          description: User Not Found
-        '409':
-          description: Email Already Taken
-      description: Update the information of an existing user.
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                firstName:
-                  type: string
-                lastName:
-                  type: string
-                email:
-                  type: string
-                  description: 'If a new email is given, the user''s email verified property will be set to false.'
-                dateOfBirth:
-                  type: string
-            examples:
-              Update First Name:
-                value:
-                  firstName: Rebecca
-              Update Email:
-                value:
-                  email: rebecca@gmail.com
-              Update Last Name & Date of Birth:
-                value:
-                  lastName: Baker
-                  dateOfBirth: '1985-10-02'
-        description: Patch user properties to update.
-  /user:
-    post:
-      summary: Create New User
-      operationId: post-user
-      responses:
-        '200':
-          description: User Created
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/User'
-              examples:
-                New User Bob Fellow:
-                  value:
-                    id: 12
-                    firstName: Bob
-                    lastName: Fellow
-                    email: bob.fellow@gmail.com
-                    dateOfBirth: '1996-08-24'
-                    emailVerified: false
-                    createDate: '2020-11-18'
-        '400':
-          description: Missing Required Information
-        '409':
-          description: Email Already Taken
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                firstName:
-                  type: string
-                lastName:
-                  type: string
-                email:
-                  type: string
-                dateOfBirth:
-                  type: string
-                  format: date
-              required:
-                - firstName
-                - lastName
-                - email
-                - dateOfBirth
-            examples:
-              Create User Bob Fellow:
-                value:
-                  firstName: Bob
-                  lastName: Fellow
-                  email: bob.fellow@gmail.com
-                  dateOfBirth: '1996-08-24'
-        description: Post the necessary fields for the API to create a new user.
-      description: Create a new user.
+          $ref: '#/components/responses/permissions.request.get.200'
+      operationId: users.permissions.request.get
+      description: See permission request info
 components:
   schemas:
-    User:
-      title: User
+    permissions.request.create:
+      title: 'Request Body: permissions.request.create'
       type: object
-      description: ''
-      x-examples:
-        Alice Smith:
-          id: 142
-          firstName: Alice
-          lastName: Smith
-          email: alice.smith@gmail.com
-          dateOfBirth: '1997-10-31'
-          emailVerified: true
-          signUpDate: '2019-08-24'
+      description: Create Permission Request
       properties:
-        id:
-          type: integer
-          description: Unique identifier for the given user.
-        firstName:
+        customer:
+          $ref: ../models/PersonIdentifier.v1.yaml
+        pos_id:
           type: string
-        lastName:
+          description: 'The POS this permission request originates from, used for informing user about origin.'
+          maxLength: 64
+          pattern: '^[a-zA-Z0-9_.-]+$'
+        pos_tid:
           type: string
-        email:
+          description: Local transaction id for POS. This must be unique for the POS.
+          pattern: '^[a-zA-Z0-9_.-]+$'
+          maxLength: 64
+        text:
           type: string
-          format: email
-        dateOfBirth:
+          description: Local transaction id for POS. This must be unique for the POS.
+          default: 'null'
+        callback_uri:
           type: string
-          format: date
-          example: '1997-10-31'
-        emailVerified:
-          type: boolean
-          description: Set to true if the user's email has been verified.
-        createDate:
+          description: 'If provided, Settle will POST to this URI when the status of the permission request changes. The data transferred in the POST are the same as what can be retrieved by calling GET on the resource URI.'
+          default: 'null'
+        scope:
           type: string
-          format: date
-          description: The date that the user was created.
+          description: 'Space-delimited list of scopes. Any of: "openid" (static id, "address" (user preferred address), "profile" (name), "phone", "email", "shipping_address", "fodselsnummer".'
+        expires_in:
+          type: string
+          description: Expiration in seconds from when server received request.
+          default: '21600'
+          maxLength: 2592000
       required:
-        - id
-        - firstName
-        - lastName
-        - email
-        - emailVerified
+        - customer
+        - pos_id
+        - pos_tid
+        - scope
+      x-examples: {}
+  parameters:
+    rid:
+      name: rid
+      in: path
+      required: true
+      schema:
+        type: string
+      description: Permission request id assigned by Settle
+  responses:
+    permissions.request.get.200:
+      description: Example response
+      content:
+        application/json:
+          schema:
+            description: ''
+            type: object
+            x-examples:
+              example-1:
+                customer: 'null'
+                pos_id: string
+                pos_tid: string
+                text: 'null'
+                callback_uri: 'null'
+                scope: string
+                expires_in: '21600'
+            properties:
+              customer:
+                $ref: ../models/PersonIdentifier.v1.yaml
+              pos_id:
+                type: string
+                minLength: 1
+                pattern: '^[a-zA-Z0-9_.-]+$'
+                maxLength: 64
+                description: 'The POS this permission request originates from, used for informing user about origin.'
+              pos_tid:
+                type: string
+                minLength: 1
+                pattern: '^[a-zA-Z0-9_.-]+$'
+                maxLength: 64
+                description: Local transaction id for POS. This must be unique for the POS.
+              text:
+                type: string
+                description: Text that is shown to user when asked for permission. This can contain linebreaks and the text has to fit on smartphones screens.
+                default: 'null'
+              callback_uri:
+                type: string
+                description: 'If provided, Settle will POST to this URI when the status of the permission request changes. The data transferred in the POST are the same as what can be retrieved by calling GET on the resource URI.'
+                default: 'null'
+              scope:
+                type: string
+                description: 'Space-delimited list of scopes. Any of: "openid" (static id, "address" (user preferred address), "profile" (name), "phone", "email", "shipping_address", "fodselsnummer".'
+                default: 'null'
+              expires_in:
+                $ref: ../models/DateTime.yaml
+            required:
+              - customer
+              - pos_id
+              - pos_tid
+              - scope
+      headers: {}
