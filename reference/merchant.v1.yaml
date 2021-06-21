@@ -298,6 +298,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/profile.get'
+      deprecated: true
   '/merchant_lookup/{lookup_id}':
     parameters:
       - $ref: '#/components/parameters/lookup_id'
