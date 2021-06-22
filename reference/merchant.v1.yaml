@@ -700,7 +700,11 @@ paths:
       operationId: merchant.payment.send.outcome.get
   '/merchant_ssp_user/{merchant_ssp_user_id}':
     parameters:
-      - $ref: '#/components/parameters/merchant_ssp_user_id'
+      - schema:
+          type: string
+        name: merchant_ssp_user_id
+        in: path
+        required: true
     get:
       summary: merchant.ssp.users.get
       tags: []
@@ -719,9 +723,14 @@ paths:
         Deletes a MerchantSspUser and returns 204 NO CONTENT
 
         Currently only deletes if MerchantSspUser does not have any LegalEntities to avoid side effects Used to avoid inconsistencies between core and merchant console.
-  '/merchant/{{merchant_id}}/balance/':
+  '/merchant/{merchant_id}/balance':
     parameters:
-      - $ref: '#/components/parameters/merchant_id'
+      - name: merchant_id
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Merchant id assigned by Settle.
     get:
       summary: merchant.balance.get
       tags: []
