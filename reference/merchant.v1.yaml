@@ -514,6 +514,7 @@ paths:
               $ref: '#/components/schemas/users.create'
       tags:
         - Users
+      deprecated: true
   '/user/{user_id}':
     parameters:
       - $ref: '#/components/parameters/user_id'
@@ -526,6 +527,7 @@ paths:
           $ref: '#/components/responses/users.get.201'
       operationId: merchant.users.get
       description: Get user info.
+      deprecated: true
     put:
       summary: merchant.users.update
       operationId: merchant.users.update
