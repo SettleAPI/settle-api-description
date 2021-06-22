@@ -228,6 +228,32 @@ paths:
           $ref: '#/components/responses/pos.create.201'
         '400':
           description: 'Bad Request, validation error'
+        '409':
+          description: Conflict
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                x-examples:
+                  example-1:
+                    error_detail: null
+                    error_type: Conflict
+                    error_description: POS with ID "5rg1dkk8|9469f42f-8acf-43a8-ac28-bb64c8a994bd" already exists
+                properties:
+                  error_detail: {}
+                  error_type:
+                    type: string
+                    minLength: 1
+                  error_description:
+                    type: string
+                    minLength: 1
+              examples:
+                POS exists:
+                  value:
+                    error_detail: null
+                    error_type: Conflict
+                    error_description: POS with ID "5rg1dkk8|9469f42f-8acf-43a8-ac28-bb64c8a994bd" already exists
       description: Create POS resource
       parameters: []
       requestBody:
@@ -458,25 +484,15 @@ paths:
               $ref: '#/components/schemas/ssp.users.create'
         description: 'Returns 201 CREATED (unless a user with the same email already exists, which results in a 409 CONFLICT response).'
     get:
-      summary: merchant.ssp.users.get
+      summary: merchant.ssp.users.list
       tags:
         - Merchant
-      operationId: merchant.ssp.users.get
-      description: Gets a MerchantSspUser.
+      operationId: merchant.ssp.users.list
+      description: Lists Merchant SSP Users.
       responses:
         '200':
           $ref: '#/components/responses/ssp.users.get.200'
-    delete:
-      summary: merchant.ssp.users.delete
-      tags: []
-      responses:
-        '204':
-          $ref: '#/components/responses/ssp.users.delete.204'
-      operationId: merchant.ssp.users.delete
-      description: |-
-        Deletes a MerchantSspUser and returns 204 NO CONTENT
-
-        Currently only deletes if MerchantSspUser does not have any LegalEntities to avoid side effects Used to avoid inconsistencies between core and merchant console.
+      x-internal: true
   /status_code:
     get:
       summary: merchant.statusCodes.list
@@ -547,6 +563,162 @@ paths:
         '200':
           description: OK
       description: Delete User
+  /payment_send:
+    post:
+      summary: merchant.payment.send.create
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  id:
+                    type: string
+                    minLength: 1
+                required:
+                  - id
+                x-examples:
+                  example-1:
+                    id: p8bgxt1a0rzp
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+              examples:
+                Insufficient funds:
+                  value:
+                    error_detail: null
+                    error_type: Bad Request
+                    error_description: Insufficient funds
+          headers: {}
+        '401':
+          description: Unauthorized
+      description: Send payment
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/payment.send'
+            examples: {}
+      operationId: merchant.payment.send.create
+  '/payment_send/{tid}/outcome':
+    parameters:
+      - $ref: '#/components/parameters/tid'
+    get:
+      summary: merchant.payment.send.outcome.get
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                x-examples:
+                  example-1:
+                    object:
+                      idempotency_id: 63de8b62-dac3-4ec1-8da3-1093e561583a
+                      payer: 5rg1dkk8
+                      currency: NOK
+                      timestamp: '2021-06-22 09:14:26'
+                      require_identified: false
+                      id: p13fjg6py9jw
+                      payee: 'msisdn:4798052301'
+                      amount: 1000
+                      payer_status: ok
+                      chat_text: Cumque illo ut est ex unde.
+                    type: payment
+                properties:
+                  object:
+                    type: object
+                    properties:
+                      idempotency_id:
+                        type: string
+                        minLength: 1
+                      payer:
+                        $ref: ../models/PersonIdentifier.v1.yaml
+                      currency:
+                        $ref: ../models/Currency.v1.yaml
+                      timestamp:
+                        type: string
+                        minLength: 1
+                      require_identified:
+                        type: boolean
+                      id:
+                        type: string
+                        minLength: 1
+                      payee:
+                        type: string
+                        minLength: 1
+                      amount:
+                        $ref: ../models/MoneyInteger.v1.yaml
+                      payer_status:
+                        type: string
+                        minLength: 1
+                      chat_text:
+                        type: string
+                        minLength: 1
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  error_detail:
+                    type: object
+                    properties: {}
+                    required: []
+                  error_type:
+                    type: string
+                    minLength: 1
+                  error_description:
+                    type: string
+                    minLength: 1
+                required:
+                  - error_detail
+                  - error_type
+                  - error_description
+                x-examples:
+                  example-1:
+                    error_detail: {}
+                    error_type: Not Found
+                    error_description: no payment request with id p0gv8xc9d3km
+              examples:
+                No payment found:
+                  value:
+                    error_detail: {}
+                    error_type: Not Found
+                    error_description: no payment request with ID xxx
+      operationId: merchant.payment.send.outcome.get
+  '/merchant_ssp_user/{merchant_ssp_user_id}':
+    parameters:
+      - $ref: '#/components/parameters/merchant_ssp_user_id'
+    get:
+      summary: merchant.ssp.users.get
+      tags: []
+      responses:
+        '200':
+          $ref: '#/components/responses/ssp.users.get.200'
+      operationId: merchant.ssp.users.get
+      description: Gets a MerchantSspUser.
+    delete:
+      summary: merchant.ssp.users.delete
+      operationId: merchant.ssp.users.delete
+      responses:
+        '204':
+          description: No Content
+      description: |-
+        Deletes a MerchantSspUser and returns 204 NO CONTENT
+
+        Currently only deletes if MerchantSspUser does not have any LegalEntities to avoid side effects Used to avoid inconsistencies between core and merchant console.
 components:
   schemas:
     payment.request.create:
@@ -967,6 +1139,12 @@ components:
       required:
         - name
         - type
+      x-examples:
+        example-1:
+          value:
+            name: string
+            type: store
+            location: 'null'
     profile.get:
       title: 'Request Body: merchant.profile.get'
       type: object
@@ -1703,6 +1881,13 @@ components:
       schema:
         type: string
       description: Merchant User ID provided by Settle.
+    merchant_ssp_user_id:
+      name: merchant_ssp_user_id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: Merchant SSP User ID
 tags:
   - name: Info
   - name: Balance
