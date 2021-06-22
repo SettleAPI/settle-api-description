@@ -719,6 +719,17 @@ paths:
         Deletes a MerchantSspUser and returns 204 NO CONTENT
 
         Currently only deletes if MerchantSspUser does not have any LegalEntities to avoid side effects Used to avoid inconsistencies between core and merchant console.
+  '/merchant/{{merchant_id}}/balance/':
+    parameters:
+      - $ref: '#/components/parameters/merchant_id'
+    get:
+      summary: merchant.balance.get
+      tags: []
+      responses:
+        '200':
+          description: OK
+      operationId: merchant.balance.get
+      description: Gets Merchant Account Balance
 components:
   schemas:
     payment.request.create:
