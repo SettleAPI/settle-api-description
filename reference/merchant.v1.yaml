@@ -483,6 +483,7 @@ paths:
             schema:
               $ref: '#/components/schemas/ssp.users.create'
         description: 'Returns 201 CREATED (unless a user with the same email already exists, which results in a 409 CONFLICT response).'
+      x-internal: true
     get:
       summary: merchant.ssp.users.list
       tags:
@@ -493,7 +494,6 @@ paths:
         '200':
           $ref: '#/components/responses/ssp.users.get.200'
       x-internal: true
-      deprecated: true
   /status_code:
     get:
       summary: merchant.statusCodes.list
@@ -666,7 +666,7 @@ paths:
           $ref: '#/components/responses/ssp.users.get.200'
       operationId: merchant.ssp.users.get
       description: Gets a MerchantSspUser.
-      x-internal: false
+      x-internal: true
     delete:
       summary: merchant.ssp.users.delete
       operationId: merchant.ssp.users.delete
@@ -677,6 +677,7 @@ paths:
         Deletes a MerchantSspUser and returns 204 NO CONTENT
 
         Currently only deletes if MerchantSspUser does not have any LegalEntities to avoid side effects Used to avoid inconsistencies between core and merchant console.
+      x-internal: true
   '/merchant/{merchant_id}/balance':
     parameters:
       - name: merchant_id
