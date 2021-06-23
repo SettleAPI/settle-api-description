@@ -756,10 +756,11 @@ paths:
       description: Get Merchant Account Balance
   /api_key:
     get:
-      summary: Your GET endpoint
+      summary: merchant.apiKeys.list
       tags: []
       responses: {}
-      operationId: get-api_key
+      operationId: merchant.apiKeys.list
+      description: List Merchant API Keys
 components:
   schemas:
     payment.request.create:
