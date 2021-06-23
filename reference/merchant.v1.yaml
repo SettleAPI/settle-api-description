@@ -737,6 +737,22 @@ paths:
       responses:
         '200':
           description: OK
+        '':
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                x-examples:
+                  example-1:
+                    currency: NOK
+                    amount: 99999000
+                properties:
+                  currency:
+                    type: string
+                    minLength: 1
+                  amount:
+                    type: number
       operationId: merchant.balance.get
       description: Gets Merchant Account Balance
 components:
