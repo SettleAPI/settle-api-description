@@ -493,6 +493,7 @@ paths:
         '200':
           $ref: '#/components/responses/ssp.users.get.200'
       x-internal: true
+      deprecated: true
   /status_code:
     get:
       summary: merchant.statusCodes.list
@@ -515,54 +516,6 @@ paths:
           $ref: '#/components/responses/statusCodes.get.200'
       operationId: merchant.statusCodes.get
       description: Get details about a spesific Status Code
-  /user:
-    post:
-      summary: merchant.users.create
-      operationId: merchant.users.create
-      responses:
-        '201':
-          $ref: '#/components/responses/users.create.201'
-      description: Create user for the Merchant given in the X-Settle-Merchant header.
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/users.create'
-      tags:
-        - Users
-      deprecated: true
-  '/user/{user_id}':
-    parameters:
-      - $ref: '#/components/parameters/user_id'
-    get:
-      summary: merchant.users.get
-      tags:
-        - Users
-      responses:
-        '200':
-          $ref: '#/components/responses/users.get.201'
-      operationId: merchant.users.get
-      description: Get user info.
-      deprecated: true
-    put:
-      summary: merchant.users.update
-      operationId: merchant.users.update
-      responses:
-        '200':
-          description: OK
-      description: Update user
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/users.update'
-    delete:
-      summary: merchant.users.delete
-      operationId: merchant.users.delete
-      responses:
-        '200':
-          description: OK
-      description: Delete User
   /payment_send:
     post:
       summary: merchant.payment.send.create
@@ -713,6 +666,7 @@ paths:
           $ref: '#/components/responses/ssp.users.get.200'
       operationId: merchant.ssp.users.get
       description: Gets a MerchantSspUser.
+      x-internal: false
     delete:
       summary: merchant.ssp.users.delete
       operationId: merchant.ssp.users.delete
