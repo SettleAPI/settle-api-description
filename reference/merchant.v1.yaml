@@ -754,6 +754,12 @@ paths:
               examples: {}
       operationId: merchant.balance.get
       description: Get Merchant Account Balance
+  /api_key:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses: {}
+      operationId: get-api_key
 components:
   schemas:
     payment.request.create:
