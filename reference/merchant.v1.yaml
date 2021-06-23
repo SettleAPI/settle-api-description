@@ -742,19 +742,15 @@ paths:
               schema:
                 description: ''
                 type: object
-                properties:
-                  currency:
-                    type: string
-                    minLength: 1
-                  amount:
-                    type: number
-                required:
-                  - currency
-                  - amount
                 x-examples:
                   example-1:
                     currency: NOK
                     amount: 99999000
+                properties:
+                  currency:
+                    type: string
+                  amount:
+                    type: number
       operationId: merchant.balance.get
       description: Gets Merchant Account Balance
 components:
