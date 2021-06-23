@@ -751,8 +751,9 @@ paths:
                     type: string
                   amount:
                     type: number
+              examples: {}
       operationId: merchant.balance.get
-      description: Gets Merchant Account Balance
+      description: Get Merchant Account Balance
 components:
   schemas:
     payment.request.create:
