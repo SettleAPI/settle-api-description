@@ -1327,7 +1327,7 @@ components:
       x-examples: {}
   responses:
     payment.request.list.200:
-      description: Example response
+      description: OK
       content:
         application/json:
           schema:
@@ -1338,7 +1338,7 @@ components:
               cursor:
                 $ref: ../models/Cursor.yaml
     payment.request.create.200:
-      description: Example response
+      description: OK
       content:
         application/json:
           schema:
@@ -1355,7 +1355,7 @@ components:
             required:
               - id
     pos.create.201:
-      description: Example response
+      description: Created
       content:
         application/json:
           schema:
@@ -1366,7 +1366,7 @@ components:
                 default: 'null'
                 description: Id
     pos.list.200:
-      description: Example response
+      description: OK
       content:
         application/json:
           schema:
@@ -1386,7 +1386,7 @@ components:
             required:
               - uris
     pos.get.200:
-      description: Example response
+      description: OK
       content:
         application/json:
           schema:
@@ -1413,7 +1413,7 @@ components:
               location:
                 $ref: ../models/Location.yaml
     payment.request.create.201:
-      description: Example response
+      description: Created
       content:
         application/json:
           schema:
@@ -1430,7 +1430,7 @@ components:
             required:
               - id
     sales.summary.200:
-      description: Example response
+      description: OK
       content:
         application/json:
           schema:
@@ -1455,7 +1455,7 @@ components:
               max_timestamp:
                 $ref: ../models/DateTime.yaml
     settlement.latest.get.200:
-      description: Example response
+      description: OK
       content:
         application/json:
           schema:
@@ -1505,7 +1505,7 @@ components:
               - transaction_log_uris
               - scope_log_uris
     settlement.get.404:
-      description: No settlement with this ID
+      description: Not Found
       content:
         application/json:
           schema:
@@ -1513,7 +1513,7 @@ components:
               id:
                 type: string
     settlement.account.get.200:
-      description: Gets a SettlementAccount by ID.
+      description: OK
       content:
         application/json:
           schema:
@@ -1538,7 +1538,7 @@ components:
               frequency:
                 $ref: ../models/SettlementAccountFrequency.yaml
     settlement.report.get.200:
-      description: Example response
+      description: OK
       content:
         application/json:
           schema:
@@ -1551,7 +1551,7 @@ components:
               report_context:
                 $ref: ../models/SettlementListReportContext.yaml
     shortlink.create.201:
-      description: Register new shortlink.
+      description: Created
       content:
         application/json:
           schema:
@@ -1576,7 +1576,7 @@ components:
                 type: string
       headers: {}
     shortlink.list.200:
-      description: List shortlink registrations.
+      description: OK
       content:
         application/json:
           schema:
@@ -1596,7 +1596,7 @@ components:
             required:
               - uris
     shortlink.update.200:
-      description: Example response
+      description: OK
       content:
         application/json:
           schema:
@@ -1604,7 +1604,7 @@ components:
               id:
                 type: string
     shortlink.update.204:
-      description: No content
+      description: No Content
       content:
         application/json:
           schema:
@@ -1620,7 +1620,7 @@ components:
               id:
                 type: string
     shortlink.get.200:
-      description: Retrieve registered shortlink info.
+      description: OK
       content:
         application/json:
           schema:
@@ -1645,7 +1645,7 @@ components:
             required:
               - shortlink_value
     shortlink.delete.204:
-      description: Delete shortlink
+      description: No Content
       content:
         application/json:
           schema:
@@ -1657,7 +1657,7 @@ components:
             type: object
             properties: {}
     ssp.users.create.201:
-      description: Example response
+      description: Created
       content:
         application/json:
           schema:
@@ -1685,7 +1685,7 @@ components:
                 default: 'null'
                 description: Bankid
     ssp.users.create.409:
-      description: User with the same email already exists
+      description: 'Conflict, user with the same email already exists'
       content:
         application/json:
           schema:
@@ -1694,7 +1694,7 @@ components:
               response:
                 type: string
     ssp.users.delete.204:
-      description: Currently only deletes if MerchantSspUser does not have any LegalEntities to avoid side effects Used to avoid inconsistencies between core and merchant console.
+      description: No Content
       content:
         application/json:
           schema:
@@ -1702,7 +1702,7 @@ components:
               id:
                 type: string
     ssp.users.get.200:
-      description: Gets a MerchantSspUser.
+      description: OK
       content:
         application/json:
           schema:
@@ -1730,7 +1730,7 @@ components:
                 description: Bankid
                 default: 'null'
     statusCodes.list.200:
-      description: 'A list of objects containing the following data:'
+      description: OK
       content:
         application/json:
           schema:
@@ -1745,7 +1745,7 @@ components:
                 default: 'null'
                 description: Name
     statusCodes.get.200:
-      description: 'An object containing the following data:'
+      description: OK
       content:
         application/json:
           schema:
@@ -1760,7 +1760,7 @@ components:
                 default: 'null'
                 description: Name
     users.create.201:
-      description: Example response
+      description: Created
       content:
         application/json:
           schema:
@@ -1771,7 +1771,7 @@ components:
                 description: User ID
                 default: 'null'
     users.get.201:
-      description: Get user info
+      description: Created
       content:
         application/json:
           schema:
