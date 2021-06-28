@@ -734,9 +734,9 @@ paths:
               examples: {}
       operationId: merchant.balance.get
       description: Get Merchant Account Balance
-  '/api_key/{x_settle_user}':
+  '/api_key/{api_user_id}':
     parameters:
-      - $ref: '#/components/parameters/x_settle_user'
+      - $ref: '#/components/parameters/api_user_id'
     put:
       summary: merchant.apiKeys.update
       operationId: merchant.apiKeys.update
@@ -758,6 +758,17 @@ paths:
         '200':
           description: OK
       description: Get API Key
+  '/merchant/{merchant_id}/logo':
+    parameters:
+      - $ref: '#/components/parameters/merchant_id'
+    get:
+      summary: merchant.logo.get
+      tags: []
+      responses:
+        '200':
+          description: OK
+      operationId: merchant.logo.get
+      description: Get Merchant Logo
 components:
   schemas:
     payment.request.create:
@@ -1956,8 +1967,8 @@ components:
       schema:
         type: string
       description: Merchant SSP User ID
-    x_settle_user:
-      name: x_settle_user
+    api_user_id:
+      name: api_user_id
       in: path
       required: true
       schema:
