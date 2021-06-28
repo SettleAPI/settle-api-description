@@ -36,7 +36,7 @@ paths:
         '400':
           description: Bad Request
         '409':
-          description: 'Conflict, Api key already exists.'
+          description: 'Conflict, Api Key already exists.'
       description: Create API Key for the Merchant given in the X-Settle-Merchant header.
       requestBody:
         content:
@@ -734,6 +734,23 @@ paths:
               examples: {}
       operationId: merchant.balance.get
       description: Get Merchant Account Balance
+  '/api_key/{x_settle_user}':
+    parameters:
+      - $ref: '#/components/parameters/x_settle_user'
+    put:
+      summary: merchant.apiKeys.update
+      operationId: merchant.apiKeys.update
+      responses:
+        '204':
+          description: No Content
+      description: Update API Key
+    delete:
+      summary: merchant.apiKeys.delete
+      operationId: merchant.apiKeys.delete
+      responses:
+        '204':
+          description: No Content
+      description: Delete API Key
 components:
   schemas:
     payment.request.create:
@@ -1296,18 +1313,23 @@ components:
       required:
         - email
     apiKeys.update:
-      title: 'Request Body: users.update'
+      title: 'Request Body: apiKeys.update'
       type: object
       description: Update API Key
+      x-examples: {}
       properties:
+        label:
+          type: string
+          description: User given name to API Key.
+        key_type:
+          type: string
+        roles:
+          type: string
         netmask:
           type: string
           description: 'Limit user connections by netmask, for example 192.168.1.0/24'
           format: ipv4
           example: 192.168.1.0/24
-        label:
-          type: string
-          description: User given name to RSA key/secret.
         secret:
           type: string
           minLength: 8
@@ -1315,7 +1337,6 @@ components:
           description: Secret used when authenticating with Settle.
         pubkey:
           $ref: ../models/PubKey.yaml
-      x-examples: {}
     apiKeys.create:
       title: 'Request Body: apiKeys.create'
       type: object
@@ -1325,6 +1346,9 @@ components:
         id:
           type: string
           description: User ID
+        label:
+          type: string
+          description: User given name to API Key.
         key_type:
           type: string
           enum:
@@ -1921,6 +1945,13 @@ components:
       schema:
         type: string
       description: Merchant SSP User ID
+    x_settle_user:
+      name: x_settle_user
+      in: path
+      required: true
+      schema:
+        type: string
+      description: API Key ID created by either Settle or User
   examples: {}
 tags:
   - name: Info
