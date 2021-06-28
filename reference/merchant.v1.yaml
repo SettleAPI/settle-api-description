@@ -18,6 +18,29 @@ servers:
   - url: 'https://api.settle.eu/merchant/v1'
     description: Production
 paths:
+  /api_key:
+    get:
+      summary: merchant.apiKeys.list
+      tags: []
+      responses: {}
+      operationId: merchant.apiKeys.list
+      description: List Merchant API Keys
+    post:
+      summary: merchant.apiKeys.create
+      operationId: merchant.apiKeys.create
+      responses:
+        '201':
+          $ref: '#/components/responses/apiKeys.create.201'
+        '400':
+          description: Bad Request
+        '409':
+          description: 'Conflict, Api key already exists.'
+      description: Create API Key for the Merchant given in the X-Settle-Merchant header.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/apiKeys.create'
   /payment_request:
     post:
       summary: merchant.payment.request.create
@@ -709,13 +732,6 @@ paths:
               examples: {}
       operationId: merchant.balance.get
       description: Get Merchant Account Balance
-  /api_key:
-    get:
-      summary: merchant.apiKeys.list
-      tags: []
-      responses: {}
-      operationId: merchant.apiKeys.list
-      description: List Merchant API Keys
 components:
   schemas:
     payment.request.create:
@@ -1261,7 +1277,7 @@ components:
           default: 'null'
           description: URI called by Settle when user scans shortlink.
     ssp.users.create:
-      title: ssp.users.create
+      title: 'Request Body: ssp.users.create'
       type: object
       description: 'Creates a MerchantSspUser and returns 201 CREATED (unless a user with the same email already exists, which results in a 409 CONFLICT response).'
       properties:
@@ -1277,37 +1293,10 @@ components:
           $ref: ../models/Name.yaml
       required:
         - email
-    users.create:
-      title: users.create
+    apiKeys.update:
+      title: 'Request Body: users.update'
       type: object
-      description: Create user for the Merchant given in the X-Settle-Merchant header.
-      properties:
-        id:
-          type: string
-          default: 'null'
-          description: User ID
-        netmask:
-          type: string
-          default: 'null'
-          description: 'Limit user connections by netmask, for example 192.168.1.0/24'
-          format: ipv4
-          example: 192.168.1.0/24
-        label:
-          type: string
-          default: 'null'
-          description: User given name to RSA key/secret
-        secret:
-          type: string
-          default: 'null'
-          description: Secret used when authenticating with Settle.
-          minLength: 8
-          maxLength: 64
-        pubkey:
-          $ref: ../models/PubKey.yaml
-    users.update:
-      title: users.update
-      type: object
-      description: Update user
+      description: Update API Key
       properties:
         netmask:
           type: string
@@ -1325,6 +1314,43 @@ components:
         pubkey:
           $ref: ../models/PubKey.yaml
       x-examples: {}
+    apiKeys.create:
+      title: 'Request Body: apiKeys.create'
+      type: object
+      description: Create API Key
+      x-examples: {}
+      properties:
+        id:
+          type: string
+          description: User ID
+        key_type:
+          type: string
+          enum:
+            - secret
+            - rsa_generated
+            - rsa_user
+          description: Type of API Key to create.
+        roles:
+          type: string
+          description: 'Role. Value in user, superuser (case insensitive).'
+          enum:
+            - user
+            - superuser
+            - integrator
+          default: 'null'
+        netmask:
+          type: string
+          description: 'Limit user connections by netmask, for example 192.168.1.0/24.'
+        secret:
+          type: string
+          description: Secret used when authenticating with Settle.
+          minLength: 8
+          maxLength: 64
+        pubkey:
+          $ref: ../models/PubKey.yaml
+      required:
+        - id
+        - key_type
   responses:
     payment.request.list.200:
       description: OK
@@ -1807,6 +1833,14 @@ components:
               pubkey:
                 $ref: ../models/PubKey.yaml
           examples: {}
+    apiKeys.create.201:
+      description: 'OK, created'
+      content:
+        application/json:
+          schema:
+            properties:
+              id:
+                type: string
   securitySchemes: {}
   parameters:
     merchant_id:
@@ -1885,6 +1919,7 @@ components:
       schema:
         type: string
       description: Merchant SSP User ID
+  examples: {}
 tags:
   - name: Info
   - name: Balance

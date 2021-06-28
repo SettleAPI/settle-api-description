@@ -1,8 +1,5 @@
 title: PubKey
-type: object
-properties:
-  id:
-    type: string
+type: string
 description: |-
   Field for Public Key.
 
