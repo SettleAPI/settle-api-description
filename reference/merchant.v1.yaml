@@ -751,6 +751,13 @@ paths:
         '204':
           description: No Content
       description: Delete API Key
+    get:
+      summary: merchant.apiKeys.get
+      operationId: merchant.apiKeys.get
+      responses:
+        '200':
+          description: OK
+      description: Get API Key
 components:
   schemas:
     payment.request.create:
