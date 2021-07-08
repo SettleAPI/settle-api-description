@@ -907,8 +907,6 @@ components:
           type: string
           description: 'If payment request was posted without a customer, user can claim it on this URI.'
           default: 'null'
-        'null':
-          type: string
         scope:
           $ref: ../models/Scope.v1.yaml
       required:
@@ -1002,6 +1000,7 @@ components:
       x-tags:
         - Schemas
       title: 'Request Body: merchant.payment.request.update'
+      x-examples: {}
       properties:
         display_message_uri:
           type: string
@@ -1037,7 +1036,8 @@ components:
         text:
           type: string
           description: Text that is shown to user upon a refund. This can contain linebreaks and the text has to fit on smartphones screens.
-      x-examples: {}
+      required:
+        - currency
     payment.request.list:
       title: 'Request Body: merchant.payment.request.get'
       type: object
