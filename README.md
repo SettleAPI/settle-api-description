@@ -1,4 +1,4 @@
-# Settle OpenAPI Specification - Version 1.5.3
+# Settle API Specification - Version 1.5.3
 
 The Settle APIs formalized in an OpenAPI Description document.
 
