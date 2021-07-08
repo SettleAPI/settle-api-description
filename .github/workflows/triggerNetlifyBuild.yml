@@ -2,7 +2,7 @@ name: Initiate Netlify Build
 on:
   push:
     branches:
-      - master
+      - prod
 jobs:
   curl:
     runs-on: ubuntu-latest
