@@ -377,13 +377,13 @@ paths:
         - Sales
   /settlement:
     get:
-      summary: merchant.settlement.latest.get
+      summary: merchant.settlement.list
       tags:
         - Settlement
       responses:
         '200':
           $ref: '#/components/responses/settlement.list.200'
-      operationId: merchant.settlement.latest.get
+      operationId: merchant.settlement.list
       description: List settlements.
   '/settlement/{settlement_id}':
     parameters:
@@ -769,6 +769,16 @@ paths:
           description: OK
       operationId: merchant.logo.get
       description: Get Merchant Logo
+  /last_settlement:
+    get:
+      summary: merchant.settlement.latest.get
+      tags: []
+      responses: {}
+      operationId: merchant.settlement.latest.get
+      description: |-
+        This endpoint redirects to the last Settlement.
+
+        Whenever a new Settlement is generated, this reference is automatically updated.
 components:
   schemas:
     payment.request.create:
