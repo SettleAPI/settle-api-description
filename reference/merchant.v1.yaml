@@ -1001,33 +1001,43 @@ components:
       type: object
       x-tags:
         - Schemas
-      properties:
-        created_from:
-          type: string
-          minLength: 1
-        created_to:
-          type: string
-          minLength: 1
-        cursor:
-          type: string
-          minLength: 1
-        page_size:
-          type: string
-          minLength: 1
-        only_ok:
-          type: string
-          minLength: 1
-        status:
-          type: string
-          minLength: 1
-      required:
-        - created_from
-        - created_to
-        - cursor
-        - page_size
-        - only_ok
-        - status
       title: 'Request Body: merchant.payment.request.update'
+      properties:
+        display_message_uri:
+          type: string
+          description: Messages that can be used to inform the POS operator about the progress of the payment request will be POSTed to this URI if provided.
+        callback_uri:
+          type: string
+          description: 'If provided, Settle will POST to this URI when the status of the payment request changes, using the message mechanism described in the introduction. The data in the "object" part of the message is the same as what can be retrieved by calling GET on the "/payment_request/{tid}/outcome/" resource URI.'
+        line_items:
+          $ref: ../models/LineItem.v1.yaml
+        action:
+          type: string
+          enum:
+            - reauth
+            - capture
+            - abort
+            - release
+            - refund
+          description: Action to perform.
+        amount:
+          $ref: ../models/MoneyInteger.v1.yaml
+        additional_amount:
+          $ref: ../models/MoneyInteger.v1.yaml
+        capture_id:
+          type: string
+          pattern: '^[a-zA-Z0-9_.-]+$'
+          description: 'Local id for capture. Must be set if amount is set, otherwise capture_id must be unset. Ignored unless action is capture. Required if amount, additional_amount, currency are set.'
+        refund_id:
+          type: string
+          description: 'Local id for refund. Must be set if amount is set, otherwise capture_id must be unset.Ignored unless action is refund.Required if amount, additional_amount, currency are set.'
+          pattern: '^[a-zA-Z0-9_.-]+$'
+        currency:
+          $ref: ../models/Currency.v1.yaml
+        text:
+          type: string
+          description: Text that is shown to user upon a refund. This can contain linebreaks and the text has to fit on smartphones screens.
+      x-examples: {}
     payment.request.list:
       title: 'Request Body: merchant.payment.request.get'
       type: object
