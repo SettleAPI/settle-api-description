@@ -9,7 +9,7 @@ info:
   license:
     name: MIT
     url: 'https://raw.githubusercontent.com/SettleAPI/settle-api-description/main/LICENSE'
-  description: ''
+  description: 'The Settle APIs enables merchants to interact with Settle, registering POS, create shortlinks for QR-scans, send payment requests, submit permission requests for end user info, and much more.'
 servers:
   - url: 'http://localhost:3000'
     description: Mock
@@ -21,7 +21,8 @@ paths:
   /api_key:
     get:
       summary: merchant.apiKeys.list
-      tags: []
+      tags:
+        - API Key
       responses:
         '200':
           description: OK
@@ -43,6 +44,8 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/apiKeys.create'
+      tags:
+        - API Key
   /payment_request:
     post:
       summary: merchant.payment.request.create
@@ -121,15 +124,13 @@ paths:
                   additional_edit: false
                   allow_credit: true
                   amount: 0
-                  callback_uri: 'null'
+                  callback_uri: ''
                   cid: 'null'
-                  currency:
-                    alph_code: 'null'
-                    num_code: 3
+                  currency: ''
                   customer: 'null'
                   display_message_uri: 'null'
                   expires_in: 21600
-                  failure_return_uri: 'null'
+                  failure_return_uri: ''
                   line_items:
                     product_id: string
                     description: string
@@ -144,14 +145,14 @@ paths:
                   links:
                     uri: 'null'
                     caption: 'null'
-                    show_on: 'null'
+                    show_on: ok
                   max_scan_age: 60
                   pos_id: string
                   pos_tid: string
                   required_scope:
                     scopes: address
                   required_scope_text: 'null'
-                  success_return_uri: 'null'
+                  success_return_uri: ''
                   text: 'null'
                   uri: 'null'
                   'null': string
@@ -224,8 +225,6 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/payment.request.update'
-            examples:
-              example-1: {}
       tags:
         - Payments
       parameters: []
@@ -401,7 +400,8 @@ paths:
   /last_settlement:
     get:
       summary: merchant.settlement.latest.get
-      tags: []
+      tags:
+        - Settlement
       responses:
         '200':
           $ref: '#/components/responses/settlement.latest.get.200'
@@ -434,6 +434,11 @@ paths:
             schema:
               $ref: '#/components/schemas/settlement.account.update'
         description: Updates a SettlementAccount.
+      responses:
+        '200':
+          description: OK
+      tags:
+        - Settlement
   /settlement_report:
     get:
       summary: merchant.settlement.report.get
@@ -469,6 +474,8 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/shortlink.create'
+      tags:
+        - Shortlink
   '/shortlink/{shortlink_id}':
     parameters:
       - $ref: '#/components/parameters/shortlink_id'
@@ -497,6 +504,8 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/shortlink.update'
+      tags:
+        - Shortlink
     delete:
       summary: merchant.shortlink.delete
       operationId: merchant.shortlink.delete
@@ -504,6 +513,8 @@ paths:
         '204':
           $ref: '#/components/responses/shortlink.delete.204'
       description: Delete shortlink
+      tags:
+        - Shortlink
   /merchant_ssp_user:
     post:
       summary: merchant.ssp.users.create
@@ -557,47 +568,19 @@ paths:
   /payment_send:
     post:
       summary: merchant.payment.send.create
-      responses:
-        '201':
-          description: Created
-          content:
-            application/json:
-              schema:
-                description: ''
-                type: object
-                properties:
-                  id:
-                    type: string
-                    minLength: 1
-                required:
-                  - id
-                x-examples:
-                  example-1:
-                    id: p8bgxt1a0rzp
-        '400':
-          description: Bad Request
-          content:
-            application/json:
-              schema:
-                type: object
-                properties: {}
-              examples:
-                Insufficient funds:
-                  value:
-                    error_detail: null
-                    error_type: Bad Request
-                    error_description: Insufficient funds
-          headers: {}
-        '401':
-          description: Unauthorized
       description: Send payment
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/payment.send'
+              type: string
             examples: {}
       operationId: merchant.payment.send.create
+      responses:
+        '200':
+          description: OK
+      tags:
+        - Payments
   '/payment_send/{tid}/outcome':
     parameters:
       - $ref: '#/components/parameters/tid'
@@ -666,7 +649,6 @@ paths:
                   error_detail:
                     type: object
                     properties: {}
-                    required: []
                   error_type:
                     type: string
                     minLength: 1
@@ -689,6 +671,9 @@ paths:
                     error_type: Not Found
                     error_description: no payment request with ID xxx
       operationId: merchant.payment.send.outcome.get
+      tags:
+        - Payments
+      description: Shows the outcome info for a sent payment.
   '/merchant_ssp_user/{merchant_ssp_user_id}':
     parameters:
       - schema:
@@ -698,7 +683,8 @@ paths:
         required: true
     get:
       summary: merchant.ssp.users.get
-      tags: []
+      tags:
+        - Merchant Portal
       responses:
         '200':
           $ref: '#/components/responses/ssp.users.get.200'
@@ -716,6 +702,8 @@ paths:
 
         Currently only deletes if MerchantSspUser does not have any LegalEntities to avoid side effects Used to avoid inconsistencies between core and merchant console.
       x-internal: true
+      tags:
+        - Merchant Portal
   '/merchant/{merchant_id}/balance':
     parameters:
       - name: merchant_id
@@ -726,7 +714,6 @@ paths:
         description: Merchant id assigned by Settle.
     get:
       summary: merchant.balance.get
-      tags: []
       responses:
         '200':
           description: OK
@@ -747,6 +734,8 @@ paths:
               examples: {}
       operationId: merchant.balance.get
       description: Get Merchant Account Balance
+      tags:
+        - Balance
   '/api_key/{api_user_id}':
     parameters:
       - $ref: '#/components/parameters/api_user_id'
@@ -757,6 +746,8 @@ paths:
         '204':
           description: No Content
       description: Update API Key
+      tags:
+        - API Key
     delete:
       summary: merchant.apiKeys.delete
       operationId: merchant.apiKeys.delete
@@ -764,6 +755,8 @@ paths:
         '204':
           description: No Content
       description: Delete API Key
+      tags:
+        - API Key
     get:
       summary: merchant.apiKeys.get
       operationId: merchant.apiKeys.get
@@ -771,12 +764,15 @@ paths:
         '200':
           description: OK
       description: Get API Key
+      tags:
+        - API Key
   '/merchant/{merchant_id}/logo':
     parameters:
       - $ref: '#/components/parameters/merchant_id'
     get:
       summary: merchant.logo.get
-      tags: []
+      tags:
+        - Logo
       responses:
         '200':
           description: OK
@@ -855,12 +851,10 @@ components:
           $ref: ../models/MoneyInteger.v1.yaml
         callback_uri:
           type: string
-          default: 'null'
           pattern: '(^|^w+://(localhost|[^/:]+|([0-9]{1,3}.){3}[0-9]{1,3})?(:[0-9]+)?)(/.*)?$'
           description: 'If provided, Settle will POST to this URI when the status of the payment request changes, using the message mechanism described in the introduction. The data in the object part of the message is the same as what can be retrieved by calling GET on the /payment_request/{tid}/outcome/ resource URI.'
         cid:
           type: string
-          default: 'null'
           description: Customer ID to be used for KID payments.
         currency:
           $ref: ../models/Currency.v1.yaml
@@ -869,7 +863,6 @@ components:
         display_message_uri:
           type: string
           description: Messages that can be used to inform the POS operator about the progress of the payment request will be posted to this URI if provided.
-          default: 'null'
         expires_in:
           type: integer
           default: 21600
@@ -877,7 +870,6 @@ components:
           maximum: 2592000
         failure_return_uri:
           type: string
-          default: 'null'
           pattern: '(^|^w+://(localhost|[^/:]+|([0-9]{1,3}.){3}[0-9]{1,3})?(:[0-9]+)?)(/.*)?$'
           description: Return URL if payment failed.
         line_items:
@@ -905,21 +897,17 @@ components:
         required_scope_text:
           type: string
           description: Text that is shown to user when asked for permission. This can contain line breaks and the text has to fit on smartphones screens.
-          default: 'null'
           maxLength: 150
         success_return_uri:
           type: string
           pattern: '(^|^w+://(localhost|[^/:]+|([0-9]{1,3}.){3}[0-9]{1,3})?(:[0-9]+)?)(/.*)?$'
-          default: 'null'
           description: Return URL if payment successful.
         text:
           type: string
           description: Text that is shown to user when asked to pay. This can contain line breaks and the text has to fit on smartphones screens.
-          default: 'null'
         uri:
           type: string
           description: 'If payment request was posted without a customer, user can claim it on this URI.'
-          default: 'null'
         scope:
           $ref: ../models/Scope.v1.yaml
       required:
@@ -953,7 +941,6 @@ components:
         status:
           type: string
           description: Payment request status (see above)
-          default: 'null'
           enum:
             - ok
             - fail
@@ -962,7 +949,6 @@ components:
         status_code:
           type: integer
           description: Payment request status code (see above).
-          default: null
         customer:
           $ref: ../models/PersonIdentifier.v1.yaml
         date_modified:
@@ -980,7 +966,6 @@ components:
         attachment_uri:
           type: string
           format: uri
-          default: 'null'
           description: 'Endpoint for Attachment uploads, such as electronic receipts. This URI has a limited time to live, and a new URI is generated each time outcome is retrieved.'
         pos_id:
           type: string
@@ -1083,16 +1068,13 @@ components:
           type: string
           description: 'If payment request was posted without a customer, user can claim it on this uri'
           format: uri
-          default: 'null'
         display_message_uri:
           type: string
           description: Messages that can be used to inform the POS operator about the progress of the payment request will be POSTed to this URI if provided
-          default: 'null'
           format: uri
         callback_uri:
           type: string
           description: 'If provided, Settle will POST to this URI when the status of the payment request changes, using the message mechanism described in the introduction. The data in the "object" part of the message is the same as what can be retrieved by calling GET on the "/payment_request/<tid>/outcome/" resource URI.'
-          default: 'null'
           format: uri
         line_items:
           $ref: ../models/LineItem.v1.yaml
@@ -1127,22 +1109,18 @@ components:
         text:
           type: string
           description: Text that is shown to user when asked to pay. This can contain linebreaks and the text has tofit on smartphones screens.
-          default: 'null'
         success_return_uri:
           type: string
           description: Return url if payment successful
-          default: 'null'
           pattern: '(^|^w+://(localhost|[^/:]+|([0-9]{1,3}.){3}[0-9]{1,3})?(:[0-9]+)?)(/.*)?$'
         failure_return_uri:
           type: string
           description: |
             Return url if payment failed
           pattern: '(^|^w+://(localhost|[^/:]+|([0-9]{1,3}.){3}[0-9]{1,3})?(:[0-9]+)?)(/.*)?$'
-          default: 'null'
         cid:
           type: string
           description: Customer ID to be used for KID payments
-          default: 'null'
         links:
           $ref: ../models/PaymentRequestLink.v1.yaml
         date_expires:
@@ -1150,7 +1128,6 @@ components:
         required_scope:
           type: string
           description: Set this field to ask for data from the user together with the payment request.
-          default: 'null'
         allow_credit:
           type: boolean
           description: Whether to allow credit payment for this payment request. Credit incurs interchange
@@ -1207,7 +1184,6 @@ components:
             - poster
         location:
           type: string
-          default: 'null'
           description: Merchant location.
       required:
         - name
@@ -1226,24 +1202,19 @@ components:
         id:
           type: string
           description: ID
-          default: 'null'
         legal_entity:
           $ref: ../models/NdbKey.yaml
         business_name:
           type: string
           description: Business Name.
-          default: 'null'
         organization_id:
           type: string
           description: Organization ID.
-          default: 'null'
         jurisdiction:
           type: string
           description: Jurisdiction.
-          default: 'null'
         mcc:
           type: integer
-          default: null
           description: Mcc
         integrator:
           $ref: ../models/NdbKey.yaml
@@ -1251,7 +1222,6 @@ components:
           $ref: ../models/NdbKey.yaml
         auth_duration:
           type: integer
-          default: null
           description: Auth Duration.
         profile:
           $ref: ../models/MerchantProfileRegistration.yaml
@@ -1263,7 +1233,6 @@ components:
           $ref: ../models/MoneyInteger.v1.yaml
         integration_type:
           type: string
-          default: 'null'
           description: Integration Type
         approved:
           type: boolean
@@ -1337,11 +1306,9 @@ components:
         created_from:
           type: string
           description: Created From
-          default: 'null'
         created_to:
           type: string
           description: Created To
-          default: 'null'
         non_empty_only:
           type: boolean
           description: Non Empty Only
@@ -1352,11 +1319,9 @@ components:
       properties:
         callback_uri:
           type: string
-          default: 'null'
           description: URI called by Settle when user scans shortlink.
         serial_number:
           type: string
-          default: 'null'
           description: Serial number on printed QR codes.This field is only used when registering printed stickers issued by Settle.
       description: Register new shortlink.
     shortlink.update:
@@ -1366,7 +1331,6 @@ components:
       properties:
         callback_uri:
           type: string
-          default: 'null'
           description: URI called by Settle when user scans shortlink.
     ssp.users.create:
       title: 'Request Body: ssp.users.create'
@@ -1379,7 +1343,6 @@ components:
           pattern: '^.+@[^.].*.[a-z]{2,10}$'
         phone:
           type: string
-          default: 'null'
           description: Phone
         name:
           $ref: ../models/Name.yaml
@@ -1406,7 +1369,6 @@ components:
           type: string
           description: 'Limit user connections by netmask, for example 192.168.1.0/24'
           format: ipv4
-          example: 192.168.1.0/24
         secret:
           type: string
           minLength: 8
@@ -1440,7 +1402,6 @@ components:
             - user
             - superuser
             - integrator
-          default: 'null'
         netmask:
           type: string
           description: 'Limit user connections by netmask, for example 192.168.1.0/24.'
@@ -1478,7 +1439,6 @@ components:
                 description: Transaction id
               uri:
                 type: string
-                default: 'null'
                 format: uri
                 description: 'If payment request was posted without a customer, user can claim it on this uri'
             required:
@@ -1492,7 +1452,6 @@ components:
             properties:
               id:
                 type: string
-                default: 'null'
                 description: Id
     pos.list.200:
       description: OK
@@ -1506,11 +1465,9 @@ components:
                 description: A list of absolute paths to the requested resources.
               next:
                 type: string
-                default: 'null'
                 description: Path to the next list chunk.
               prev:
                 type: string
-                default: 'null'
                 description: Path to the previous list chunk.
             required:
               - uris
@@ -1523,7 +1480,6 @@ components:
             properties:
               id:
                 type: string
-                default: 'null'
                 description: ID
               name:
                 type: string
@@ -1554,7 +1510,6 @@ components:
               uri:
                 type: string
                 format: uri
-                default: 'null'
                 description: 'If payment request was posted without a customer, user can claim it on this uri.'
             required:
               - id
@@ -1568,11 +1523,9 @@ components:
               merchant_timezone:
                 type: string
                 description: Merchant Timezone
-                default: 'null'
               result_timezone:
                 type: string
                 description: Result Timezone
-                default: 'null'
               start_of_day:
                 $ref: ../models/Time.yaml
               periods:
@@ -1621,7 +1574,6 @@ components:
               scope_log_uris:
                 type: array
                 items:
-                  required: []
                   properties: {}
               settlement_summary:
                 type: object
@@ -1679,7 +1631,6 @@ components:
               transaction_log_uris:
                 type: array
                 items:
-                  required: []
                   properties: {}
               id:
                 type: string
@@ -1770,19 +1721,16 @@ components:
               id:
                 type: string
                 description: ID
-                default: 'null'
               start_of_day:
                 $ref: ../models/Time.yaml
               currency:
                 type: string
                 description: Currency
-                default: 'null'
               payout_delay:
                 $ref: ../models/TimeDelta.yaml
               payout_account:
                 type: string
                 description: Payout Account
-                default: 'null'
               frequency:
                 $ref: ../models/SettlementAccountFrequency.yaml
     settlement.report.get.200:
@@ -1808,7 +1756,6 @@ components:
               id:
                 type: string
                 description: ID
-                default: 'null'
       headers:
         Location:
           schema:
@@ -1835,11 +1782,9 @@ components:
                 description: A list of absolute paths to the requested resources.
               next:
                 type: string
-                default: 'null'
                 description: Path to the next list chunk.
               prev:
                 type: string
-                default: 'null'
                 description: Path to the previous list chunk.
             required:
               - uris
@@ -1876,19 +1821,15 @@ components:
             properties:
               id:
                 type: string
-                default: 'null'
                 description: ID
               callback_uri:
                 type: string
-                default: 'null'
                 description: URI called by Settle when user scans shortlink.
               serial_number:
                 type: string
-                default: 'null'
                 description: Serial number on printed QR codes.This field is only used when registering printed stickers issued by Settle.
               shortlink_value:
                 type: string
-                default: 'null'
                 description: Text to be displayed as QR code.
             required:
               - shortlink_value
@@ -1913,16 +1854,13 @@ components:
             properties:
               id:
                 type: string
-                default: 'null'
                 description: ID
               email:
                 type: string
-                default: 'null'
                 pattern: '^.+@[^.].*.[a-z]{2,10}$'
                 description: Email
               phone:
                 type: string
-                default: 'null'
                 description: Phone
               name:
                 $ref: ../models/NameResponse.yaml
@@ -1930,7 +1868,6 @@ components:
                 $ref: ../models/NdbKey.yaml
               bankid:
                 type: string
-                default: 'null'
                 description: Bankid
     ssp.users.create.409:
       description: 'Conflict, user with the same email already exists'
@@ -1959,16 +1896,13 @@ components:
               id:
                 type: string
                 description: ID
-                default: 'null'
               email:
                 type: string
                 pattern: '^.+@[^.].*.[a-z]{2,10}$'
                 description: Email
-                default: 'null'
               phone:
                 type: string
                 description: Phone
-                default: 'null'
               name:
                 $ref: ../models/NameResponse.yaml
               legal_entities:
@@ -1976,7 +1910,6 @@ components:
               bankid:
                 type: string
                 description: Bankid
-                default: 'null'
     statusCodes.list.200:
       description: OK
       content:
@@ -1986,11 +1919,9 @@ components:
             properties:
               code:
                 type: string
-                default: 'null'
                 description: Code
               name:
                 type: string
-                default: 'null'
                 description: Name
     statusCodes.get.200:
       description: OK
@@ -2001,11 +1932,9 @@ components:
             properties:
               code:
                 type: string
-                default: 'null'
                 description: Code
               name:
                 type: string
-                default: 'null'
                 description: Name
     users.create.201:
       description: Created
@@ -2017,7 +1946,6 @@ components:
               id:
                 type: string
                 description: User ID
-                default: 'null'
     users.get.201:
       description: Created
       content:
@@ -2035,19 +1963,15 @@ components:
             properties:
               id:
                 type: string
-                default: 'null'
                 description: User ID.
               netmask:
                 type: string
                 minLength: 1
                 format: ipv4
-                example: 192.168.1.0/24
-                default: 'null'
                 description: 'Limit user connections by netmask, for example 192.168.1.0/24.'
               label:
                 type: string
                 minLength: 1
-                default: 'null'
                 description: User given name to RSA key/secret.
               has_secret:
                 type: boolean
@@ -2070,120 +1994,13 @@ components:
           schema:
             description: ''
             type: object
-            x-examples:
-              example-1:
-                prev: null
-                uris:
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/1/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/2/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/3/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/4/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/5/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/6/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/7/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/8/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/9/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/10/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/11/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/12/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/13/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/14/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/15/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/16/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/17/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/18/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/19/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/20/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/21/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/22/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/23/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/24/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/25/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/26/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/27/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/28/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/29/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/30/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/31/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/32/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/33/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/34/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/35/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/36/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/37/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/38/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/39/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/40/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/41/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/42/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/43/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/44/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/45/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/46/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/47/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/48/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/49/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/50/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/51/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/52/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/53/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/54/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/55/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/56/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/57/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/58/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/59/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/60/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/61/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/62/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/63/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/64/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/65/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/66/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/67/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/68/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/69/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/70/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/71/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/72/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/73/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/74/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/75/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/76/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/77/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/78/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/79/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/80/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/81/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/82/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/83/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/84/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/85/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/86/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/87/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/88/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/89/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/90/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/91/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/92/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/93/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/94/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/95/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/96/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/97/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/98/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/99/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/100/'
-                next: 'https://api.sandbox.settle.eu/merchant/v1/settlement/?start=101'
             properties:
               prev:
                 type: string
-                default: 'null'
               uris:
                 type: object
               next:
                 type: string
-                default: 'null'
     profile.get.200:
       description: Example response
       content:
@@ -2414,6 +2231,7 @@ components:
   examples: {}
 tags:
   - name: Info
+  - name: API Key
   - name: Balance
   - name: Logo
   - name: Payments
@@ -2424,3 +2242,5 @@ tags:
   - name: Self Service Portal
   - name: Status Codes
   - name: Users
+  - name: Merchant Portal
+  - name: Merchant
