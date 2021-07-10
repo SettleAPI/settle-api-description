@@ -394,11 +394,25 @@ paths:
         - Settlement
       responses:
         '200':
-          $ref: '#/components/responses/settlement.latest.get.200'
+          $ref: '#/components/responses/settlement.get.200'
         '404':
           $ref: '#/components/responses/settlement.get.404'
       operationId: merchant.settlement.get
       description: 'Retrieve information regarding one settlement. The settlement contains detailed information about the amount paid out in the payout_details form. In case merchant has unsettled fees from previous settlements, Settle will attempt to settle these before paying out. If there are still unsettled fees after settlement is done, this amount will be transferred to the next settlement, or billed by Settle.'
+  /last_settlement:
+    get:
+      summary: merchant.settlement.latest.get
+      tags: []
+      responses:
+        '200':
+          $ref: '#/components/responses/settlement.latest.get.200'
+        '404':
+          description: Not Found
+      operationId: merchant.settlement.latest.get
+      description: |-
+        This endpoint redirects to the latest Settlement.
+
+        Whenever a new Settlement is generated, this reference is automatically updated.
   '/settlement_account/{settlement_account_id}':
     parameters:
       - $ref: '#/components/parameters/settlement_account_id'
@@ -769,16 +783,6 @@ paths:
           description: OK
       operationId: merchant.logo.get
       description: Get Merchant Logo
-  /last_settlement:
-    get:
-      summary: merchant.settlement.latest.get
-      tags: []
-      responses: {}
-      operationId: merchant.settlement.latest.get
-      description: |-
-        This endpoint redirects to the last Settlement.
-
-        Whenever a new Settlement is generated, this reference is automatically updated.
 components:
   schemas:
     payment.request.create:
