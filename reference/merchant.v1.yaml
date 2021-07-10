@@ -341,21 +341,20 @@ paths:
       summary: merchant.profile.get
       tags:
         - Merchant
-      responses: {}
+      responses:
+        '200':
+          $ref: '#/components/responses/profile.get.200'
       operationId: merchant.profile.get
       description: Get merchant info
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/profile.get'
       deprecated: true
   '/merchant_lookup/{lookup_id}':
     parameters:
       - $ref: '#/components/parameters/lookup_id'
     get:
       summary: merchant.profile.lookup
-      responses: {}
+      responses:
+        '200':
+          $ref: '#/components/responses/profile.get.200'
       operationId: merchant.profile.lookup
       description: Handle merchant lookup on secondary ID. This is endpoint can only be used by integrators.
       tags:
@@ -1270,6 +1269,38 @@ components:
           type: boolean
           default: false
           description: Approved
+      x-examples:
+        example-1:
+          value:
+            id: 'null'
+            legal_entity: string
+            business_name: 'null'
+            organization_id: 'null'
+            jurisdiction: 'null'
+            mcc: null
+            integrator: string
+            settlement_account: string
+            auth_duration: null
+            profile:
+              first_address_line: string
+              second_address_line: string
+              postal_code: strin
+              country: 'null'
+              description: 'null'
+              phone_number: string
+              email: user@example.com
+              url: 'http://example.com'
+              twitter: 'null'
+              facebook: 'null'
+              hours: 'null'
+              settlement_receivers: string
+              settlement_email_xls: false
+              logo_url: 'null'
+            application: null
+            business_documents: null
+            per_payment_amount_limit: 0
+            integration_type: 'null'
+            approved: false
     sales.summary.get:
       title: 'Request Body: sales.summary'
       type: object
@@ -1557,22 +1588,141 @@ components:
       content:
         application/json:
           schema:
+            description: ''
             type: object
             properties:
-              uris:
+              payout_details:
+                type: object
+                properties:
+                  payout:
+                    type: number
+                  gross:
+                    type: number
+                  invoice_id: {}
+                  unsettled_fees_before:
+                    type: number
+                  currency:
+                    type: string
+                    minLength: 1
+                  unsettled_fees_after:
+                    type: number
+                  net:
+                    type: number
+                  billed:
+                    type: number
+                required:
+                  - payout
+                  - gross
+                  - unsettled_fees_before
+                  - currency
+                  - unsettled_fees_after
+                  - net
+                  - billed
+              scope_log_uris:
+                type: array
+                items:
+                  required: []
+                  properties: {}
+              settlement_summary:
+                type: object
+                properties:
+                  gross:
+                    type: number
+                  taxcode:
+                    type: string
+                    minLength: 1
+                  interchange:
+                    type: number
+                  additional_amount_total:
+                    type: number
+                  currency:
+                    type: string
+                    minLength: 1
+                  fees:
+                    type: object
+                    properties:
+                      settlement_fee:
+                        type: number
+                      transaction_fee_vat:
+                        type: number
+                      scope_fee_vat:
+                        type: number
+                      settlement_fee_vat:
+                        type: number
+                      scope_fee:
+                        type: number
+                      transaction_fee:
+                        type: number
+                    required:
+                      - settlement_fee
+                      - transaction_fee_vat
+                      - scope_fee_vat
+                      - settlement_fee_vat
+                      - scope_fee
+                      - transaction_fee
+                  net:
+                    type: number
+                  amount_total:
+                    type: number
+                required:
+                  - gross
+                  - taxcode
+                  - interchange
+                  - additional_amount_total
+                  - currency
+                  - fees
+                  - net
+                  - amount_total
+              date_created:
                 type: string
-                description: A list of absolute paths to the requested resources.
-                default: 'null'
-              next:
+                minLength: 1
+              transaction_log_uris:
+                type: array
+                items:
+                  required: []
+                  properties: {}
+              id:
                 type: string
-                description: Path to the next list chunk.
-                default: 'null'
-              prev:
-                type: string
-                description: Path to the previous list chunk.
-                default: 'null'
+                minLength: 1
             required:
-              - uris
+              - payout_details
+              - scope_log_uris
+              - settlement_summary
+              - date_created
+              - transaction_log_uris
+              - id
+            x-examples:
+              example-1:
+                payout_details:
+                  payout: 0
+                  gross: 0
+                  invoice_id: null
+                  unsettled_fees_before: 0
+                  currency: NOK
+                  unsettled_fees_after: 0
+                  net: 0
+                  billed: 0
+                scope_log_uris:
+                  - 'https://storage.googleapis.com/mcash_reports/permission_report_deprecated.csv?Expires=1628527678&GoogleAccessId=settle-core-demo%40appspot.gserviceaccount.com&Signature=AWTjDANFDfnX6JVh0aYj47786xlffQJ5%2Bty3cXDqzgA9VznaOd3i%2Fu0kAXTZkUYDHMYWRhLtL%2BaZKNJKYSBwRmhOW2cxFCM7qtLTkT2Wa1i8ybRY28k90g%2F3%2B38KCAvsJ%2FFydklEIcTHONCYWp%2F7r%2FSNGBi1wkT%2BoqZZ0R0hqvzJzG1TN1ggV3YrBozGCS2Wkzcxm5XRp%2FABce4nu9pGdAdFj07B%2FjaWpC8Ii10faNrSCH643oeEKvyR%2FLs6gCDdO5sraV%2FDxg1L8%2Bu54AhaVHTB5rz3tkst1RHpnVWC%2FSR0Q8n38rkh0p%2FzNAKAFmOnvCqGDNOCWiL1gqmI0flN9A%3D%3D'
+                settlement_summary:
+                  gross: 0
+                  taxcode: 'NO:2013'
+                  interchange: 0
+                  additional_amount_total: 0
+                  currency: NOK
+                  fees:
+                    settlement_fee: 0
+                    transaction_fee_vat: 0
+                    scope_fee_vat: 0
+                    settlement_fee_vat: 0
+                    scope_fee: 0
+                    transaction_fee: 0
+                  net: 0
+                  amount_total: 0
+                date_created: '2021-07-09 22:00:00'
+                transaction_log_uris:
+                  - 'https://storage.googleapis.com/settle-core-demo-m0816u6q_reports/settlement-5rg1dkk8-2021-07-08-215.csv?Expires=1628527678&GoogleAccessId=settle-core-demo%40appspot.gserviceaccount.com&Signature=VfjxXWaYKreOayPsJgcP0mlZAq4w6Z7Hq%2BND19e2JqCZ%2BzeayEKaEzTWMSN5gSdPS%2Ft1y0G7RiuQMUSn%2FlRscan6vnOj%2B0wF5QttLoPc5P%2FitwrlrQlDxPvJLFb%2FI6FHFFaChjrF2e9Wq6biUBNkJBt1st%2B41vFKz1TbF63Xz7tmRlknUDZMqBn6iTaumkm3C4gbQ1Z9kxIAPYHY33RG4HEzpqMkjvuBl2AASIhWxaI0AuIVSpI36OiR5cnBGSPKM89eSOWRJ4jbzxnRHKR%2BQ%2FyuDfNAvxaynqPIVvlhssHlb%2F%2FtQnMVizedTH9dnzKUab2rF%2FeNWPWMfOQ9Y6cTdA%3D%3D'
+                id: '215'
     settlement.get.200:
       description: OK
       content:
@@ -2034,6 +2184,148 @@ components:
               next:
                 type: string
                 default: 'null'
+    profile.get.200:
+      description: Example response
+      content:
+        application/json:
+          schema:
+            description: ''
+            type: object
+            properties:
+              id:
+                type: string
+                minLength: 1
+              legal_entity:
+                type: string
+                minLength: 1
+              business_name:
+                type: string
+                minLength: 1
+              organization_id:
+                type: string
+                minLength: 1
+              jurisdiction:
+                type: string
+                minLength: 1
+              mcc: {}
+              integrator:
+                type: string
+                minLength: 1
+              settlement_account:
+                type: string
+                minLength: 1
+              auth_duration: {}
+              profile:
+                type: object
+                properties:
+                  first_address_line:
+                    type: string
+                    minLength: 1
+                  second_address_line:
+                    type: string
+                    minLength: 1
+                  postal_code:
+                    type: string
+                    minLength: 1
+                  country:
+                    type: string
+                    minLength: 1
+                  description:
+                    type: string
+                    minLength: 1
+                  phone_number:
+                    type: string
+                    minLength: 1
+                  email:
+                    type: string
+                    minLength: 1
+                  url:
+                    type: string
+                    minLength: 1
+                  twitter:
+                    type: string
+                    minLength: 1
+                  facebook:
+                    type: string
+                    minLength: 1
+                  hours:
+                    type: string
+                    minLength: 1
+                  settlement_receivers:
+                    type: string
+                    minLength: 1
+                  settlement_email_xls:
+                    type: boolean
+                  logo_url:
+                    type: string
+                    minLength: 1
+                required:
+                  - first_address_line
+                  - second_address_line
+                  - postal_code
+                  - country
+                  - description
+                  - phone_number
+                  - email
+                  - url
+                  - twitter
+                  - facebook
+                  - hours
+                  - settlement_receivers
+                  - settlement_email_xls
+                  - logo_url
+              application: {}
+              business_documents: {}
+              per_payment_amount_limit:
+                type: number
+              integration_type:
+                type: string
+                minLength: 1
+              approved:
+                type: boolean
+            required:
+              - id
+              - legal_entity
+              - business_name
+              - organization_id
+              - jurisdiction
+              - integrator
+              - settlement_account
+              - profile
+              - per_payment_amount_limit
+              - integration_type
+              - approved
+            x-examples:
+              example-1:
+                id: 'null'
+                legal_entity: string
+                business_name: 'null'
+                organization_id: 'null'
+                jurisdiction: 'null'
+                mcc: null
+                integrator: string
+                settlement_account: string
+                auth_duration: null
+                profile:
+                  first_address_line: string
+                  second_address_line: string
+                  postal_code: strin
+                  country: 'null'
+                  description: 'null'
+                  phone_number: string
+                  email: user@example.com
+                  url: 'http://example.com'
+                  twitter: 'null'
+                  facebook: 'null'
+                  hours: 'null'
+                  settlement_receivers: string
+                  settlement_email_xls: false
+                  logo_url: 'null'
+                application: null
+                business_documents: null
+                per_payment_amount_limit: 0
+                integration_type: 'null'
+                approved: false
   securitySchemes: {}
   parameters:
     merchant_id:
