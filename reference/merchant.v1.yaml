@@ -9,10 +9,8 @@ info:
   license:
     name: MIT
     url: 'https://raw.githubusercontent.com/SettleAPI/settle-api-description/main/LICENSE'
-  description: ''
+  description: 'The Settle APIs enables merchants to interact with Settle, registering POS, create shortlinks for QR-scans, send payment requests, submit permission requests for end user info, and much more.'
 servers:
-  - url: 'http://localhost:3000'
-    description: Mock
   - url: 'https://api.sandbox.settle.eu/merchant/v1'
     description: Sandbox
   - url: 'https://api.settle.eu/merchant/v1'
@@ -21,12 +19,21 @@ paths:
   /api_key:
     get:
       summary: merchant.apiKeys.list
-      tags: []
+      tags:
+        - API Key
       responses:
         '200':
-          description: OK
+          $ref: '#/components/responses/apiKeys.list.200'
       operationId: merchant.apiKeys.list
       description: List Merchant API Keys
+      parameters:
+        - $ref: '#/components/parameters/header_accept'
+        - $ref: '#/components/parameters/header_content_type'
+        - $ref: '#/components/parameters/header_merchant'
+        - $ref: '#/components/parameters/header_api_user'
+        - $ref: '#/components/parameters/header_timestamp'
+        - $ref: '#/components/parameters/header_content-digest'
+        - $ref: '#/components/parameters/header_authorization'
     post:
       summary: merchant.apiKeys.create
       operationId: merchant.apiKeys.create
@@ -43,6 +50,132 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/apiKeys.create'
+      tags:
+        - API Key
+      parameters:
+        - $ref: '#/components/parameters/header_accept'
+        - $ref: '#/components/parameters/header_content_type'
+        - $ref: '#/components/parameters/header_merchant'
+        - $ref: '#/components/parameters/header_api_user'
+        - $ref: '#/components/parameters/header_timestamp'
+        - $ref: '#/components/parameters/header_content-digest'
+        - $ref: '#/components/parameters/header_authorization'
+  '/api_key/{api_key_id}':
+    parameters:
+      - $ref: '#/components/parameters/api_key_id'
+    put:
+      summary: merchant.apiKeys.update
+      operationId: merchant.apiKeys.update
+      responses:
+        '204':
+          description: No Content
+      description: Update API Key
+      tags:
+        - API Key
+      parameters:
+        - $ref: '#/components/parameters/header_accept'
+        - $ref: '#/components/parameters/header_content_type'
+        - $ref: '#/components/parameters/header_merchant'
+        - $ref: '#/components/parameters/header_api_user'
+        - $ref: '#/components/parameters/header_timestamp'
+        - $ref: '#/components/parameters/header_content-digest'
+        - $ref: '#/components/parameters/header_authorization'
+    delete:
+      summary: merchant.apiKeys.delete
+      operationId: merchant.apiKeys.delete
+      responses:
+        '204':
+          description: No Content
+      description: Delete API Key
+      tags:
+        - API Key
+      parameters:
+        - $ref: '#/components/parameters/header_accept'
+        - $ref: '#/components/parameters/header_content_type'
+        - $ref: '#/components/parameters/header_merchant'
+        - $ref: '#/components/parameters/header_api_user'
+        - $ref: '#/components/parameters/header_timestamp'
+        - $ref: '#/components/parameters/header_content-digest'
+        - $ref: '#/components/parameters/header_authorization'
+    get:
+      summary: merchant.apiKeys.get
+      operationId: merchant.apiKeys.get
+      responses:
+        '200':
+          description: OK
+      description: Get API Key
+      tags:
+        - API Key
+      parameters:
+        - $ref: '#/components/parameters/header_accept'
+        - $ref: '#/components/parameters/header_content_type'
+        - $ref: '#/components/parameters/header_merchant'
+        - $ref: '#/components/parameters/header_api_user'
+        - $ref: '#/components/parameters/header_timestamp'
+        - $ref: '#/components/parameters/header_content-digest'
+        - $ref: '#/components/parameters/header_authorization'
+  '/merchant/{merchant_id}/balance':
+    parameters:
+      - name: merchant_id
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Merchant id assigned by Settle.
+    get:
+      summary: merchant.balance.get
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                x-examples:
+                  example-1:
+                    currency: NOK
+                    amount: 99999000
+                properties:
+                  currency:
+                    type: string
+                  amount:
+                    type: number
+              examples: {}
+      operationId: merchant.balance.get
+      description: Get Merchant Account Balance
+      tags:
+        - Balance
+        - Merchant
+      parameters:
+        - $ref: '#/components/parameters/header_accept'
+        - $ref: '#/components/parameters/header_content_type'
+        - $ref: '#/components/parameters/header_merchant'
+        - $ref: '#/components/parameters/header_api_user'
+        - $ref: '#/components/parameters/header_timestamp'
+        - $ref: '#/components/parameters/header_content-digest'
+        - $ref: '#/components/parameters/header_authorization'
+  '/merchant/{merchant_id}/logo':
+    parameters:
+      - $ref: '#/components/parameters/merchant_id'
+    get:
+      summary: merchant.logo.get
+      tags:
+        - Merchant
+        - Merchant Profile
+      parameters:
+        - $ref: '#/components/parameters/header_accept'
+        - $ref: '#/components/parameters/header_content_type'
+        - $ref: '#/components/parameters/header_merchant'
+        - $ref: '#/components/parameters/header_api_user'
+        - $ref: '#/components/parameters/header_timestamp'
+        - $ref: '#/components/parameters/header_content-digest'
+        - $ref: '#/components/parameters/header_authorization'
+      responses:
+        '200':
+          description: OK
+      operationId: merchant.logo.get
+      description: Get Merchant Logo
   /payment_request:
     post:
       summary: merchant.payment.request.create
@@ -121,15 +254,13 @@ paths:
                   additional_edit: false
                   allow_credit: true
                   amount: 0
-                  callback_uri: 'null'
+                  callback_uri: ''
                   cid: 'null'
-                  currency:
-                    alph_code: 'null'
-                    num_code: 3
+                  currency: ''
                   customer: 'null'
                   display_message_uri: 'null'
                   expires_in: 21600
-                  failure_return_uri: 'null'
+                  failure_return_uri: ''
                   line_items:
                     product_id: string
                     description: string
@@ -144,14 +275,14 @@ paths:
                   links:
                     uri: 'null'
                     caption: 'null'
-                    show_on: 'null'
+                    show_on: ok
                   max_scan_age: 60
                   pos_id: string
                   pos_tid: string
                   required_scope:
                     scopes: address
                   required_scope_text: 'null'
-                  success_return_uri: 'null'
+                  success_return_uri: ''
                   text: 'null'
                   uri: 'null'
                   'null': string
@@ -159,6 +290,7 @@ paths:
                     scopes: address
       tags:
         - Payments
+        - Request Payment
     get:
       summary: merchant.payment.request.list
       operationId: merchant.payment.request.list
@@ -173,31 +305,15 @@ paths:
               $ref: '#/components/schemas/payment.request.list'
       tags:
         - Payments
-  '/payment_request/{tid}/outcome':
-    parameters:
-      - $ref: '#/components/parameters/tid'
-    get:
-      summary: merchant.payment.request.outcome.get
-      responses:
-        '200':
-          description: OK
-        '404':
-          description: TID not found (or unauthorized for this merchant)
-      operationId: merchant.payment.request.outcome.get
-      description: |-
-        Shows the outcome info for a Payment Request, ReAuth or Capture.
-
-        This endpoints includes specified fee and/or interchange that will be deducted from payout, and also updated additional amount field if the user added gratuity.
-
-        If the callback URI registered for the payment request was secure (https), the contents of this form was sent along with the callback. If the callback URI was insecure, a notification pointing to this endpoint was sent instead.
-      tags:
-        - Payments
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/payment.request.outcome.get'
-        description: Retrieve payment request outcome
+        - Request Payment
+      parameters:
+        - $ref: '#/components/parameters/header_accept'
+        - $ref: '#/components/parameters/header_content_type'
+        - $ref: '#/components/parameters/header_merchant'
+        - $ref: '#/components/parameters/header_api_user'
+        - $ref: '#/components/parameters/header_timestamp'
+        - $ref: '#/components/parameters/header_content-digest'
+        - $ref: '#/components/parameters/header_authorization'
   '/payment_request/{tid}':
     parameters:
       - $ref: '#/components/parameters/tid'
@@ -224,11 +340,17 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/payment.request.update'
-            examples:
-              example-1: {}
       tags:
         - Payments
-      parameters: []
+        - Request Payment
+      parameters:
+        - $ref: '#/components/parameters/header_accept'
+        - $ref: '#/components/parameters/header_content_type'
+        - $ref: '#/components/parameters/header_merchant'
+        - $ref: '#/components/parameters/header_api_user'
+        - $ref: '#/components/parameters/header_timestamp'
+        - $ref: '#/components/parameters/header_content-digest'
+        - $ref: '#/components/parameters/header_authorization'
     get:
       summary: merchant.payment.request.get
       operationId: merchant.payment.request.get
@@ -241,364 +363,77 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/payment.request.get'
-        description: Retrieve payment request info
+        description: Retrieve payment request info.
       tags:
         - Payments
-  /pos:
-    post:
-      summary: merchant.pos.create
-      operationId: merchant.pos.create
-      responses:
-        '201':
-          $ref: '#/components/responses/pos.create.201'
-        '400':
-          description: 'Bad Request, validation error'
-        '409':
-          description: Conflict
-          content:
-            application/json:
-              schema:
-                description: ''
-                type: object
-                x-examples:
-                  example-1:
-                    error_detail: null
-                    error_type: Conflict
-                    error_description: POS with ID "5rg1dkk8|9469f42f-8acf-43a8-ac28-bb64c8a994bd" already exists
-                properties:
-                  error_detail: {}
-                  error_type:
-                    type: string
-                    minLength: 1
-                  error_description:
-                    type: string
-                    minLength: 1
-              examples:
-                POS exists:
-                  value:
-                    error_detail: null
-                    error_type: Conflict
-                    error_description: POS with ID "5rg1dkk8|9469f42f-8acf-43a8-ac28-bb64c8a994bd" already exists
-      description: Create POS resource
-      parameters: []
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/pos.create'
-      tags:
-        - Pos
-    get:
-      summary: merchant.pos.list
-      operationId: merchant.pos.list
-      responses:
-        '200':
-          $ref: '#/components/responses/pos.list.200'
-      description: List all Point of Sales for merchant.
-      tags:
-        - Pos
-  '/pos/{pos_id}':
+        - Request Payment
+      parameters:
+        - $ref: '#/components/parameters/header_accept'
+        - $ref: '#/components/parameters/header_content_type'
+        - $ref: '#/components/parameters/header_merchant'
+        - $ref: '#/components/parameters/header_api_user'
+        - $ref: '#/components/parameters/header_timestamp'
+        - $ref: '#/components/parameters/header_content-digest'
+        - $ref: '#/components/parameters/header_authorization'
+  '/payment_request/{tid}/outcome':
     parameters:
-      - $ref: '#/components/parameters/pos_id'
-    put:
-      summary: merchant.pos.update
-      operationId: merchant.pos.update
-      responses:
-        '204':
-          description: No Content
-        '400':
-          description: 'Bad request, validation error'
-      description: Update POS resource
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/pos.update'
-      tags:
-        - Pos
-    delete:
-      summary: merchant.pos.delete
-      operationId: merchant.pos.delete
-      responses:
-        '204':
-          description: No Content
-      description: Delete POS
-      tags:
-        - Pos
+      - $ref: '#/components/parameters/tid'
     get:
-      summary: merchant.pos.get
-      operationId: merchant.pos.get
+      summary: merchant.payment.request.outcome.get
       responses:
         '200':
-          $ref: '#/components/responses/pos.get.200'
-      description: Retrieve POS info.
-      tags:
-        - Pos
-  '/merchant/{merchant_id}':
-    parameters:
-      - $ref: '#/components/parameters/merchant_id'
-    get:
-      summary: merchant.profile.get
-      tags:
-        - Merchant
-      responses: {}
-      operationId: merchant.profile.get
-      description: Get merchant info
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/profile.get'
-      deprecated: true
-  '/merchant_lookup/{lookup_id}':
-    parameters:
-      - $ref: '#/components/parameters/lookup_id'
-    get:
-      summary: merchant.profile.lookup
-      responses: {}
-      operationId: merchant.profile.lookup
-      description: Handle merchant lookup on secondary ID. This is endpoint can only be used by integrators.
-      tags:
-        - Merchant
-  /sales_summary:
-    get:
-      summary: merchant.sales.summary
-      responses:
-        '200':
-          $ref: '#/components/responses/sales.summary.200'
-      operationId: merchant.sales.summary
-      description: Retrieve sales report.
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/sales.summary.get'
-      tags:
-        - Sales
-  /settlement:
-    get:
-      summary: merchant.settlement.list
-      tags:
-        - Settlement
-      responses:
-        '200':
-          $ref: '#/components/responses/settlement.list.200'
-      operationId: merchant.settlement.list
-      description: List settlements.
-  '/settlement/{settlement_id}':
-    parameters:
-      - $ref: '#/components/parameters/settlement_id'
-    get:
-      summary: merchant.settlement.get
-      tags:
-        - Settlement
-      responses:
-        '200':
-          $ref: '#/components/responses/settlement.get.200'
+          description: OK
         '404':
-          $ref: '#/components/responses/settlement.get.404'
-      operationId: merchant.settlement.get
-      description: 'Retrieve information regarding one settlement. The settlement contains detailed information about the amount paid out in the payout_details form. In case merchant has unsettled fees from previous settlements, Settle will attempt to settle these before paying out. If there are still unsettled fees after settlement is done, this amount will be transferred to the next settlement, or billed by Settle.'
-  /last_settlement:
-    get:
-      summary: merchant.settlement.latest.get
-      tags: []
-      responses:
-        '200':
-          $ref: '#/components/responses/settlement.latest.get.200'
-        '404':
-          description: Not Found
-      operationId: merchant.settlement.latest.get
+          description: TID not found (or unauthorized for this merchant)
+      operationId: merchant.payment.request.outcome.get
       description: |-
-        This endpoint redirects to the latest Settlement.
+        Shows the outcome info for a Payment Request, ReAuth or Capture.
 
-        Whenever a new Settlement is generated, this reference is automatically updated.
-  '/settlement_account/{settlement_account_id}':
-    parameters:
-      - $ref: '#/components/parameters/settlement_account_id'
-    get:
-      summary: merchant.settlement.account.get
+        This endpoints includes specified fee and/or interchange that will be deducted from payout, and also updated additional amount field if the user added gratuity.
+
+        If the callback URI registered for the payment request was secure (https), the contents of this form was sent along with the callback. If the callback URI was insecure, a notification pointing to this endpoint was sent instead.
       tags:
-        - Settlement
-      responses:
-        '200':
-          $ref: '#/components/responses/settlement.account.get.200'
-      operationId: merchant.settlement.account.get
-      description: Gets a SettlementAccount by ID.
-    put:
-      summary: merchant.settlement.account.update
-      operationId: merchant.settlement.account.update
-      description: Updates a SettlementAccount
+        - Payments
+        - Request Payment
+      parameters:
+        - $ref: '#/components/parameters/header_accept'
+        - $ref: '#/components/parameters/header_content_type'
+        - $ref: '#/components/parameters/header_merchant'
+        - $ref: '#/components/parameters/header_api_user'
+        - $ref: '#/components/parameters/header_timestamp'
+        - $ref: '#/components/parameters/header_content-digest'
+        - $ref: '#/components/parameters/header_authorization'
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/settlement.account.update'
-        description: Updates a SettlementAccount.
-  /settlement_report:
-    get:
-      summary: merchant.settlement.report.get
-      tags:
-        - Settlement
-      responses:
-        '200':
-          $ref: '#/components/responses/settlement.report.get.200'
-      operationId: merchant.settlement.report.get
-      description: Endpoint accepts arguments for filtering the list of settlements and can omit empty settlements.
-  /shortlink:
-    get:
-      summary: merchant.shortlink.list
-      tags:
-        - Shortlink
-      operationId: merchant.shortlink.list
-      parameters: []
-      description: List shortlink registrations.
-      responses:
-        '200':
-          $ref: '#/components/responses/shortlink.list.200'
-    post:
-      summary: merchant.shortlink.create
-      operationId: merchant.shortlink.create
-      responses:
-        '201':
-          $ref: '#/components/responses/shortlink.create.201'
-        '400':
-          $ref: '#/components/responses/shortlink.create.400'
-      description: Register new shortlink.
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/shortlink.create'
-  '/shortlink/{shortlink_id}':
-    parameters:
-      - $ref: '#/components/parameters/shortlink_id'
-    get:
-      summary: merchant.shortlink.get
-      tags:
-        - Shortlink
-      responses:
-        '200':
-          $ref: '#/components/responses/shortlink.get.200'
-      operationId: merchant.shortlink.get
-      description: Retrieve registered shortlink info.
-    put:
-      summary: merchant.shortlink.update
-      operationId: merchant.shortlink.update
-      responses:
-        '200':
-          $ref: '#/components/responses/shortlink.update.200'
-        '204':
-          $ref: '#/components/responses/shortlink.update.204'
-        '400':
-          $ref: '#/components/responses/shortlink.update.400'
-      description: Update existing shortlink registration.
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/shortlink.update'
-    delete:
-      summary: merchant.shortlink.delete
-      operationId: merchant.shortlink.delete
-      responses:
-        '204':
-          $ref: '#/components/responses/shortlink.delete.204'
-      description: Delete shortlink
-  /merchant_ssp_user:
-    post:
-      summary: merchant.ssp.users.create
-      tags: []
-      responses:
-        '201':
-          $ref: '#/components/responses/ssp.users.create.201'
-        '409':
-          $ref: '#/components/responses/ssp.users.create.409'
-      operationId: merchant.ssp.users.create
-      description: Creates a MerchantSspUser.
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/ssp.users.create'
-        description: 'Returns 201 CREATED (unless a user with the same email already exists, which results in a 409 CONFLICT response).'
-      x-internal: true
-    get:
-      summary: merchant.ssp.users.list
-      tags:
-        - Merchant
-      operationId: merchant.ssp.users.list
-      description: Lists Merchant SSP Users.
-      responses:
-        '200':
-          $ref: '#/components/responses/ssp.users.get.200'
-      x-internal: true
-  /status_code:
-    get:
-      summary: merchant.statusCodes.list
-      tags:
-        - Status Codes
-      responses:
-        '200':
-          $ref: '#/components/responses/statusCodes.list.200'
-      operationId: merchant.statusCodes.list
-      description: List Status Codes
-  '/status_code/{status_code}':
-    parameters:
-      - $ref: '#/components/parameters/status_code'
-    get:
-      summary: merchant.statusCodes.get
-      tags:
-        - Status Codes
-      responses:
-        '200':
-          $ref: '#/components/responses/statusCodes.get.200'
-      operationId: merchant.statusCodes.get
-      description: Get details about a spesific Status Code
+              $ref: '#/components/schemas/payment.request.outcome.get'
+        description: Retrieve payment request outcome
   /payment_send:
     post:
       summary: merchant.payment.send.create
-      responses:
-        '201':
-          description: Created
-          content:
-            application/json:
-              schema:
-                description: ''
-                type: object
-                properties:
-                  id:
-                    type: string
-                    minLength: 1
-                required:
-                  - id
-                x-examples:
-                  example-1:
-                    id: p8bgxt1a0rzp
-        '400':
-          description: Bad Request
-          content:
-            application/json:
-              schema:
-                type: object
-                properties: {}
-              examples:
-                Insufficient funds:
-                  value:
-                    error_detail: null
-                    error_type: Bad Request
-                    error_description: Insufficient funds
-          headers: {}
-        '401':
-          description: Unauthorized
       description: Send payment
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/payment.send'
+              $ref: '#/components/schemas/payment.send.create'
             examples: {}
       operationId: merchant.payment.send.create
+      responses:
+        '200':
+          description: OK
+      tags:
+        - Payments
+        - Send Payment
+      parameters:
+        - $ref: '#/components/parameters/header_accept'
+        - $ref: '#/components/parameters/header_content_type'
+        - $ref: '#/components/parameters/header_merchant'
+        - $ref: '#/components/parameters/header_api_user'
+        - $ref: '#/components/parameters/header_timestamp'
+        - $ref: '#/components/parameters/header_content-digest'
+        - $ref: '#/components/parameters/header_authorization'
   '/payment_send/{tid}/outcome':
     parameters:
       - $ref: '#/components/parameters/tid'
@@ -667,7 +502,6 @@ paths:
                   error_detail:
                     type: object
                     properties: {}
-                    required: []
                   error_type:
                     type: string
                     minLength: 1
@@ -690,16 +524,541 @@ paths:
                     error_type: Not Found
                     error_description: no payment request with ID xxx
       operationId: merchant.payment.send.outcome.get
+      tags:
+        - Payments
+        - Send Payment
+      parameters:
+        - $ref: '#/components/parameters/header_accept'
+        - $ref: '#/components/parameters/header_content_type'
+        - $ref: '#/components/parameters/header_merchant'
+        - $ref: '#/components/parameters/header_api_user'
+        - $ref: '#/components/parameters/header_timestamp'
+        - $ref: '#/components/parameters/header_content-digest'
+        - $ref: '#/components/parameters/header_authorization'
+      description: Shows the outcome info for a sent payment.
+  /pos:
+    post:
+      summary: merchant.pos.create
+      operationId: merchant.pos.create
+      responses:
+        '201':
+          $ref: '#/components/responses/pos.create.201'
+        '400':
+          description: 'Bad Request, validation error'
+        '409':
+          description: Conflict
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                x-examples:
+                  example-1:
+                    error_detail: null
+                    error_type: Conflict
+                    error_description: POS with ID "5rg1dkk8|9469f42f-8acf-43a8-ac28-bb64c8a994bd" already exists
+                properties:
+                  error_detail: {}
+                  error_type:
+                    type: string
+                    minLength: 1
+                  error_description:
+                    type: string
+                    minLength: 1
+              examples:
+                POS exists:
+                  value:
+                    error_detail: null
+                    error_type: Conflict
+                    error_description: POS with ID "5rg1dkk8|9469f42f-8acf-43a8-ac28-bb64c8a994bd" already exists
+      description: Create POS resource
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/pos.create'
+      tags:
+        - Pos
+      parameters:
+        - $ref: '#/components/parameters/header_accept'
+        - $ref: '#/components/parameters/header_content_type'
+        - $ref: '#/components/parameters/header_merchant'
+        - $ref: '#/components/parameters/header_api_user'
+        - $ref: '#/components/parameters/header_timestamp'
+        - $ref: '#/components/parameters/header_content-digest'
+        - $ref: '#/components/parameters/header_authorization'
+    get:
+      summary: merchant.pos.list
+      operationId: merchant.pos.list
+      responses:
+        '200':
+          $ref: '#/components/responses/pos.list.200'
+      description: List all Point of Sales for merchant.
+      tags:
+        - Pos
+      parameters:
+        - $ref: '#/components/parameters/header_accept'
+        - $ref: '#/components/parameters/header_content_type'
+        - $ref: '#/components/parameters/header_merchant'
+        - $ref: '#/components/parameters/header_api_user'
+        - $ref: '#/components/parameters/header_timestamp'
+        - $ref: '#/components/parameters/header_content-digest'
+        - $ref: '#/components/parameters/header_authorization'
+  '/pos/{pos_id}':
+    parameters:
+      - $ref: '#/components/parameters/pos_id'
+    put:
+      summary: merchant.pos.update
+      operationId: merchant.pos.update
+      responses:
+        '204':
+          description: No Content
+        '400':
+          description: 'Bad request, validation error'
+      description: Update POS resource
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/pos.update'
+      parameters:
+        - $ref: '#/components/parameters/header_accept'
+        - $ref: '#/components/parameters/header_content_type'
+        - $ref: '#/components/parameters/header_merchant'
+        - $ref: '#/components/parameters/header_api_user'
+        - $ref: '#/components/parameters/header_timestamp'
+        - $ref: '#/components/parameters/header_content-digest'
+        - $ref: '#/components/parameters/header_authorization'
+      tags:
+        - POS
+    delete:
+      summary: merchant.pos.delete
+      operationId: merchant.pos.delete
+      responses:
+        '204':
+          description: No Content
+      description: Delete POS
+      parameters:
+        - $ref: '#/components/parameters/header_accept'
+        - $ref: '#/components/parameters/header_content_type'
+        - $ref: '#/components/parameters/header_merchant'
+        - $ref: '#/components/parameters/header_api_user'
+        - $ref: '#/components/parameters/header_timestamp'
+        - $ref: '#/components/parameters/header_content-digest'
+        - $ref: '#/components/parameters/header_authorization'
+      tags:
+        - POS
+    get:
+      summary: merchant.pos.get
+      operationId: merchant.pos.get
+      responses:
+        '200':
+          $ref: '#/components/responses/pos.get.200'
+      description: Retrieve POS info.
+      parameters:
+        - $ref: '#/components/parameters/header_accept'
+        - $ref: '#/components/parameters/header_content_type'
+        - $ref: '#/components/parameters/header_merchant'
+        - $ref: '#/components/parameters/header_api_user'
+        - $ref: '#/components/parameters/header_timestamp'
+        - $ref: '#/components/parameters/header_content-digest'
+        - $ref: '#/components/parameters/header_authorization'
+      tags:
+        - POS
+  '/merchant/{merchant_id}':
+    parameters:
+      - $ref: '#/components/parameters/merchant_id'
+    get:
+      summary: merchant.profile.get
+      tags:
+        - Merchant
+        - Merchant Profile
+      parameters:
+        - $ref: '#/components/parameters/header_accept'
+        - $ref: '#/components/parameters/header_content_type'
+        - $ref: '#/components/parameters/header_merchant'
+        - $ref: '#/components/parameters/header_api_user'
+        - $ref: '#/components/parameters/header_timestamp'
+        - $ref: '#/components/parameters/header_content-digest'
+        - $ref: '#/components/parameters/header_authorization'
+      responses:
+        '200':
+          $ref: '#/components/responses/profile.get.200'
+      operationId: merchant.profile.get
+      description: Get merchant info
+      deprecated: true
+  '/merchant_lookup/{lookup_id}':
+    parameters:
+      - $ref: '#/components/parameters/lookup_id'
+    get:
+      summary: merchant.profile.lookup
+      responses:
+        '200':
+          $ref: '#/components/responses/profile.get.200'
+      operationId: merchant.profile.lookup
+      description: Handle merchant lookup on secondary ID. This is endpoint can only be used by Integrators.
+      tags:
+        - Merchant
+        - Merchant Profile
+      parameters:
+        - $ref: '#/components/parameters/header_accept'
+        - $ref: '#/components/parameters/header_content_type'
+        - $ref: '#/components/parameters/header_merchant'
+        - $ref: '#/components/parameters/header_integrator'
+        - $ref: '#/components/parameters/header_timestamp'
+        - $ref: '#/components/parameters/header_content-digest'
+        - $ref: '#/components/parameters/header_authorization'
+  /sales_summary:
+    get:
+      summary: merchant.sales.summary
+      responses:
+        '200':
+          $ref: '#/components/responses/sales.summary.200'
+      operationId: merchant.sales.summary
+      description: Retrieve sales report.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/sales.summary.get'
+      tags:
+        - Sales
+      parameters:
+        - $ref: '#/components/parameters/header_accept'
+        - $ref: '#/components/parameters/header_content_type'
+        - $ref: '#/components/parameters/header_merchant'
+        - $ref: '#/components/parameters/header_api_user'
+        - $ref: '#/components/parameters/header_timestamp'
+        - $ref: '#/components/parameters/header_content-digest'
+        - $ref: '#/components/parameters/header_authorization'
+  /settlement:
+    get:
+      summary: merchant.settlement.list
+      tags:
+        - Settlement
+      parameters:
+        - $ref: '#/components/parameters/header_accept'
+        - $ref: '#/components/parameters/header_content_type'
+        - $ref: '#/components/parameters/header_merchant'
+        - $ref: '#/components/parameters/header_api_user'
+        - $ref: '#/components/parameters/header_timestamp'
+        - $ref: '#/components/parameters/header_content-digest'
+        - $ref: '#/components/parameters/header_authorization'
+      responses:
+        '200':
+          $ref: '#/components/responses/settlement.list.200'
+      operationId: merchant.settlement.list
+      description: List settlements.
+  '/settlement/{settlement_id}':
+    parameters:
+      - $ref: '#/components/parameters/settlement_id'
+    get:
+      summary: merchant.settlement.get
+      tags:
+        - Settlement
+      parameters:
+        - $ref: '#/components/parameters/header_accept'
+        - $ref: '#/components/parameters/header_content_type'
+        - $ref: '#/components/parameters/header_merchant'
+        - $ref: '#/components/parameters/header_api_user'
+        - $ref: '#/components/parameters/header_timestamp'
+        - $ref: '#/components/parameters/header_content-digest'
+        - $ref: '#/components/parameters/header_authorization'
+      responses:
+        '200':
+          $ref: '#/components/responses/settlement.get.200'
+        '404':
+          $ref: '#/components/responses/settlement.get.404'
+      operationId: merchant.settlement.get
+      description: 'Retrieve information regarding one settlement. The settlement contains detailed information about the amount paid out in the payout_details form. In case merchant has unsettled fees from previous settlements, Settle will attempt to settle these before paying out. If there are still unsettled fees after settlement is done, this amount will be transferred to the next settlement, or billed by Settle.'
+  /last_settlement:
+    get:
+      summary: merchant.settlement.latest.get
+      tags:
+        - Settlement
+      parameters:
+        - $ref: '#/components/parameters/header_accept'
+        - $ref: '#/components/parameters/header_content_type'
+        - $ref: '#/components/parameters/header_merchant'
+        - $ref: '#/components/parameters/header_api_user'
+        - $ref: '#/components/parameters/header_timestamp'
+        - $ref: '#/components/parameters/header_content-digest'
+        - $ref: '#/components/parameters/header_authorization'
+      responses:
+        '200':
+          $ref: '#/components/responses/settlement.latest.get.200'
+        '404':
+          description: Not Found
+      operationId: merchant.settlement.latest.get
+      description: |-
+        This endpoint redirects to the latest Settlement.
+
+        Whenever a new Settlement is generated, this reference is automatically updated.
+  '/settlement_account/{settlement_account_id}':
+    parameters:
+      - $ref: '#/components/parameters/settlement_account_id'
+    get:
+      summary: merchant.settlement.account.get
+      tags:
+        - Settlement
+      parameters:
+        - $ref: '#/components/parameters/header_accept'
+        - $ref: '#/components/parameters/header_content_type'
+        - $ref: '#/components/parameters/header_merchant'
+        - $ref: '#/components/parameters/header_api_user'
+        - $ref: '#/components/parameters/header_timestamp'
+        - $ref: '#/components/parameters/header_content-digest'
+        - $ref: '#/components/parameters/header_authorization'
+      responses:
+        '200':
+          $ref: '#/components/responses/settlement.account.get.200'
+      operationId: merchant.settlement.account.get
+      description: Gets a SettlementAccount by ID.
+    put:
+      summary: merchant.settlement.account.update
+      operationId: merchant.settlement.account.update
+      description: Updates a SettlementAccount
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/settlement.account.update'
+        description: Updates a SettlementAccount.
+      responses:
+        '200':
+          description: OK
+      tags:
+        - Settlement
+      parameters:
+        - $ref: '#/components/parameters/header_accept'
+        - $ref: '#/components/parameters/header_content_type'
+        - $ref: '#/components/parameters/header_merchant'
+        - $ref: '#/components/parameters/header_api_user'
+        - $ref: '#/components/parameters/header_timestamp'
+        - $ref: '#/components/parameters/header_content-digest'
+        - $ref: '#/components/parameters/header_authorization'
+  /settlement_report:
+    get:
+      summary: merchant.settlement.report.list
+      tags:
+        - Settlement
+        - Reports
+      parameters:
+        - $ref: '#/components/parameters/header_accept'
+        - $ref: '#/components/parameters/header_content_type'
+        - $ref: '#/components/parameters/header_merchant'
+        - $ref: '#/components/parameters/header_api_user'
+        - $ref: '#/components/parameters/header_timestamp'
+        - $ref: '#/components/parameters/header_content-digest'
+        - $ref: '#/components/parameters/header_authorization'
+      responses:
+        '200':
+          $ref: '#/components/responses/settlement.report.get.200'
+      operationId: merchant.settlement.report.list
+      description: Endpoint accepts arguments for filtering the list of settlements and can omit empty settlements.
+  /shortlink:
+    get:
+      summary: merchant.shortlink.list
+      tags:
+        - Shortlink
+      parameters:
+        - $ref: '#/components/parameters/header_accept'
+        - $ref: '#/components/parameters/header_content_type'
+        - $ref: '#/components/parameters/header_merchant'
+        - $ref: '#/components/parameters/header_api_user'
+        - $ref: '#/components/parameters/header_timestamp'
+        - $ref: '#/components/parameters/header_content-digest'
+        - $ref: '#/components/parameters/header_authorization'
+      operationId: merchant.shortlink.list
+      description: List shortlink registrations.
+      responses:
+        '200':
+          $ref: '#/components/responses/shortlink.list.200'
+    post:
+      summary: merchant.shortlink.create
+      operationId: merchant.shortlink.create
+      responses:
+        '201':
+          $ref: '#/components/responses/shortlink.create.201'
+        '400':
+          $ref: '#/components/responses/shortlink.create.400'
+      description: Register new shortlink.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/shortlink.create'
+      tags:
+        - Shortlink
+      parameters:
+        - $ref: '#/components/parameters/header_accept'
+        - $ref: '#/components/parameters/header_content_type'
+        - $ref: '#/components/parameters/header_merchant'
+        - $ref: '#/components/parameters/header_api_user'
+        - $ref: '#/components/parameters/header_timestamp'
+        - $ref: '#/components/parameters/header_content-digest'
+        - $ref: '#/components/parameters/header_authorization'
+  '/shortlink/{shortlink_id}':
+    parameters:
+      - $ref: '#/components/parameters/shortlink_id'
+    get:
+      summary: merchant.shortlink.get
+      tags:
+        - Shortlink
+      parameters:
+        - $ref: '#/components/parameters/header_accept'
+        - $ref: '#/components/parameters/header_content_type'
+        - $ref: '#/components/parameters/header_merchant'
+        - $ref: '#/components/parameters/header_api_user'
+        - $ref: '#/components/parameters/header_timestamp'
+        - $ref: '#/components/parameters/header_content-digest'
+        - $ref: '#/components/parameters/header_authorization'
+      responses:
+        '200':
+          $ref: '#/components/responses/shortlink.get.200'
+      operationId: merchant.shortlink.get
+      description: Retrieve registered shortlink info.
+    put:
+      summary: merchant.shortlink.update
+      operationId: merchant.shortlink.update
+      responses:
+        '200':
+          $ref: '#/components/responses/shortlink.update.200'
+        '204':
+          $ref: '#/components/responses/shortlink.update.204'
+        '400':
+          $ref: '#/components/responses/shortlink.update.400'
+      description: Update existing shortlink registration.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/shortlink.update'
+      tags:
+        - Shortlink
+      parameters:
+        - $ref: '#/components/parameters/header_accept'
+        - $ref: '#/components/parameters/header_content_type'
+        - $ref: '#/components/parameters/header_merchant'
+        - $ref: '#/components/parameters/header_api_user'
+        - $ref: '#/components/parameters/header_timestamp'
+        - $ref: '#/components/parameters/header_content-digest'
+        - $ref: '#/components/parameters/header_authorization'
+    delete:
+      summary: merchant.shortlink.delete
+      operationId: merchant.shortlink.delete
+      responses:
+        '204':
+          $ref: '#/components/responses/shortlink.delete.204'
+      description: Delete shortlink
+      tags:
+        - Shortlink
+      parameters:
+        - $ref: '#/components/parameters/header_accept'
+        - $ref: '#/components/parameters/header_content_type'
+        - $ref: '#/components/parameters/header_merchant'
+        - $ref: '#/components/parameters/header_api_user'
+        - $ref: '#/components/parameters/header_timestamp'
+        - $ref: '#/components/parameters/header_content-digest'
+        - $ref: '#/components/parameters/header_authorization'
+  /status_code:
+    get:
+      summary: merchant.statusCodes.list
+      tags:
+        - Status Codes
+      parameters:
+        - $ref: '#/components/parameters/header_accept'
+        - $ref: '#/components/parameters/header_content_type'
+        - $ref: '#/components/parameters/header_merchant'
+        - $ref: '#/components/parameters/header_api_user'
+        - $ref: '#/components/parameters/header_timestamp'
+        - $ref: '#/components/parameters/header_content-digest'
+        - $ref: '#/components/parameters/header_authorization'
+      responses:
+        '200':
+          $ref: '#/components/responses/statusCodes.list.200'
+      operationId: merchant.statusCodes.list
+      description: List Status Codes
+  '/status_code/{status_code}':
+    parameters:
+      - $ref: '#/components/parameters/status_code'
+    get:
+      summary: merchant.statusCodes.get
+      tags:
+        - Status Codes
+      parameters:
+        - $ref: '#/components/parameters/header_accept'
+        - $ref: '#/components/parameters/header_content_type'
+        - $ref: '#/components/parameters/header_merchant'
+        - $ref: '#/components/parameters/header_api_user'
+        - $ref: '#/components/parameters/header_timestamp'
+        - $ref: '#/components/parameters/header_content-digest'
+        - $ref: '#/components/parameters/header_authorization'
+      responses:
+        '200':
+          $ref: '#/components/responses/statusCodes.get.200'
+      operationId: merchant.statusCodes.get
+      description: Get details about a spesific Status Code
+  /merchant_ssp_user:
+    post:
+      summary: merchant.ssp.users.create
+      tags:
+        - Merchant Portal
+      parameters:
+        - $ref: '#/components/parameters/header_accept'
+        - $ref: '#/components/parameters/header_content_type'
+        - $ref: '#/components/parameters/header_merchant'
+        - $ref: '#/components/parameters/header_api_user'
+        - $ref: '#/components/parameters/header_timestamp'
+        - $ref: '#/components/parameters/header_content-digest'
+        - $ref: '#/components/parameters/header_authorization'
+      responses:
+        '201':
+          $ref: '#/components/responses/ssp.users.create.201'
+        '409':
+          $ref: '#/components/responses/ssp.users.create.409'
+      operationId: merchant.ssp.users.create
+      description: Creates a MerchantSspUser.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ssp.users.create'
+        description: 'Returns 201 CREATED (unless a user with the same email already exists, which results in a 409 CONFLICT response).'
+      x-internal: true
+    get:
+      summary: merchant.ssp.users.list
+      tags:
+        - Merchant Portal
+      parameters:
+        - $ref: '#/components/parameters/header_accept'
+        - $ref: '#/components/parameters/header_content_type'
+        - $ref: '#/components/parameters/header_merchant'
+        - $ref: '#/components/parameters/header_api_user'
+        - $ref: '#/components/parameters/header_timestamp'
+        - $ref: '#/components/parameters/header_content-digest'
+        - $ref: '#/components/parameters/header_authorization'
+      operationId: merchant.ssp.users.list
+      description: Lists Merchant SSP Users.
+      responses:
+        '200':
+          $ref: '#/components/responses/ssp.users.get.200'
+      x-internal: true
   '/merchant_ssp_user/{merchant_ssp_user_id}':
     parameters:
-      - schema:
-          type: string
-        name: merchant_ssp_user_id
-        in: path
-        required: true
+      - $ref: '#/components/parameters/merchant_ssp_user_id'
     get:
       summary: merchant.ssp.users.get
-      tags: []
+      tags:
+        - Merchant Portal
+      parameters:
+        - $ref: '#/components/parameters/header_accept'
+        - $ref: '#/components/parameters/header_content_type'
+        - $ref: '#/components/parameters/header_merchant'
+        - $ref: '#/components/parameters/header_api_user'
+        - $ref: '#/components/parameters/header_timestamp'
+        - $ref: '#/components/parameters/header_content-digest'
+        - $ref: '#/components/parameters/header_authorization'
       responses:
         '200':
           $ref: '#/components/responses/ssp.users.get.200'
@@ -717,123 +1076,63 @@ paths:
 
         Currently only deletes if MerchantSspUser does not have any LegalEntities to avoid side effects Used to avoid inconsistencies between core and merchant console.
       x-internal: true
-  '/merchant/{merchant_id}/balance':
-    parameters:
-      - name: merchant_id
-        in: path
-        required: true
-        schema:
-          type: string
-        description: Merchant id assigned by Settle.
-    get:
-      summary: merchant.balance.get
-      tags: []
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                description: ''
-                type: object
-                x-examples:
-                  example-1:
-                    currency: NOK
-                    amount: 99999000
-                properties:
-                  currency:
-                    type: string
-                  amount:
-                    type: number
-              examples: {}
-      operationId: merchant.balance.get
-      description: Get Merchant Account Balance
-  '/api_key/{api_user_id}':
-    parameters:
-      - $ref: '#/components/parameters/api_user_id'
-    put:
-      summary: merchant.apiKeys.update
-      operationId: merchant.apiKeys.update
-      responses:
-        '204':
-          description: No Content
-      description: Update API Key
-    delete:
-      summary: merchant.apiKeys.delete
-      operationId: merchant.apiKeys.delete
-      responses:
-        '204':
-          description: No Content
-      description: Delete API Key
-    get:
-      summary: merchant.apiKeys.get
-      operationId: merchant.apiKeys.get
-      responses:
-        '200':
-          description: OK
-      description: Get API Key
-  '/merchant/{merchant_id}/logo':
-    parameters:
-      - $ref: '#/components/parameters/merchant_id'
-    get:
-      summary: merchant.logo.get
-      tags: []
-      responses:
-        '200':
-          description: OK
-      operationId: merchant.logo.get
-      description: Get Merchant Logo
+      tags:
+        - Merchant Portal
+      parameters:
+        - $ref: '#/components/parameters/header_accept'
+        - $ref: '#/components/parameters/header_content_type'
+        - $ref: '#/components/parameters/header_merchant'
+        - $ref: '#/components/parameters/header_api_user'
+        - $ref: '#/components/parameters/header_timestamp'
+        - $ref: '#/components/parameters/header_content-digest'
+        - $ref: '#/components/parameters/header_authorization'
 components:
   schemas:
     payment.request.create:
       title: 'Request Body: merchant.payment.request.create'
       type: object
-      x-tags:
-        - Schemas
       description: 'A payment request goes through several stages. After being registered, the customer can either reject or authorize. An authorization is valid for 3 days, but can be reauthorized before it expires to be valid for 3 new days. Once authorized, it can be captured to be included in the next settlement.'
       x-examples:
-        Example:
-          action: SALE
-          additional_amount: 0
-          additional_edit: false
-          allow_credit: true
-          amount: 0
-          callback_uri: 'null'
-          cid: 'null'
-          currency:
-            alph_code: 'null'
-            num_code: 3
-          customer: 'null'
-          display_message_uri: 'null'
-          expires_in: 21600
-          failure_return_uri: 'null'
-          line_items:
-            product_id: string
-            description: string
-            metadata:
-              key: string
-              value: string
-            vat_rate: 'null'
-            quantity: string
-            vat: 0
-            item_cost: 0
-            total: 0
-          links:
-            uri: 'null'
-            caption: 'null'
-            show_on: 'null'
-          max_scan_age: 60
-          pos_id: string
-          pos_tid: string
-          required_scope:
-            scopes: address
-          required_scope_text: 'null'
-          success_return_uri: 'null'
-          text: 'null'
-          uri: 'null'
-          'null': string
-          scope:
-            scopes: address
+        example-1:
+          value:
+            action: SALE
+            additional_amount: 0
+            additional_edit: false
+            allow_credit: true
+            amount: 0
+            callback_uri: string
+            cid: string
+            currency: EUR
+            customer: 'null'
+            display_message_uri: string
+            expires_in: 21600
+            failure_return_uri: string
+            line_items:
+              product_id: string
+              description: string
+              metadata:
+                key: string
+                value: string
+              vat_rate: 'null'
+              quantity: string
+              vat: 0
+              item_cost: 0
+              total: 0
+            links:
+              uri: string
+              caption: string
+              show_on: pending
+            max_scan_age: 60
+            pos_id: string
+            pos_tid: string
+            required_scope:
+              scopes: address
+            required_scope_text: string
+            success_return_uri: string
+            text: string
+            uri: string
+            scope:
+              scopes: address
       properties:
         action:
           type: string
@@ -856,12 +1155,10 @@ components:
           $ref: ../models/MoneyInteger.v1.yaml
         callback_uri:
           type: string
-          default: 'null'
           pattern: '(^|^w+://(localhost|[^/:]+|([0-9]{1,3}.){3}[0-9]{1,3})?(:[0-9]+)?)(/.*)?$'
           description: 'If provided, Settle will POST to this URI when the status of the payment request changes, using the message mechanism described in the introduction. The data in the object part of the message is the same as what can be retrieved by calling GET on the /payment_request/{tid}/outcome/ resource URI.'
         cid:
           type: string
-          default: 'null'
           description: Customer ID to be used for KID payments.
         currency:
           $ref: ../models/Currency.v1.yaml
@@ -870,7 +1167,6 @@ components:
         display_message_uri:
           type: string
           description: Messages that can be used to inform the POS operator about the progress of the payment request will be posted to this URI if provided.
-          default: 'null'
         expires_in:
           type: integer
           default: 21600
@@ -878,7 +1174,6 @@ components:
           maximum: 2592000
         failure_return_uri:
           type: string
-          default: 'null'
           pattern: '(^|^w+://(localhost|[^/:]+|([0-9]{1,3}.){3}[0-9]{1,3})?(:[0-9]+)?)(/.*)?$'
           description: Return URL if payment failed.
         line_items:
@@ -906,21 +1201,17 @@ components:
         required_scope_text:
           type: string
           description: Text that is shown to user when asked for permission. This can contain line breaks and the text has to fit on smartphones screens.
-          default: 'null'
           maxLength: 150
         success_return_uri:
           type: string
           pattern: '(^|^w+://(localhost|[^/:]+|([0-9]{1,3}.){3}[0-9]{1,3})?(:[0-9]+)?)(/.*)?$'
-          default: 'null'
           description: Return URL if payment successful.
         text:
           type: string
           description: Text that is shown to user when asked to pay. This can contain line breaks and the text has to fit on smartphones screens.
-          default: 'null'
         uri:
           type: string
           description: 'If payment request was posted without a customer, user can claim it on this URI.'
-          default: 'null'
         scope:
           $ref: ../models/Scope.v1.yaml
       required:
@@ -933,8 +1224,6 @@ components:
     payment.request.outcome.get:
       title: 'Request Body: merchant.payment.request.outcome.get'
       type: object
-      x-tags:
-        - Schemas
       description: ''
       properties:
         currency:
@@ -954,7 +1243,6 @@ components:
         status:
           type: string
           description: Payment request status (see above)
-          default: 'null'
           enum:
             - ok
             - fail
@@ -963,7 +1251,6 @@ components:
         status_code:
           type: integer
           description: Payment request status code (see above).
-          default: null
         customer:
           $ref: ../models/PersonIdentifier.v1.yaml
         date_modified:
@@ -981,7 +1268,6 @@ components:
         attachment_uri:
           type: string
           format: uri
-          default: 'null'
           description: 'Endpoint for Attachment uploads, such as electronic receipts. This URI has a limited time to live, and a new URI is generated each time outcome is retrieved.'
         pos_id:
           type: string
@@ -1011,10 +1297,30 @@ components:
 
         Note that the REFUND action will require that the API call is made with the KEY authorization mode, not SECRET.
       type: object
-      x-tags:
-        - Schemas
       title: 'Request Body: merchant.payment.request.update'
-      x-examples: {}
+      x-examples:
+        example-1:
+          value:
+            display_message_uri: string
+            callback_uri: string
+            line_items:
+              product_id: string
+              description: string
+              metadata:
+                key: string
+                value: string
+              vat_rate: 'null'
+              quantity: string
+              vat: 0
+              item_cost: 0
+              total: 0
+            action: reauth
+            amount: 0
+            additional_amount: 0
+            capture_id: string
+            refund_id: string
+            currency: EUR
+            text: string
       properties:
         display_message_uri:
           type: string
@@ -1084,16 +1390,13 @@ components:
           type: string
           description: 'If payment request was posted without a customer, user can claim it on this uri'
           format: uri
-          default: 'null'
         display_message_uri:
           type: string
           description: Messages that can be used to inform the POS operator about the progress of the payment request will be POSTed to this URI if provided
-          default: 'null'
           format: uri
         callback_uri:
           type: string
           description: 'If provided, Settle will POST to this URI when the status of the payment request changes, using the message mechanism described in the introduction. The data in the "object" part of the message is the same as what can be retrieved by calling GET on the "/payment_request/<tid>/outcome/" resource URI.'
-          default: 'null'
           format: uri
         line_items:
           $ref: ../models/LineItem.v1.yaml
@@ -1128,22 +1431,18 @@ components:
         text:
           type: string
           description: Text that is shown to user when asked to pay. This can contain linebreaks and the text has tofit on smartphones screens.
-          default: 'null'
         success_return_uri:
           type: string
           description: Return url if payment successful
-          default: 'null'
           pattern: '(^|^w+://(localhost|[^/:]+|([0-9]{1,3}.){3}[0-9]{1,3})?(:[0-9]+)?)(/.*)?$'
         failure_return_uri:
           type: string
           description: |
             Return url if payment failed
           pattern: '(^|^w+://(localhost|[^/:]+|([0-9]{1,3}.){3}[0-9]{1,3})?(:[0-9]+)?)(/.*)?$'
-          default: 'null'
         cid:
           type: string
           description: Customer ID to be used for KID payments
-          default: 'null'
         links:
           $ref: ../models/PaymentRequestLink.v1.yaml
         date_expires:
@@ -1151,7 +1450,6 @@ components:
         required_scope:
           type: string
           description: Set this field to ask for data from the user together with the payment request.
-          default: 'null'
         allow_credit:
           type: boolean
           description: Whether to allow credit payment for this payment request. Credit incurs interchange
@@ -1187,6 +1485,16 @@ components:
         - name
         - type
         - id
+      x-examples:
+        example-1:
+          value:
+            name: string
+            type: store
+            location:
+              latitude: string
+              longitude: string
+              accuracy: string
+            id: string
     pos.update:
       title: 'Request Body: merchant.pos.update'
       type: object
@@ -1208,7 +1516,6 @@ components:
             - poster
         location:
           type: string
-          default: 'null'
           description: Merchant location.
       required:
         - name
@@ -1227,24 +1534,19 @@ components:
         id:
           type: string
           description: ID
-          default: 'null'
         legal_entity:
           $ref: ../models/NdbKey.yaml
         business_name:
           type: string
           description: Business Name.
-          default: 'null'
         organization_id:
           type: string
           description: Organization ID.
-          default: 'null'
         jurisdiction:
           type: string
           description: Jurisdiction.
-          default: 'null'
         mcc:
           type: integer
-          default: null
           description: Mcc
         integrator:
           $ref: ../models/NdbKey.yaml
@@ -1252,7 +1554,6 @@ components:
           $ref: ../models/NdbKey.yaml
         auth_duration:
           type: integer
-          default: null
           description: Auth Duration.
         profile:
           $ref: ../models/MerchantProfileRegistration.yaml
@@ -1264,12 +1565,43 @@ components:
           $ref: ../models/MoneyInteger.v1.yaml
         integration_type:
           type: string
-          default: 'null'
           description: Integration Type
         approved:
           type: boolean
           default: false
           description: Approved
+      x-examples:
+        example-1:
+          value:
+            id: 'null'
+            legal_entity: string
+            business_name: 'null'
+            organization_id: 'null'
+            jurisdiction: 'null'
+            mcc: null
+            integrator: string
+            settlement_account: string
+            auth_duration: null
+            profile:
+              first_address_line: string
+              second_address_line: string
+              postal_code: strin
+              country: 'null'
+              description: 'null'
+              phone_number: string
+              email: user@example.com
+              url: 'http://example.com'
+              twitter: 'null'
+              facebook: 'null'
+              hours: 'null'
+              settlement_receivers: string
+              settlement_email_xls: false
+              logo_url: 'null'
+            application: null
+            business_documents: null
+            per_payment_amount_limit: 0
+            integration_type: 'null'
+            approved: false
     sales.summary.get:
       title: 'Request Body: sales.summary'
       type: object
@@ -1298,6 +1630,12 @@ components:
           $ref: ../models/SettlementAccountFrequency.yaml
       required:
         - payout_account
+      x-examples:
+        example-1:
+          value:
+            payout_account: string
+            frequency:
+              id: string
     settlement.report.get:
       title: 'Request Body: settlement.report.get'
       type: object
@@ -1306,11 +1644,9 @@ components:
         created_from:
           type: string
           description: Created From
-          default: 'null'
         created_to:
           type: string
           description: Created To
-          default: 'null'
         non_empty_only:
           type: boolean
           description: Non Empty Only
@@ -1321,13 +1657,16 @@ components:
       properties:
         callback_uri:
           type: string
-          default: 'null'
           description: URI called by Settle when user scans shortlink.
         serial_number:
           type: string
-          default: 'null'
           description: Serial number on printed QR codes.This field is only used when registering printed stickers issued by Settle.
       description: Register new shortlink.
+      x-examples:
+        example-1:
+          value:
+            callback_uri: string
+            serial_number: string
     shortlink.update:
       title: 'Request Body: shortlink.update'
       type: object
@@ -1335,8 +1674,11 @@ components:
       properties:
         callback_uri:
           type: string
-          default: 'null'
           description: URI called by Settle when user scans shortlink.
+      x-examples:
+        example-1:
+          value:
+            callback_uri: string
     ssp.users.create:
       title: 'Request Body: ssp.users.create'
       type: object
@@ -1348,7 +1690,6 @@ components:
           pattern: '^.+@[^.].*.[a-z]{2,10}$'
         phone:
           type: string
-          default: 'null'
           description: Phone
         name:
           $ref: ../models/Name.yaml
@@ -1375,7 +1716,6 @@ components:
           type: string
           description: 'Limit user connections by netmask, for example 192.168.1.0/24'
           format: ipv4
-          example: 192.168.1.0/24
         secret:
           type: string
           minLength: 8
@@ -1387,7 +1727,16 @@ components:
       title: 'Request Body: apiKeys.create'
       type: object
       description: Create API Key
-      x-examples: {}
+      x-examples:
+        example-1:
+          value:
+            id: string
+            label: string
+            key_type: secret
+            roles: user
+            netmask: string
+            secret: stringst
+            pubkey: string
       properties:
         id:
           type: string
@@ -1409,7 +1758,6 @@ components:
             - user
             - superuser
             - integrator
-          default: 'null'
         netmask:
           type: string
           description: 'Limit user connections by netmask, for example 192.168.1.0/24.'
@@ -1423,6 +1771,52 @@ components:
       required:
         - id
         - key_type
+    payment.send.create:
+      description: Send payment.
+      type: object
+      properties:
+        payer:
+          type: string
+          minLength: 1
+        payee:
+          type: string
+          minLength: 1
+        idempotency_id:
+          type: string
+          minLength: 1
+        currency:
+          type: string
+          minLength: 1
+        amount:
+          type: number
+        chat_text:
+          type: string
+          minLength: 1
+        expires_in:
+          type: number
+        require_identified:
+          type: string
+          minLength: 1
+      required:
+        - payer
+        - payee
+        - idempotency_id
+        - currency
+        - amount
+        - chat_text
+        - expires_in
+        - require_identified
+      x-examples:
+        example-1:
+          value:
+            payer: string
+            payee: string
+            idempotency_id: string
+            currency: string
+            amount: 0
+            chat_text: string
+            expires_in: 0
+            require_identified: string
   responses:
     payment.request.list.200:
       description: OK
@@ -1447,7 +1841,6 @@ components:
                 description: Transaction id
               uri:
                 type: string
-                default: 'null'
                 format: uri
                 description: 'If payment request was posted without a customer, user can claim it on this uri'
             required:
@@ -1461,7 +1854,6 @@ components:
             properties:
               id:
                 type: string
-                default: 'null'
                 description: Id
     pos.list.200:
       description: OK
@@ -1475,11 +1867,9 @@ components:
                 description: A list of absolute paths to the requested resources.
               next:
                 type: string
-                default: 'null'
                 description: Path to the next list chunk.
               prev:
                 type: string
-                default: 'null'
                 description: Path to the previous list chunk.
             required:
               - uris
@@ -1492,7 +1882,6 @@ components:
             properties:
               id:
                 type: string
-                default: 'null'
                 description: ID
               name:
                 type: string
@@ -1523,7 +1912,6 @@ components:
               uri:
                 type: string
                 format: uri
-                default: 'null'
                 description: 'If payment request was posted without a customer, user can claim it on this uri.'
             required:
               - id
@@ -1537,11 +1925,9 @@ components:
               merchant_timezone:
                 type: string
                 description: Merchant Timezone
-                default: 'null'
               result_timezone:
                 type: string
                 description: Result Timezone
-                default: 'null'
               start_of_day:
                 $ref: ../models/Time.yaml
               periods:
@@ -1557,22 +1943,139 @@ components:
       content:
         application/json:
           schema:
+            description: ''
             type: object
             properties:
-              uris:
+              payout_details:
+                type: object
+                properties:
+                  payout:
+                    type: number
+                  gross:
+                    type: number
+                  invoice_id: {}
+                  unsettled_fees_before:
+                    type: number
+                  currency:
+                    type: string
+                    minLength: 1
+                  unsettled_fees_after:
+                    type: number
+                  net:
+                    type: number
+                  billed:
+                    type: number
+                required:
+                  - payout
+                  - gross
+                  - unsettled_fees_before
+                  - currency
+                  - unsettled_fees_after
+                  - net
+                  - billed
+              scope_log_uris:
+                type: array
+                items:
+                  properties: {}
+              settlement_summary:
+                type: object
+                properties:
+                  gross:
+                    type: number
+                  taxcode:
+                    type: string
+                    minLength: 1
+                  interchange:
+                    type: number
+                  additional_amount_total:
+                    type: number
+                  currency:
+                    type: string
+                    minLength: 1
+                  fees:
+                    type: object
+                    properties:
+                      settlement_fee:
+                        type: number
+                      transaction_fee_vat:
+                        type: number
+                      scope_fee_vat:
+                        type: number
+                      settlement_fee_vat:
+                        type: number
+                      scope_fee:
+                        type: number
+                      transaction_fee:
+                        type: number
+                    required:
+                      - settlement_fee
+                      - transaction_fee_vat
+                      - scope_fee_vat
+                      - settlement_fee_vat
+                      - scope_fee
+                      - transaction_fee
+                  net:
+                    type: number
+                  amount_total:
+                    type: number
+                required:
+                  - gross
+                  - taxcode
+                  - interchange
+                  - additional_amount_total
+                  - currency
+                  - fees
+                  - net
+                  - amount_total
+              date_created:
                 type: string
-                description: A list of absolute paths to the requested resources.
-                default: 'null'
-              next:
+                minLength: 1
+              transaction_log_uris:
+                type: array
+                items:
+                  properties: {}
+              id:
                 type: string
-                description: Path to the next list chunk.
-                default: 'null'
-              prev:
-                type: string
-                description: Path to the previous list chunk.
-                default: 'null'
+                minLength: 1
             required:
-              - uris
+              - payout_details
+              - scope_log_uris
+              - settlement_summary
+              - date_created
+              - transaction_log_uris
+              - id
+            x-examples:
+              example-1:
+                payout_details:
+                  payout: 0
+                  gross: 0
+                  invoice_id: null
+                  unsettled_fees_before: 0
+                  currency: NOK
+                  unsettled_fees_after: 0
+                  net: 0
+                  billed: 0
+                scope_log_uris:
+                  - 'https://storage.googleapis.com/mcash_reports/permission_report_deprecated.csv?Expires=1628527678&GoogleAccessId=settle-core-demo%40appspot.gserviceaccount.com&Signature=AWTjDANFDfnX6JVh0aYj47786xlffQJ5%2Bty3cXDqzgA9VznaOd3i%2Fu0kAXTZkUYDHMYWRhLtL%2BaZKNJKYSBwRmhOW2cxFCM7qtLTkT2Wa1i8ybRY28k90g%2F3%2B38KCAvsJ%2FFydklEIcTHONCYWp%2F7r%2FSNGBi1wkT%2BoqZZ0R0hqvzJzG1TN1ggV3YrBozGCS2Wkzcxm5XRp%2FABce4nu9pGdAdFj07B%2FjaWpC8Ii10faNrSCH643oeEKvyR%2FLs6gCDdO5sraV%2FDxg1L8%2Bu54AhaVHTB5rz3tkst1RHpnVWC%2FSR0Q8n38rkh0p%2FzNAKAFmOnvCqGDNOCWiL1gqmI0flN9A%3D%3D'
+                settlement_summary:
+                  gross: 0
+                  taxcode: 'NO:2013'
+                  interchange: 0
+                  additional_amount_total: 0
+                  currency: NOK
+                  fees:
+                    settlement_fee: 0
+                    transaction_fee_vat: 0
+                    scope_fee_vat: 0
+                    settlement_fee_vat: 0
+                    scope_fee: 0
+                    transaction_fee: 0
+                  net: 0
+                  amount_total: 0
+                date_created: '2021-07-09 22:00:00'
+                transaction_log_uris:
+                  - 'https://storage.googleapis.com/settle-core-demo-m0816u6q_reports/settlement-5rg1dkk8-2021-07-08-215.csv?Expires=1628527678&GoogleAccessId=settle-core-demo%40appspot.gserviceaccount.com&Signature=VfjxXWaYKreOayPsJgcP0mlZAq4w6Z7Hq%2BND19e2JqCZ%2BzeayEKaEzTWMSN5gSdPS%2Ft1y0G7RiuQMUSn%2FlRscan6vnOj%2B0wF5QttLoPc5P%2FitwrlrQlDxPvJLFb%2FI6FHFFaChjrF2e9Wq6biUBNkJBt1st%2B41vFKz1TbF63Xz7tmRlknUDZMqBn6iTaumkm3C4gbQ1Z9kxIAPYHY33RG4HEzpqMkjvuBl2AASIhWxaI0AuIVSpI36OiR5cnBGSPKM89eSOWRJ4jbzxnRHKR%2BQ%2FyuDfNAvxaynqPIVvlhssHlb%2F%2FtQnMVizedTH9dnzKUab2rF%2FeNWPWMfOQ9Y6cTdA%3D%3D'
+                id: '215'
     settlement.get.200:
       description: OK
       content:
@@ -1620,19 +2123,16 @@ components:
               id:
                 type: string
                 description: ID
-                default: 'null'
               start_of_day:
                 $ref: ../models/Time.yaml
               currency:
                 type: string
                 description: Currency
-                default: 'null'
               payout_delay:
                 $ref: ../models/TimeDelta.yaml
               payout_account:
                 type: string
                 description: Payout Account
-                default: 'null'
               frequency:
                 $ref: ../models/SettlementAccountFrequency.yaml
     settlement.report.get.200:
@@ -1658,7 +2158,6 @@ components:
               id:
                 type: string
                 description: ID
-                default: 'null'
       headers:
         Location:
           schema:
@@ -1685,11 +2184,9 @@ components:
                 description: A list of absolute paths to the requested resources.
               next:
                 type: string
-                default: 'null'
                 description: Path to the next list chunk.
               prev:
                 type: string
-                default: 'null'
                 description: Path to the previous list chunk.
             required:
               - uris
@@ -1726,19 +2223,15 @@ components:
             properties:
               id:
                 type: string
-                default: 'null'
                 description: ID
               callback_uri:
                 type: string
-                default: 'null'
                 description: URI called by Settle when user scans shortlink.
               serial_number:
                 type: string
-                default: 'null'
                 description: Serial number on printed QR codes.This field is only used when registering printed stickers issued by Settle.
               shortlink_value:
                 type: string
-                default: 'null'
                 description: Text to be displayed as QR code.
             required:
               - shortlink_value
@@ -1763,16 +2256,13 @@ components:
             properties:
               id:
                 type: string
-                default: 'null'
                 description: ID
               email:
                 type: string
-                default: 'null'
                 pattern: '^.+@[^.].*.[a-z]{2,10}$'
                 description: Email
               phone:
                 type: string
-                default: 'null'
                 description: Phone
               name:
                 $ref: ../models/NameResponse.yaml
@@ -1780,7 +2270,6 @@ components:
                 $ref: ../models/NdbKey.yaml
               bankid:
                 type: string
-                default: 'null'
                 description: Bankid
     ssp.users.create.409:
       description: 'Conflict, user with the same email already exists'
@@ -1809,16 +2298,13 @@ components:
               id:
                 type: string
                 description: ID
-                default: 'null'
               email:
                 type: string
                 pattern: '^.+@[^.].*.[a-z]{2,10}$'
                 description: Email
-                default: 'null'
               phone:
                 type: string
                 description: Phone
-                default: 'null'
               name:
                 $ref: ../models/NameResponse.yaml
               legal_entities:
@@ -1826,7 +2312,6 @@ components:
               bankid:
                 type: string
                 description: Bankid
-                default: 'null'
     statusCodes.list.200:
       description: OK
       content:
@@ -1836,11 +2321,9 @@ components:
             properties:
               code:
                 type: string
-                default: 'null'
                 description: Code
               name:
                 type: string
-                default: 'null'
                 description: Name
     statusCodes.get.200:
       description: OK
@@ -1851,11 +2334,9 @@ components:
             properties:
               code:
                 type: string
-                default: 'null'
                 description: Code
               name:
                 type: string
-                default: 'null'
                 description: Name
     users.create.201:
       description: Created
@@ -1867,7 +2348,6 @@ components:
               id:
                 type: string
                 description: User ID
-                default: 'null'
     users.get.201:
       description: Created
       content:
@@ -1885,19 +2365,15 @@ components:
             properties:
               id:
                 type: string
-                default: 'null'
                 description: User ID.
               netmask:
                 type: string
                 minLength: 1
                 format: ipv4
-                example: 192.168.1.0/24
-                default: 'null'
                 description: 'Limit user connections by netmask, for example 192.168.1.0/24.'
               label:
                 type: string
                 minLength: 1
-                default: 'null'
                 description: User given name to RSA key/secret.
               has_secret:
                 type: boolean
@@ -1913,6 +2389,7 @@ components:
             properties:
               id:
                 type: string
+          examples: {}
     settlement.list.200:
       description: List settlements.
       content:
@@ -1920,121 +2397,217 @@ components:
           schema:
             description: ''
             type: object
-            x-examples:
-              example-1:
-                prev: null
-                uris:
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/1/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/2/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/3/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/4/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/5/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/6/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/7/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/8/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/9/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/10/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/11/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/12/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/13/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/14/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/15/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/16/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/17/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/18/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/19/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/20/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/21/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/22/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/23/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/24/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/25/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/26/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/27/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/28/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/29/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/30/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/31/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/32/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/33/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/34/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/35/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/36/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/37/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/38/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/39/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/40/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/41/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/42/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/43/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/44/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/45/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/46/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/47/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/48/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/49/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/50/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/51/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/52/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/53/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/54/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/55/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/56/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/57/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/58/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/59/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/60/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/61/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/62/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/63/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/64/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/65/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/66/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/67/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/68/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/69/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/70/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/71/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/72/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/73/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/74/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/75/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/76/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/77/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/78/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/79/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/80/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/81/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/82/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/83/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/84/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/85/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/86/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/87/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/88/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/89/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/90/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/91/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/92/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/93/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/94/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/95/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/96/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/97/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/98/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/99/'
-                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/100/'
-                next: 'https://api.sandbox.settle.eu/merchant/v1/settlement/?start=101'
             properties:
               prev:
                 type: string
-                default: 'null'
               uris:
                 type: object
               next:
                 type: string
-                default: 'null'
-  securitySchemes: {}
+    profile.get.200:
+      description: Example response
+      content:
+        application/json:
+          schema:
+            description: ''
+            type: object
+            properties:
+              id:
+                type: string
+                minLength: 1
+              legal_entity:
+                type: string
+                minLength: 1
+              business_name:
+                type: string
+                minLength: 1
+              organization_id:
+                type: string
+                minLength: 1
+              jurisdiction:
+                type: string
+                minLength: 1
+              mcc: {}
+              integrator:
+                type: string
+                minLength: 1
+              settlement_account:
+                type: string
+                minLength: 1
+              auth_duration: {}
+              profile:
+                type: object
+                properties:
+                  first_address_line:
+                    type: string
+                    minLength: 1
+                  second_address_line:
+                    type: string
+                    minLength: 1
+                  postal_code:
+                    type: string
+                    minLength: 1
+                  country:
+                    type: string
+                    minLength: 1
+                  description:
+                    type: string
+                    minLength: 1
+                  phone_number:
+                    type: string
+                    minLength: 1
+                  email:
+                    type: string
+                    minLength: 1
+                  url:
+                    type: string
+                    minLength: 1
+                  twitter:
+                    type: string
+                    minLength: 1
+                  facebook:
+                    type: string
+                    minLength: 1
+                  hours:
+                    type: string
+                    minLength: 1
+                  settlement_receivers:
+                    type: string
+                    minLength: 1
+                  settlement_email_xls:
+                    type: boolean
+                  logo_url:
+                    type: string
+                    minLength: 1
+                required:
+                  - first_address_line
+                  - second_address_line
+                  - postal_code
+                  - country
+                  - description
+                  - phone_number
+                  - email
+                  - url
+                  - twitter
+                  - facebook
+                  - hours
+                  - settlement_receivers
+                  - settlement_email_xls
+                  - logo_url
+              application: {}
+              business_documents: {}
+              per_payment_amount_limit:
+                type: number
+              integration_type:
+                type: string
+                minLength: 1
+              approved:
+                type: boolean
+            required:
+              - id
+              - legal_entity
+              - business_name
+              - organization_id
+              - jurisdiction
+              - integrator
+              - settlement_account
+              - profile
+              - per_payment_amount_limit
+              - integration_type
+              - approved
+            x-examples:
+              example-1:
+                id: 'null'
+                legal_entity: string
+                business_name: 'null'
+                organization_id: 'null'
+                jurisdiction: 'null'
+                mcc: null
+                integrator: string
+                settlement_account: string
+                auth_duration: null
+                profile:
+                  first_address_line: string
+                  second_address_line: string
+                  postal_code: strin
+                  country: 'null'
+                  description: 'null'
+                  phone_number: string
+                  email: user@example.com
+                  url: 'http://example.com'
+                  twitter: 'null'
+                  facebook: 'null'
+                  hours: 'null'
+                  settlement_receivers: string
+                  settlement_email_xls: false
+                  logo_url: 'null'
+                application: null
+                business_documents: null
+                per_payment_amount_limit: 0
+                integration_type: 'null'
+                approved: false
+    apiKeys.list.200:
+      description: Example response
+      content:
+        application/json:
+          schema:
+            properties:
+              id:
+                type: string
+    apiKeys.update.204:
+      description: Example response
+      content:
+        application/json:
+          schema:
+            description: ''
+            type: object
+            properties:
+              label:
+                type: string
+                minLength: 1
+              key_type:
+                type: string
+                minLength: 1
+              roles:
+                type: string
+                minLength: 1
+              netmask:
+                type: string
+                minLength: 1
+              secret:
+                type: string
+                minLength: 1
+              pubkey:
+                type: string
+                minLength: 1
+            required:
+              - label
+              - key_type
+              - roles
+              - netmask
+              - secret
+              - pubkey
+            x-examples:
+              example-1:
+                label: string
+                key_type: secret
+                roles: user
+                netmask: string
+                secret: stringst
+                pubkey: string
+          examples:
+            example-1:
+              value:
+                label: string
+                key_type: string
+                roles: string
+                netmask: string
+                secret: string
+                pubkey: string
+  securitySchemes:
+    Authorization:
+      type: http
+      scheme: digest
   parameters:
     merchant_id:
       name: merchant_id
@@ -2112,23 +2685,88 @@ components:
       schema:
         type: string
       description: Merchant SSP User ID
-    api_user_id:
-      name: api_user_id
+    api_key_id:
+      name: api_key_id
       in: path
       required: true
       schema:
         type: string
-      description: API Key ID created by either Settle or User
+      description: API Key ID created by either Settle or User.
+    header_accept:
+      name: Accept
+      in: header
+      required: false
+      schema:
+        type: string
+      description: application/vnd.mcash.api.merchant.v1+json
+    header_content_type:
+      name: Content-Type
+      in: header
+      required: false
+      schema:
+        type: string
+      description: application/json
+    header_authorization:
+      name: Authorization
+      in: header
+      required: false
+      schema:
+        type: string
+      description: 'RSA-SHA256 signature. Learn more in out [documentation](https://settle.dev/api/guides/introduction/authentication/).'
+    header_content-digest:
+      name: X-Settle-Content-Digest
+      in: header
+      required: false
+      schema:
+        type: string
+      description: 'The base64 encoded hash digest of the request body. If the body is empty, the hash should be computed on an empty string. '
+    header_timestamp:
+      name: X-Settle-Timestamp
+      in: header
+      required: false
+      schema:
+        type: string
+      description: 'The current UTC time. The time format is YYYY-MM-DD hh:mm:ss.'
+    header_api_user:
+      name: X-Settle-User
+      in: header
+      required: false
+      schema:
+        type: string
+      description: 'The ID (username) of the user/client doing the request on behalf of the Merchant. '
+    header_merchant:
+      name: X-Settle-Merchant
+      in: header
+      required: false
+      schema:
+        type: string
+      description: Settle ID of the Merchant as returned in the id field of the 'merchant.profile.get' endpoint.
+    header_integrator:
+      name: X-Settle-Integrator
+      in: header
+      required: false
+      schema:
+        type: string
+      description: 'Only to be used by Integrators acting as a proxy on behalf of merchant client, in which case it replaces the X-Settle-User header. The value of this field is the ID issued to the Integrator by Settle. '
   examples: {}
 tags:
   - name: Info
+  - name: API Key
   - name: Balance
   - name: Logo
   - name: Payments
-  - name: Pos
+  - name: Request Payment
+  - name: Send Payment
+  - name: POS
   - name: Sales
   - name: Settlement
   - name: Shortlink
   - name: Self Service Portal
   - name: Status Codes
-  - name: Users
+  - name: Merchant Users
+  - name: Merchant Profile
+  - name: Merchant Portal
+  - name: Merchant
+  - name: Reports
+security:
+  - RSA-SHA256: []

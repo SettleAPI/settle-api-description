@@ -27,8 +27,6 @@ properties:
   capture_count:
     type: integer
     description: Capture Count
-    default: null
   refund_count:
     type: integer
-    default: null
     description: Refund Count

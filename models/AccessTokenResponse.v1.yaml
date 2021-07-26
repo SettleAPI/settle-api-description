@@ -3,27 +3,21 @@ type: object
 properties:
   access_token:
     type: string
-    default: 'null'
     description: Access token
   id_token:
     type: string
-    default: 'null'
     description: A JWT that contains identity information about the user that is digitally signed by Settle.
   token_type:
     type: string
-    default: 'null'
     description: 'Type of access token, at this time it will always be Bearer.'
   expires_in:
     type: integer
-    default: null
     description: Lifetime in seconds of the access token.
   refresh_token:
     type: string
     description: Refresh token used to issue new access token after expiration.
-    default: 'null'
   scope:
     type: string
-    default: 'null'
     enum:
       - address
       - bankid
@@ -40,11 +34,9 @@ properties:
     $ref: ./MoneyInteger.v1.yaml
   status:
     type: string
-    default: 'null'
     description: Permission request status.
   Permission request status:
     type: integer
-    default: null
     description: Permission request status code.
   pos_id:
     type: string

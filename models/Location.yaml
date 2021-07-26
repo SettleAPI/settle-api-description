@@ -3,14 +3,11 @@ type: object
 description: 'A geographical point, specified by floating-point latitude and longitude coordinates together with an accuracy measurement in meters.'
 properties:
   latitude:
-    default: null
-    type: number
+    type: string
     description: Latitude
   longitude:
-    type: number
-    default: null
     description: Longitude
+    type: string
   accuracy:
-    type: number
-    default: null
     description: Accuracy in meters.
+    type: string

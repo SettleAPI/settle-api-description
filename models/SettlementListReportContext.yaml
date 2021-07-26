@@ -4,19 +4,15 @@ properties:
   from_date:
     type: string
     description: From Date
-    default: 'null'
   to_date:
     type: string
     description: To Date
-    default: 'null'
   include_sales:
     type: boolean
     description: Include Sales
-    default: false
   show_sale_refund:
     type: boolean
     description: Show Sale Refund
-    default: false
   total_sum:
     $ref: ''
   running_sum:
