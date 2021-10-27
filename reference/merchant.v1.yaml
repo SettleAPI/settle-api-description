@@ -787,6 +787,7 @@ paths:
       operationId: merchant.logo.get
       description: Get Merchant Logo
       x-internal: true
+      deprecated: true
 components:
   schemas:
     payment.request.create:
