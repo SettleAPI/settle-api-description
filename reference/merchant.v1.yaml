@@ -375,6 +375,7 @@ paths:
               $ref: '#/components/schemas/sales.summary.get'
       tags:
         - Sales
+      x-internal: true
   /settlement:
     get:
       summary: merchant.settlement.list
@@ -385,6 +386,7 @@ paths:
           $ref: '#/components/responses/settlement.list.200'
       operationId: merchant.settlement.list
       description: List settlements.
+      x-internal: true
   '/settlement/{settlement_id}':
     parameters:
       - $ref: '#/components/parameters/settlement_id'
@@ -425,6 +427,7 @@ paths:
           $ref: '#/components/responses/settlement.account.get.200'
       operationId: merchant.settlement.account.get
       description: Gets a SettlementAccount by ID.
+      x-internal: true
     put:
       summary: merchant.settlement.account.update
       operationId: merchant.settlement.account.update
@@ -783,6 +786,7 @@ paths:
           description: OK
       operationId: merchant.logo.get
       description: Get Merchant Logo
+      x-internal: true
 components:
   schemas:
     payment.request.create:
