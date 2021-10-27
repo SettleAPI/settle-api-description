@@ -376,6 +376,7 @@ paths:
       tags:
         - Sales
       x-internal: true
+      deprecated: true
   /settlement:
     get:
       summary: merchant.settlement.list
@@ -387,6 +388,7 @@ paths:
       operationId: merchant.settlement.list
       description: List settlements.
       x-internal: true
+      deprecated: true
   '/settlement/{settlement_id}':
     parameters:
       - $ref: '#/components/parameters/settlement_id'
@@ -428,6 +430,7 @@ paths:
       operationId: merchant.settlement.account.get
       description: Gets a SettlementAccount by ID.
       x-internal: true
+      deprecated: true
     put:
       summary: merchant.settlement.account.update
       operationId: merchant.settlement.account.update
