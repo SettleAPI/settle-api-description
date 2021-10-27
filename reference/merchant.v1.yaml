@@ -360,35 +360,8 @@ paths:
       description: Handle merchant lookup on secondary ID. This is endpoint can only be used by integrators.
       tags:
         - Merchant
-  /sales_summary:
-    get:
-      summary: merchant.sales.summary
-      responses:
-        '200':
-          $ref: '#/components/responses/sales.summary.200'
-      operationId: merchant.sales.summary
-      description: Retrieve sales report.
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/sales.summary.get'
-      tags:
-        - Sales
-      x-internal: true
-      deprecated: true
-  /settlement:
-    get:
-      summary: merchant.settlement.list
-      tags:
-        - Settlement
-      responses:
-        '200':
-          $ref: '#/components/responses/settlement.list.200'
-      operationId: merchant.settlement.list
-      description: List settlements.
-      x-internal: true
-      deprecated: true
+  /sales_summary: {}
+  /settlement: {}
   '/settlement/{settlement_id}':
     parameters:
       - $ref: '#/components/parameters/settlement_id'
@@ -420,17 +393,6 @@ paths:
   '/settlement_account/{settlement_account_id}':
     parameters:
       - $ref: '#/components/parameters/settlement_account_id'
-    get:
-      summary: merchant.settlement.account.get
-      tags:
-        - Settlement
-      responses:
-        '200':
-          $ref: '#/components/responses/settlement.account.get.200'
-      operationId: merchant.settlement.account.get
-      description: Gets a SettlementAccount by ID.
-      x-internal: true
-      deprecated: true
     put:
       summary: merchant.settlement.account.update
       operationId: merchant.settlement.account.update
@@ -781,16 +743,6 @@ paths:
   '/merchant/{merchant_id}/logo':
     parameters:
       - $ref: '#/components/parameters/merchant_id'
-    get:
-      summary: merchant.logo.get
-      tags: []
-      responses:
-        '200':
-          description: OK
-      operationId: merchant.logo.get
-      description: Get Merchant Logo
-      x-internal: true
-      deprecated: true
 components:
   schemas:
     payment.request.create:
