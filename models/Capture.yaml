@@ -9,3 +9,4 @@ properties:
     $ref: ./MoneyInteger.v1.yaml
   additional_amount:
     $ref: ./MoneyInteger.v1.yaml
+description: The list of captures done for the payment request.
