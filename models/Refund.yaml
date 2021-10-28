@@ -13,3 +13,4 @@ properties:
     type: string
     description: Given text reason for refund
     default: 'null'
+description: The list of refunds done for the payment request.
