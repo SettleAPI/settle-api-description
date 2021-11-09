@@ -61,3 +61,5 @@ properties:
     type: string
     default: 'null'
     description: Logo Url
+x-tags:
+  - complex-types

@@ -32,3 +32,5 @@ properties:
     type: integer
     default: null
     description: Refund Count
+x-tags:
+  - complex-types

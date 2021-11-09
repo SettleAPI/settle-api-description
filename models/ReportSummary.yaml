@@ -20,3 +20,5 @@ properties:
     type: string
     description: 'Tax laws that apply for this part of the summary, e.g., "NO:2013".'
     default: 'null'
+x-tags:
+  - complex-types

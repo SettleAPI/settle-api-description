@@ -13,3 +13,5 @@ properties:
     type: string
     default: 'null'
     description: Description
+x-tags:
+  - complex-types

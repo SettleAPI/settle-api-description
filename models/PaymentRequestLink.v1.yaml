@@ -18,3 +18,5 @@ properties:
       - ok
       - fail
     pattern: '^[a-z]'
+x-tags:
+  - complex-types

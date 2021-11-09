@@ -67,5 +67,5 @@ required:
   - pos_tid
   - rid
 x-tags:
-  - types
+  - complex-types
 x-examples: {}

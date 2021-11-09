@@ -32,3 +32,5 @@ required:
   - quantity
   - item_cost
   - total
+x-tags:
+  - complex-types

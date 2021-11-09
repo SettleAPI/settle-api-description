@@ -2,3 +2,5 @@ type: string
 title: DateTime
 description: 'UTC date and time as a string. The format is YYYY-MM-DD hh:mm:ss (24h time).'
 format: date-time
+x-tags:
+  - complex-types

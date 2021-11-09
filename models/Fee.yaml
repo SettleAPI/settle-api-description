@@ -14,3 +14,5 @@ properties:
     $ref: ./MoneyInteger.v1.yaml
   transaction_fee_vat:
     $ref: ./MoneyInteger.v1.yaml
+x-tags:
+  - complex-types

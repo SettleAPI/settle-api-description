@@ -13,3 +13,5 @@ properties:
       - phone
       - profile
       - shipping_address
+x-tags:
+  - complex-types
