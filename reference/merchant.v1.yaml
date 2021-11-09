@@ -851,6 +851,7 @@ components:
           default: 60
           minimum: 0
           maximum: 2592000
+          deprecated: true
         pos_id:
           type: string
           description: 'The POS this payment request originates from, used for informing user about origin.'
