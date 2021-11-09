@@ -44,6 +44,8 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/apiKeys.create'
+      tags:
+        - Authentication
   /payment_request:
     post:
       summary: merchant.payment.request.create
@@ -448,6 +450,8 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/shortlink.create'
+      tags:
+        - Shortlink
   '/shortlink/{shortlink_id}':
     parameters:
       - $ref: '#/components/parameters/shortlink_id'
@@ -476,6 +480,8 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/shortlink.update'
+      tags:
+        - Shortlink
     delete:
       summary: merchant.shortlink.delete
       operationId: merchant.shortlink.delete
@@ -483,10 +489,13 @@ paths:
         '204':
           $ref: '#/components/responses/shortlink.delete.204'
       description: Delete shortlink
+      tags:
+        - Shortlink
   /merchant_ssp_user:
     post:
       summary: merchant.ssp.users.create
-      tags: []
+      tags:
+        - Self Service Portal
       responses:
         '201':
           $ref: '#/components/responses/ssp.users.create.201'
@@ -504,7 +513,7 @@ paths:
     get:
       summary: merchant.ssp.users.list
       tags:
-        - Merchant
+        - Self Service Portal
       operationId: merchant.ssp.users.list
       description: Lists Merchant SSP Users.
       responses:
@@ -700,6 +709,8 @@ paths:
 
         Currently only deletes if MerchantSspUser does not have any LegalEntities to avoid side effects Used to avoid inconsistencies between core and merchant console.
       x-internal: true
+      tags:
+        - Self Service Portal
   '/merchant/{merchant_id}/balance':
     parameters:
       - name: merchant_id
@@ -742,6 +753,8 @@ paths:
         '204':
           description: No Content
       description: Update API Key
+      tags:
+        - Authentication
     delete:
       summary: merchant.apiKeys.delete
       operationId: merchant.apiKeys.delete
@@ -749,6 +762,8 @@ paths:
         '204':
           description: No Content
       description: Delete API Key
+      tags:
+        - Authentication
     get:
       summary: merchant.apiKeys.get
       operationId: merchant.apiKeys.get
