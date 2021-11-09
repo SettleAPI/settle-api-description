@@ -21,7 +21,8 @@ paths:
   /api_key:
     get:
       summary: merchant.apiKeys.list
-      tags: []
+      tags:
+        - Authentication
       responses:
         '200':
           description: OK
@@ -379,7 +380,8 @@ paths:
   /last_settlement:
     get:
       summary: merchant.settlement.latest.get
-      tags: []
+      tags:
+        - Settlement
       responses:
         '200':
           $ref: '#/components/responses/settlement.latest.get.200'
@@ -390,6 +392,8 @@ paths:
         This endpoint redirects to the latest Settlement.
 
         Whenever a new Settlement is generated, this reference is automatically updated.
+      deprecated: true
+      x-internal: true
   '/settlement_account/{settlement_account_id}':
     parameters:
       - $ref: '#/components/parameters/settlement_account_id'
@@ -403,6 +407,10 @@ paths:
             schema:
               $ref: '#/components/schemas/settlement.account.update'
         description: Updates a SettlementAccount.
+      tags:
+        - Settlement
+      deprecated: true
+      x-internal: true
   /settlement_report:
     get:
       summary: merchant.settlement.report.get
@@ -413,6 +421,8 @@ paths:
           $ref: '#/components/responses/settlement.report.get.200'
       operationId: merchant.settlement.report.get
       description: Endpoint accepts arguments for filtering the list of settlements and can omit empty settlements.
+      deprecated: true
+      x-internal: true
   /shortlink:
     get:
       summary: merchant.shortlink.list
@@ -567,6 +577,8 @@ paths:
               $ref: '#/components/schemas/payment.send'
             examples: {}
       operationId: merchant.payment.send.create
+      tags:
+        - Payments
   '/payment_send/{tid}/outcome':
     parameters:
       - $ref: '#/components/parameters/tid'
@@ -658,6 +670,8 @@ paths:
                     error_type: Not Found
                     error_description: no payment request with ID xxx
       operationId: merchant.payment.send.outcome.get
+      tags:
+        - Payments
   '/merchant_ssp_user/{merchant_ssp_user_id}':
     parameters:
       - schema:
@@ -667,7 +681,8 @@ paths:
         required: true
     get:
       summary: merchant.ssp.users.get
-      tags: []
+      tags:
+        - Self Service Portal
       responses:
         '200':
           $ref: '#/components/responses/ssp.users.get.200'
@@ -695,7 +710,8 @@ paths:
         description: Merchant id assigned by Settle.
     get:
       summary: merchant.balance.get
-      tags: []
+      tags:
+        - Balance
       responses:
         '200':
           description: OK
@@ -740,6 +756,8 @@ paths:
         '200':
           description: OK
       description: Get API Key
+      tags:
+        - Authentication
   '/merchant/{merchant_id}/logo':
     parameters:
       - $ref: '#/components/parameters/merchant_id'
@@ -2075,6 +2093,7 @@ components:
       description: API Key ID created by either Settle or User
   examples: {}
 tags:
+  - name: Authentication
   - name: Info
   - name: Balance
   - name: Logo
