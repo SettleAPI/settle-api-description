@@ -845,13 +845,6 @@ components:
           $ref: ../models/LineItem.v1.yaml
         links:
           $ref: ../models/PaymentRequestLink.v1.yaml
-        max_scan_age:
-          type: integer
-          description: 'Used if customer is set to shortlink_id:{ xxxx } or shortlink_sn:{ xxxx }. Integer number of seconds. The payment request will be assigned to the scantoken created on the shortlink_id or shortlink_sn, no earlier then this number of seconds ago.'
-          default: 60
-          minimum: 0
-          maximum: 2592000
-          deprecated: true
         pos_id:
           type: string
           description: 'The POS this payment request originates from, used for informing user about origin.'
