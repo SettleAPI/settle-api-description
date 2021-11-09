@@ -25,3 +25,5 @@ properties:
     type: string
     description: Link
     default: 'null'
+x-tags:
+  - complex-types

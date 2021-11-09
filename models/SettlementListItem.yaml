@@ -13,3 +13,5 @@ properties:
     $ref: ./MoneyInteger.v1.yaml
   payout:
     $ref: ./MoneyInteger.v1.yaml
+x-tags:
+  - complex-types

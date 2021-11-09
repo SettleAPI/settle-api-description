@@ -11,3 +11,5 @@ description: |-
   Max bit size: 4096.
 
   The validator will try to add a BEGIN/END wrapper if the key lacks one. If the wrapper provided is wrong, the validation will fail.
+x-tags:
+  - complex-types

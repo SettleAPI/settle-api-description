@@ -40,3 +40,5 @@ properties:
   vat_rate:
     type: string
     description: Vat Rate
+x-tags:
+  - complex-types

@@ -14,3 +14,5 @@ properties:
     minimum: 3
 required:
   - alph_code
+x-tags:
+  - complex-types

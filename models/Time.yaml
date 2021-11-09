@@ -3,3 +3,5 @@ type: object
 properties:
   id:
     type: string
+x-tags:
+  - complex-types

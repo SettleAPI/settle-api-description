@@ -7,3 +7,5 @@ properties:
     description: Vat Rate
   entry:
     $ref: ./QuantitySum.yaml
+x-tags:
+  - complex-types

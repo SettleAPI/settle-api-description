@@ -9,3 +9,5 @@ properties:
     type: integer
     default: null
     description: Qty
+x-tags:
+  - complex-types

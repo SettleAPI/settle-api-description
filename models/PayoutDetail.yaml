@@ -18,3 +18,5 @@ properties:
     $ref: ./MoneyInteger.v1.yaml
   invoice_id:
     $ref: ./MoneyInteger.v1.yaml
+x-tags:
+  - complex-types

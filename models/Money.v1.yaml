@@ -5,3 +5,5 @@ properties:
   amount:
     type: string
     description: Monetary amount as a string using period as the decimal separator (e.g. "12.50")
+x-tags:
+  - complex-types

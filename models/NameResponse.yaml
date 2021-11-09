@@ -13,3 +13,5 @@ properties:
     type: string
     default: 'null'
     description: Middle Name
+x-tags:
+  - complex-types

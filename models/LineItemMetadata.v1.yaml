@@ -11,3 +11,5 @@ properties:
 required:
   - key
   - value
+x-tags:
+  - complex-types

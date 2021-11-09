@@ -13,3 +13,5 @@ properties:
 required:
   - given_name
   - family_name
+x-tags:
+  - complex-types

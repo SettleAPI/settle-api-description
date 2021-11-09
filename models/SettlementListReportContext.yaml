@@ -33,3 +33,5 @@ properties:
     $ref: ./NullableBoolean.yaml
   single_payout:
     $ref: ./SettlementPayout.yaml
+x-tags:
+  - complex-types

@@ -21,7 +21,8 @@ paths:
   /api_key:
     get:
       summary: merchant.apiKeys.list
-      tags: []
+      tags:
+        - Authentication
       responses:
         '200':
           description: OK
@@ -379,7 +380,8 @@ paths:
   /last_settlement:
     get:
       summary: merchant.settlement.latest.get
-      tags: []
+      tags:
+        - Settlement
       responses:
         '200':
           $ref: '#/components/responses/settlement.latest.get.200'
@@ -390,6 +392,8 @@ paths:
         This endpoint redirects to the latest Settlement.
 
         Whenever a new Settlement is generated, this reference is automatically updated.
+      deprecated: true
+      x-internal: true
   '/settlement_account/{settlement_account_id}':
     parameters:
       - $ref: '#/components/parameters/settlement_account_id'
@@ -403,6 +407,10 @@ paths:
             schema:
               $ref: '#/components/schemas/settlement.account.update'
         description: Updates a SettlementAccount.
+      tags:
+        - Settlement
+      deprecated: true
+      x-internal: true
   /settlement_report:
     get:
       summary: merchant.settlement.report.get
@@ -413,6 +421,8 @@ paths:
           $ref: '#/components/responses/settlement.report.get.200'
       operationId: merchant.settlement.report.get
       description: Endpoint accepts arguments for filtering the list of settlements and can omit empty settlements.
+      deprecated: true
+      x-internal: true
   /shortlink:
     get:
       summary: merchant.shortlink.list
@@ -567,6 +577,8 @@ paths:
               $ref: '#/components/schemas/payment.send'
             examples: {}
       operationId: merchant.payment.send.create
+      tags:
+        - Payments
   '/payment_send/{tid}/outcome':
     parameters:
       - $ref: '#/components/parameters/tid'
@@ -658,6 +670,8 @@ paths:
                     error_type: Not Found
                     error_description: no payment request with ID xxx
       operationId: merchant.payment.send.outcome.get
+      tags:
+        - Payments
   '/merchant_ssp_user/{merchant_ssp_user_id}':
     parameters:
       - schema:
@@ -667,7 +681,8 @@ paths:
         required: true
     get:
       summary: merchant.ssp.users.get
-      tags: []
+      tags:
+        - Self Service Portal
       responses:
         '200':
           $ref: '#/components/responses/ssp.users.get.200'
@@ -695,7 +710,8 @@ paths:
         description: Merchant id assigned by Settle.
     get:
       summary: merchant.balance.get
-      tags: []
+      tags:
+        - Balance
       responses:
         '200':
           description: OK
@@ -740,6 +756,8 @@ paths:
         '200':
           description: OK
       description: Get API Key
+      tags:
+        - Authentication
   '/merchant/{merchant_id}/logo':
     parameters:
       - $ref: '#/components/parameters/merchant_id'
@@ -1009,6 +1027,8 @@ components:
     payment.request.list:
       title: 'Request Body: merchant.payment.request.get'
       type: object
+      x-tags:
+        - Schemas
       properties:
         created_from:
           $ref: ../models/DateTime.yaml
@@ -1029,6 +1049,8 @@ components:
     payment.request.get:
       title: 'Request Body: merchant.payment.request.get'
       type: object
+      x-tags:
+        - Schemas
       description: Retrieve payment request info
       properties:
         id:
@@ -1116,6 +1138,8 @@ components:
     pos.create:
       title: 'Request Body: merchant.pos.create'
       type: object
+      x-tags:
+        - Schemas
       properties:
         name:
           type: string
@@ -1144,6 +1168,8 @@ components:
     pos.update:
       title: 'Request Body: merchant.pos.update'
       type: object
+      x-tags:
+        - Schemas
       description: Update POS resource
       properties:
         name:
@@ -1176,6 +1202,8 @@ components:
     profile.get:
       title: 'Request Body: merchant.profile.get'
       type: object
+      x-tags:
+        - Schemas
       description: Get merchant info
       properties:
         id:
@@ -1225,6 +1253,8 @@ components:
           default: false
           description: Approved
     sales.summary.get:
+      x-tags:
+        - Schemas
       title: 'Request Body: sales.summary'
       type: object
       description: Retrieve sales report.
@@ -1241,6 +1271,8 @@ components:
       required:
         - from_date
     settlement.account.update:
+      x-tags:
+        - Schemas
       title: 'Request Body: settlement.account.update'
       type: object
       description: Updates a SettlementAccount.
@@ -1253,6 +1285,8 @@ components:
       required:
         - payout_account
     settlement.report.get:
+      x-tags:
+        - Schemas
       title: 'Request Body: settlement.report.get'
       type: object
       description: Endpoint accepts arguments for filtering the list of settlements and can omit empty settlements.
@@ -1270,6 +1304,8 @@ components:
           description: Non Empty Only
           default: false
     shortlink.create:
+      x-tags:
+        - Schemas
       title: 'Request Body: shortlink.create'
       type: object
       properties:
@@ -1283,6 +1319,8 @@ components:
           description: Serial number on printed QR codes.This field is only used when registering printed stickers issued by Settle.
       description: Register new shortlink.
     shortlink.update:
+      x-tags:
+        - Schemas
       title: 'Request Body: shortlink.update'
       type: object
       description: Update existing shortlink registration.
@@ -1292,6 +1330,8 @@ components:
           default: 'null'
           description: URI called by Settle when user scans shortlink.
     ssp.users.create:
+      x-tags:
+        - Schemas
       title: 'Request Body: ssp.users.create'
       type: object
       description: 'Creates a MerchantSspUser and returns 201 CREATED (unless a user with the same email already exists, which results in a 409 CONFLICT response).'
@@ -1309,6 +1349,8 @@ components:
       required:
         - email
     apiKeys.update:
+      x-tags:
+        - Schemas
       title: 'Request Body: apiKeys.update'
       type: object
       description: Update API Key
@@ -1338,6 +1380,8 @@ components:
         pubkey:
           $ref: ../models/PubKey.yaml
     apiKeys.create:
+      x-tags:
+        - Schemas
       title: 'Request Body: apiKeys.create'
       type: object
       description: Create API Key
@@ -2074,7 +2118,9 @@ components:
         type: string
       description: API Key ID created by either Settle or User
   examples: {}
+  requestBodies: {}
 tags:
+  - name: Authentication
   - name: Info
   - name: Balance
   - name: Logo

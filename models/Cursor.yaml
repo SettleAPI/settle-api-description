@@ -1,2 +1,4 @@
 title: Cursor
 type: string
+x-tags:
+  - complex-types

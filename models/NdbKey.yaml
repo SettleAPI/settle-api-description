@@ -1,2 +1,4 @@
 title: NdbKey
 type: string
+x-tags:
+  - complex-types
