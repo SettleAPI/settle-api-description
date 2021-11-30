@@ -793,6 +793,20 @@ paths:
           description: 'OK, identical permission request already created'
         '201':
           description: Permission request created
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  id:
+                    type: string
+                    minLength: 1
+                required:
+                  - id
+                x-examples:
+                  example-1:
+                    id: vrqx1f7hp4pbvqgwecxhuwv3hbngnb6a
         '400':
           description: 'Bad request, validation error'
       description: |-
@@ -2323,11 +2337,10 @@ components:
             x-examples:
               example-1:
                 customer: 'null'
-                pos_id: string
-                pos_tid: string
                 text: 'null'
                 callback_uri: 'null'
                 scope: string
+                legal_terms_url: string
                 expires_in: '21600'
             properties:
               customer:
@@ -2345,7 +2358,7 @@ components:
                 description: 'Space-delimited list of scopes. Any of: "openid" (static id), "profile" (name), "phone", "email", "shipping_address", "identity_documentation".'
                 default: 'null'
               expires_in:
-                $ref: ../models/DateTime.yaml
+                type: number
               failure_return_uri:
                 type: string
                 default: 'null'
@@ -2360,8 +2373,9 @@ components:
                 description: The URL for the terms and conditions provided for the permissions request.
             required:
               - customer
-              - legal_terms_url
               - scope
+              - legal_terms_url
+          examples: {}
 tags:
   - name: Authentication
   - name: Info
