@@ -784,6 +784,34 @@ paths:
   '/merchant/{merchant_id}/logo':
     parameters:
       - $ref: '#/components/parameters/merchant_id'
+  /permission_request:
+    post:
+      summary: user.permissions.request.create
+      operationId: user.permissions.request.create
+      responses:
+        '200':
+          description: 'OK, identical permission request already created'
+        '201':
+          description: Permission request created
+        '400':
+          description: 'Bad request, validation error'
+      description: |-
+        Create permission request.
+
+        The call is idempotent; that is, if there is an approved permission request with the same scopes.
+      requestBody:
+        $ref: '#/components/requestBodies/permissions.request.create'
+  '/permission_request/{rid}':
+    parameters:
+      - $ref: '#/components/parameters/rid'
+    get:
+      summary: user.permissions.request.get
+      tags: []
+      responses:
+        '200':
+          $ref: '#/components/responses/permissions.request.get.200'
+      operationId: user.permissions.request.get
+      description: See permission request info
 components:
   schemas:
     payment.request.create:
@@ -2173,6 +2201,13 @@ components:
       schema:
         type: string
       description: API Key ID created by either Settle or User
+    rid:
+      name: rid
+      in: path
+      required: true
+      schema:
+        type: string
+      description: Permission request id assigned by Settle
   examples: {}
   requestBodies:
     payment.send:
@@ -2236,6 +2271,97 @@ components:
               - amount
           examples: {}
       description: 'Send payment. **Please note** that using the same `idempotency_id` again in a new request will only result in the retrieval of the first resulting Transaction ID (`tid`), not a new payment, mnng it is safe to retry payment requests in case of network loss.'
+    permissions.request.create:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              customer:
+                $ref: ../models/PersonIdentifier.v1.yaml
+              text:
+                type: string
+                description: Local transaction id for POS. This must be unique for the POS.
+                default: 'null'
+              callback_uri:
+                type: string
+                description: 'If provided, Settle will POST to this URI when the status of the permission request changes. The data transferred in the POST are the same as what can be retrieved by calling GET on the resource URI.'
+                default: 'null'
+              scope:
+                type: string
+                description: 'Space-delimited list of scopes. Any of: "openid" (static id), "profile" (name), "phone", "email", "shipping_address", "identity_documentation".'
+              expires_in:
+                type: string
+                description: Expiration in seconds from when server received request.
+                default: '21600'
+                maxLength: 2592000
+              failure_return_uri:
+                type: string
+                default: 'null'
+                description: Return URL if permission is denied.
+              success_return_uri:
+                type: string
+                default: 'null'
+                description: Return URL if permission request is approved.
+              legal_terms_url:
+                type: string
+                default: 'null'
+                description: The URL for the terms and conditions provided for the permissions request.
+            required:
+              - legal_terms_url
+              - customer
+              - scope
+      description: Create Permission Request
+  responses:
+    permissions.request.get.200:
+      description: Example response
+      content:
+        application/json:
+          schema:
+            description: ''
+            type: object
+            x-examples:
+              example-1:
+                customer: 'null'
+                pos_id: string
+                pos_tid: string
+                text: 'null'
+                callback_uri: 'null'
+                scope: string
+                expires_in: '21600'
+            properties:
+              customer:
+                $ref: ../models/PersonIdentifier.v1.yaml
+              text:
+                type: string
+                description: Text that is shown to user when asked for permission. This can contain linebreaks and the text has to fit on smartphones screens.
+                default: 'null'
+              callback_uri:
+                type: string
+                description: 'If provided, Settle will POST to this URI when the status of the permission request changes. The data transferred in the POST are the same as what can be retrieved by calling GET on the resource URI.'
+                default: 'null'
+              scope:
+                type: string
+                description: 'Space-delimited list of scopes. Any of: "openid" (static id), "profile" (name), "phone", "email", "shipping_address", "identity_documentation".'
+                default: 'null'
+              expires_in:
+                $ref: ../models/DateTime.yaml
+              failure_return_uri:
+                type: string
+                default: 'null'
+                description: Return URL if permission is denied.
+              success_return_uri:
+                type: string
+                default: 'null'
+                description: Return URL if permission request is approved.
+              legal_terms_url:
+                type: string
+                default: 'null'
+                description: The URL for the terms and conditions provided for the permissions request.
+            required:
+              - customer
+              - legal_terms_url
+              - scope
 tags:
   - name: Authentication
   - name: Info
