@@ -2323,11 +2323,10 @@ components:
             x-examples:
               example-1:
                 customer: 'null'
-                pos_id: string
-                pos_tid: string
                 text: 'null'
                 callback_uri: 'null'
                 scope: string
+                legal_terms_url: string
                 expires_in: '21600'
             properties:
               customer:
