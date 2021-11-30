@@ -2375,7 +2375,17 @@ components:
               - customer
               - scope
               - legal_terms_url
-          examples: {}
+          examples:
+            Example:
+              value:
+                customer: 'null'
+                text: 'null'
+                callback_uri: 'null'
+                scope: 'null'
+                expires_in: 21600
+                failure_return_uri: 'null'
+                success_return_uri: 'null'
+                legal_terms_url: 'null'
 tags:
   - name: Authentication
   - name: Info
