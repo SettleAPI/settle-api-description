@@ -815,12 +815,15 @@ paths:
         The call is idempotent; that is, if there is an approved permission request with the same scopes.
       requestBody:
         $ref: '#/components/requestBodies/permissions.request.create'
+      tags:
+        - Permission Requests
   '/permission_request/{rid}':
     parameters:
       - $ref: '#/components/parameters/rid'
     get:
       summary: user.permissions.request.get
-      tags: []
+      tags:
+        - Permission Requests
       responses:
         '200':
           $ref: '#/components/responses/permissions.request.get.200'
@@ -2399,3 +2402,4 @@ tags:
   - name: Self Service Portal
   - name: Status Codes
   - name: Users
+  - name: Permission Requests
