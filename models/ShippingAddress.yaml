@@ -1,0 +1,21 @@
+title: ShippingAdddress
+type: object
+properties:
+  name:
+    type: string
+    description: The tag provided by the user for the address
+  locality:
+    type: string
+    description: The city of the address
+  country:
+    type: string
+    description: The country of the address
+  postal_code:
+    type: string
+    description: The postal code of the address
+  street_address:
+    type: string
+    description: The street address
+  formatted:
+    type: string
+    description: A formatted string with all the address information

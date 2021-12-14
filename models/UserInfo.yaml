@@ -1,0 +1,19 @@
+title: UserInfo
+type: object
+properties:
+  phone_number:
+    type: string
+    description: The phone number of the user
+  phone_number_verified:
+    type: boolean
+    description: If the phone number was verified or not
+  name:
+    type: string
+    description: The full name of the user, as it was provided in the identity document
+  email:
+    type: string
+    description: The email shared by the user
+  shipping_address:
+    $ref: ./ShippingAddress.yaml
+  identity_documentation:
+    $ref: ./IdentityDocumentation.yaml
