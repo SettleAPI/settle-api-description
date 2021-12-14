@@ -2322,7 +2322,7 @@ components:
                 description: 'If provided, Settle will POST to this URI when the status of the permission request changes. The data transferred in the POST are the same as what can be retrieved by calling GET on the resource URI.'
                 default: 'null'
               scope:
-                type: stringprofile
+                type: string
                 description: 'Space-delimited list of scopes. Any of: "openid" (static id), "profile" (name), "phone", "email", "shipping_address", "identity_documentation".'
               expires_in:
                 type: string
