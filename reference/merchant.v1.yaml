@@ -793,6 +793,20 @@ paths:
           description: 'OK, identical permission request already created'
         '201':
           description: Permission request created
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  id:
+                    type: string
+                    minLength: 1
+                required:
+                  - id
+                x-examples:
+                  example-1:
+                    id: vrqx1f7hp4pbvqgwecxhuwv3hbngnb6a
         '400':
           description: 'Bad request, validation error'
         '404':
@@ -803,12 +817,15 @@ paths:
         The call is idempotent; that is, if there is an approved permission request with the same scopes.
       requestBody:
         $ref: '#/components/requestBodies/permissions.request.create'
+      tags:
+        - Permission Requests
   '/permission_request/{rid}':
     parameters:
       - $ref: '#/components/parameters/rid'
     get:
       summary: user.permissions.request.get
-      tags: []
+      tags:
+        - Permission Requests
       responses:
         '200':
           $ref: '#/components/responses/permissions.request.get.200'
@@ -2361,7 +2378,7 @@ components:
                 description: 'Space-delimited list of scopes. Any of: "openid" (static id), "profile" (name), "phone", "email", "shipping_address", "identity_documentation".'
                 default: 'null'
               expires_in:
-                $ref: ../models/DateTime.yaml
+                type: number
               failure_return_uri:
                 type: string
                 default: 'null'
@@ -2376,8 +2393,8 @@ components:
                 description: The URL for the terms and conditions provided for the permissions request.
             required:
               - customer
-              - legal_terms_url
               - scope
+              - legal_terms_url
     permissions.request.outcome.get.200:
       description: Example response
       content:
@@ -2433,3 +2450,29 @@ components:
               user_info:
                 $ref: ../models/UserInfo.yaml
                 description: The user information. The fields below will be populated only if the user has approved the matching permission
+
+          examples:
+            Example:
+              value:
+                customer: 'null'
+                text: 'null'
+                callback_uri: 'null'
+                scope: 'null'
+                expires_in: 21600
+                failure_return_uri: 'null'
+                success_return_uri: 'null'
+                legal_terms_url: 'null'
+tags:
+  - name: Authentication
+  - name: Info
+  - name: Balance
+  - name: Logo
+  - name: Payments
+  - name: Pos
+  - name: Sales
+  - name: Settlement
+  - name: Shortlink
+  - name: Self Service Portal
+  - name: Status Codes
+  - name: Users
+  - name: Permission Requests
