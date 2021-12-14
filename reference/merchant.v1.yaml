@@ -2395,6 +2395,7 @@ components:
               - customer
               - scope
               - legal_terms_url
+              - scope
     permissions.request.outcome.get.200:
       description: Example response
       content:
@@ -2449,7 +2450,6 @@ components:
                 description: Request id
               user_info:
                 $ref: ../models/UserInfo.yaml
-                description: The user information. The fields below will be populated only if the user has approved the matching permission
 
           examples:
             Example:

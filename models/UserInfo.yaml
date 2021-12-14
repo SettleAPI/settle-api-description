@@ -1,5 +1,6 @@
 title: UserInfo
 type: object
+description: The user information. The fields below will be populated only if the user has approved the matching permission
 properties:
   phone_number:
     type: string
