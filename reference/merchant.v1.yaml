@@ -809,6 +809,8 @@ paths:
                     id: vrqx1f7hp4pbvqgwecxhuwv3hbngnb6a
         '400':
           description: 'Bad request, validation error'
+        '404':
+          description: 'Permission request not found'
       description: |-
         Create permission request.
 
@@ -827,8 +829,23 @@ paths:
       responses:
         '200':
           $ref: '#/components/responses/permissions.request.get.200'
+        '404':
+          description: 'Permission request not found'
       operationId: user.permissions.request.get
       description: See permission request info
+  '/permission_request/{rid}/outcome':
+    parameters:
+      - $ref: '#/components/parameters/rid'
+    get:
+      summary: user.permissions.request.outcome.get
+      operationId: user.permissions.request.outcome.get
+      responses:
+        '200':
+          $ref: '#/components/responses/permissions.request.outcome.get.200'
+        '404':
+          description: 'Permission request not found'
+      description: |-
+        Get the outcome of the permission request
 components:
   schemas:
     payment.request.create:
@@ -2378,6 +2395,62 @@ components:
               - customer
               - scope
               - legal_terms_url
+              - scope
+    permissions.request.outcome.get.200:
+      description: Example response
+      content:
+        application/json:
+          schema:
+            description: ''
+            type: object
+            x-examples:
+              example-1:
+                customer: 'null'
+                text: 'null'
+                callback_uri: 'null'
+                scope: string
+                legal_terms_url: string
+                expires_in: '21600'
+            properties:
+              access_token:
+                type: string
+                description: This access token can be used as a Bearer token to access /ouath2/v1/userinfo
+              id_token:
+                type: string
+                description: A JWT that contains identity information about the user that is digitally signed
+              token_type:
+                type: string
+                description: Type of access token, at this time it will always be Bearer
+              expires_in:
+                type: integer
+                description: Lifetime in seconds of the access token
+              refresh_token:
+                type: string
+                description: Refresh token used to issue new access token after expiration
+              scope:
+                type: string
+                description: Space separated string with the scopes of the permission request
+              currency:
+                type: string
+                description: Currency for fee
+              transaction_fee:
+                type: integer
+                description: Permission fee to be deducted from settlement
+              status:
+                type: string
+                description: "Status of the permission request. Can be one of the following values: pending, ok, request_expired, rejected, cancelled, revoked"
+              pos_id:
+                type: string
+                description: The POS id provided for permission request. Unused for now
+              pos_tid:
+                type: string
+                description: The POS tid provided for permission request. Unused for now
+              rid:
+                type: string
+                description: Request id
+              user_info:
+                $ref: ../models/UserInfo.yaml
+
           examples:
             Example:
               value:

@@ -1,0 +1,44 @@
+title: IdentityDocumentation
+type: object
+properties:
+  issuing_country:
+    type: string
+    description: The issuing country of the document
+  family_name:
+    type: string
+    description: The family name from the document
+  middle_name:
+    type: string
+    description: The middle name from the document
+  id_number:
+    type: string
+    description: The identification number of the document
+  issued_by:
+    type: string
+    description: The issuer of the document
+  date_of_birth:
+    type: string
+    format: yyyy-mm-dd
+    description: The date of birth from the document
+  given_name:
+    type: string
+    description: The given name from the document
+  personal_number:
+    type: string
+    description: The personal number of the user
+  nationality:
+    type: string
+    description: The nationality of the user
+  type:
+    type: string
+    description: The type of the identification document. At the moment can be either NATIONAL or PASSPORT
+  issued_date:
+    type: string
+    format: yyyy-mm-dd
+    description: The issue date of the document
+  expiry_date:
+    type: string
+    format: yyyy-mm-dd
+    description: The expiry date of the document
+  ocr_data:
+    description: OCR date, if available
