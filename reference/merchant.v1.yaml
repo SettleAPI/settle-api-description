@@ -810,15 +810,18 @@ paths:
         '400':
           description: 'Bad request, validation error'
         '404':
-          description: 'Permission request not found'
+          description: Permission request not found
       description: |-
         Create permission request.
 
         The call is idempotent; that is, if there is an approved permission request with the same scopes.
-      requestBody:
-        $ref: '#/components/requestBodies/permissions.request.create'
       tags:
         - Permission Requests
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/permissions.request.create'
   '/permission_request/{rid}':
     parameters:
       - $ref: '#/components/parameters/rid'
@@ -830,7 +833,7 @@ paths:
         '200':
           $ref: '#/components/responses/permissions.request.get.200'
         '404':
-          description: 'Permission request not found'
+          description: Permission request not found
       operationId: user.permissions.request.get
       description: See permission request info
   '/permission_request/{rid}/outcome':
@@ -843,9 +846,8 @@ paths:
         '200':
           $ref: '#/components/responses/permissions.request.outcome.get.200'
         '404':
-          description: 'Permission request not found'
-      description: |-
-        Get the outcome of the permission request
+          description: Permission request not found
+      description: Get the outcome of the permission request
 components:
   schemas:
     payment.request.create:
@@ -1403,6 +1405,47 @@ components:
           default: 'null'
           description: Serial number on printed QR codes.This field is only used when registering printed stickers issued by Settle.
       description: Register new shortlink.
+    permissions.request.create:
+      x-tags:
+        - Schemas
+      title: 'Request Body: permissions.request.create'
+      type: object
+      properties:
+        customer:
+          $ref: ../models/PersonIdentifier.v1.yaml
+        text:
+          type: string
+          description: Local transaction id for POS. This must be unique for the POS.
+          default: 'null'
+        callback_uri:
+          type: string
+          description: 'If provided, Settle will POST to this URI when the status of the permission request changes. The data transferred in the POST are the same as what can be retrieved by calling GET on the resource URI.'
+          default: 'null'
+        scope:
+          type: string
+          description: 'Space-delimited list of scopes. Any of: "openid" (static id), "profile" (name), "phone", "email", "shipping_address", "identity_documentation".'
+        expires_in:
+          type: string
+          description: Expiration in seconds from when server received request.
+          default: '21600'
+          maxLength: 2592000
+        failure_return_uri:
+          type: string
+          default: 'null'
+          description: Return URL if permission is denied.
+        success_return_uri:
+          type: string
+          default: 'null'
+          description: Return URL if permission request is approved.
+        legal_terms_url:
+          type: string
+          default: 'null'
+          description: The URL for the terms and conditions provided for the permissions request.
+      required:
+        - legal_terms_url
+        - customer
+        - scope
+      description: Create Permission Request.
     shortlink.update:
       x-tags:
         - Schemas
@@ -2420,7 +2463,7 @@ components:
                 description: A JWT that contains identity information about the user that is digitally signed
               token_type:
                 type: string
-                description: Type of access token, at this time it will always be Bearer
+                description: 'Type of access token, at this time it will always be Bearer'
               expires_in:
                 type: integer
                 description: Lifetime in seconds of the access token
@@ -2438,7 +2481,7 @@ components:
                 description: Permission fee to be deducted from settlement
               status:
                 type: string
-                description: "Status of the permission request. Can be one of the following values: pending, ok, request_expired, rejected, cancelled, revoked"
+                description: 'Status of the permission request. Can be one of the following values: pending, ok, request_expired, rejected, cancelled, revoked'
               pos_id:
                 type: string
                 description: The POS id provided for permission request. Unused for now
@@ -2450,7 +2493,6 @@ components:
                 description: Request id
               user_info:
                 $ref: ../models/UserInfo.yaml
-
           examples:
             Example:
               value:
