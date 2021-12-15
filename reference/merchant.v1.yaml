@@ -786,8 +786,8 @@ paths:
       - $ref: '#/components/parameters/merchant_id'
   /permission_request:
     post:
-      summary: user.permissions.request.create
-      operationId: user.permissions.request.create
+      summary: merchant.permissions.request.create
+      operationId: merchant.permissions.request.create
       responses:
         '200':
           description: 'OK, identical permission request already created'
@@ -826,7 +826,7 @@ paths:
     parameters:
       - $ref: '#/components/parameters/rid'
     get:
-      summary: user.permissions.request.get
+      summary: merchant.permissions.request.get
       tags:
         - Permission Requests
       responses:
@@ -834,14 +834,14 @@ paths:
           $ref: '#/components/responses/permissions.request.get.200'
         '404':
           description: Permission request not found
-      operationId: user.permissions.request.get
+      operationId: merchant.permissions.request.get
       description: See permission request info
   '/permission_request/{rid}/outcome':
     parameters:
       - $ref: '#/components/parameters/rid'
     get:
-      summary: user.permissions.request.outcome.get
-      operationId: user.permissions.request.outcome.get
+      summary: merchant.permissions.request.outcome.get
+      operationId: merchant.permissions.request.outcome.get
       responses:
         '200':
           $ref: '#/components/responses/permissions.request.outcome.get.200'
