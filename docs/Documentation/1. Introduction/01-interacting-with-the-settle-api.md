@@ -225,8 +225,9 @@ API clients can associate some resources with a callback_uri in order to enable 
 
 ## Error Responses
 
-In general, the error response body consists of an error_type, an error_description and some error_details. The example below shows the response for validation errors.
+In general, the error response body consists of an `error_type`, an `error_description` and some `error_details`. This example shows a request and then the response for validation errors 👇
 
+```http title="Request"
 POST /test/ HTTP/1.1
 HOST: callbackserver.test
 Content-Type: application/vnd.mcash.api.merchant.v1+json
@@ -234,85 +235,93 @@ Content-Type: application/vnd.mcash.api.merchant.v1+json
 {
   "amount": "-42"
 }
-HTTP/1.1 400 Bad Request
-Content-Type: application/vnd.mcash.api.merchant.v1+json
+```
 
+#
+
+
+```json title="Response"
 {
   "error_type": "validation_error",
   "error_description": "Your request caused validation errors. Please check your data.",
-  "error_details":{"amount": ["Value must be larger than 0"]}
+  "error_details": {
+    "amount": ["Value must be larger than 0"]
+   }
 }
+```
+
+#
+
+The response HTTP Status Codes can also hold useful information about the error that occurred, in addition to these fields 👇
+
+### error_type
+
+- **Type**: string
+- **Required**: false
+
+*Type of error.*
 
 
+### error_description
+
+- **Type**: string
+- **Required**: false
+
+*Human readable description.*
 
 
-The HTTP response code can also hold useful information about the error that occurred, in addition to these fields:
+### error_details
 
-error_type
-Type: string
-Required: false
+- **Type**: json
+- **Required**: false
 
-Type of error.
+*Keyed JSON Object structure containing detailed error information, if present. Otherwise null.*
 
+####
 
+## Media Type
 
-
-error_description
-Type: string
-Required: false
-
-Human readable description.
-
-
-
-
-error_details
-Type: json
-Required: false
-
-Keyed JSON Object structure containing detailed error information, if present. Otherwise null.
-
-
-
-
-Media Type
-
-This documentation defines the vendor-specific media type
+```text title="This documentation defines the vendor-specific media type 👇"
 
 application/vnd.mcash.api.merchant.v1+json
+```
 
- 
+#
 
-We also use
+
+```text title="For transaction logs we use 👇"
 
 application/vnd.mcash.api.merchant.v1+csv
+```
 
-for transaction logs, and
+#
+
+
+```text title="For attachments we use 👇"
 
 image/png
+```
 
-for attachments.
+#
 
-
-
-
-In general, the form is
-
+```text title="In general, the form is 👇"
 application/vnd.mcash.[attachment-type].[version]+[format]
+```
 
- 
-
-Clients are expected to include media type in the Accept header listing types they understand; the Settle server responds with the media type in the Content-Type header.
-
+Clients are expected to include media type in the `Accept` header listing types they understand; the Settle server responds with the media type in the `Content-Type` header.
 
 
+####
 
-A Note on Settle API Users
 
-All requests to the Settle API must include an X-Settle-User header.† API Users are assigned and created by the Merchant through the Settle for Business portal, or by the Integrator using the user endpoint. Each API User has an ID unique to that Merchant and is assigned a shared secret and/or a RSA public key that is used for authentication. 
+## A Note on Settle API Users
+
+All requests to the Settle API must include an `X-Settle-User` header.* API Users are assigned and created by the Merchant through the Settle for Business portal, or by the Integrator using the user endpoint. Each API User has an ID unique to that Merchant and is assigned a shared secret and/or a RSA public key that is used for authentication. 
 
 A typical use case (and the one we recommend) is when the Merchant assigns separate API Users for each POS in the shop.
 Another case is when the Merchant owns and administers a central server that acts as a proxy for all POS’s: in that case, only one API User is created, and its credentials are used by all POS’s when making payment requests.
 A third case is when an Integrator controls the single proxy server; in that case the Integrator uses the X-Settle-Integrator header in place of an X-Settle-User header. It is up to the Merchant (or, as the case may be, the Integrator) how to set this up.
 
-† Except when an Integrator is acting as a proxy on behalf of a Merchant client. In that case, the X-Settle-Integrator header is used instead. See above.
+> #### ✳
+>
+> Except when an Integrator is acting as a proxy on behalf of a Merchant client. In that case, the `X-Settle-Integrator` header is used instead. See above.
