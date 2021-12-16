@@ -72,6 +72,38 @@ paths:
               properties: {}
       tags:
         - Authentication
+  '/api_key/{api_user_id}':
+    parameters:
+      - $ref: '#/components/parameters/api_user_id'
+    put:
+      summary: merchant.apiKeys.update
+      operationId: merchant.apiKeys.update
+      responses:
+        '204':
+          description: No Content
+        '404':
+          $ref: '#/components/responses/404'
+      description: Update API Key
+      tags:
+        - Authentication
+    delete:
+      summary: merchant.apiKeys.delete
+      operationId: merchant.apiKeys.delete
+      responses:
+        '204':
+          description: No Content
+      description: Delete API Key
+      tags:
+        - Authentication
+    get:
+      summary: merchant.apiKeys.get
+      operationId: merchant.apiKeys.get
+      responses:
+        '200':
+          description: OK
+      description: Get API Key
+      tags:
+        - Authentication
   /payment_request:
     post:
       summary: merchant.payment.request.create
@@ -777,36 +809,6 @@ paths:
               examples: {}
       operationId: merchant.balance.get
       description: Get Merchant Account Balance
-  '/api_key/{api_user_id}':
-    parameters:
-      - $ref: '#/components/parameters/api_user_id'
-    put:
-      summary: merchant.apiKeys.update
-      operationId: merchant.apiKeys.update
-      responses:
-        '204':
-          description: No Content
-      description: Update API Key
-      tags:
-        - Authentication
-    delete:
-      summary: merchant.apiKeys.delete
-      operationId: merchant.apiKeys.delete
-      responses:
-        '204':
-          description: No Content
-      description: Delete API Key
-      tags:
-        - Authentication
-    get:
-      summary: merchant.apiKeys.get
-      operationId: merchant.apiKeys.get
-      responses:
-        '200':
-          description: OK
-      description: Get API Key
-      tags:
-        - Authentication
   '/merchant/{merchant_id}/logo':
     parameters:
       - $ref: '#/components/parameters/merchant_id'
