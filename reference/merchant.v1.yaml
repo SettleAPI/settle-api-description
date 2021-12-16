@@ -23,11 +23,11 @@ info:
     The above services has the following resources, and all methods below are relative to its parent method (service endpoint).
 
     ### merchant.apiKeys
-    - [merchant.apiKeys.create](./merchant-api/b3A6MTUzOTU0MDk-merchant-api-keys-create)
-    - [merchant.apiKeys.list](./merchant-api/b3A6MTUzOTU0MDg-merchant-api-keys-list)
-    - [merchant.apiKeys.get](./merchant-api/b3A6MTUzOTU0NDQ-merchant-api-keys-get)
-    - [merchant.apiKeys.update](./merchant-api/b3A6MTUzOTU0NDI-merchant-api-keys-update)
-    - [merchant.apiKeys.delete](./merchant-api/b3A6MTUzOTU0NDM-merchant-api-keys-delete)
+    - [merchant.apiKeys.create](./b3A6MTUzOTU0MDk-merchant-api-keys-create)
+    - [merchant.apiKeys.list](./b3A6MTUzOTU0MDg-merchant-api-keys-list)
+    - [merchant.apiKeys.get](./b3A6MTUzOTU0NDQ-merchant-api-keys-get)
+    - [merchant.apiKeys.update](./b3A6MTUzOTU0NDI-merchant-api-keys-update)
+    - [merchant.apiKeys.delete](./b3A6MTUzOTU0NDM-merchant-api-keys-delete)
 servers:
   - url: 'https://api.sandbox.settle.eu/merchant/v1'
     description: Sandbox
