@@ -40,6 +40,8 @@ paths:
           $ref: '#/components/responses/400'
         '401':
           $ref: '#/components/responses/401'
+        '409':
+          description: Conflict
       description: Create API Key for the Merchant given in the `X-Settle-Merchant` header.
       requestBody:
         content:
@@ -2390,6 +2392,22 @@ components:
               - scope
       description: Create Permission Request
   responses:
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            properties:
+              id:
+                type: string
+    '204':
+      description: No content
+      content:
+        application/json:
+          schema:
+            properties:
+              id:
+                type: string
     '400':
       description: Bad Request
       content:
@@ -2427,6 +2445,22 @@ components:
               error_type:
                 type: string
               error_description:
+                type: string
+    '405':
+      description: Method not allowed
+      content:
+        application/json:
+          schema:
+            properties:
+              id:
+                type: string
+    '409':
+      description: Conflict
+      content:
+        application/json:
+          schema:
+            properties:
+              id:
                 type: string
     permissions.request.get.200:
       description: Example response
