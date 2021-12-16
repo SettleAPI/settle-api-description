@@ -87,7 +87,7 @@ The cursor points to the next list endpoint with more resources, and another nex
       "/merchant/abc1/",
       "/merchant/abc2/",
       "/merchant/abc3/"
-    ],
+  ],
   "next": "/merchant/?next=asDFgh"
 }
 ```
