@@ -24,6 +24,10 @@ paths:
       responses:
         '200':
           description: OK
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
       operationId: merchant.apiKeys.list
       description: List Merchant API Keys
     post:
@@ -33,10 +37,10 @@ paths:
         '201':
           $ref: '#/components/responses/apiKeys.create.201'
         '400':
-          description: Bad Request
+          $ref: '#/components/responses/400'
         '401':
-          description: Unauthorized
-      description: Create API Key for the Merchant given in the X-Settle-Merchant header.
+          $ref: '#/components/responses/401'
+      description: Create API Key for the Merchant given in the `X-Settle-Merchant` header.
       requestBody:
         content:
           application/json:
@@ -2386,6 +2390,44 @@ components:
               - scope
       description: Create Permission Request
   responses:
+    '400':
+      description: Bad Request
+      content:
+        application/json:
+          schema:
+            description: ''
+            type: object
+            x-examples:
+              example-1:
+                error_detail: null
+                error_type: Unauthorized
+                error_description: No X-Auka-Merchant header value
+            properties:
+              error_detail:
+                type: string
+              error_type:
+                type: string
+              error_description:
+                type: string
+    '401':
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            description: ''
+            type: object
+            x-examples:
+              example-1:
+                error_detail: null
+                error_type: Unauthorized
+                error_description: No X-Auka-Merchant header value
+            properties:
+              error_detail:
+                type: string
+              error_type:
+                type: string
+              error_description:
+                type: string
     permissions.request.get.200:
       description: Example response
       content:
@@ -2505,6 +2547,7 @@ components:
       content:
         application/json:
           schema:
+            type: object
             properties:
               id:
                 type: string
@@ -2519,6 +2562,7 @@ components:
                   - rsa_generated
                   - rsa_user
                 description: Type of API Key to create.
+                readOnly: true
               roles:
                 type: string
                 description: 'Role. Value in user, superuser (case insensitive).'
@@ -2526,10 +2570,9 @@ components:
                   - user
                   - superuser
                   - integrator
-                default: 'null'
               netmask:
                 type: string
-                description: 'Limit user connections by netmask, for example 192.168.1.0/24.'
+                description: 'Limit user connections by netmask, for example 0.0.0.0/24.'
               secret:
                 type: string
                 description: Secret used when authenticating with Settle.

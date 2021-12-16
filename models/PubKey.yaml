@@ -5,7 +5,7 @@ description: |-
 
   Settle accepts the following formats:
 
-  - OpenSSH public key format (the format in ~/.ssh/authorized_keys)
+  - OpenSSH public key format (the format in `~/.ssh/authorized_keys`)
   - PEM format
 
   Max bit size: 4096.
