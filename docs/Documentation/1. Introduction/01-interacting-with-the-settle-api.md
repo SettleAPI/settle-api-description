@@ -143,7 +143,6 @@ The POS creation method defines the following input schema:
 ### location
 
 - **Type**: `Location`
-- **Required**: `false`
 - **Default**: `null`
 
 *Merchant location.*
@@ -170,7 +169,6 @@ Clicking the [`Location`](/docs/api-reference/c2NoOjEyNTk0OTky-location) link le
 ### latitude
 
 - **Type**: `float`
-- **Required**: `false`
 - **Default**: `null`
 
 *Latitude.*
@@ -179,7 +177,6 @@ Clicking the [`Location`](/docs/api-reference/c2NoOjEyNTk0OTky-location) link le
 ### longitude
 
 - **Type**: `float`
-- **Required**: `false`
 - **Default**: `null`
 
 *Longitude.*
@@ -188,7 +185,6 @@ Clicking the [`Location`](/docs/api-reference/c2NoOjEyNTk0OTky-location) link le
 ### accuracy
 
 - **Type**: `float`
-- **Required**: `false`
 - **Default**: `null`
 
 *Accuracy in meters.*
