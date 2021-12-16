@@ -2464,6 +2464,14 @@ components:
                 type: string
               error_description:
                 type: string
+    '404':
+      description: Not found
+      content:
+        application/json:
+          schema:
+            properties:
+              id:
+                type: string
     '405':
       description: Method not allowed
       content:
