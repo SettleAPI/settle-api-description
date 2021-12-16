@@ -848,6 +848,8 @@ paths:
         '404':
           description: Permission request not found
       description: Get the outcome of the permission request
+      tags:
+        - Permission Requests
 components:
   schemas:
     payment.request.create:
