@@ -216,7 +216,7 @@ Together theese represent geographic coordinates. This is best illustrated with 
 
 ## Callbacks
 
-API clients can associate some resources with a callback_uri in order to enable asynchronous communication between the client and server. At certain events Settle can trigger a callback to specified callback_uri. For instance, if the callback URI is an HTTP URI, an HTTP POST request will be made to the URI. See [callbacks](../merchant-api/ZG9jOjMyMjU5OTk3-callbacks) for a more thorough description of callbacks.
+API clients can associate some resources with a callback_uri in order to enable asynchronous communication between the client and server. At certain events Settle can trigger a callback to specified callback_uri. For instance, if the callback URI is an HTTP URI, an HTTP POST request will be made to the URI. See [callbacks](./merchant-api/c2NoOjEyNTk0OTky-location) for a more thorough description of callbacks.
 
 ####
 
