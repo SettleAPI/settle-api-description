@@ -2299,7 +2299,7 @@ components:
       required: true
       schema:
         type: string
-      description: API Key ID created by either Settle or User
+      description: API Key ID created by either Settle or Merchant
     rid:
       name: rid
       in: path
