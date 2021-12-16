@@ -11,7 +11,7 @@ info:
     url: 'https://raw.githubusercontent.com/SettleAPI/settle-api-description/main/LICENSE'
   description: |-
     # Settle APIs
-    The Settle APIs enables merchants to interact with Settle, registering POS', create shortlinks for QR-scans, send payment requests, submit permission requests for end user info, and much more
+    The Settle APIs enables merchants to interact with Settle, registering POS', create shortlinks for QR-scans, send payment requests, submit permission requests for end user info, and much more.
 
     ## Service Endpoints
     A service endpoint is a base URL that specifies the network address of an API service. One service might have multiple service endpoints.
@@ -234,31 +234,6 @@ paths:
               $ref: '#/components/schemas/payment.request.list'
       tags:
         - Payments
-  '/payment_request/{tid}/outcome':
-    parameters:
-      - $ref: '#/components/parameters/tid'
-    get:
-      summary: merchant.payment.request.outcome.get
-      responses:
-        '200':
-          description: OK
-        '404':
-          description: TID not found (or unauthorized for this merchant)
-      operationId: merchant.payment.request.outcome.get
-      description: |-
-        Shows the outcome info for a Payment Request, ReAuth or Capture.
-
-        This endpoints includes specified fee and/or interchange that will be deducted from payout, and also updated additional amount field if the user added gratuity.
-
-        If the callback URI registered for the payment request was secure (https), the contents of this form was sent along with the callback. If the callback URI was insecure, a notification pointing to this endpoint was sent instead.
-      tags:
-        - Payments
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/payment.request.outcome.get'
-        description: Retrieve payment request outcome
   '/payment_request/{tid}':
     parameters:
       - $ref: '#/components/parameters/tid'
@@ -303,6 +278,179 @@ paths:
             schema:
               $ref: '#/components/schemas/payment.request.get'
         description: Retrieve payment request info
+      tags:
+        - Payments
+  '/payment_request/{tid}/outcome':
+    parameters:
+      - $ref: '#/components/parameters/tid'
+    get:
+      summary: merchant.payment.request.outcome.get
+      responses:
+        '200':
+          description: OK
+        '404':
+          description: TID not found (or unauthorized for this merchant)
+      operationId: merchant.payment.request.outcome.get
+      description: |-
+        Shows the outcome info for a Payment Request, ReAuth or Capture.
+
+        This endpoints includes specified fee and/or interchange that will be deducted from payout, and also updated additional amount field if the user added gratuity.
+
+        If the callback URI registered for the payment request was secure (https), the contents of this form was sent along with the callback. If the callback URI was insecure, a notification pointing to this endpoint was sent instead.
+      tags:
+        - Payments
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/payment.request.outcome.get'
+        description: Retrieve payment request outcome
+  /payment_send:
+    post:
+      summary: merchant.payment.send.create
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                x-examples:
+                  example-1:
+                    id: p8bgxt1a0rzp
+                properties:
+                  id:
+                    type: string
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                x-examples:
+                  example-1:
+                    error_detail: null
+                    error_type: Bad Request
+                    error_description: Insufficient funds
+                properties:
+                  error_detail:
+                    type: string
+                  error_type:
+                    type: string
+                  error_description:
+                    type: string
+              examples:
+                Insufficient funds:
+                  value:
+                    error_detail: null
+                    error_type: Bad Request
+                    error_description: Insufficient funds
+          headers: {}
+        '401':
+          description: Unauthorized
+      description: Send payment
+      operationId: merchant.payment.send.create
+      tags:
+        - Payments
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/payment.send.create'
+        description: ''
+  '/payment_send/{tid}/outcome':
+    parameters:
+      - $ref: '#/components/parameters/tid'
+    get:
+      summary: merchant.payment.send.outcome.get
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                x-examples:
+                  example-1:
+                    object:
+                      idempotency_id: 63de8b62-dac3-4ec1-8da3-1093e561583a
+                      payer: 5rg1dkk8
+                      currency: NOK
+                      timestamp: '2021-06-22 09:14:26'
+                      require_identified: false
+                      id: p13fjg6py9jw
+                      payee: 'msisdn:4798052301'
+                      amount: 1000
+                      payer_status: ok
+                      chat_text: Cumque illo ut est ex unde.
+                    type: payment
+                properties:
+                  object:
+                    type: object
+                    properties:
+                      idempotency_id:
+                        type: string
+                        minLength: 1
+                      payer:
+                        $ref: ../models/PersonIdentifier.v1.yaml
+                      currency:
+                        $ref: ../models/Currency.v1.yaml
+                      timestamp:
+                        type: string
+                        minLength: 1
+                      require_identified:
+                        type: boolean
+                      id:
+                        type: string
+                        minLength: 1
+                      payee:
+                        type: string
+                        minLength: 1
+                      amount:
+                        $ref: ../models/MoneyInteger.v1.yaml
+                      payer_status:
+                        type: string
+                        minLength: 1
+                      chat_text:
+                        type: string
+                        minLength: 1
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  error_detail:
+                    type: object
+                    properties: {}
+                    required: []
+                  error_type:
+                    type: string
+                    minLength: 1
+                  error_description:
+                    type: string
+                    minLength: 1
+                required:
+                  - error_detail
+                  - error_type
+                  - error_description
+                x-examples:
+                  example-1:
+                    error_detail: {}
+                    error_type: Not Found
+                    error_description: no payment request with id p0gv8xc9d3km
+              examples:
+                No payment found:
+                  value:
+                    error_detail: {}
+                    error_type: Not Found
+                    error_description: no payment request with ID xxx
+      operationId: merchant.payment.send.outcome.get
       tags:
         - Payments
   /pos:
@@ -600,153 +748,6 @@ paths:
           $ref: '#/components/responses/statusCodes.get.200'
       operationId: merchant.statusCodes.get
       description: Get details about a spesific Status Code
-  /payment_send:
-    post:
-      summary: merchant.payment.send.create
-      responses:
-        '201':
-          description: Created
-          content:
-            application/json:
-              schema:
-                description: ''
-                type: object
-                x-examples:
-                  example-1:
-                    id: p8bgxt1a0rzp
-                properties:
-                  id:
-                    type: string
-        '400':
-          description: Bad Request
-          content:
-            application/json:
-              schema:
-                description: ''
-                type: object
-                x-examples:
-                  example-1:
-                    error_detail: null
-                    error_type: Bad Request
-                    error_description: Insufficient funds
-                properties:
-                  error_detail:
-                    type: string
-                  error_type:
-                    type: string
-                  error_description:
-                    type: string
-              examples:
-                Insufficient funds:
-                  value:
-                    error_detail: null
-                    error_type: Bad Request
-                    error_description: Insufficient funds
-          headers: {}
-        '401':
-          description: Unauthorized
-      description: Send payment
-      operationId: merchant.payment.send.create
-      tags:
-        - Payments
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/payment.send.create'
-  '/payment_send/{tid}/outcome':
-    parameters:
-      - $ref: '#/components/parameters/tid'
-    get:
-      summary: merchant.payment.send.outcome.get
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                description: ''
-                type: object
-                x-examples:
-                  example-1:
-                    object:
-                      idempotency_id: 63de8b62-dac3-4ec1-8da3-1093e561583a
-                      payer: 5rg1dkk8
-                      currency: NOK
-                      timestamp: '2021-06-22 09:14:26'
-                      require_identified: false
-                      id: p13fjg6py9jw
-                      payee: 'msisdn:4798052301'
-                      amount: 1000
-                      payer_status: ok
-                      chat_text: Cumque illo ut est ex unde.
-                    type: payment
-                properties:
-                  object:
-                    type: object
-                    properties:
-                      idempotency_id:
-                        type: string
-                        minLength: 1
-                      payer:
-                        $ref: ../models/PersonIdentifier.v1.yaml
-                      currency:
-                        $ref: ../models/Currency.v1.yaml
-                      timestamp:
-                        type: string
-                        minLength: 1
-                      require_identified:
-                        type: boolean
-                      id:
-                        type: string
-                        minLength: 1
-                      payee:
-                        type: string
-                        minLength: 1
-                      amount:
-                        $ref: ../models/MoneyInteger.v1.yaml
-                      payer_status:
-                        type: string
-                        minLength: 1
-                      chat_text:
-                        type: string
-                        minLength: 1
-        '404':
-          description: Not Found
-          content:
-            application/json:
-              schema:
-                description: ''
-                type: object
-                properties:
-                  error_detail:
-                    type: object
-                    properties: {}
-                    required: []
-                  error_type:
-                    type: string
-                    minLength: 1
-                  error_description:
-                    type: string
-                    minLength: 1
-                required:
-                  - error_detail
-                  - error_type
-                  - error_description
-                x-examples:
-                  example-1:
-                    error_detail: {}
-                    error_type: Not Found
-                    error_description: no payment request with id p0gv8xc9d3km
-              examples:
-                No payment found:
-                  value:
-                    error_detail: {}
-                    error_type: Not Found
-                    error_description: no payment request with ID xxx
-      operationId: merchant.payment.send.outcome.get
-      tags:
-        - Payments
   '/merchant_ssp_user/{merchant_ssp_user_id}':
     parameters:
       - schema:

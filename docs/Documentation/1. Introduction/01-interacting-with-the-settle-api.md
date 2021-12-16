@@ -102,7 +102,7 @@ Listed below are the most common HTTP response status codes and what they mean i
 Code | Status | Description
 ---------|----------|----------
  200 | OK | A successful `GET` on a list or detail endpoint
- 201 | Created | A successful `POST` to a detail endpoint, resulting in the creation of a new resource. The response will have a `Location` header with a URL pointing to the new resource. If Settle identifies a duplicate `POST` request, which means both the ID chosen by client and data matches that of an earlier request, Settle will not alter the resource but will give the same response with a Location header pointing to the original resource.
+ 201 | Created | A successful `POST` to a detail endpoint, resulting in the creation of a new resource. The response will have a `Location` header with a URL pointing to the new resource. If Settle identifies a duplicate `POST` request, which means both the ID chosen by client and data matches that of an earlier request, Settle will not alter the resource but will give the same response with a `Location` header pointing to the original resource.
  204 | No content | A successful `PUT` (update) or `DELETE` request.
  400 | Bad request | A malformed request from the client. Typically the schema does not validate for the data supplied in the request body.
  401 | Unauthorized | Indicates that the client request has not been completed because it lacks valid authentication credentials for the requested resource.
