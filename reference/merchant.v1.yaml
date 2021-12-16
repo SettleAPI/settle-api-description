@@ -5,14 +5,12 @@ info:
   contact:
     name: Settle Group
     url: 'https://settle.eu'
-    email: hello@settle.eu
+    email: support+dev@settle.eu
   license:
     name: MIT
     url: 'https://raw.githubusercontent.com/SettleAPI/settle-api-description/main/LICENSE'
   description: ''
 servers:
-  - url: 'http://localhost:3000'
-    description: Mock
   - url: 'https://api.sandbox.settle.eu/merchant/v1'
     description: Sandbox
   - url: 'https://api.settle.eu/merchant/v1'
