@@ -2,6 +2,6 @@
 tags: [API Introduction]
 ---
 
-# API-Authentication
+# API Authentication
 
 The beginning of an awesome article...
