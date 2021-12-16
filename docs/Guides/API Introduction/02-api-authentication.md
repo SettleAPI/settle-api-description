@@ -2,6 +2,6 @@
 tags: [API Introduction]
 ---
 
-# Callbacks
+# API Authentication
 
 The beginning of an awesome article...
