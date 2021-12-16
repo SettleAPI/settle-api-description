@@ -105,7 +105,7 @@ Code | Status | Description
  201 | Created | A successful `POST` to a detail endpoint, resulting in the creation of a new resource. The response will have a `Location` header with a URL pointing to the new resource. If Settle identifies a duplicate `POST` request, which means both the ID chosen by client and data matches that of an earlier request, Settle will not alter the resource but will give the same response with a Location header pointing to the original resource.
  204 | No content | A successful `PUT` (update) or `DELETE` request.
  400 | Bad request | A malformed request from the client. Typically the schema does not validate for the data supplied in the request body.
- 401 | Unauthorized |
+ 401 | Unauthorized | Indicates that the client request has not been completed because it lacks valid authentication credentials for the requested resource.
 404 | Not found | The status code for all requests to URLs that do not exist. This also includes detail endpoints that resolve to non-existent resources.
 405 | Method not allowed | Not all endpoints support the entire set of HTTP methods. This status code is returned if the client attempts to use an HTTP method that is not supported by a particular endpoint.
 409 | Conflict | A conflicting request by the client. This typically happens when the client tries to either create a resource with an ID that already exists, or create or update a resource with data that violates a uniqueness constraint on one or more resource fields; generally, when a resource is being updated in conflicting ways, concurrently.
