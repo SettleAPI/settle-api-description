@@ -165,7 +165,7 @@ The POS creation method defines the following input schema:
 
 The schema is represented as a list where each item heading represents a field (i.e. a JSON field) in the data format. Each item contains a descriptive text about the field at the bottom. The sub-items contain field name, type (e.g. `String`), whether the field is optional or required, and the default value for optional fields.
 
-The location field of the example schema has the field type [`Location`](./api-reference/c2NoOjEyNTk0OTky-location), and this is linked to another schema definition, which we call a `Model`. Models can be single-value types with some special behaviour, e.g. the [`Money`](./api-reference/c2NoOjUwMDYw-money) model. More commonly, Models have a nested structure as in our example.
+The location field of the example schema has the field type [`Location`](/api-reference/c2NoOjEyNTk0OTky-location), and this is linked to another schema definition, which we call a `Model`. Models can be single-value types with some special behaviour, e.g. the [`Money`](/api-reference/c2NoOjUwMDYw-money) model. More commonly, Models have a nested structure as in our example.
 
 Clicking the Location link leads us to the folowing schema definition:
 
