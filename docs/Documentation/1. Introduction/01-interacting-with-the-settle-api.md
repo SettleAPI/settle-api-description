@@ -112,7 +112,7 @@ Code | Status | Description
 
 > #### Info
 >
-> Certain endpoints might return other status codes than those listed here. Special cases are covered in the Settle API Reference.
+> Certain endpoints might return other status codes than those listed here. Special cases are covered in their respective documentation.
 
 ####
 
