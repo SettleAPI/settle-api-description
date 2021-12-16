@@ -9,7 +9,9 @@ info:
   license:
     name: MIT
     url: 'https://raw.githubusercontent.com/SettleAPI/settle-api-description/main/LICENSE'
-  description: ''
+  description: |-
+    ## merchant.apiKeys
+    - [merchant.apiKeys.create](https://settleapi.stoplight.io/docs/merchant-api/b3A6MTUzOTU0MDk-merchant-api-keys-create)
 servers:
   - url: 'https://api.sandbox.settle.eu/merchant/v1'
     description: Sandbox
