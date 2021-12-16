@@ -80,7 +80,7 @@ paths:
       operationId: merchant.apiKeys.update
       responses:
         '204':
-          description: No Content
+          $ref: '#/components/responses/204'
         '404':
           $ref: '#/components/responses/404'
       description: Update API Key
