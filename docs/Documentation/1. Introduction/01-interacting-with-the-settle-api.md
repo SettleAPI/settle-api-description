@@ -23,6 +23,7 @@ Creating, Retrieving, Updating and Deleting resources, aka **CRUD**, are achiev
 
   A **DELETE** request for the detail endpoint with the known resource id.
 
+####
 
 ## Endpoint Uniform Resource Locator (URL)
 
@@ -33,45 +34,37 @@ Creating, Retrieving, Updating and Deleting resources, aka **CRUD**, are achiev
 
 ### Examples
 
-A list endpoint for POS 👇
-
-```
-https://api.settle.eu/merchant/v1/pos/
-
-```
-
-
-The detailed endpoint for the POS with id `12` 👇
-
-```
-https://api.settle.eu/merchant/v1/pos/12/
-```
-
-
 > #### Info
 >
 > All URLs have a trailing slash by convention.
 
-
-URLs returned in location headers are full URLs 👇
+```text title="A list endpoint for POS 👇"
+https://api.settle.eu/merchant/v1/pos/
 
 ```
+
+#
+
+```text title="The detailed endpoint for the POS with id 12 👇"
+https://api.settle.eu/merchant/v1/pos/12/
+```
+
+#
+
+```text title="URLs returned in location headers are full URLs 👇"
 https://api.settle.eu/merchant/v1/pos/3y987j9o4o23/
 ```
 
+#
 
-URLs returned by the API in JSON responses only contain the path of the URL, i.e. without the scheme and host, thus you need to prepend the missing parts 👇
-
-```
+```text title="URLs returned in JSON responses without the scheme and host 👇"
 /merchant/v1/pos/
-```  
-
+```
 
 > #### Info
 > For brevity's sake, our documentation will sometimes omit the version bit when specifying endpoint URLs, so `/merchant/v1/` would thus become `/pos/`.
 
-
-
+####
 
 ## List Endpoints
 
@@ -99,6 +92,7 @@ The cursor points to the next list endpoint with more resources, and another nex
 }
 ```
 
+####
 
 ## Response Status Codes
 
@@ -119,8 +113,7 @@ Code | Status | Description
 >
 > Certain endpoints might return other status codes than those listed here. Special cases are covered in the Settle API Reference.
 
-
-
+####
 
 ## Schema Definitions
 
@@ -162,8 +155,11 @@ The POS creation method defines the following input schema:
 
 *Type of error.*
 
+#
 
 The schema is represented as a list where each item heading represents a field (i.e. a JSON field) in the data format. Each item contains a descriptive text about the field at the bottom. The sub-items contain field name, type (e.g. `String`), whether the field is optional or required, and the default value for optional fields.
+
+#
 
 The location field of the example schema has the field type [`Location`](/docs/api-reference/c2NoOjEyNTk0OTky-location), and this is linked to another schema definition, which we call a `Model`. Models can be single-value types with some special behaviour, e.g. the [`Money`](/docs/api-reference/c2NoOjUwMDYw-money) model. More commonly, Models have a nested structure as in our example.
 
@@ -195,13 +191,15 @@ Clicking the [`Location`](/docs/api-reference/c2NoOjEyNTk0OTky-location) link le
 
 *Accuracy in meters.*
 
+#
 
 
 This means that the `location` field is a nested structure composed of three other fields:
 
-`latitude`, `longitude` and `accuracy`
+### `latitude` `longitude` `accuracy`
+#
 
-Together theese represent geographic coordinates. This is best illustrated with an example:
+Together theese represent geographic coordinates. This is best illustrated with an example 👇
 
 ```json title="JSON object that validates for the POS creation input schema" lineNumbers
 {
@@ -216,16 +214,16 @@ Together theese represent geographic coordinates. This is best illustrated with 
 }
 ```
 
-
+####
 
 ## Callbacks
 
-API clients can associate some resources with a callback_uri in order to enable asynchronous communication between the client and server. At certain events Settle can trigger a callback to specified callback_uri. For instance, if the callback URI is an HTTP URI, an HTTP POST request will be made to the URI. See [callbacks](../guides/api-introduction/callbacks) for a more thorough description of callbacks.
+API clients can associate some resources with a callback_uri in order to enable asynchronous communication between the client and server. At certain events Settle can trigger a callback to specified callback_uri. For instance, if the callback URI is an HTTP URI, an HTTP POST request will be made to the URI. See [callbacks](../guides/merchant-api/ZG9jOjMyMjU5OTk3-callbacks) for a more thorough description of callbacks.
+
+####
 
 
-
-
-Error Responses
+## Error Responses
 
 In general, the error response body consists of an error_type, an error_description and some error_details. The example below shows the response for validation errors.
 
