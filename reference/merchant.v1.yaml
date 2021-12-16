@@ -34,14 +34,18 @@ paths:
           $ref: '#/components/responses/apiKeys.create.201'
         '400':
           description: Bad Request
-        '409':
-          description: 'Conflict, Api Key already exists.'
+        '401':
+          description: Unauthorized
       description: Create API Key for the Merchant given in the X-Settle-Merchant header.
       requestBody:
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/apiKeys.create'
+          application/xml:
+            schema:
+              type: object
+              properties: {}
       tags:
         - Authentication
   /payment_request:
@@ -1507,7 +1511,7 @@ components:
           description: Secret used when authenticating with Settle.
         pubkey:
           $ref: ../models/PubKey.yaml
-    apiKeys.create:
+    apiKeys.create.201:
       x-tags:
         - Schemas
       title: 'Request Body: apiKeys.create'
@@ -2064,14 +2068,6 @@ components:
               pubkey:
                 $ref: ../models/PubKey.yaml
           examples: {}
-    apiKeys.create.201:
-      description: 'OK, created'
-      content:
-        application/json:
-          schema:
-            properties:
-              id:
-                type: string
     settlement.list.200:
       description: List settlements.
       content:
@@ -2504,6 +2500,46 @@ components:
                 failure_return_uri: 'null'
                 success_return_uri: 'null'
                 legal_terms_url: 'null'
+    apiKeys.create.201:
+      description: API Key Created
+      content:
+        application/json:
+          schema:
+            properties:
+              id:
+                type: string
+                description: User ID
+              label:
+                type: string
+                description: User given name to API Key.
+              key_type:
+                type: string
+                enum:
+                  - secret
+                  - rsa_generated
+                  - rsa_user
+                description: Type of API Key to create.
+              roles:
+                type: string
+                description: 'Role. Value in user, superuser (case insensitive).'
+                enum:
+                  - user
+                  - superuser
+                  - integrator
+                default: 'null'
+              netmask:
+                type: string
+                description: 'Limit user connections by netmask, for example 192.168.1.0/24.'
+              secret:
+                type: string
+                description: Secret used when authenticating with Settle.
+                minLength: 8
+                maxLength: 64
+              pubkey:
+                $ref: ../models/PubKey.yaml
+            required:
+              - id
+              - key_type
 tags:
   - name: Authentication
   - name: Info
