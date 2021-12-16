@@ -142,17 +142,18 @@ The POS creation method defines the following input schema:
 
 ### location
 
-- **Type**: Location
-- **Required**: false
-- **Default**: null
+- **Type**: `Location`
+- **Required**: `false`
+- **Default**: `null`
 
 *Merchant location.*
 
 
 ### id
-**Type**: string
-**Required**: true
-**Length**: ≤ 100
+
+- **Type**: `string`
+- **Required**: `true`
+- **Length**: `≤ 100`
 
 *Type of error.*
 
