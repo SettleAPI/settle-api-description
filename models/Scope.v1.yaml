@@ -1,6 +1,6 @@
 type: string
 title: Scope
-description: 'Space-delimited list of scopes. Any of `openid` (static id), `address` (user preferred address), `profile` (name), `phone`, `email`, `shipping_address`, and `fodselsnummer`.'
+description: 'Space-delimited list of scopes. Any of **openid** (static id), **address** (user preferred address), **profile** (name), **phone**, **email**, **shipping_address**, and **fodselsnummer**.'
 x-tags:
   - complex-types
 enum:
