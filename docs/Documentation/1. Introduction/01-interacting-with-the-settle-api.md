@@ -72,7 +72,7 @@ List endpoints are associated with a resource class. Unless otherwise specified,
 
 ```http title="Request" lineNumbers
 GET /merchant/ HTTP/1.1
-HOST: api.settle.eu
+Host: api.settle.eu
 Accept: application/vnd.mcash.api.merchant.v1+json
 HTTP/1.1 200 OK
 Content-Type: application/vnd.mcash.api.merchant.v1+json
@@ -152,60 +152,59 @@ The POS creation method defines the following input schema:
   },
   "required": ["name", "type", "id"]
 }
-
-#
+```
 
 The schema is represented as a list where each item heading represents a field (i.e. a JSON field) in the data format. Each item contains a descriptive text about the field at the bottom. The sub-items contain field name, type (e.g. `String`), whether the field is optional or required, and the default value for optional fields.
 
-#
+### Models
 
 The location field of the example schema has the field type [`Location`](/docs/api-reference/c2NoOjEyNTk0OTky-location), and this is linked to another schema definition, which we call a `Model`. Models can be single-value types with some special behaviour, e.g. the [`Money`](/docs/api-reference/c2NoOjUwMDYw-money) model. More commonly, Models have a nested structure as in our example.
 
-Clicking the [`Location`](/docs/api-reference/c2NoOjEyNTk0OTky-location) link leads us to the folowing schema definition:
+```json json_schema
+{
+  "title": "Location",
+  "type": "object",
+  "properties": {
+    "latitude": {
+      "type": "number",
+      "default": null,
+      "description": "Latitude."
+    },
+    "longitude": {
+      "type": "number",
+      "default": null,
+      "description": "Longitude."
+    },
+    "accuracy": {
+      "type": "number",
+      "default": null,
+      "description": "Accuracy in meters."
+    }
 
-### latitude
-
-- **Type**: `float`
-- **Default**: `null`
-
-*Latitude.*
-
-
-### longitude
-
-- **Type**: `float`
-- **Default**: `null`
-
-*Longitude.*
-
-
-### accuracy
-
-- **Type**: `float`
-- **Default**: `null`
-
-*Accuracy in meters.*
-
-#
-
+  },
+  "required": ["name", "type", "id"]
+}
+```
 
 This means that the `location` field is a nested structure composed of three other fields:
 
-### `latitude` `longitude` `accuracy`
+- `latitude`
+- `longitude`
+- `accuracy`
 #
 
 Together theese represent geographic coordinates. This is best illustrated with an example 👇
 
 ```json title="JSON object that validates for the POS creation input schema" lineNumbers
 {
-    "id": "POS1",
-    "name": "My first POS",
-    "type": "store",
-    "location": {
-        "latitude": 59.0,
-        "longitude": 10.0,
-        "accuracy": 20.0
-    }
+  "id": "POS1",
+  "name": "My first POS",
+  "type": "store",
+  "location": {
+    "latitude": 59.0,
+    "longitude": 10.0,
+    "accuracy": 20.0
+  }
 }
 ```
 
@@ -224,7 +223,7 @@ In general, the error response body consists of an `error_type`, an `error_descr
 
 ```http title="Request"
 POST /test/ HTTP/1.1
-HOST: callbackserver.test
+Host: callbackserver.test
 Content-Type: application/vnd.mcash.api.merchant.v1+json
 
 {
@@ -249,32 +248,33 @@ Content-Type: application/vnd.mcash.api.merchant.v1+json
 
 The response HTTP Status Codes can also hold useful information about the error that occurred, in addition to these fields 👇
 
-### error_type
+```json json_schema
+{
+  "title": "Error response",
+  "type": "object",
+  "properties": {
+    "error_type": {
+      "type": "string",
+      "description": "Type of error."
+    },
+    "error_description": {
+      "type": "string",
+      "description": "Human readable description."
+    },
+    "error_details": {
+      "type": "string",
+      "default": null,
+      "description": "Keyed JSON Object structure containing detailed error information, if present. Otherwise null."
+    }
 
-- **Type**: string
-- **Required**: false
-
-*Type of error.*
-
-
-### error_description
-
-- **Type**: string
-- **Required**: false
-
-*Human readable description.*
-
-
-### error_details
-
-- **Type**: json
-- **Required**: false
-
-*Keyed JSON Object structure containing detailed error information, if present. Otherwise null.*
+  },
+  "required": ["name", "type", "id"]
+}
+```
 
 ####
 
-## Media Type
+## Media Types
 
 ```text title="This documentation defines the vendor-specific media type 👇"
 
@@ -329,4 +329,4 @@ A third case is when an Integrator controls the single proxy server; in that cas
 <!-- theme: warning -->
 > #### ✳
 >
-> Except when an Integrator is acting as a proxy on behalf of a Merchant client. In that case, the `X-Settle-Integrator` header is used instead. See above.
+> Except when an Integrator is acting as a proxy on behalf of a Merchant client. In that case, the `X-Settle-Integrator` header is used instead. [See above](#a-note-on-settle-api-users).
