@@ -11,7 +11,7 @@ The report endpoint provides per-transaction and per-permission request logs, as
 Report Summaries
 The report endpoint provides summaries for a report on a ledger (for instance, the end-of-day report of a given POS).
 
-While the summary information includes fees to Settle and a "net" for the transactions contained in a report, this is for information purposes only, and these nets are not used further in the settlement procedure. The settlements have their own transaction logs. [See the Settlements section]().
+While the summary information includes fees to Settle and a "net" for the transactions contained in a report, this is for information purposes only, and these nets are not used further in the settlement procedure. The settlements have their own transaction logs. [See the Settlements section](../merchant-api/ZG9jOjMyNTkyNDA0-settlements).
 
 ```json title="A sample response from the settlement endpoint"
 {
