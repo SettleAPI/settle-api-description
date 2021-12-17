@@ -952,12 +952,12 @@ components:
           $ref: ../models/MoneyInteger.v1.yaml
         callback_uri:
           type: string
-          default: 'null'
+          default: null
           pattern: '(^|^w+://(localhost|[^/:]+|([0-9]{1,3}.){3}[0-9]{1,3})?(:[0-9]+)?)(/.*)?$'
-          description: 'If provided, Settle will POST to this URI when the status of the payment request changes, using the message mechanism described in the introduction. The data in the object part of the message is the same as what can be retrieved by calling GET on the /payment_request/{tid}/outcome/ resource URI.'
+          description: 'If provided, Settle will POST to this URI when the status of the payment request changes, using the message mechanism described in the introduction. The data in the object part of the message is the same as what can be retrieved by calling GET on the **/payment_request/{tid}/outcome/** resource URI.'
         cid:
           type: string
-          default: 'null'
+          default: null
           description: Customer ID to be used for KID payments.
         currency:
           $ref: ../models/Currency.v1.yaml
@@ -966,7 +966,7 @@ components:
         display_message_uri:
           type: string
           description: Messages that can be used to inform the POS operator about the progress of the payment request will be posted to this URI if provided.
-          default: 'null'
+          default: null
         expires_in:
           type: integer
           default: 21600
@@ -974,7 +974,7 @@ components:
           maximum: 2592000
         failure_return_uri:
           type: string
-          default: 'null'
+          default: null
           pattern: '(^|^w+://(localhost|[^/:]+|([0-9]{1,3}.){3}[0-9]{1,3})?(:[0-9]+)?)(/.*)?$'
           description: Return URL if payment failed.
         line_items:
@@ -996,21 +996,21 @@ components:
         required_scope_text:
           type: string
           description: Text that is shown to user when asked for permission. This can contain line breaks and the text has to fit on smartphones screens.
-          default: 'null'
+          default: null
           maxLength: 150
         success_return_uri:
           type: string
           pattern: '(^|^w+://(localhost|[^/:]+|([0-9]{1,3}.){3}[0-9]{1,3})?(:[0-9]+)?)(/.*)?$'
-          default: 'null'
+          default: null
           description: Return URL if payment successful.
         text:
           type: string
           description: Text that is shown to user when asked to pay. This can contain line breaks and the text has to fit on smartphones screens.
-          default: 'null'
+          default: null
         uri:
           type: string
           description: 'If payment request was posted without a customer, user can claim it on this URI.'
-          default: 'null'
+          default: null
         scope:
           $ref: ../models/Scope.v1.yaml
       required:
