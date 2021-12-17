@@ -2276,7 +2276,9 @@ components:
       description: |-
         The value of this field depends on what kind of authentication scheme is being used. The currently supported schemes are **SECRET** and **RSA-SHA256**.
 
-        The typical form of this header is `Authorization: auth_scheme auth_data`
+        The typical form of this header is `Authorization: auth_scheme auth_data`.
+
+        [Learn more about Settle API Authentication](../merchant-api/ZG9jOjMyMjU5OTk2-api-authentication)
   parameters:
     merchant_id:
       name: merchant_id
