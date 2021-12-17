@@ -55,7 +55,7 @@ Short Dynamic Links created with the API do not show up in the Settle Business P
 To create a Short Dynamic Link, make an HTTP POST request to the dynamiclinks endpoint, specifying the ShortLink in the `shortLink` parameter and the environment in environment parameter.
 
 ```http title="Example"
-POST https://dynamiclinks.settle.dev/api/create
+POST https://dynamiclinks.settle.dev/api/create/
 Content-Type: application/json
 
 {
@@ -68,7 +68,7 @@ Content-Type: application/json
 ```json http
 {
   "method": "POST",
-  "url": "https://dynamiclinks.settle.dev/api/create",
+  "url": "https://dynamiclinks.settle.dev/api/create/",
   "body": {
     "shortLink": "https://settle.eu/s/gSpEb/pos123/",
     "environment": "sandbox"
