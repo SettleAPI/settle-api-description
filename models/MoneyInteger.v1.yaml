@@ -1,5 +1,5 @@
 title: MoneyInteger
 type: integer
-description: 'Type that represents a monetary amount as an integer. In schemas where one or more Money fields appears there will always be a Currency field present, that determines the currency of the Money fields.'
+description: 'Type that represents a monetary amount as an integer. In schemas where one or more [Money](../merchant-api/c2NoOjUwMDYw-money) fields appears there will always be a [Currency](../merchant-api/c2NoOjQwNjM0Ng-currency) field present, that determines the currency of the [Money](../merchant-api/c2NoOjUwMDYw-money) fields.'
 x-tags:
   - complex-types
