@@ -67,11 +67,8 @@ Content-Type: application/json
 
 ```json http
 {
-  "method": "post",
+  "method": "POST",
   "url": "https://dynamiclinks.settle.dev/api/create",
-  "headers": {
-    "Content-Type": "application/json"
-  },
   "body": {
     "shortLink": "https://settle.eu/s/gSpEb/pos123/",
     "environment": "sandbox"
