@@ -23,11 +23,64 @@ info:
     The above services has the following resources, and all methods below are relative to its parent method (service endpoint).
 
     ### merchant.apiKeys
-    - [merchant.apiKeys.create](./b3A6MTUzOTU0MDk-merchant-api-keys-create)
-    - [merchant.apiKeys.list](./b3A6MTUzOTU0MDg-merchant-api-keys-list)
-    - [merchant.apiKeys.get](./b3A6MTUzOTU0NDQ-merchant-api-keys-get)
-    - [merchant.apiKeys.update](./b3A6MTUzOTU0NDI-merchant-api-keys-update)
-    - [merchant.apiKeys.delete](./b3A6MTUzOTU0NDM-merchant-api-keys-delete)
+    - [merchant.apiKeys.create](../merchant-api/b3A6MTUzOTU0MDk-merchant-api-keys-create)
+    - [merchant.apiKeys.list](../merchant-api/b3A6MTUzOTU0MDg-merchant-api-keys-list)
+    - [merchant.apiKeys.get](../merchant-api/b3A6MTUzOTU0NDQ-merchant-api-keys-get)
+    - [merchant.apiKeys.update](../merchant-api/b3A6MTUzOTU0NDI-merchant-api-keys-update)
+    - [merchant.apiKeys.delete](../merchant-api/b3A6MTUzOTU0NDM-merchant-api-keys-delete)
+
+    ### merchant.balance
+    - [merchant.balance.get](../merchant-api/b3A6MTUzOTU0NDE-merchant-balance-get)
+
+    ### merchant.payment.request
+    - [merchant.payment.request.create](../merchant-api/b3A6ODY4MjgyNA-merchant-payment-request-create)
+    - [merchant.payment.request.list](../merchant-api/b3A6MTUzOTU0MTE-merchant-payment-request-list)
+    - [merchant.payment.request.update](/merchant-api/b3A6OTM1MjI5OA-merchant-payment-request-update)
+    - [merchant.payment.request.get](../merchant-api/b3A6MTUzOTU0MTQ-merchant-payment-request-get)
+
+    ### merchant.payment.request.outcome
+    - [merchant.payment.request.outcome.get](../merchant-api/b3A6ODY5MDgzNQ-merchant-payment-request-outcome-get)
+
+    ### merchant.payment.send
+    - [merchant.payment.send.create](../merchant-api/b3A6MTUzOTU0Mzc-merchant-payment-send-create)
+
+    ### merchant.payment.send.outcome
+    - [merchant.payment.send.outcome.get](../merchant-api/b3A6MTUzOTU0Mzg-merchant-payment-send-outcome-get)
+
+    ### merchant.pos
+    - [merchant.pos.create](../merchant-api/b3A6MTUzOTU0MTU-merchant-pos-create)
+    - [merchant.pos.list](../merchant-api/b3A6MTUzOTU0MTY-merchant-pos-list)
+    - [merchant.pos.get](../merchant-api/b3A6MTUzOTU0MTk-merchant-pos-get)
+    - [merchant.pos.update](../merchant-api/b3A6MTUzOTU0MTc-merchant-pos-update)
+    - [merchant.pos.delete](../merchant-api/b3A6MTUzOTU0MTg-merchant-pos-delete)
+
+    ### merchant.profile
+    - merchant.profile.get
+    - merchant.profile.update
+
+    ### merchant.settlement.latest
+    - merchant.settlement.latest.get
+
+    ### merchant.settlement.report
+    - merchant.settlement.report.get
+
+    ### merchant.shortlink
+    - merchant.shortlink.create
+    - merchant.shortlink.list
+    - merchant.shortlink.get
+    - merchant.shortlink.update
+    - merchant.shortlink.delete
+
+    ### merchant.statusCodes
+    - merchant.statusCodes.list
+    - merchant.statusCodes.get
+
+    ### merchant.permissions.request
+    - merchant.permissions.request.create
+    - merchant.permissions.request.get
+
+    ### merchant.permissions.request.outcome
+    - merchant.permissions.request.outcome.get
 servers:
   - url: 'https://api.sandbox.settle.eu/merchant/v1'
     description: Sandbox
@@ -2216,7 +2269,14 @@ components:
               next:
                 type: string
                 default: 'null'
-  securitySchemes: {}
+  securitySchemes:
+    Authorization:
+      type: http
+      scheme: mutual
+      description: |-
+        The value of this field depends on what kind of authentication scheme is being used. The currently supported schemes are **SECRET** and **RSA-SHA256**.
+
+        The typical form of this header is `Authorization: auth_scheme auth_data`
   parameters:
     merchant_id:
       name: merchant_id
@@ -2660,3 +2720,5 @@ tags:
   - name: Status Codes
   - name: Users
   - name: Permission Requests
+security:
+  - Authorization: []
