@@ -23,11 +23,11 @@ info:
     The above services has the following resources, and all methods below are relative to its parent method (service endpoint).
 
     ### merchant.apiKeys
-    - [merchant.apiKeys.create](../merchant-api/b3A6MTUzOTU0MDk-merchant-api-keys-create)
-    - [merchant.apiKeys.list](../merchant-api/b3A6MTUzOTU0MDg-merchant-api-keys-list)
-    - [merchant.apiKeys.get](../merchant-api/b3A6MTUzOTU0NDQ-merchant-api-keys-get)
-    - [merchant.apiKeys.update](../merchant-api/b3A6MTUzOTU0NDI-merchant-api-keys-update)
-    - [merchant.apiKeys.delete](../merchant-api/b3A6MTUzOTU0NDM-merchant-api-keys-delete)
+    - [merchant.apiKeys.create](./merchant-api/b3A6MTUzOTU0MDk-merchant-api-keys-create)
+    - [merchant.apiKeys.list](./merchant-api/b3A6MTUzOTU0MDg-merchant-api-keys-list)
+    - [merchant.apiKeys.get](./merchant-api/b3A6MTUzOTU0NDQ-merchant-api-keys-get)
+    - [merchant.apiKeys.update](./merchant-api/b3A6MTUzOTU0NDI-merchant-api-keys-update)
+    - [merchant.apiKeys.delete](./merchant-api/b3A6MTUzOTU0NDM-merchant-api-keys-delete)
 
     ### merchant.balance
     - [merchant.balance.get](../merchant-api/b3A6MTUzOTU0NDE-merchant-balance-get)
@@ -55,32 +55,32 @@ info:
     - [merchant.pos.delete](../merchant-api/b3A6MTUzOTU0MTg-merchant-pos-delete)
 
     ### merchant.profile
-    - merchant.profile.get
-    - merchant.profile.update
+    - [merchant.profile.get](../merchant-api/b3A6OTYxODU5NQ-merchant-profile-get)
+    - [merchant.profile.update](../merchant-api/b3A6OTYxODU5Ng-merchant-profile-lookup)
 
-    ### merchant.settlement.latest
-    - merchant.settlement.latest.get
+    <!-- ### merchant.settlement.latest
+    - merchant.settlement.latest.get -->
 
-    ### merchant.settlement.report
-    - merchant.settlement.report.get
+    <!-- ### merchant.settlement.report
+    - merchant.settlement.report.get -->
 
     ### merchant.shortlink
-    - merchant.shortlink.create
-    - merchant.shortlink.list
-    - merchant.shortlink.get
-    - merchant.shortlink.update
-    - merchant.shortlink.delete
+    - [merchant.shortlink.create](../docs/merchant-api/b3A6MTUzOTU0Mjk-merchant-shortlink-create)
+    - [merchant.shortlink.list](../merchant-api/b3A6MTUzOTU0Mjg-merchant-shortlink-list)
+    - [merchant.shortlink.get](../merchant-api/b3A6MTUzOTU0MzA-merchant-shortlink-get)
+    - [merchant.shortlink.update](../merchant-api/b3A6MTUzOTU0MzE-merchant-shortlink-update)
+    - [merchant.shortlink.delete](../merchant-api/b3A6MTUzOTU0MzI-merchant-shortlink-delete)
 
     ### merchant.statusCodes
-    - merchant.statusCodes.list
-    - merchant.statusCodes.get
+    - [merchant.statusCodes.list](../merchant-api/b3A6MTUzOTU0MzU-merchant-status-codes-list)
+    - [merchant.statusCodes.get](../merchant-api/b3A6MTUzOTU0MzY-merchant-status-codes-get)
 
     ### merchant.permissions.request
-    - merchant.permissions.request.create
-    - merchant.permissions.request.get
+    - [merchant.permissions.request.create](../merchant-api/b3A6Mjk5NjUxNTk-merchant-permissions-request-create)
+    - [merchant.permissions.request.get](../merchant-api/b3A6Mjk5NjUxNjA-merchant-permissions-request-get)
 
     ### merchant.permissions.request.outcome
-    - merchant.permissions.request.outcome.get
+    - [merchant.permissions.request.outcome.get](../merchant-api/b3A6MzE5MjkxOTE-merchant-permissions-request-outcome-get)
 servers:
   - url: 'https://api.sandbox.settle.eu/merchant/v1'
     description: Sandbox
@@ -641,8 +641,6 @@ paths:
   /last_settlement:
     get:
       summary: merchant.settlement.latest.get
-      tags:
-        - Settlement
       responses:
         '200':
           $ref: '#/components/responses/settlement.latest.get.200'
@@ -655,6 +653,8 @@ paths:
         Whenever a new Settlement is generated, this reference is automatically updated.
       deprecated: true
       x-internal: true
+      tags:
+        - Settlement
   '/settlement_account/{settlement_account_id}':
     parameters:
       - $ref: '#/components/parameters/settlement_account_id'
@@ -2269,16 +2269,7 @@ components:
               next:
                 type: string
                 default: 'null'
-  securitySchemes:
-    Authorization:
-      type: http
-      scheme: mutual
-      description: |-
-        The value of this field depends on what kind of authentication scheme is being used. The currently supported schemes are **SECRET** and **RSA-SHA256**.
-
-        The typical form of this header is `Authorization: auth_scheme auth_data`.
-
-        [Learn more about Settle API Authentication](../merchant-api/ZG9jOjMyMjU5OTk2-api-authentication)
+  securitySchemes: {}
   parameters:
     merchant_id:
       name: merchant_id
@@ -2722,5 +2713,3 @@ tags:
   - name: Status Codes
   - name: Users
   - name: Permission Requests
-security:
-  - Authorization: []
