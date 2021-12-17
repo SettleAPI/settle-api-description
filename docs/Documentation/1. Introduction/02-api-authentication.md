@@ -9,8 +9,8 @@ Various authorization levels (auth levels) can be achieved in the Settle API dep
 The required level for each endpoint in the API can be found in the [Settle API Reference](../YXBpOjg1NDE5NDI-merchant). We provide a list of the auth levels for the Settle API below, ordered from lowest to highest.
 
 - OPEN (no authentication required)
-- SECRET
-- KEY
+- [SECRET](#authentication-using-jwt-secret)
+- [KEY](#authentication-using-rsa-key)
 
 When authenticated with a particular auth level, the client is also authorized for endpoints requiring a lower auth level. For instance, if authenticated with the KEY auth level, endpoints requiring SECRET or OPEN are also accessible.
 
