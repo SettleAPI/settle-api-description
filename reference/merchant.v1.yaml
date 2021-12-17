@@ -10,8 +10,8 @@ info:
     name: MIT
     url: 'https://raw.githubusercontent.com/SettleAPI/settle-api-description/main/LICENSE'
   description: |-
-    # Settle APIs
-    The Settle APIs enables merchants to interact with Settle, registering POS', create shortlinks for QR-scans, send payment requests, submit permission requests for end user info, and much more.
+    # Settle Merchant API
+    The Settle Merchant API enables merchants to interact with Settle, registering POS', create shortlinks for QR-scans, send payment requests, submit permission requests for end user info, and much more.
 
     ## Service Endpoints
     A service endpoint is a base URL that specifies the network address of an API service. One service might have multiple service endpoints.
