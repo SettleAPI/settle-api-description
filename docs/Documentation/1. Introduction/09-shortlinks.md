@@ -63,6 +63,22 @@ Content-Type: application/json
    "environment": "production"
 }
 ```
+#
+
+```json http
+{
+  "method": "post",
+  "url": "https://dynamiclinks.settle.dev/api/create",
+  "headers": {
+    "Content-Type": "application/json"
+  },
+  "body": {
+    "shortLink": "https://settle.eu/s/gSpEb/pos123/",
+    "environment": "sandbox"
+  }
+}
+```
+
 
 To create Short Dynamic Links for testing, use the `sandbox` environment. For a complete specification of the JSON request object, see the [Short Dynamic Link API Reference]().
 
