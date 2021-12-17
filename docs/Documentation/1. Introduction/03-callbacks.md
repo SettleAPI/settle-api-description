@@ -25,8 +25,8 @@ For a callback made using a secure protocol one would use an HTTPS URL for the *
 
 ```http title="Example request"
 POST /notification/qWeR/ HTTP/1.1
-HOST: callbackserver.test
-Content-Type: application/vnd.mcash.api.merchant.v1+json
+Host: callbackserver.test
+Content-Type: application/json
 Authorization: RSA-SHA256 <rsa_signature>
 X-Settle-Content-Digest: SHA256=<content_sha256>
 
@@ -52,8 +52,8 @@ For insecure protocols, Settle will only send non-sensitive meta-information. On
 
 ```http title="Example request"
 POST /notification/qWeR HTTP/1.1
-HOST: callbackserver.test
-Content-Type: application/vnd.mcash.api.merchant.v1+json
+Host: callbackserver.test
+Content-Type: application/json
 
 {
     "meta": {
@@ -74,7 +74,7 @@ HOST: server.test
 
 ```http title="Response"
 HTTP/1.1 200 OK
-Content-Type: application/vnd.mcash.api.merchant.v1+json
+Content-Type: application/json
 
 {"text": "Hello World"}
 ```
