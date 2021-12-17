@@ -39,7 +39,33 @@ To be able to receive scans, one must first [register a shortlink](../merchant-a
 
 ## Short Dynamic Links
 
-With Settle Dynamic Links, new and existing users of the Settle App get the best available experience for the platform they open a ShortLink on. If a user opens a Settle Dynamic Link on iOS or Android, they're taken directly to the linked content in the Settle App. If a user opens the same Settle Dynamic Link in a desktop browser, they'll be taken to a website with links to download the Settle App.
+With Short Dynamic Links, new and existing users of the Settle App get the best available experience for the platform they open a [ShortLink](#shortlink-scan-handler) on. If a user opens a Short Dynamic Link on iOS or Android, they're taken directly to the linked content in the Settle App. If a user opens the same Short Dynamic Link in a desktop browser, they'll be taken to a website with links to download the Settle App.
 
-In addition, Settle Dynamic Links work across app installs: if a user opens a Settle Dynamic Link on iOS or Android and doesn't have the Settle App installed, the user can be prompted to install it; then, after installation, the Settle App starts and can access the link.
+In addition, Short Dynamic Links work across app installs; if a user opens a Short Dynamic Link on iOS or Android and doesn't have the Settle App installed, the user can be prompted to install it; then, after installation, the Settle App starts and can access the link.
 
+### Short and shareable links
+Merchants can create Short Dynamic Links by using the Short Dynamic Links REST API. This API accepts a Short ShortLink, and returns a URL like the following example:
+
+`https://get.settle.eu/WXYZ`
+
+Short Dynamic Links created with the API do not show up in the Settle Business Portal. Short Dynamic Links are intended for user-to-user sharing and marketing use cases.
+
+### Create a Short Dynamic Link from a ShortLink
+
+To create a Short Dynamic Link, make an HTTP POST request to the dynamiclinks endpoint, specifying the ShortLink in the `shortLink` parameter and the environment in environment parameter.
+
+```http title="Example"
+POST https://dynamiclinks.settle.dev/api/create
+Content-Type: application/json
+
+{
+   "shortLink": "https://settle.eu/s/gSpEb/pos123/",
+   "environment": "production"
+}
+```
+
+To create Short Dynamic Links for testing, use the `sandbox` environment. For a complete specification of the JSON request object, see the [Short Dynamic Link API Reference]().
+
+### Request limits
+
+Requests are limited to **5 requests per IP address per second**.
