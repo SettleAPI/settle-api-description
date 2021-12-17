@@ -116,7 +116,7 @@ paths:
         '400':
           description: 'Bad Request, validation error.'
         '409':
-          description: 'Conflict, same pos_id and pos_tid used for a request earlier.'
+          description: Conflict; `pos_id` and/or `pos_tid` already used for a Payment Request.
       description: |-
         Create a Payment Request.
 
