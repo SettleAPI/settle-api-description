@@ -122,39 +122,36 @@ All resources in the Settle API are documented in the [Settle API Reference](htt
 
 The POS creation method defines the following input schema:
 
-### name
+```json json_schema
+{
+  "title": "merchant.pos.create",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Human-readable name of the POS, used for displaying payment request origin to end users."
+    },
+    "type": {
+      "type": "string",
+      "enum": ["store", "webshop", "mobile", "vending", "poster"],
+      "maxLength": 50,
+      "description": "POS type."
+    },
+    "location": {
+      "type": "Location",
+      "default": null,
+      "description": "Merchant location. Type is [`Location`](../merchant-api/c2NoOjEyNTk0OTky-location)."
+    },
+    "id": {
+      "type": "string",
+      "maxLength": "100",
+      "description": "The ID of the POS that is to be created. Has to be unique for the merchant."
+    },
 
-- **Type**: `string`
-- **Required**: `true`
-- **Length**: `≤ 100`
-
-*Human-readable name of the POS, used for displaying payment request origin to end users.*
-
-
-### type
-
-- **Type**: `string`
-- **Required**: `true`
-- **Enum**: `store` `webshop` `mobile` `vending` `poster`
-
-*POS type.*
-
-
-### location
-
-- **Type**: `Location`
-- **Default**: `null`
-
-*Merchant location.*
-
-
-### id
-
-- **Type**: `string`
-- **Required**: `true`
-- **Length**: `≤ 100`
-
-*Type of error.*
+  },
+  "required": ["name", "type", "id"]
+}
 
 #
 
