@@ -1,4 +1,4 @@
-# Settle ShortLinks
+# ShortLinks
 
 ## ShortLink Scan Handler
 
