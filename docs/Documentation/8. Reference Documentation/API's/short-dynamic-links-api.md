@@ -1,6 +1,6 @@
 # Short Dynamic Links API
 
-You can use the Short Dynamic Links REST API to generate Short Dynamic Links from ShortLinks. See the [Short Dynamic Links article](../merchant-api/ZG9jOjMyNTk1MzQx-short-links#short-dynamic-links) article to get started.
+You can use the Short Dynamic Links REST API to generate Short Dynamic Links from ShortLinks. See the [ShortLinks and Short Dynamic Links article](../merchant-api/ZG9jOjMyNTk1MzQx-short-links#short-dynamic-links) article to get started.
 
 ## HTTP Request
 
