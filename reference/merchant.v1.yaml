@@ -1479,16 +1479,17 @@ components:
         - Schemas
       title: 'Request Body: shortlink.create'
       type: object
+      description: Register new shortlink.
       properties:
         callback_uri:
           type: string
-          default: 'null'
+          default: null
           description: URI called by Settle when user scans shortlink.
         serial_number:
           type: string
-          default: 'null'
+          default: null
           description: Serial number on printed QR codes.This field is only used when registering printed stickers issued by Settle.
-      description: Register new shortlink.
+          deprecated: true
     permissions.request.create:
       x-tags:
         - Schemas
