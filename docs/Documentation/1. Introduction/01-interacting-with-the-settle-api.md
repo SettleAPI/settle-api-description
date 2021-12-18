@@ -311,7 +311,12 @@ Clients are expected to include media type in the `Accept` header listing types 
 
 ## A Note on Settle API Users
 
-All requests to the Settle API must include an `X-Settle-User` header.*
+All requests to the Settle API must include an `X-Settle-User` header.
+
+<!-- theme: warning -->
+> #### Exeption
+>
+> Except when an Integrator is acting as a proxy on behalf of a Merchant client. In that case, the `X-Settle-Integrator` header is used instead. [See above](#a-note-on-settle-api-users).
 
 API Users are assigned and created by the Merchant through the Settle for Business portal, or by the Integrator using the user endpoint.
 
@@ -325,8 +330,3 @@ Each API User has an ID unique to that Merchant and is assigned a [JSON Web Toke
 Another case is when the Merchant owns and administers a central server that acts as a proxy for all POS’s: in that case, only one API User is created, and its credentials are used by all POS’s when making payment requests.
 
 A third case is when an Integrator controls the single proxy server; in that case the Integrator uses the `X-Settle-Integrator` header in place of an `X-Settle-User` header. It is up to the Merchant (or, as the case may be, the Integrator) how to set this up.
-
-<!-- theme: warning -->
-> #### ✳
->
-> Except when an Integrator is acting as a proxy on behalf of a Merchant client. In that case, the `X-Settle-Integrator` header is used instead. [See above](#a-note-on-settle-api-users).
