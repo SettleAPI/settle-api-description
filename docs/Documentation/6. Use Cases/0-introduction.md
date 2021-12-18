@@ -34,8 +34,8 @@ With Settle you add superpowers to virtually any business. We recommend studying
 - [Parking](../merchant-api/ZG9jOjMyNjUzNjI3-parking)
 - [Gyms](../merchant-api/ZG9jOjMyNjUzNjI4-gyms)
 - [Bars & Restaurants](../merchant-api/ZG9jOjMyNjUzNjI5-bars-and-restaurants)
-- [Takeout & Delivery](link)
-- [Ticketing](link)
+- [Takeout & Delivery](../merchant-api/ZG9jOjMyNjUzNjU4-takeout-and-delivery)
+- [Ticketing](../merchant-api/ZG9jOjMyNjUzNjU5-ticketing)
  
 
 ## Contributing
