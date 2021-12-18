@@ -18,7 +18,7 @@ This is the basic flow:
 
     1. If the customer is on their mobile phone, the webshop can choose to offer the following alternatives:
 
-        1. Pay by clicking the “Pay with Settle” button, or
+        1. Pay by clicking the `Pay with Settle` button, or
         2. Enter phone number to receive a Payment Request
 
     2. If the customer is on any other device than their mobile phone, the webshop can choose to offer the following alternatives:
@@ -28,7 +28,7 @@ This is the basic flow:
 
             > #### Note
             >
-            > Clicking the “Pay with Settle” button (this will launch the Settle App on the mobile phone of the customer), or scanning the Settle QR code with the Settle App on the mobile phone of the customer, are both defined as Customer Initiated. In other words, the customer is taking an action to initiate the transaction. If the customer chooses not to click the button or scan the QR, nothing happens and the website should gracefully handle the timeout.
+            > Clicking the `Pay with Settle` button (this will launch the Settle App on the mobile phone of the customer), or scanning the Settle QR code with the Settle App on the mobile phone of the customer, are both defined as Customer Initiated. In other words, the customer is taking an action to initiate the transaction. If the customer chooses not to click the button or scan the QR, nothing happens and the website should gracefully handle the timeout.
             >
             > In contrast, when a Merchant has a customer's phone number (recently obtained or kept on file), the Merchant is in full control of when and if a Payment Request is sent to that number. This is defined as Merchant Initiated.
 
