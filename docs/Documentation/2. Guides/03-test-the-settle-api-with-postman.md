@@ -8,6 +8,7 @@
 - How to use Postman to execute APIs
 - Working with GET Requests
 - Working with POST Requests
+- Settle Postman Collection
 
 ## What is Postman?
 
@@ -83,6 +84,141 @@ Below is the Postman Workspace. Let’s explore the step by step process on **Ho
 13. **Params** – This is where you will write parameters needed for a request such as key values.
 14. **Authorization** – In order to access APIs, proper authorization is needed. It may be in the form of a username and password, bearer token, etc.
 15. **Headers** – You can set headers such as content type JSON depending on the needs of the organization.
-16. **Body** – This is where one can customize details in a request commonly used in POST request.
+16. **Body** – This is where one can customize details in a request commonly used in `POST` request.
 17. **Pre-request Script** – These are scripts that will be executed before the request. Usually, pre-request scripts for the setting environment are used to ensure that tests will be run in the correct environment.
 18. **Tests** – These are scripts executed during the request. It is important to have tests as it sets up checkpoints to verify if response status is ok, retrieved data is as expected and other tests.
+
+####
+
+## Working with GET Requests
+
+Get requests are used to retrieve information from the given URL. There will be no changes done to the endpoint.
+
+We will use the following URL for all examples in this Postman tutorial:
+
+`https://jsonplaceholder.typicode.com/users`
+
+##### In the workspace:
+
+1. Set your HTTP request to GET.
+2. In the request URL field, input link
+3. Click Send
+4. You will see 200 OK Message
+5. There should be 10 user results in the body which indicates that your test has run successfully.
+
+![011119_1057_PostmanTuto8.webp](https://stoplight.io/api/v1/projects/cHJqOjUxMDI1/images/wXeO2D5w91A)
+
+> #### Note
+>
+> There may be cases that Get Postman request may be unsuccessful. It can be due to an invalid request URL or authentication is needed.
+
+####
+
+## Working with `POST` Requests
+
+Post requests are different from Get request as there is data manipulation with the user adding data to the endpoint. Using the same data from the previous tutorial in Get request, let’s now add our own user.
+
+##### 1. Click a new tab to create a new request.
+
+![011119_1057_PostmanTuto9.webp](https://stoplight.io/api/v1/projects/cHJqOjUxMDI1/images/7vTk3O7B2EY)
+
+#
+
+##### 2. In the new tab
+
+  1. Set your HTTP request to POST.
+  2. Input the same link in request url: https://jsonplaceholder.typicode.com/users
+  3. switch to the Body tab
+
+![011119_1057_PostmanTuto10.webp](https://stoplight.io/api/v1/projects/cHJqOjUxMDI1/images/SWNfShwkHIM)
+
+#
+
+##### 3. In Body,
+
+  1. Click raw
+  2. Select JSON
+
+#
+
+##### 4. Copy and paste just one user result from the previous get request like below. 
+
+Ensure that the code has been copied correctly with paired curly braces and brackets. Change id to 11 and name to any desired name. You can also change other details like the address.
+
+```json
+[
+  {
+    "id": 11,
+    "name": "Krishna Rungta",
+    "username": "Bret",
+    "email": "Sincere@april.biz",
+    "address": {
+      "street": "Kulas Light",
+      "suite": "Apt. 556",
+      "city": "Gwenborough",
+      "zipcode": "92998-3874",
+      "geo": {
+        "lat": "-37.3159",
+        "lng": "81.1496"
+      }
+    },
+    "phone": "1-770-736-8031 x56442",
+    "website": "hildegard.org",
+    "company": {
+      "name": "Romaguera-Crona",
+      "catchPhrase": "Multi-layered client-server neural-net",
+      "bs": "harness real-time e-markets"
+    }
+  }
+]
+```
+
+![011119_1057_PostmanTuto12.webp](https://stoplight.io/api/v1/projects/cHJqOjUxMDI1/images/oyeLsiwIMnI)
+
+
+> #### Note
+>
+> Online Post request should have the correct format to ensure that requested data will be created. It is a good practice to use Get first to check the JSON format of the request. You can use tools like https://jsonformatter.curiousconcept.com/
+
+![011119_1057_PostmanTuto13.webp](https://stoplight.io/api/v1/projects/cHJqOjUxMDI1/images/3ZfTMgayqFY)
+
+
+##### 5. Next
+
+1. Click Send.
+2. Status: 201 Created should be displayed
+3. Posted data are showing up in the body.
+
+![011119_1057_PostmanTuto14.webp](https://stoplight.io/api/v1/projects/cHJqOjUxMDI1/images/j4ItqomDpPc)
+
+
+####
+
+## Settle Postman Collection
+
+1. Select Postman Resource
+
+To import both the collection and environment directly into Postman, click the `Run in Postman` button for the API which you wish to integrate.
+
+
+API | Postman Resource
+---------|----------
+ Settle Merchant v1 | [![Run in Postman](https://run.pstmn.io/button.svg)](https://god.gw.postman.com/run-collection/10464426-1e7ad8df-e6fb-4342-8a7f-9ee526461dec?action=collection%2Ffork&collection-url=entityId%3D10464426-1e7ad8df-e6fb-4342-8a7f-9ee526461dec%26entityType%3Dcollection%26workspaceId%3De3cce287-88ec-43e1-8eb4-0ee1a1be5d1a#?env%5BSandbox%5D=W3sia2V5IjoiYmFzZV91cmwiLCJ2YWx1ZSI6Imh0dHBzOi8vYXBpLnNhbmRib3guc2V0dGxlLmV1IiwiZW5hYmxlZCI6dHJ1ZX0seyJrZXkiOiJtZXJjaGFudF9pZCIsInZhbHVlIjoiNXJnMWRrazgiLCJlbmFibGVkIjp0cnVlfSx7ImtleSI6InVzZXJfaWQiLCJ2YWx1ZSI6IjR0cWhmeHI0IiwiZW5hYmxlZCI6dHJ1ZX0seyJrZXkiOiJpbnRlZ3JhdG9yX2lkIiwidmFsdWUiOiI3ZTNjYmIxNyIsImVuYWJsZWQiOnRydWV9LHsia2V5Ijoic2V0dGxlbWVudF9hY2NvdW50X2lkIiwidmFsdWUiOiI1cmcxZGtrOCIsImVuYWJsZWQiOnRydWV9LHsia2V5IjoiU0VDUkVUIiwidmFsdWUiOiIyWjQ5X0hvcUVkUHUwVnFHbjZ2eTI2NzkrdFlPVDBGbCIsImVuYWJsZWQiOnRydWV9LHsia2V5IjoiUlNBIiwidmFsdWUiOiIiLCJlbmFibGVkIjp0cnVlfSx7ImtleSI6InJldHVybmVkX2NsaWVudF9pZCIsInZhbHVlIjoiIiwiZW5hYmxlZCI6dHJ1ZX0seyJrZXkiOiJkZWZhdWx0X3JlZGlyZWN0X3VyaSIsInZhbHVlIjoiIiwiZW5hYmxlZCI6dHJ1ZX0seyJrZXkiOiJwb3NfdGlkIiwidmFsdWUiOiIiLCJlbmFibGVkIjp0cnVlfSx7ImtleSI6InJldHVybmVkX3JpZCIsInZhbHVlIjoiIiwiZW5hYmxlZCI6dHJ1ZX0seyJrZXkiOiJwb3NfaWQiLCJ2YWx1ZSI6IiIsImVuYWJsZWQiOnRydWV9LHsia2V5IjoicmVxdWVzdF9kZXNjcmlwdGlvbiIsInZhbHVlIjoiIiwiZW5hYmxlZCI6dHJ1ZX0seyJrZXkiOiJpZGVtcG90ZW5jeV9pZCIsInZhbHVlIjoiIiwiZW5hYmxlZCI6dHJ1ZX0seyJrZXkiOiJjaGF0X3RleHQiLCJ2YWx1ZSI6IiIsImVuYWJsZWQiOnRydWV9LHsia2V5IjoiY3VycmVudExvY2FsVGltZXN0YW1wIiwidmFsdWUiOiIiLCJlbmFibGVkIjp0cnVlfSx7ImtleSI6InRpZCIsInZhbHVlIjoicGFlZTZiaGVxODViIiwiZW5hYmxlZCI6dHJ1ZX0seyJrZXkiOiJzaG9ydGxpbmtfaWQiLCJ2YWx1ZSI6Im1RNzlUIiwiZW5hYmxlZCI6dHJ1ZX0seyJrZXkiOiJzdGF0dXNfY29kZSIsInZhbHVlIjoiNDEzIiwiZW5hYmxlZCI6dHJ1ZX1d)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
