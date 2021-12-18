@@ -25,4 +25,4 @@ When you need the email address of a Customer, you can collect it instantly with
 
 In a physical, digital, mobile or desktop environment, you can have the customer scan the QR or click the button, or even issue the request directly to their phone number if you have it on file.
 
-Check out the article on [Permission Requests](../merchant-api/ZG9jOjMyNTkzNjQ3-permission-request).
+For more information on Data Sharing, check out our article on [Permission Requests](../merchant-api/ZG9jOjMyNTkzNjQ3-permission-request).
