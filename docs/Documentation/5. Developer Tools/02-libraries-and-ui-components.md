@@ -1,4 +1,4 @@
-## Libraries and UI Components
+# Libraries and UI Components
 
 Get up and running with our client libraries and start developing your Settle integration.
 Use our official client, server, and UI libraries for different programming languages and mobile platforms to integrate with Settle.
