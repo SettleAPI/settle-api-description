@@ -26,7 +26,7 @@ All parameters are optional unless otherwise specified.
 
 ```json json_schema
 {
-  "title": "merchant.shortLinks.dynamic.create",
+  "title": "Request Body",
   "type": "object",
   "properties": {
     "shortLink": {
@@ -47,7 +47,7 @@ All parameters are optional unless otherwise specified.
 
 ```json json_schema
 {
-  "title": "merchant.shortLinks.dynamic.create",
+  "title": "Request Body",
   "type": "object",
   "properties": {
     "socialTitle": {
@@ -79,7 +79,7 @@ All parameters are optional unless otherwise specified.
 
 ```json json_schema
 {
-  "title": "merchant.shortLinks.dynamic.create",
+  "title": "Response Body",
   "type": "object",
   "properties": {
     "shortDynamicLink": {
