@@ -21,7 +21,7 @@ View every command and flag in our command-line interface.
 Generate short and shareable [Short Dynamic Links](../merchant-api/ZG9jOjMyNTk1MzQx-short-links#short-dynamic-links) from [ShortLinks](../merchant-api/ZG9jOjMyNTk1MzQx-short-links).
 
 <!-- TODO - Add link -->
-Read the Settle Dynamic Links Documentation
+Read the Short Dynamic Links Documentation
 
 ####
 
