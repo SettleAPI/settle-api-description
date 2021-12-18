@@ -18,7 +18,7 @@ View every command and flag in our command-line interface.
 
 ### Dynamic Links API Reference
 
-Generate short and shareable Settle Dynamic Links from Settle ShortLinks.
+Generate short and shareable [Short Dynamic Links](../merchant-api/ZG9jOjMyNTk1MzQx-short-links#short-dynamic-links) from [ShortLinks](../merchant-api/ZG9jOjMyNTk1MzQx-short-links).
 
 <!-- TODO - Add link -->
 Read the Settle Dynamic Links Documentation
