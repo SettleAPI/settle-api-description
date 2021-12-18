@@ -1,6 +1,6 @@
 # Introduction
 
-With Settle you add superpowers to virtually any business.
+##### With Settle you add superpowers to virtually any business.
 
 With so many opportunities, we’ve made some concrete examples, use cases and best practices for you to be inspired by. After all, simplicity is the ultimate sophistication.
 
