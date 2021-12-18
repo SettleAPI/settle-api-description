@@ -61,8 +61,9 @@ Follow this article to get notified when the Settle SDK for Python is released.
 
 **Status**: Live 🤩
 
-The Settle SDK for PHP is available as a composer package. It's licenced under Apache 2, so feel free to contribute to the code.
+The Settle SDK for PHP is available as a [composer package](https://packagist.org/packages/settle/settle-sdk-php). It's licenced under [Apache 2](https://github.com/SettleAPI/settle-sdk-php/blob/main/LICENSE), so feel free to [contribute to the code](https://github.com/SettleAPI/settle-sdk-php).
 
+<!-- TODO - Add link -->
 Read the reference documentation.
 
  
@@ -79,11 +80,13 @@ Read the reference documentation.
 
 **Status**: Live 🤩
 
-The Settle SDK for Node.js is available as a npm package. It's licenced under Apache 2, so feel free to contribute to the code.
+The Settle SDK for Node.js is available as a [npm package](https://www.npmjs.com/package/settle-sdk-node). It's licenced under [Apache 2](https://github.com/SettleAPI/settle-sdk-php/blob/main/LICENSE), so feel free to [contribute to the code](https://github.com/SettleAPI/settle-sdk-php).
 
+<!-- TODO - Add link -->
 Read the reference documentation.
 
-Tutorial: Verifying Callback Signatures in Node.js
+<!-- TODO - Add link -->
+**Tutorial**: Verifying Callback Signatures in Node.js
 
  
 

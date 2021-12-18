@@ -1,3 +1,43 @@
-# 04-reference-docs
+# Reference Docs
 
-The beginning of an awesome article...
+## Merchant API Reference
+
+View API objects, methods, attributes and responses.
+
+[Read the Settle API Reference Documentation](../merchant-api)
+
+####
+ 
+## Tools
+
+### Settle CLI Reference
+
+View every command and flag in our command-line interface.
+
+> #### Coming soon
+
+### Dynamic Links API Reference
+
+Generate short and shareable Settle Dynamic Links from Settle ShortLinks.
+
+<!-- TODO - Add link -->
+Read the Settle Dynamic Links Documentation
+
+####
+
+## Client-Side Libraries
+
+### Settle.js Reference
+
+Look up objects and methods in our client-side JavaScript library.
+
+> #### Coming soon
+
+ 
+
+## Server-Side Libraries
+
+### Settle SDK for Node.js
+
+<!-- TODO - Add link -->
+Read the Settle SDK for Node.js Documentation
