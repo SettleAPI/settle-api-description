@@ -4,11 +4,11 @@ Vending machines are popular and convenient, except when you are out of cash. Mo
 
 Vending machines are basically the same use case as in-store payments at checkout. Based on our experience, there are basically two alternative vending flows:
 
-1. [Use Case #1](../merchant-api/ZG9jOjMyNjUzNjI2-vending-machines#use-case-1)
+1. [Use Case #1](#use-case-1)
     
     The machine requires a deposit before processing the order, or
 
-2. [Use Case #2](../merchant-api/ZG9jOjMyNjUzNjI2-vending-machines#use-case-2)
+2. [Use Case #2](#use-case-2)
 
     The machine receives the order and delivers the goods after payment. 
 
