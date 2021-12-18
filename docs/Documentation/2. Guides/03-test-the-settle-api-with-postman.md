@@ -196,29 +196,80 @@ Ensure that the code has been copied correctly with paired curly braces and brac
 
 ## Settle Postman Collection
 
-1. Select Postman Resource
+##### 1. Select Postman Resource
 
 To import both the collection and environment directly into Postman, click the `Run in Postman` button for the API which you wish to integrate.
 
 
 API | Postman Resource
 ---------|----------
- Settle Merchant v1 | [![Run in Postman](https://run.pstmn.io/button.svg)](https://god.gw.postman.com/run-collection/10464426-1e7ad8df-e6fb-4342-8a7f-9ee526461dec?action=collection%2Ffork&collection-url=entityId%3D10464426-1e7ad8df-e6fb-4342-8a7f-9ee526461dec%26entityType%3Dcollection%26workspaceId%3De3cce287-88ec-43e1-8eb4-0ee1a1be5d1a#?env%5BSandbox%5D=W3sia2V5IjoiYmFzZV91cmwiLCJ2YWx1ZSI6Imh0dHBzOi8vYXBpLnNhbmRib3guc2V0dGxlLmV1IiwiZW5hYmxlZCI6dHJ1ZX0seyJrZXkiOiJtZXJjaGFudF9pZCIsInZhbHVlIjoiNXJnMWRrazgiLCJlbmFibGVkIjp0cnVlfSx7ImtleSI6InVzZXJfaWQiLCJ2YWx1ZSI6IjR0cWhmeHI0IiwiZW5hYmxlZCI6dHJ1ZX0seyJrZXkiOiJpbnRlZ3JhdG9yX2lkIiwidmFsdWUiOiI3ZTNjYmIxNyIsImVuYWJsZWQiOnRydWV9LHsia2V5Ijoic2V0dGxlbWVudF9hY2NvdW50X2lkIiwidmFsdWUiOiI1cmcxZGtrOCIsImVuYWJsZWQiOnRydWV9LHsia2V5IjoiU0VDUkVUIiwidmFsdWUiOiIyWjQ5X0hvcUVkUHUwVnFHbjZ2eTI2NzkrdFlPVDBGbCIsImVuYWJsZWQiOnRydWV9LHsia2V5IjoiUlNBIiwidmFsdWUiOiIiLCJlbmFibGVkIjp0cnVlfSx7ImtleSI6InJldHVybmVkX2NsaWVudF9pZCIsInZhbHVlIjoiIiwiZW5hYmxlZCI6dHJ1ZX0seyJrZXkiOiJkZWZhdWx0X3JlZGlyZWN0X3VyaSIsInZhbHVlIjoiIiwiZW5hYmxlZCI6dHJ1ZX0seyJrZXkiOiJwb3NfdGlkIiwidmFsdWUiOiIiLCJlbmFibGVkIjp0cnVlfSx7ImtleSI6InJldHVybmVkX3JpZCIsInZhbHVlIjoiIiwiZW5hYmxlZCI6dHJ1ZX0seyJrZXkiOiJwb3NfaWQiLCJ2YWx1ZSI6IiIsImVuYWJsZWQiOnRydWV9LHsia2V5IjoicmVxdWVzdF9kZXNjcmlwdGlvbiIsInZhbHVlIjoiIiwiZW5hYmxlZCI6dHJ1ZX0seyJrZXkiOiJpZGVtcG90ZW5jeV9pZCIsInZhbHVlIjoiIiwiZW5hYmxlZCI6dHJ1ZX0seyJrZXkiOiJjaGF0X3RleHQiLCJ2YWx1ZSI6IiIsImVuYWJsZWQiOnRydWV9LHsia2V5IjoiY3VycmVudExvY2FsVGltZXN0YW1wIiwidmFsdWUiOiIiLCJlbmFibGVkIjp0cnVlfSx7ImtleSI6InRpZCIsInZhbHVlIjoicGFlZTZiaGVxODViIiwiZW5hYmxlZCI6dHJ1ZX0seyJrZXkiOiJzaG9ydGxpbmtfaWQiLCJ2YWx1ZSI6Im1RNzlUIiwiZW5hYmxlZCI6dHJ1ZX0seyJrZXkiOiJzdGF0dXNfY29kZSIsInZhbHVlIjoiNDEzIiwiZW5hYmxlZCI6dHJ1ZX1d)
+ Settle Merchant API v1 | [![Run in Postman](https://run.pstmn.io/button.svg)](https://god.gw.postman.com/run-collection/10464426-1e7ad8df-e6fb-4342-8a7f-9ee526461dec?action=collection%2Ffork&collection-url=entityId%3D10464426-1e7ad8df-e6fb-4342-8a7f-9ee526461dec%26entityType%3Dcollection%26workspaceId%3De3cce287-88ec-43e1-8eb4-0ee1a1be5d1a#?env%5BSandbox%5D=W3sia2V5IjoiYmFzZV91cmwiLCJ2YWx1ZSI6Imh0dHBzOi8vYXBpLnNhbmRib3guc2V0dGxlLmV1IiwiZW5hYmxlZCI6dHJ1ZX0seyJrZXkiOiJtZXJjaGFudF9pZCIsInZhbHVlIjoiNXJnMWRrazgiLCJlbmFibGVkIjp0cnVlfSx7ImtleSI6InVzZXJfaWQiLCJ2YWx1ZSI6IjR0cWhmeHI0IiwiZW5hYmxlZCI6dHJ1ZX0seyJrZXkiOiJpbnRlZ3JhdG9yX2lkIiwidmFsdWUiOiI3ZTNjYmIxNyIsImVuYWJsZWQiOnRydWV9LHsia2V5Ijoic2V0dGxlbWVudF9hY2NvdW50X2lkIiwidmFsdWUiOiI1cmcxZGtrOCIsImVuYWJsZWQiOnRydWV9LHsia2V5IjoiU0VDUkVUIiwidmFsdWUiOiIyWjQ5X0hvcUVkUHUwVnFHbjZ2eTI2NzkrdFlPVDBGbCIsImVuYWJsZWQiOnRydWV9LHsia2V5IjoiUlNBIiwidmFsdWUiOiIiLCJlbmFibGVkIjp0cnVlfSx7ImtleSI6InJldHVybmVkX2NsaWVudF9pZCIsInZhbHVlIjoiIiwiZW5hYmxlZCI6dHJ1ZX0seyJrZXkiOiJkZWZhdWx0X3JlZGlyZWN0X3VyaSIsInZhbHVlIjoiIiwiZW5hYmxlZCI6dHJ1ZX0seyJrZXkiOiJwb3NfdGlkIiwidmFsdWUiOiIiLCJlbmFibGVkIjp0cnVlfSx7ImtleSI6InJldHVybmVkX3JpZCIsInZhbHVlIjoiIiwiZW5hYmxlZCI6dHJ1ZX0seyJrZXkiOiJwb3NfaWQiLCJ2YWx1ZSI6IiIsImVuYWJsZWQiOnRydWV9LHsia2V5IjoicmVxdWVzdF9kZXNjcmlwdGlvbiIsInZhbHVlIjoiIiwiZW5hYmxlZCI6dHJ1ZX0seyJrZXkiOiJpZGVtcG90ZW5jeV9pZCIsInZhbHVlIjoiIiwiZW5hYmxlZCI6dHJ1ZX0seyJrZXkiOiJjaGF0X3RleHQiLCJ2YWx1ZSI6IiIsImVuYWJsZWQiOnRydWV9LHsia2V5IjoiY3VycmVudExvY2FsVGltZXN0YW1wIiwidmFsdWUiOiIiLCJlbmFibGVkIjp0cnVlfSx7ImtleSI6InRpZCIsInZhbHVlIjoicGFlZTZiaGVxODViIiwiZW5hYmxlZCI6dHJ1ZX0seyJrZXkiOiJzaG9ydGxpbmtfaWQiLCJ2YWx1ZSI6Im1RNzlUIiwiZW5hYmxlZCI6dHJ1ZX0seyJrZXkiOiJzdGF0dXNfY29kZSIsInZhbHVlIjoiNDEzIiwiZW5hYmxlZCI6dHJ1ZX1d)
+
+> #### Note
+>
+> If the above buttons do not work, you can download the collections here, respectively:
+>   - [Settle Merchant API v1](https://www.getpostman.com/collections/bb5bc8d26d571f26134c)
 
 
+##### 2. Import Files
+
+After clicking Run in Postman above, follow the steps in the Postman landing page to open the Postman application.
+
+The Postman collection will appear in the left sidebar.
+
+  1. Select the associated environment from the drop-down menu.
+  2. Click the eye to see all variables.
+ 
+
+##### 3. Insert Values
+
+The Postman environment comes prefilled with some values, but there are still some required values which you must enter manually. For a complete overview over such values and where to find them, see [Postman Variable Overview](https://support.settle.eu/hc/en-150/articles/4406890104849-Test-APIs-with-Postman#h_01FFGFEG581SYVCMZ63VDKXFSR).
+
+  - Click `Edit` and paste in values for each variable.
 
 
+### Tabs
+
+Some methods require a body with information that is sent with the request. Settle provides pre-populated test data, but this can be modified.
+
+You might want to make the same request from your own application.
+
+You can generate snippets of code in various languages that will help you do this.
+
+  - Click the `Code` link to open the `Generate code` snippets modal.
 
 
+### Postman Variables Overview
+
+This is an overview of where to obtain Postman values for each of our APIs.
+
+Follow the instructions in [this article](/merchant-api/ZG9jOjMyNTk5ODQ0-set-up-a-business-account) to create and obtain your Sandbox values.
 
 
+#### Common Variables
 
+These variables are required for all Settle APIs.
 
+Variable | Description
+-|-
+api_user_id | `X-Settle-User`
+merchant_id | `X-Settle-Merchant`
 
+#### Merchant API Specific Variables
 
+Variable | Description
+-|-
+mobileNumber | Mobile number which the payment request is sent to. 
+successPrefix | URL for redirecting users after successful payment.
+failurePrefix | URL for redirecting users after failed payment.
+callbackPrefix | Merchant hosted endpoint where Settle will send transaction updates. 
+action | Action to perform on payment request. [What is this?](url)
+currency | The currency used for the payment. [What is this?](../merchant-api/c2NoOjQwNjM0Ng-currency)
 
-
-
+<!-- theme: success -->
+> #### Tip
+>
+> We're always happy to help with code or other questions you might have! Please [submit a request](https://support.settle.eu/hc/en-150/requests/new) to contact us.
 
 
 
