@@ -2,7 +2,7 @@
 
 This use case is based on the premise that you already have a mobile app and that you want to offer Settle as a way for your customers to pay for items or services offered in your app.
 
-The basic flow is:
+### How we would implement this use case
 
 1. With items selected, your customer is ready to pay.
 2. The app presents the `Pay with Settle` button.

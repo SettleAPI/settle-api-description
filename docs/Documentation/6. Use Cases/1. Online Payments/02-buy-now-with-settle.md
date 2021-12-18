@@ -1,7 +1,8 @@
 # Buy Now with Settle
 
 This use case is based on the premise that you already have a webshop (application) and that you want to offer Settle users the ability to buy items from your webshop, blazingly fast, with absolutely no forms to fill or checkout steps.
-This is the basic flow:
+
+### How we would implement this use case
 
 1. With items in the shopping cart, your customer is ready to checkout.
 2. The customer selects ‘Buy Now with Settle’ as their payment option during checkout.

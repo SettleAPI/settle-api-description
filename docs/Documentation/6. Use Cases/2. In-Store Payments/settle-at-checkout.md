@@ -2,7 +2,7 @@
 
 This use case is based on the premise that you already have an Electronic Cash Registry (ECR) or a Payment Terminal (POS) at your physical store checkout, and that the software on that device is enhanced to support Settle.
 
-The basic flow is:
+### How we would implement this use case
 
 1. With items brought to the checkout the customer is ready to pay.
 2. Merchants can choose if they want to accept Settle at the checkout in-store using either:

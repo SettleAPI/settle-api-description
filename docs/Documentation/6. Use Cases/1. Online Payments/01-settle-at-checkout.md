@@ -2,7 +2,7 @@
 
 This use case is based on the premise that you already have a webshop (application) and that you want to offer Settle as a way for your customers to pay at the checkout.
 
-This is the basic flow:
+### How we would implement this use case
 
 1. With items in the shopping cart, the customer is ready to checkout.
 2. A typical checkout requires the customer to sign in, sign up or checkout as a guest. In either case the webshop collects the required customer data (typically shipping information) to create the order that now needs to be paid.
