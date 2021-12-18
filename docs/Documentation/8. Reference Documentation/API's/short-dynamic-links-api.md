@@ -4,10 +4,9 @@ You can use the Short Dynamic Links REST API to generate Short Dynamic Links fro
 
 ## HTTP Request
 
-```http
-POST https://dynamiclinks.settle.dev/api/create
-Content-Type: application/json
-```
+### `POST https://dynamiclinks.settle.dev/api/create`
+
+#
 
 ## Request Body
 
