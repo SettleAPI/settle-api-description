@@ -4,16 +4,18 @@ Vending machines are popular and convenient, except when you are out of cash. Mo
 
 Vending machines are basically the same use case as in-store payments at checkout. Based on our experience, there are basically two alternative vending flows:
 
-#### - [Use Case #1](#use-case-1)
+- #### [Use Case 1](#use-case-1)
     
-    The machine requires a deposit before processing the order, or
+  The machine requires a deposit before processing the order.
 
-#### - [Use Case #2](#use-case-2)
+  #
 
-    The machine receives the order and delivers the goods after payment. 
+- #### [Use Case 2](#use-case-2)
+
+  The machine receives the order and delivers the goods after payment. 
 
 
-## Use Case #1
+## Use Case 1
 
 In the first use case, the machine requires the user to make a payment to the machine before items are selected, delivered and then any additional amount is returned to the customer. Just like adding a sum of money up front, the Customer will make a payment to the machine.
 
@@ -29,7 +31,7 @@ In the first use case, the machine requires the user to make a payment to the ma
 8. The Vending Machine performs a `CAPTURE` for the final amount, effectively releasing the `AUTH`, charging the Customer for the amount of the selected product(s).
 
 
-## Use Case #2
+## Use Case 2
 
 In the second use case, the machine requires no deposit, and can issue a Payment Request for selected products.
 
