@@ -243,7 +243,7 @@ You can generate snippets of code in various languages that will help you do thi
 
 This is an overview of where to obtain Postman values for each of our APIs.
 
-Follow the instructions in [this article](/merchant-api/ZG9jOjMyNTk5ODQ0-set-up-a-business-account) to create and obtain your Sandbox values.
+Follow the instructions in [this article](../merchant-api/ZG9jOjMyNTk5ODQ0-set-up-a-business-account) to create and obtain your Sandbox values.
 
 
 #### Common Variables
