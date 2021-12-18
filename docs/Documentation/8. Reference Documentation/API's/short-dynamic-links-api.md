@@ -1,0 +1,95 @@
+# Short Dynamic Links API
+
+You can use the Short Dynamic Links REST API to generate Short Dynamic Links from ShortLinks. See the [Short Dynamic Links article](../merchant-api/ZG9jOjMyNTk1MzQx-short-links#short-dynamic-links) article to get started.
+
+## HTTP Request
+
+```http
+POST https://dynamiclinks.settle.dev/api/create
+Content-Type: application/json
+```
+
+## Request Body
+
+```json title="Specify the Dynamic Link parameters as a JSON object"
+{
+  "shortLink": "https://settle.eu/s/gSpEb/pos123/",
+  "environment": "production"
+}
+```
+
+### Request Parameters
+
+All parameters are optional unless otherwise specified.
+
+#### General parameters
+
+```json json_schema
+{
+  "title": "merchant.shortLinks.dynamic.create",
+  "type": "object",
+  "properties": {
+    "shortLink": {
+      "type": "string",
+      "description": "Settle [ShortLink](../merchant-api/ZG9jOjMyNTk1MzQx-short-links)."
+    },
+    "environment": {
+      "type": "string",
+      "description": "The environment where you want to create the Short Dynamic Link.",
+      "enum": ["sandbox", "production"]
+    }
+  },
+  "required": ["shortLink", "environment"]
+}
+```
+
+#### Social Meta Tag parameters
+
+```json json_schema
+{
+  "title": "merchant.shortLinks.dynamic.create",
+  "type": "object",
+  "properties": {
+    "socialTitle": {
+      "type": "string",
+      "description": "The title to use when the Dynamic Link is shared in a social post."
+    },
+    "socialDescription": {
+      "type": "string",
+      "description": "The description to use when the Dynamic Link is shared in a social post.",
+    },
+    "socialImageLink": {
+      "type": "string",
+      "description": "The URL to an image related to this link.",
+    }
+  },
+}
+```
+
+## Response Body
+
+```json title="The response to a request is a JSON object"
+{
+  "shortDynamicLink": "https://get.settle.eu/Vv3H",
+  "previewDynamicLink": "https://get.settle.eu/Vv3H?d=1"
+}
+```
+
+### Response Paramaters
+
+```json json_schema
+{
+  "title": "merchant.shortLinks.dynamic.create",
+  "type": "object",
+  "properties": {
+    "shortDynamicLink": {
+      "type": "string",
+      "description": "The generated Dynamic Link."
+    },
+    "previewDynamicLink": {
+      "type": "string",
+      "description": "A link to a flowchart of the Dynamic Link's behavior.",
+    }
+  },
+}
+```
