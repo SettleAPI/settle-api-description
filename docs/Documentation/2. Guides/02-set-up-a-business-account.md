@@ -19,60 +19,74 @@ To develop and test your integration you first need a business account. While no
 >
 > To accept payments or use other features of Settle for Business in production, you need to separately sign up in production.
 
-  1. Go to https://business.sandbox.settle.eu/signup/
+1. Go to https://business.sandbox.settle.eu/signup/
 
-Fill in the following information:
-Country of Business
-Given name
-Surname
+2. Fill in the following information:
 
-Click the Proceed button
+    - Country of Business
+    - Given name
+    - Surname
 
-Next, fill in the following information:
+3. Click the `Proceed` button
 
-Phone number
-Email address
-Choose a password
+4. Next, fill in the following information:
 
-Confirm that you have read, understood and agree to the Settle for Business Agreement and Privacy Policy
+    - Phone number
+    - Email address
+    - Choose a password
 
-and that you agree to be bound by the Settle Merchant Agreement and/or confirm that you have the authority to bind any legal entity that you are representing.
-Click the Sign up button.
- 
+5. Confirm that you have read, understood and agree to the [Settle for Business Agreement](https://business.sandbox.settle.eu/static/pdf/MerchantAgreement.pdf) and [Privacy Policy](https://settle.eu/privacy-policy/)
+    and that you agree to be bound by the Settle Merchant Agreement and/or confirm that you have the authority to     bind any legal entity that you are representing.
 
-3. Describe your Business
-To complete your registration we need your company details.
-Company Number
-Legal Name of Company
-Who owns the company
-Note: While no real documentation has to be provided during the sandbox merchant enrollment, data input such as company number may still need to be formatted properly according to local convention.
+6. Click the `Sign up` button.
 
-Click the Register company button.
- 
 
- 
+## 3. Describe your Business
 
-4. Create your first Shop
+1. To complete your registration we need your company details.
+    - Company Number
+    - Legal Name of Company
+    - Who owns the company
+
+    > #### Note
+    >
+    > While no real documentation has to be provided during the sandbox merchant enrollment, data input such as company number may still need to be formatted properly according to local convention.
+
+2. Click the `Register` company button.
+
+
+## 4. Create your first Shop
+
 Once your company has been registered you must set up at least one Shop.
-Fill in the following information:
-Shop Name
-Shop Type
-Shop Location
 
-Note: You can also upload your Shop logo and provide additional information that is used across the Settle experience for your Customers. If you have existing software or hardware that is provided by one of our Integration Partners, you can select it from the drop-down. Doing so will create a relationship in our system between your Shop and the Integration Partner, enabling them to assist you in further configurations and enable Settle in the software or hardware they provide.
+1. Fill in the following information:
+    - Shop Name
+    - Shop Type
+    - Shop Location
 
-Click the Create your shop button.
+    > #### Note
+    >
+    > You can also upload your Shop logo and provide additional information that is used across the Settle experience for your Customers. If you have existing software or hardware that is provided by one of our Integration Partners, you can select it from the drop-down. Doing so will create a relationship in our system between your Shop and the Integration Partner, enabling them to assist you in further configurations and enable Settle in the software or hardware they provide.
+
+2. Click the `Create your shop` button.
  
 
-5. Create Sandbox API Credentials
+## 5. Create Sandbox API Credentials
+
 Once you have signed up in our Sandbox environment you need to create API Credentials for your Test Merchant.
-Navigate to the Sandbox Business Portal and follow the instructions below.
-In the menu on the left click Integration and then Add key.
-In the pop-up window, give this key a name (for example ‘Test key’) and choose what type of API authentication method you want to use. You can choose to authenticate using keys you generate yourself. Keys that Settle generates for you, or simply a shared secret.
 
-Note: Some API calls require a higher level of authentication than a shared secret, see Authentication levels for more information.
+1. Navigate to the Sandbox Business Portal and follow the instructions below.
 
-RSA2(SHA256) Signature keys: RSA2 key value
-To add a new RSA2 signature, take one of the following steps:
-Prepare an RSA2 key pair and click Add Key > Use your own API keys > Add to upload the public key.
-Click Add Key > Generate API Keys > Add.
+    1. In the menu on the left click Integration and then Add key.
+    2. In the pop-up window, give this key a name (for example ‘Test key’) and choose what type of API authentication method you want to use. You can choose to authenticate using keys you generate yourself. Keys that Settle generates for you, or simply a shared secret.
+
+    > #### Note
+    >
+    > Some API calls require a higher level of authirization than a shared secret, see [API Authentication](../merchant-api/ZG9jOjMyMjU5OTk2-api-authentication) levels for more information.
+
+      #### RSA2(SHA256) Signature keys: RSA2 key value
+
+      To add a new RSA2 signature, take one of the following steps:
+
+      - Prepare an RSA2 key pair and click `Add Key` > `Use your own API keys` > `Add` to upload the public key.
+      - Click `Add Key` > `Generate API Keys` > `Add`.
