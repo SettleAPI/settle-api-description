@@ -34,7 +34,8 @@ Accept payments with Settle on the web using Settle Elements, a set of prebuilt 
 
 **Status**: proposed 📑
 
-[Would you like to help?](support+dev@settle.eu)
+[Would you like to help?](mailto:support+dev@settle.eu)
+
 
  
 
@@ -42,7 +43,7 @@ Accept payments with Settle on the web using Settle Elements, a set of prebuilt 
 
 **Status**: proposed 📑
 
-[Would you like to help?](support+dev@settle.eu)
+[Would you like to help?](mailto:support+dev@settle.eu)
 
 ####
 
@@ -72,7 +73,8 @@ Read the reference documentation.
 
 **Status**: proposed 📑
 
-[Would you like to help?](support+dev@settle.eu)
+[Would you like to help?](mailto:support+dev@settle.eu)
+
 
  
 
@@ -94,7 +96,8 @@ Read the reference documentation.
 
 **Status**: proposed 📑
 
-[Would you like to help?](support+dev@settle.eu)
+[Would you like to help?](mailto:support+dev@settle.eu)
+
 
  
 
@@ -102,7 +105,8 @@ Read the reference documentation.
 
 **Status**: proposed 📑
 
-[Would you like to help?](support+dev@settle.eu)
+[Would you like to help?](mailto:support+dev@settle.eu)
+
 
  
 
@@ -110,7 +114,8 @@ Read the reference documentation.
 
 **Status**: proposed 📑
 
-[Would you like to help?](support+dev@settle.eu)
+[Would you like to help?](mailto:support+dev@settle.eu)
+
 
 ####
 
@@ -120,7 +125,8 @@ Read the reference documentation.
 
 **Status**: proposed 📑
 
-[Would you like to help?](support+dev@settle.eu)
+[Would you like to help?](mailto:support+dev@settle.eu)
+
 
  
 
@@ -128,7 +134,8 @@ Read the reference documentation.
 
 **Status**: proposed 📑
 
-[Would you like to help?](support+dev@settle.eu)
+[Would you like to help?](mailto:support+dev@settle.eu)
+
 
  
 
@@ -136,7 +143,8 @@ Read the reference documentation.
 
 **Status**: proposed 📑
 
-[Would you like to help?](support+dev@settle.eu)
+[Would you like to help?](mailto:support+dev@settle.eu)
+
 
  
 
@@ -144,7 +152,8 @@ Read the reference documentation.
 
 **Status**: proposed 📑
 
-[Would you like to help?](support+dev@settle.eu)
+[Would you like to help?](mailto:support+dev@settle.eu)
+
 
  
 
@@ -152,7 +161,8 @@ Read the reference documentation.
 
 Status: proposed 📑
 
-[Would you like to help?](support+dev@settle.eu)
+[Would you like to help?](mailto:support+dev@settle.eu)
+
 
  
 
@@ -160,7 +170,8 @@ Status: proposed 📑
 
 **Status**: proposed 📑
 
-[Would you like to help?](support+dev@settle.eu)
+[Would you like to help?](mailto:support+dev@settle.eu)
+
 
  
 
@@ -168,4 +179,4 @@ Status: proposed 📑
 
 **Status**: proposed 📑
 
-[Would you like to help?](support+dev@settle.eu)
+[Would you like to help?](mailto:support+dev@settle.eu)
