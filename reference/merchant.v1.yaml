@@ -87,7 +87,7 @@ servers:
   - url: 'https://api.settle.eu/merchant/v1'
     description: Production
 paths:
-  /api_key/:
+  /api_key:
     get:
       summary: merchant.apiKeys.list
       tags:
