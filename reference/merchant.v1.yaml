@@ -114,17 +114,10 @@ paths:
         '409':
           description: Conflict
       description: Create API Key for the Merchant given in the `X-Settle-Merchant` header.
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/apiKeys.create'
-          application/xml:
-            schema:
-              type: object
-              properties: {}
       tags:
         - Authentication
+      requestBody:
+        $ref: '#/components/requestBodies/apiKeys.create'
   '/api_key/{api_user_id}':
     parameters:
       - $ref: '#/components/parameters/api_user_id'
@@ -2466,6 +2459,47 @@ components:
               - customer
               - scope
       description: Create Permission Request
+    apiKeys.create:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+                description: User ID
+              label:
+                type: string
+                description: User given name to API Key.
+              key_type:
+                type: string
+                enum:
+                  - secret
+                  - rsa_generated
+                  - rsa_user
+                description: Type of API Key to create.
+              roles:
+                type: string
+                description: 'Role. Value in user, superuser (case insensitive).'
+                enum:
+                  - 'null'
+                  - user
+                  - superuser
+                  - integrator
+                default: 'null'
+              netmask:
+                type: string
+                description: 'Limit user connections by netmask, for example 192.168.1.0/24.'
+              secret:
+                type: string
+                description: Secret used when authenticating with Settle.
+                minLength: 8
+                maxLength: 64
+              pubkey:
+                $ref: ../models/PubKey.yaml
+            required:
+              - id
+              - key_type
   responses:
     '200':
       description: OK
