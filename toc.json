@@ -1,28 +1,13 @@
 {
   "items": [
     {
-      "type": "item",
-      "title": "Settle API Specification",
-      "uri": "README.md"
-    },
-    {
       "type": "divider",
       "title": "Documentation"
     },
     {
       "type": "group",
-      "title": "Introduction",
+      "title": "1. Introduction",
       "items": [
-        {
-          "type": "item",
-          "title": "Interacting with the Settle API",
-          "uri": "docs/Documentation/1. Introduction/01-interacting-with-the-settle-api.md"
-        },
-        {
-          "type": "item",
-          "title": "API Authentication",
-          "uri": "docs/Documentation/1. Introduction/02-api-authentication.md"
-        },
         {
           "type": "item",
           "title": "Callbacks",
@@ -62,12 +47,22 @@
           "type": "item",
           "title": "Developer Support",
           "uri": "docs/Documentation/1. Introduction/10-developer-support.md"
+        },
+        {
+          "type": "item",
+          "title": "Interacting with the Settle API",
+          "uri": "docs/Documentation/1. Introduction/a.interacting-with-the-settle-api.md"
+        },
+        {
+          "type": "item",
+          "title": "API Authentication",
+          "uri": "docs/Documentation/1. Introduction/b.api-authentication.md"
         }
       ]
     },
     {
       "type": "group",
-      "title": "Guides",
+      "title": "2. Guides",
       "items": [
         {
           "type": "item",
@@ -293,7 +288,7 @@
     },
     {
       "type": "item",
-      "title": "merchant.v1.yaml",
+      "title": "merchant",
       "uri": "reference/merchant.v1.yaml"
     },
     {
