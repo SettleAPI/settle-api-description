@@ -1,6 +1,11 @@
 {
   "items": [
     {
+      "type": "item",
+      "title": "Welcome to the Settle API Docs!",
+      "uri": "a.introduction.md"
+    },
+    {
       "type": "divider",
       "title": "1. Introduction"
     },
