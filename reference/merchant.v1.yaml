@@ -87,7 +87,7 @@ servers:
   - url: 'https://api.settle.eu/merchant/v1'
     description: Production
 paths:
-  /api_key:
+  /api_key/:
     get:
       summary: merchant.apiKeys.list
       tags:
@@ -118,6 +118,7 @@ paths:
         - Authentication
       requestBody:
         $ref: '#/components/requestBodies/apiKeys.create'
+    parameters: []
   '/api_key/{api_user_id}':
     parameters:
       - $ref: '#/components/parameters/api_user_id'
