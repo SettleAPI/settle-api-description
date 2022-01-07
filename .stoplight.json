@@ -14,7 +14,8 @@
       ]
     },
     "markdown": {
-      "rootDir": "docs"
+      "rootDir": ".",
+      "include": ["**/*.md"]
     },
     "image": {
       "rootDir": "assets/images"
