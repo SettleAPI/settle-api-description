@@ -238,13 +238,8 @@
       "items": [
         {
           "type": "item",
-          "title": "merchant",
+          "title": "Settle Merchant API",
           "uri": "reference/merchant.v1.yaml"
-        },
-        {
-          "type": "item",
-          "title": "Settle Merchant Api",
-          "uri": "docs/8. Reference Documentation/API's/settle-merchant-api.md"
         },
         {
           "type": "item",
@@ -271,16 +266,7 @@
     },
     {
       "type": "divider",
-      "title": "APIS"
-    },
-    {
-      "type": "item",
-      "title": "merchant",
-      "uri": "reference/merchant.v1.yaml"
-    },
-    {
-      "type": "divider",
-      "title": "Schemas"
+      "title": "Models"
     },
     {
       "type": "item",
