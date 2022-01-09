@@ -241,28 +241,12 @@
     },
     {
       "type": "group",
-      "title": "API's",
-      "items": [
-        {
-          "type": "item",
-          "title": "Settle Merchant Api",
-          "uri": "https://settleapi.stoplight.io/docs/settleapis/YXBpOjg1NDE5NDI-merchant-v1-yaml"
-        },
-        {
-          "type": "item",
-          "title": "Short Dynamic Links API",
-          "uri": "docs/7. Reference Documentation/API's/short-dynamic-links-api.md"
-        }
-      ]
-    },
-    {
-      "type": "group",
       "title": "SDK's",
       "items": [
         {
           "type": "item",
           "title": "Settle SDK for Node",
-          "uri": "docs/7. Reference Documentation/SDK's/settle-sdk-node.md"
+          "uri": "reference/merchant.v1.yaml"
         },
         {
           "type": "item",
@@ -272,13 +256,20 @@
       ]
     },
     {
-      "type": "divider",
-      "title": "APIS"
-    },
-    {
-      "type": "item",
-      "title": "merchant",
-      "uri": "reference/merchant.v1.yaml"
+      "type": "group",
+      "title": "API's",
+      "items": [
+        {
+          "type": "item",
+          "title": "Settle Merchant Api",
+          "uri": "docs/YXBpOjg1NDE5NDI-merchant"
+        },
+        {
+          "type": "item",
+          "title": "Short Dynamic Links API",
+          "uri": "docs/7. Reference Documentation/API's/short-dynamic-links-api.md"
+        }
+      ]
     },
     {
       "type": "divider",
