@@ -5,10 +5,10 @@ Integrate Settle into any application, software or hardware. Accept payments, id
 ## Jump right in
 Here are some popular use-cases for your inspiration.
 
-Settle at Checkout | Use Case 2 | Use Case 3
+Settle at Checkout | Buy Now with Settle | Settle with a Button
 :-------:|:--------:|:-------:
- This use case is based on the premise that you already have a webshop (application) and that you want to offer Settle as a way for your customers to pay at the checkout. | Some bullshit text to explain. | Some bullshit text to explain.
- [Learn more](./settleapis/ZG9jOjM0NzQwMDIy-settle-at-checkout) | IMG | IMG
+ This use case is based on the premise that you already have a webshop (application) and that you want to offer Settle as a way for your customers to pay at the checkout. | This use case is based on the premise that you already have a webshop (application) and that you want to offer Settle users the ability to buy items from your webshop, blazingly fast, with absolutely no forms to fill or checkout steps | Some bullshit text to explain.
+ [Learn more](./ZG9jOjM0NzQwMDIy-settle-at-checkout) | [Learn more](./ZG9jOjM0NzQwMDIz-buy-now-with-settle) | [Learn more](./ZG9jOjM0NzQwMDI2-settle-with-a-button)
 
 
 ## Why integrate?
