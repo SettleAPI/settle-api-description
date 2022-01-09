@@ -3,11 +3,11 @@
     {
       "type": "item",
       "title": "Welcome to the Settle API Docs!",
-      "uri": "a.introduction.md"
+      "uri": "a.welcome.md"
     },
     {
       "type": "divider",
-      "title": "1. Introduction"
+      "title": "Introduction"
     },
     {
       "type": "item",
@@ -61,7 +61,7 @@
     },
     {
       "type": "divider",
-      "title": "2. Guides"
+      "title": "Guides"
     },
     {
       "type": "item",
@@ -85,16 +85,7 @@
     },
     {
       "type": "divider",
-      "title": "4. API"
-    },
-    {
-      "type": "item",
-      "title": "Merchant Short Links",
-      "uri": "docs/4. API/merchant.shortLinks.md"
-    },
-    {
-      "type": "divider",
-      "title": "5. Developer Tools"
+      "title": "Developer Tools"
     },
     {
       "type": "item",
@@ -128,7 +119,7 @@
     },
     {
       "type": "divider",
-      "title": "6. Use Cases"
+      "title": "Use Cases"
     },
     {
       "type": "item",
@@ -216,7 +207,7 @@
     },
     {
       "type": "divider",
-      "title": "7. Value-Added Services"
+      "title": "Value-Added Services"
     },
     {
       "type": "item",
