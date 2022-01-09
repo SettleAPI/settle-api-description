@@ -320,7 +320,7 @@ All requests to the Settle API must include an `X-Settle-User` header.
 
 API Users are assigned and created by the Merchant through the Settle for Business portal, or by the Integrator using the user endpoint.
 
-Each API User has an ID unique to that Merchant and is assigned a [JSON Web Token (JWT)](./settleapis/ZG9jOjM0NzM5OTk4-api-authentication#authentication-using-jwt-secret) and/or a [RSA PRIVATE KEY](./ZG9jOjM0NzM5OTk4-api-authentication#authentication-using-rsa-key) that is used for authentication. 
+Each API User has an ID unique to that Merchant and is assigned a [JSON Web Token (JWT)](./ZG9jOjM0NzM5OTk4-api-authentication#authentication-using-jwt-secret) and/or a [RSA PRIVATE KEY](./ZG9jOjM0NzM5OTk4-api-authentication#authentication-using-rsa-key) that is used for authentication. 
 
 <!-- theme: success -->
 > #### Tip
