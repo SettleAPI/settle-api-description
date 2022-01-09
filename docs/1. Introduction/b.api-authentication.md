@@ -123,7 +123,7 @@ POST|http://server.test/some/resource/|X-Settle-CONTENT-DIGEST=SHA256=oWVxV3hhr8
 
 ## Settle SDKs
 
-Our SDKs simplifies calling the Settle APIs by handling signing and authorization. [Learn more about them here](./ZG9jOjM0NzQwMDEz-libraries-and-ui-components#server-side-libraries).
+Our SDKs simplifies calling the Settle APIs by handling signing and authorization. [Learn more about them here](./ZG9jOjM0ODE0Nzc3-libraries-and-ui-components#server-side-libraries).
 
 
 
