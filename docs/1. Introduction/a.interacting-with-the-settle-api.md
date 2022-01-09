@@ -118,7 +118,7 @@ Code | Status | Description
 
 ## Schema Definitions
 
-All resources in the Settle API are documented in the [Settle API Reference](https://settleapi.stoplight.io/docs/merchant-api), with input and output schema definitions, and with the expected structure of input and output data. Exploring the the POS creation method is a good way to understand schemas.
+All resources in the Settle API are documented in the [Settle API Reference](reference/merchant.v1.yaml), with input and output schema definitions, and with the expected structure of input and output data. Exploring the the POS creation method is a good way to understand schemas.
 
 The POS creation method defines the following input schema:
 
