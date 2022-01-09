@@ -6,13 +6,13 @@
       "uri": "a.welcome.md"
     },
     {
+      "type": "divider",
+      "title": "Introduction"
+    },
+    {
       "type": "item",
       "title": "Interacting with the Settle API",
       "uri": "docs/1. Introduction/a.interacting-with-the-settle-api.md"
-    },
-    {
-      "type": "divider",
-      "title": "Introduction"
     },
     {
       "type": "item",
