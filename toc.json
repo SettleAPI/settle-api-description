@@ -246,7 +246,7 @@
         {
           "type": "item",
           "title": "Settle SDK for Node",
-          "uri": "reference/merchant.v1.yaml"
+          "uri": "docs/7. Reference Documentation/SDK's/settle-sdk-node.md"
         },
         {
           "type": "item",
@@ -262,7 +262,7 @@
         {
           "type": "item",
           "title": "Settle Merchant Api",
-          "uri": "docs/YXBpOjg1NDE5NDI-merchant"
+          "uri": "reference/merchant.v1.yaml"
         },
         {
           "type": "item",
