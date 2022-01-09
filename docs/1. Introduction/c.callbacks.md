@@ -128,4 +128,4 @@ If the client has no signature verification or is using a protocol for callbacks
 
 ### 2. Verify the callback signature
 For some protocols, like HTTP and HTTPS, it is specified that Settle signs the callback. If the client verifies the signature according to the specified signature method, any data sent with the callback can be used safely.
-[Learn more about verifying callback signatures from Settle.](./ZG9jOjM0NzQwMDAw-verifying-signatures-from-settle)
+[Learn more about verifying callback signatures from Settle.](./ZG9jOjM0ODE0NTg4-verifying-signatures-from-settle)
