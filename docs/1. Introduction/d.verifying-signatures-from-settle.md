@@ -18,5 +18,5 @@ We also recommend looking at the tutorial [Verifying Callback Signatures in Node
 
 You can download the Settle Verification Public Keys below:
 
-- [settle-verification-sandbox.pem](https://support.settle.eu/hc/en-150/article_attachments/4408649076369/settle-verification-sandbox.pem)
-- [settle-verification-prod.pem](https://support.settle.eu/hc/en-150/article_attachments/4408993681809/settle-verification-prod.pem)
+- [settle-verification-sandbox.pem](https://github.com/SettleAPI/settle-api-specification/blob/prod/docs/files/settle-verification-sandbox.pem)
+- [settle-verification-prod.pem](https://github.com/SettleAPI/settle-api-specification/blob/prod/docs/files/settle-verification-prod.pem)
