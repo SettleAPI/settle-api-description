@@ -18,7 +18,7 @@ Besides adding superpowers to a business, Settle offers developers a financial r
 Coding is fun, but sometimes no coding is better. Check out our ready made business tools ([Settle by Name](https://support.settle.eu/hc/en-150/articles/360002251057-Settle-by-Name), [Settle by QR](https://support.settle.eu/hc/en-150/articles/360020794917-Settle-by-QR) and [Settle Request](https://support.settle.eu/hc/en-150/articles/360012440258-Settle-Request)) that require zero integration work.
 
 ### Copy our code
-We have plenty of ready made, open source code that you can fork and use as a springboard for your own integration. Check out our [sample integrations](./ZG9jOjM0NzQwMDE0-sample-integrations), [libraries](/ZG9jOjM0NzQwMDEz-libraries-and-ui-components) and [UI components](/ZG9jOjM0NzQwMDEz-libraries-and-ui-components).
+We have plenty of ready made, open source code that you can fork and use as a springboard for your own integration. Check out our [sample integrations](./ZG9jOjM0NzQwMDE0-sample-integrations), [libraries](./ZG9jOjM0NzQwMDEz-libraries-and-ui-components) and [UI components](./ZG9jOjM0NzQwMDEz-libraries-and-ui-components).
 
 
 
