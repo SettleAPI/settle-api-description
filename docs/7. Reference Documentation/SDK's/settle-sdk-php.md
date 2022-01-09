@@ -103,4 +103,7 @@ $dynamic_link = $settle_client->createDynamicLink([
     'shortLink' => 'https://settle.eu/s/gSpEb/pos123/'
 ]);
 ```
-For more options refer to the [documentation](./ZG9jOjM0ODE0Nzk4-short-dynamic-links-api) 
+For more options refer to the [documentation](./ZG9jOjM0ODE0Nzk4-short-dynamic-links-api)
+
+### License
+[Apache 2](https://github.com/SettleAPI/settle-sdk-php/blob/master/LICENSE) © [Settle Group](https://settle.eu/) / [Daniel Zahariev](https://github.com/daniel-zahariev)
