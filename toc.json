@@ -6,8 +6,18 @@
       "uri": "a.welcome.md"
     },
     {
+      "type": "item",
+      "title": "Interacting with the Settle API",
+      "uri": "docs/1. Introduction/a.interacting-with-the-settle-api.md"
+    },
+    {
       "type": "divider",
       "title": "Introduction"
+    },
+    {
+      "type": "item",
+      "title": "API Authentication",
+      "uri": "docs/1. Introduction/b.api-authentication.md"
     },
     {
       "type": "item",
@@ -48,16 +58,6 @@
       "type": "item",
       "title": "Developer Support",
       "uri": "docs/1. Introduction/10-developer-support.md"
-    },
-    {
-      "type": "item",
-      "title": "Interacting with the Settle API",
-      "uri": "docs/1. Introduction/a.interacting-with-the-settle-api.md"
-    },
-    {
-      "type": "item",
-      "title": "API Authentication",
-      "uri": "docs/1. Introduction/b.api-authentication.md"
     },
     {
       "type": "divider",
