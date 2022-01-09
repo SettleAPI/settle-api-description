@@ -14,7 +14,9 @@ An easy to use **SDK** for **PHP** with all the best practices to kickstart your
 
 ## Usage
 
-```php title="The library provides a basic Client class that handles the communication with the Settel REST API"
+The library provides a basic Client class that handles the communication with the Settel REST API:  
+
+```php
 $settle_client = new SettleApiClient(
     SETTLE_MERCHANT_ID,
     SETTLE_USER_ID,
