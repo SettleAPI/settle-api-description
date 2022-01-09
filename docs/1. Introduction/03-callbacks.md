@@ -105,3 +105,26 @@ See the [data schema for Payment Requests](../merchant-api/b3A6ODY4MjgyNA-mercha
 
 
 ## Security considerations
+
+One important criterion for the Settle APIs is that the responsibility for security should mostly fall on the server (Settle), and not the client. However, when callbacks are concerned, the client is responsible to verify the origin of the data sent with the callback before using it.
+
+There are two ways to do this:
+
+1. Validation of message URI
+If the client has no signature verification or is using a protocol for callbacks without signature support, the callback can be verified using the following procedure:
+
+- Verify that the hostname in the message URI found in the meta part of the uri field is a settle.eu sub-domain, and that the URI is HTTPS, iI.e. check that the URI starts with "https:" and that the hostname ends with ".settle.eu".
+
+  Example of a valid URI:
+  https://api.settle.eu/merchant/v1/
+ 
+
+- Retrieve the message through an HTTPS GET request to the message URI using an HTTPS client library configured to verify SSL certificates. The retrieved message can safely be used, as its origin has been verified through HTTPS.
+
+> #### Note
+>
+> Some of our test environments have hostnames that are not a sub-domain of ".settle.eu", in which case this method will not work.
+ 
+
+2. Verify the callback signature
+For some protocols, like HTTP and HTTPS, it is specified that Settle signs the callback. If the client verifies the signature according to the specified signature method, any data sent with the callback can be used safely. [Learn more about verifying callback signatures from Settle.](./ZG9jOjM0NzQwMDAw-verifying-signatures-from-settle)
