@@ -268,247 +268,253 @@
           "type": "item",
           "title": "Short Dynamic Links API",
           "uri": "docs/7. Reference Documentation/API's/short-dynamic-links-api.md"
+        },
+        {
+          "type": "group",
+          "title": "Models",
+          "items": [
+            {
+              "type": "item",
+              "title": "AccessTokenResponse",
+              "uri": "models/AccessTokenResponse.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Capture",
+              "uri": "models/Capture.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Currency",
+              "uri": "models/Currency.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Cursor",
+              "uri": "models/Cursor.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Date",
+              "uri": "models/Date.yaml"
+            },
+            {
+              "type": "item",
+              "title": "DateTime",
+              "uri": "models/DateTime.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Fee",
+              "uri": "models/Fee.yaml"
+            },
+            {
+              "type": "item",
+              "title": "IdentityDocumentation",
+              "uri": "models/IdentityDocumentation.yaml"
+            },
+            {
+              "type": "item",
+              "title": "JSON",
+              "uri": "models/JSON.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "LineItem",
+              "uri": "models/LineItem.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "LineItemMetadata",
+              "uri": "models/LineItemMetadata.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Location",
+              "uri": "models/Location.yaml"
+            },
+            {
+              "type": "item",
+              "title": "MerchantProfileRegistration",
+              "uri": "models/MerchantProfileRegistration.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Money",
+              "uri": "models/Money.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "MoneyInteger",
+              "uri": "models/MoneyInteger.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Name",
+              "uri": "models/Name.yaml"
+            },
+            {
+              "type": "item",
+              "title": "NameResponse",
+              "uri": "models/NameResponse.yaml"
+            },
+            {
+              "type": "item",
+              "title": "NdbKey",
+              "uri": "models/NdbKey.yaml"
+            },
+            {
+              "type": "item",
+              "title": "NullableBoolean",
+              "uri": "models/NullableBoolean.yaml"
+            },
+            {
+              "type": "item",
+              "title": "PaymentRequestLink",
+              "uri": "models/PaymentRequestLink.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "PaymentRequestListItem",
+              "uri": "models/PaymentRequestListItem.yaml"
+            },
+            {
+              "type": "item",
+              "title": "PayoutDetail",
+              "uri": "models/PayoutDetail.yaml"
+            },
+            {
+              "type": "item",
+              "title": "PersonIdentifier",
+              "uri": "models/PersonIdentifier.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Product",
+              "uri": "models/Product.yaml"
+            },
+            {
+              "type": "item",
+              "title": "ProductSalesTable",
+              "uri": "models/ProductSalesTable.yaml"
+            },
+            {
+              "type": "item",
+              "title": "ProductSalesTableEntry",
+              "uri": "models/ProductSalesTableEntry.yaml"
+            },
+            {
+              "type": "item",
+              "title": "PubKey",
+              "uri": "models/PubKey.yaml"
+            },
+            {
+              "type": "item",
+              "title": "QuantitySum",
+              "uri": "models/QuantitySum.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Refund",
+              "uri": "models/Refund.yaml"
+            },
+            {
+              "type": "item",
+              "title": "ReportSummary",
+              "uri": "models/ReportSummary.yaml"
+            },
+            {
+              "type": "item",
+              "title": "RunningSum",
+              "uri": "models/RunningSum.yaml"
+            },
+            {
+              "type": "item",
+              "title": "SalesSummaryProduct",
+              "uri": "models/SalesSummaryProduct.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Scope",
+              "uri": "models/Scope.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Select",
+              "uri": "models/Select.yaml"
+            },
+            {
+              "type": "item",
+              "title": "SelectMultiple",
+              "uri": "models/SelectMultiple.yaml"
+            },
+            {
+              "type": "item",
+              "title": "SettlementAccountFrequency",
+              "uri": "models/SettlementAccountFrequency.yaml"
+            },
+            {
+              "type": "item",
+              "title": "SettlementListItem",
+              "uri": "models/SettlementListItem.yaml"
+            },
+            {
+              "type": "item",
+              "title": "SettlementListReportContext",
+              "uri": "models/SettlementListReportContext.yaml"
+            },
+            {
+              "type": "item",
+              "title": "SettlementListSummary",
+              "uri": "models/SettlementListSummary.yaml"
+            },
+            {
+              "type": "item",
+              "title": "SettlementPayout",
+              "uri": "models/SettlementPayout.yaml"
+            },
+            {
+              "type": "item",
+              "title": "ShippingAdddress",
+              "uri": "models/ShippingAddress.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Sum",
+              "uri": "models/Sum.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Time",
+              "uri": "models/Time.yaml"
+            },
+            {
+              "type": "item",
+              "title": "TimeDelta",
+              "uri": "models/TimeDelta.yaml"
+            },
+            {
+              "type": "item",
+              "title": "UserInfo",
+              "uri": "models/UserInfo.yaml"
+            },
+            {
+              "type": "item",
+              "title": "VatSalesTable",
+              "uri": "models/VatSalesTable.yaml"
+            },
+            {
+              "type": "item",
+              "title": "VatSalesTableEntry",
+              "uri": "models/VatSalesTableEntry.yaml"
+            }
+          ]
         }
       ]
     },
     {
       "type": "divider",
       "title": "Schemas"
-    },
-    {
-      "type": "item",
-      "title": "AccessTokenResponse",
-      "uri": "models/AccessTokenResponse.v1.yaml"
-    },
-    {
-      "type": "item",
-      "title": "Capture",
-      "uri": "models/Capture.yaml"
-    },
-    {
-      "type": "item",
-      "title": "Currency",
-      "uri": "models/Currency.v1.yaml"
-    },
-    {
-      "type": "item",
-      "title": "Cursor",
-      "uri": "models/Cursor.yaml"
-    },
-    {
-      "type": "item",
-      "title": "Date",
-      "uri": "models/Date.yaml"
-    },
-    {
-      "type": "item",
-      "title": "DateTime",
-      "uri": "models/DateTime.yaml"
-    },
-    {
-      "type": "item",
-      "title": "Fee",
-      "uri": "models/Fee.yaml"
-    },
-    {
-      "type": "item",
-      "title": "IdentityDocumentation",
-      "uri": "models/IdentityDocumentation.yaml"
-    },
-    {
-      "type": "item",
-      "title": "JSON",
-      "uri": "models/JSON.v1.yaml"
-    },
-    {
-      "type": "item",
-      "title": "LineItem",
-      "uri": "models/LineItem.v1.yaml"
-    },
-    {
-      "type": "item",
-      "title": "LineItemMetadata",
-      "uri": "models/LineItemMetadata.v1.yaml"
-    },
-    {
-      "type": "item",
-      "title": "Location",
-      "uri": "models/Location.yaml"
-    },
-    {
-      "type": "item",
-      "title": "MerchantProfileRegistration",
-      "uri": "models/MerchantProfileRegistration.yaml"
-    },
-    {
-      "type": "item",
-      "title": "Money",
-      "uri": "models/Money.v1.yaml"
-    },
-    {
-      "type": "item",
-      "title": "MoneyInteger",
-      "uri": "models/MoneyInteger.v1.yaml"
-    },
-    {
-      "type": "item",
-      "title": "Name",
-      "uri": "models/Name.yaml"
-    },
-    {
-      "type": "item",
-      "title": "NameResponse",
-      "uri": "models/NameResponse.yaml"
-    },
-    {
-      "type": "item",
-      "title": "NdbKey",
-      "uri": "models/NdbKey.yaml"
-    },
-    {
-      "type": "item",
-      "title": "NullableBoolean",
-      "uri": "models/NullableBoolean.yaml"
-    },
-    {
-      "type": "item",
-      "title": "PaymentRequestLink",
-      "uri": "models/PaymentRequestLink.v1.yaml"
-    },
-    {
-      "type": "item",
-      "title": "PaymentRequestListItem",
-      "uri": "models/PaymentRequestListItem.yaml"
-    },
-    {
-      "type": "item",
-      "title": "PayoutDetail",
-      "uri": "models/PayoutDetail.yaml"
-    },
-    {
-      "type": "item",
-      "title": "PersonIdentifier",
-      "uri": "models/PersonIdentifier.v1.yaml"
-    },
-    {
-      "type": "item",
-      "title": "Product",
-      "uri": "models/Product.yaml"
-    },
-    {
-      "type": "item",
-      "title": "ProductSalesTable",
-      "uri": "models/ProductSalesTable.yaml"
-    },
-    {
-      "type": "item",
-      "title": "ProductSalesTableEntry",
-      "uri": "models/ProductSalesTableEntry.yaml"
-    },
-    {
-      "type": "item",
-      "title": "PubKey",
-      "uri": "models/PubKey.yaml"
-    },
-    {
-      "type": "item",
-      "title": "QuantitySum",
-      "uri": "models/QuantitySum.yaml"
-    },
-    {
-      "type": "item",
-      "title": "Refund",
-      "uri": "models/Refund.yaml"
-    },
-    {
-      "type": "item",
-      "title": "ReportSummary",
-      "uri": "models/ReportSummary.yaml"
-    },
-    {
-      "type": "item",
-      "title": "RunningSum",
-      "uri": "models/RunningSum.yaml"
-    },
-    {
-      "type": "item",
-      "title": "SalesSummaryProduct",
-      "uri": "models/SalesSummaryProduct.yaml"
-    },
-    {
-      "type": "item",
-      "title": "Scope",
-      "uri": "models/Scope.v1.yaml"
-    },
-    {
-      "type": "item",
-      "title": "Select",
-      "uri": "models/Select.yaml"
-    },
-    {
-      "type": "item",
-      "title": "SelectMultiple",
-      "uri": "models/SelectMultiple.yaml"
-    },
-    {
-      "type": "item",
-      "title": "SettlementAccountFrequency",
-      "uri": "models/SettlementAccountFrequency.yaml"
-    },
-    {
-      "type": "item",
-      "title": "SettlementListItem",
-      "uri": "models/SettlementListItem.yaml"
-    },
-    {
-      "type": "item",
-      "title": "SettlementListReportContext",
-      "uri": "models/SettlementListReportContext.yaml"
-    },
-    {
-      "type": "item",
-      "title": "SettlementListSummary",
-      "uri": "models/SettlementListSummary.yaml"
-    },
-    {
-      "type": "item",
-      "title": "SettlementPayout",
-      "uri": "models/SettlementPayout.yaml"
-    },
-    {
-      "type": "item",
-      "title": "ShippingAdddress",
-      "uri": "models/ShippingAddress.yaml"
-    },
-    {
-      "type": "item",
-      "title": "Sum",
-      "uri": "models/Sum.yaml"
-    },
-    {
-      "type": "item",
-      "title": "Time",
-      "uri": "models/Time.yaml"
-    },
-    {
-      "type": "item",
-      "title": "TimeDelta",
-      "uri": "models/TimeDelta.yaml"
-    },
-    {
-      "type": "item",
-      "title": "UserInfo",
-      "uri": "models/UserInfo.yaml"
-    },
-    {
-      "type": "item",
-      "title": "VatSalesTable",
-      "uri": "models/VatSalesTable.yaml"
-    },
-    {
-      "type": "item",
-      "title": "VatSalesTableEntry",
-      "uri": "models/VatSalesTableEntry.yaml"
     }
   ]
 }
