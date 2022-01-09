@@ -12,7 +12,7 @@ To simplify the task of verifying signatures from Settle, [we recommend checking
 
 ## Tutorial
 
-We also recommend looking at the tutorial [Verifying Callback Signatures in Node.js](./ZG9jOjM0ODE0NTg4-verifying-signatures-from-settle).
+We also recommend looking at the tutorial [Verifying Callback Signatures in Node.js](./ZG9jOjM0ODE0NTc3-verifying-callback-signatures-with-node-js).
 
 ## Settle Verification Public Keys
 
