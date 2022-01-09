@@ -3,11 +3,11 @@
     {
       "type": "item",
       "title": "Welcome to the Settle API Docs!",
-      "uri": "a.welcome.md"
+      "uri": "docs/a.welcome.md"
     },
     {
       "type": "divider",
-      "title": "Introduction"
+      "title": "1. Introduction"
     },
     {
       "type": "item",
@@ -22,70 +22,90 @@
     {
       "type": "item",
       "title": "Callbacks",
-      "uri": "docs/1. Introduction/03-callbacks.md"
+      "uri": "docs/1. Introduction/c.callbacks.md"
     },
     {
       "type": "item",
       "title": "Verifying signatures from Settle",
-      "uri": "docs/1. Introduction/04-verifying-signatures-from-settle.md"
+      "uri": "docs/1. Introduction/d.verifying-signatures-from-settle.md"
     },
     {
       "type": "item",
       "title": "Attachments",
-      "uri": "docs/1. Introduction/05-attachments.md"
-    },
-    {
-      "type": "item",
-      "title": "Ledgers",
-      "uri": "docs/1. Introduction/06-ledgers.md"
-    },
-    {
-      "type": "item",
-      "title": "Settlements",
-      "uri": "docs/1. Introduction/07-settlement.md"
+      "uri": "docs/1. Introduction/e.attachments.md"
     },
     {
       "type": "item",
       "title": "Permission Request",
-      "uri": "docs/1. Introduction/08-permission-requests.md"
+      "uri": "docs/1. Introduction/e.permission-requests.md"
+    },
+    {
+      "type": "item",
+      "title": "Ledgers",
+      "uri": "docs/1. Introduction/f.ledgers.md"
+    },
+    {
+      "type": "item",
+      "title": "Settlements",
+      "uri": "docs/1. Introduction/g.settlement.md"
     },
     {
       "type": "item",
       "title": "ShortLinks",
-      "uri": "docs/1. Introduction/09-shortlinks.md"
+      "uri": "docs/1. Introduction/h.shortlinks.md"
     },
     {
       "type": "item",
       "title": "Developer Support",
-      "uri": "docs/1. Introduction/10-developer-support.md"
+      "uri": "docs/1. Introduction/i.developer-support.md"
     },
     {
       "type": "divider",
-      "title": "Guides"
+      "title": "2. Guides"
+    },
+    {
+      "type": "group",
+      "title": "Getting Started",
+      "items": [
+        {
+          "type": "item",
+          "title": "The Sandbox environment",
+          "uri": "docs/2. Guides/Getting Started/01-the-sandbox-environment.md"
+        },
+        {
+          "type": "item",
+          "title": "Set up a business account",
+          "uri": "docs/2. Guides/Getting Started/02-set-up-a-business-account.md"
+        },
+        {
+          "type": "item",
+          "title": "Install and use Postman for testing the Settle API",
+          "uri": "docs/2. Guides/Getting Started/03-test-the-settle-api-with-postman.md"
+        },
+        {
+          "type": "item",
+          "title": "Getting ready for Production",
+          "uri": "docs/2. Guides/Getting Started/04-get-ready-for-production.md"
+        }
+      ]
     },
     {
       "type": "item",
-      "title": "The Sandbox environment",
-      "uri": "docs/2. Guides/01-the-sandbox-environment.md"
-    },
-    {
-      "type": "item",
-      "title": "Set up a business account",
-      "uri": "docs/2. Guides/02-set-up-a-business-account.md"
-    },
-    {
-      "type": "item",
-      "title": "Install and use Postman for testing the Settle API",
-      "uri": "docs/2. Guides/03-test-the-settle-api-with-postman.md"
-    },
-    {
-      "type": "item",
-      "title": "Getting ready for Production",
-      "uri": "docs/2. Guides/04-get-ready-for-production.md"
+      "title": "Verifying Callback Signatures with Node.js",
+      "uri": "docs/2. Guides/verifying-callback-signatures-with-node.md"
     },
     {
       "type": "divider",
-      "title": "Developer Tools"
+      "title": "4. API"
+    },
+    {
+      "type": "item",
+      "title": "Merchant Short Links",
+      "uri": "docs/4. API/merchant.shortLinks.md"
+    },
+    {
+      "type": "divider",
+      "title": "5. Developer Tools"
     },
     {
       "type": "item",
@@ -119,7 +139,7 @@
     },
     {
       "type": "divider",
-      "title": "Use Cases"
+      "title": "6. Use Cases"
     },
     {
       "type": "item",
@@ -207,7 +227,7 @@
     },
     {
       "type": "divider",
-      "title": "Value-Added Services"
+      "title": "7. Value-Added Services"
     },
     {
       "type": "item",
@@ -234,8 +254,8 @@
       "items": [
         {
           "type": "item",
-          "title": "Settle Merchant API",
-          "uri": "reference/merchant.v1.yaml"
+          "title": "Settle Merchant Api",
+          "uri": "docs/8. Reference Documentation/API's/settle-merchant-api.md"
         },
         {
           "type": "item",
@@ -262,7 +282,16 @@
     },
     {
       "type": "divider",
-      "title": "Models"
+      "title": "APIS"
+    },
+    {
+      "type": "item",
+      "title": "merchant.v1.yaml",
+      "uri": "reference/merchant.v1.yaml"
+    },
+    {
+      "type": "divider",
+      "title": "Schemas"
     },
     {
       "type": "item",
