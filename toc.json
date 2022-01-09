@@ -7,7 +7,7 @@
     },
     {
       "type": "divider",
-      "title": "1. Introduction"
+      "title": "Introduction"
     },
     {
       "type": "item",
@@ -61,7 +61,7 @@
     },
     {
       "type": "divider",
-      "title": "2. Guides"
+      "title": "Guides"
     },
     {
       "type": "group",
@@ -96,157 +96,148 @@
     },
     {
       "type": "divider",
-      "title": "4. API"
-    },
-    {
-      "type": "item",
-      "title": "Merchant Short Links",
-      "uri": "docs/4. API/merchant.shortLinks.md"
-    },
-    {
-      "type": "divider",
-      "title": "5. Developer Tools"
+      "title": "4. Developer Tools"
     },
     {
       "type": "item",
       "title": "Settle CLI",
-      "uri": "docs/5. Developer Tools/01-settle-cli.md"
+      "uri": "docs/4. Developer Tools/01-settle-cli.md"
     },
     {
       "type": "item",
       "title": "Libraries and UI Components",
-      "uri": "docs/5. Developer Tools/02-libraries-and-ui-components.md"
+      "uri": "docs/4. Developer Tools/02-libraries-and-ui-components.md"
     },
     {
       "type": "item",
       "title": "Sample Integrations",
-      "uri": "docs/5. Developer Tools/03-sample-integrations.md"
+      "uri": "docs/4. Developer Tools/03-sample-integrations.md"
     },
     {
       "type": "item",
       "title": "Reference Docs",
-      "uri": "docs/5. Developer Tools/04-reference-docs.md"
+      "uri": "docs/4. Developer Tools/04-reference-docs.md"
     },
     {
       "type": "item",
       "title": "Testing Checklist",
-      "uri": "docs/5. Developer Tools/05-testing-checklist.md"
+      "uri": "docs/4. Developer Tools/05-testing-checklist.md"
     },
     {
       "type": "item",
       "title": "Error Codes",
-      "uri": "docs/5. Developer Tools/06-error-codes.md"
+      "uri": "docs/4. Developer Tools/06-error-codes.md"
     },
     {
       "type": "divider",
-      "title": "6. Use Cases"
+      "title": "5. Use Cases"
     },
     {
       "type": "item",
       "title": "Introduction",
-      "uri": "docs/6. Use Cases/0-introduction.md"
+      "uri": "docs/5. Use Cases/0-introduction.md"
     },
     {
       "type": "group",
-      "title": "1. Online Payments",
+      "title": "Online Payments",
       "items": [
         {
           "type": "item",
           "title": "Settle at Checkout",
-          "uri": "docs/6. Use Cases/1. Online Payments/01-settle-at-checkout.md"
+          "uri": "docs/5. Use Cases/1. Online Payments/01-settle-at-checkout.md"
         },
         {
           "type": "item",
           "title": "Buy Now with Settle",
-          "uri": "docs/6. Use Cases/1. Online Payments/02-buy-now-with-settle.md"
+          "uri": "docs/5. Use Cases/1. Online Payments/02-buy-now-with-settle.md"
         },
         {
           "type": "item",
           "title": "Recurring Payments",
-          "uri": "docs/6. Use Cases/1. Online Payments/03-recurring-payments.md"
+          "uri": "docs/5. Use Cases/1. Online Payments/03-recurring-payments.md"
         }
       ]
     },
     {
       "type": "group",
-      "title": "2. In-Store Payments",
+      "title": "In-Store Payments",
       "items": [
         {
           "type": "item",
           "title": "Settle at Checkout",
-          "uri": "docs/6. Use Cases/2. In-Store Payments/settle-at-checkout.md"
+          "uri": "docs/5. Use Cases/2. In-Store Payments/settle-at-checkout.md"
         }
       ]
     },
     {
       "type": "group",
-      "title": "3. In-App Payments",
+      "title": "In-App Payments",
       "items": [
         {
           "type": "item",
           "title": "Settle with a Button",
-          "uri": "docs/6. Use Cases/3. In-App Payments/settle-with-a-button.md"
+          "uri": "docs/5. Use Cases/3. In-App Payments/settle-with-a-button.md"
         }
       ]
     },
     {
       "type": "group",
-      "title": "4. Custom Solutions",
+      "title": "Custom Solutions",
       "items": [
         {
           "type": "item",
           "title": "Bars & Restaurants",
-          "uri": "docs/6. Use Cases/4. Custom Solutions/bars-and-restaurants.md"
+          "uri": "docs/5. Use Cases/4. Custom Solutions/bars-and-restaurants.md"
         },
         {
           "type": "item",
           "title": "Gyms",
-          "uri": "docs/6. Use Cases/4. Custom Solutions/gyms.md"
+          "uri": "docs/5. Use Cases/4. Custom Solutions/gyms.md"
         },
         {
           "type": "item",
           "title": "Parking",
-          "uri": "docs/6. Use Cases/4. Custom Solutions/parking.md"
+          "uri": "docs/5. Use Cases/4. Custom Solutions/parking.md"
         },
         {
           "type": "item",
           "title": "Takeout & Delivery",
-          "uri": "docs/6. Use Cases/4. Custom Solutions/takeout-and-delivery.md"
+          "uri": "docs/5. Use Cases/4. Custom Solutions/takeout-and-delivery.md"
         },
         {
           "type": "item",
           "title": "Ticketing",
-          "uri": "docs/6. Use Cases/4. Custom Solutions/ticketing.md"
+          "uri": "docs/5. Use Cases/4. Custom Solutions/ticketing.md"
         },
         {
           "type": "item",
           "title": "Vending Machines",
-          "uri": "docs/6. Use Cases/4. Custom Solutions/vending-machines.md"
+          "uri": "docs/5. Use Cases/4. Custom Solutions/vending-machines.md"
         }
       ]
     },
     {
       "type": "divider",
-      "title": "7. Value-Added Services"
+      "title": "Value-Added Services"
     },
     {
       "type": "item",
       "title": "Introduction",
-      "uri": "docs/7. Value-Added Services/00-introduction.md"
+      "uri": "docs/6. Value-Added Services/00-introduction.md"
     },
     {
       "type": "item",
       "title": "Data Sharing (Permission Requests)",
-      "uri": "docs/7. Value-Added Services/01-data-sharing.md"
+      "uri": "docs/6. Value-Added Services/01-data-sharing.md"
     },
     {
       "type": "item",
       "title": "Login with Settle",
-      "uri": "docs/7. Value-Added Services/02-login-with-settle.md"
+      "uri": "docs/6. Value-Added Services/02-login-with-settle.md"
     },
     {
       "type": "divider",
-      "title": "8. Reference Documentation"
+      "title": "Reference Documentation"
     },
     {
       "type": "group",
@@ -255,12 +246,12 @@
         {
           "type": "item",
           "title": "Settle Merchant Api",
-          "uri": "docs/8. Reference Documentation/API's/settle-merchant-api.md"
+          "uri": "docs/7. Reference Documentation/API's/settle-merchant-api.md"
         },
         {
           "type": "item",
           "title": "Short Dynamic Links API",
-          "uri": "docs/8. Reference Documentation/API's/short-dynamic-links-api.md"
+          "uri": "docs/7. Reference Documentation/API's/short-dynamic-links-api.md"
         }
       ]
     },
@@ -271,12 +262,12 @@
         {
           "type": "item",
           "title": "Settle Sdk Node",
-          "uri": "docs/8. Reference Documentation/SDK's/settle-sdk-node.md"
+          "uri": "docs/7. Reference Documentation/SDK's/settle-sdk-node.md"
         },
         {
           "type": "item",
           "title": "Settle Sdk Php",
-          "uri": "docs/8. Reference Documentation/SDK's/settle-sdk-php.md"
+          "uri": "docs/7. Reference Documentation/SDK's/settle-sdk-php.md"
         }
       ]
     },
@@ -286,7 +277,7 @@
     },
     {
       "type": "item",
-      "title": "merchant.v1.yaml",
+      "title": "merchant",
       "uri": "reference/merchant.v1.yaml"
     },
     {
