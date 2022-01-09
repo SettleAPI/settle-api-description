@@ -158,7 +158,7 @@ The schema is represented as a list where each item heading represents a field (
 
 ### Models
 
-The location field of the example schema has the field type [`Location`](/docs/api-reference/c2NoOjEyNTk0OTky-location), and this is linked to another schema definition, which we call a `Model`. Models can be single-value types with some special behaviour, e.g. the [`Money`](/docs/api-reference/c2NoOjUwMDYw-money) model. More commonly, Models have a nested structure as in our example.
+The location field of the example schema has the field type [`Location`](models/Location.yaml), and this is linked to another schema definition, which we call a `Model`. Models can be single-value types with some special behaviour, e.g. the [`Money`](models/Money.v1.yaml) model. More commonly, Models have a nested structure as in our example.
 
 ```json json_schema
 {
