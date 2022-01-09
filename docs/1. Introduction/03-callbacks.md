@@ -110,7 +110,7 @@ One important criterion for the Settle APIs is that the responsibility for secur
 
 There are two ways to do this:
 
-1. Validation of message URI
+### 1. Validation of message URI
 If the client has no signature verification or is using a protocol for callbacks without signature support, the callback can be verified using the following procedure:
 
 - Verify that the hostname in the message URI found in the meta part of the uri field is a settle.eu sub-domain, and that the URI is HTTPS, iI.e. check that the URI starts with "https:" and that the hostname ends with ".settle.eu".
@@ -126,5 +126,5 @@ If the client has no signature verification or is using a protocol for callbacks
   > Some of our test environments have hostnames that are not a sub-domain of ".settle.eu", in which case this method will not work.
  
 
-2. Verify the callback signature
+### 2. Verify the callback signature
 For some protocols, like HTTP and HTTPS, it is specified that Settle signs the callback. If the client verifies the signature according to the specified signature method, any data sent with the callback can be used safely. [Learn more about verifying callback signatures from Settle.](./ZG9jOjM0NzQwMDAw-verifying-signatures-from-settle)
