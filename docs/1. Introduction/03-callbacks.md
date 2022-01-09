@@ -121,9 +121,9 @@ If the client has no signature verification or is using a protocol for callbacks
 
 - Retrieve the message through an HTTPS GET request to the message URI using an HTTPS client library configured to verify SSL certificates. The retrieved message can safely be used, as its origin has been verified through HTTPS.
 
-> #### Note
->
-> Some of our test environments have hostnames that are not a sub-domain of ".settle.eu", in which case this method will not work.
+  > #### Note
+  >
+  > Some of our test environments have hostnames that are not a sub-domain of ".settle.eu", in which case this method will not work.
  
 
 2. Verify the callback signature
