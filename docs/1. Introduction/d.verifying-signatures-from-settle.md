@@ -1,6 +1,6 @@
 # Verifying signatures from Settle
 
-Whenever Settle is sending callbacks to the client over HTTPS, the request from Settle is signed using the same RSA method as described in the [API Authentication article](../merchant-api/ZG9jOjMyMjU5OTk2-api-authentication).
+Whenever Settle is sending callbacks to the client over HTTPS, the request from Settle is signed using the same RSA method as described in the [API Authentication article](./ZG9jOjM0NzM5OTk4-api-authentication#authentication-using-rsa-key).
 
 The client should authenticate callbacks from Settle by verifying the signature given by Settle in the `Authorization` header of the request.
 
