@@ -271,7 +271,7 @@
         },
         {
           "type": "group",
-          "title": "Models",
+          "title": "Types",
           "items": [
             {
               "type": "item",
