@@ -179,7 +179,7 @@ a6495av89wcv,2013-08-10 23:43:45,pending,token:Q/3+Ys,NOK,0.00,0.00,,,,,,
 a6495av89wcv,2013-08-10 23:45:10,fail,token:Q/3+Ys,NOK,1.00,0.25,NO:2013,,,,,
 ```
 
-[Download example-transaction_log.csv](https://support.settle.eu/hc/en-150/article_attachments/4409062264849/example-transaction_log.csv)
+[Download example-transaction_log.csv](files/example-transaction_log.csv)
 
 
 
