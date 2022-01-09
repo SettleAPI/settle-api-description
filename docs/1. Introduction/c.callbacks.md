@@ -42,7 +42,7 @@ X-Settle-Content-Digest: SHA256=<content_sha256>
 
 Notice the `Authorization` and `X-Settle-Content-Digest` header values contain the information the client needs to authenticate the callback from Settle.
 
-See [Verifying signatures from Settle]() for a description of the signature method used in callbacks from Settle.
+See [Verifying signatures from Settle](./ZG9jOjM0ODE0NTg4-verifying-signatures-from-settle) for a description of the signature method used in callbacks from Settle.
 
 ### Unsecure Callbacks
 
@@ -100,7 +100,7 @@ Several events are associated with the various transitions in payment request st
 
 As these events reflect the state of the payment request at the time the callback was made, the object part will contain the same data as what can be retrieved from the payment request outcome endpoint.
 
-See the [data schema for Payment Requests](../merchant-api/b3A6ODY4MjgyNA-merchant-payment-request-create#request-body) for more information.
+See the [data schema for Payment Requests](./b3A6ODY4MjgyNA-merchant-payment-request-create#request-body) for more information.
 
 
 
