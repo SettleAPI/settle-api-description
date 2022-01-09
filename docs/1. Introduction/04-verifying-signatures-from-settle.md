@@ -7,7 +7,7 @@ The client should authenticate callbacks from Settle by verifying the signature 
 
 ## SDK
 
-To simplify the task of verifying signatures from Settle, [we recommend checking out our SDK's]().
+To simplify the task of verifying signatures from Settle, [we recommend checking out our SDK's](./ZG9jOjM0NzQwMDEz-libraries-and-ui-components#server-side-libraries).
 
 
 ## Tutorial
