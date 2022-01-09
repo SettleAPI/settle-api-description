@@ -511,10 +511,6 @@
           ]
         }
       ]
-    },
-    {
-      "type": "divider",
-      "title": "Schemas"
     }
   ]
 }
