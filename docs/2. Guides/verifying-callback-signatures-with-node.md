@@ -10,7 +10,7 @@ This article presents a simple webhooks server example.
  
 
 ## Dependencies
-This example use the [Settle SDK for Node.js](./ZG9jOjM0NzQwMDM1-settle-sdk-node) to handle signing and authorization, and [Express.js](https://expressjs.com/) to create a HTTP endpoint to verify signatures of incoming callbacks from Settle.
+This example use the [Settle SDK for Node.js](./ZG9jOjM0ODE0Nzk5-settle-sdk-for-node) to handle signing and authorization, and [Express.js](https://expressjs.com/) to create a HTTP endpoint to verify signatures of incoming callbacks from Settle.
 
 Also, for local development purposes, a tunneling service is required. This example uses [ngrok](https://ngrok.com/) and [Node wrapper for ngrok](https://github.com/bubenshchykov/ngrok).
 
