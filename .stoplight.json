@@ -19,6 +19,9 @@
     },
     "image": {
       "rootDir": "assets/images"
+    },
+    "file": {
+      "rootDir": "docs/files"
     }
   }
 }
