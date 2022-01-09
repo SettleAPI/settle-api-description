@@ -113,7 +113,7 @@ There are two ways to do this:
 ### 1. Validation of message URI
 If the client has no signature verification or is using a protocol for callbacks without signature support, the callback can be verified using the following procedure:
 
-- Verify that the hostname in the message URI found in the meta part of the uri field is a settle.eu sub-domain, and that the URI is HTTPS, iI.e. check that the URI starts with "https:" and that the hostname ends with ".settle.eu".
+- Verify that the hostname in the message URI found in the meta part of the uri field is a settle.eu sub-domain, and that the URI is HTTPS, iI.e. check that the URI starts with `https:` and that the hostname ends with `.settle.eu`.
 
   Example of a valid URI:
   https://api.settle.eu/merchant/v1/
