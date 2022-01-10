@@ -71,7 +71,7 @@ servers:
 paths:
   /api_key:
     get:
-      summary: merchant.apiKeys.list
+      summary: List API Keys
       tags:
         - Authentication
       responses:
