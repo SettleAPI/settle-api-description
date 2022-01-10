@@ -4,7 +4,7 @@ info:
   version: '1.0'
   contact:
     name: Settle Group
-    email: settle.eu
+    email: support+dev@settle.eu
     url: 'https://settle.eu/developer/'
   license:
     name: MIT
@@ -265,7 +265,7 @@ paths:
               examples:
                 Insufficient funds:
                   value:
-                    error_detail: null
+                    error_detail: 'null'
                     error_type: Bad Request
                     error_description: Insufficient funds
           headers: {}
@@ -298,7 +298,6 @@ paths:
                   error_detail:
                     type: object
                     properties: {}
-                    required: []
                   error_type:
                     type: string
                     minLength: 1
@@ -323,6 +322,7 @@ paths:
       operationId: merchant.payment.send.outcome.get
       tags:
         - Payments
+      description: Get outcome of sent payment
   /pos:
     post:
       summary: merchant.pos.create
@@ -441,8 +441,6 @@ paths:
           $ref: '#/components/responses/settlement.get'
         '401':
           $ref: '#/components/responses/401'
-        '404':
-          $ref: '#/components/responses/settlement.get.404'
       operationId: merchant.settlement.get
       description: 'Retrieve information regarding one settlement. The settlement contains detailed information about the amount paid out in the payout_details form. In case merchant has unsettled fees from previous settlements, Settle will attempt to settle these before paying out. If there are still unsettled fees after settlement is done, this amount will be transferred to the next settlement, or billed by Settle.'
   /last_settlement:
@@ -482,8 +480,6 @@ paths:
       responses:
         '201':
           $ref: '#/components/responses/shortlink.create'
-        '400':
-          $ref: '#/components/responses/shortlink.create.400'
         '401':
           $ref: '#/components/responses/401'
       description: Register new shortlink.
@@ -510,9 +506,7 @@ paths:
       operationId: merchant.shortlink.update
       responses:
         '204':
-          $ref: '#/components/responses/shortlink.update.204'
-        '400':
-          $ref: '#/components/responses/shortlink.update.400'
+          $ref: '#/components/responses/204'
         '401':
           $ref: '#/components/responses/401'
       description: Update existing shortlink registration.
@@ -666,12 +660,6 @@ components:
       schema:
         type: string
       description: The ID of the settlement to retrieve.
-    settlement_account_id:
-      name: settlement_account_id
-      in: path
-      required: true
-      schema:
-        type: string
     location:
       name: location
       in: header
@@ -700,13 +688,6 @@ components:
       schema:
         type: string
       description: Merchant User ID provided by Settle.
-    merchant_ssp_user_id:
-      name: merchant_ssp_user_id
-      in: path
-      required: true
-      schema:
-        type: string
-      description: Merchant SSP User ID
     api_user_id:
       name: api_user_id
       in: path
@@ -869,12 +850,10 @@ components:
                 $ref: ../models/MoneyInteger.v1.yaml
               callback_uri:
                 type: string
-                default: null
                 pattern: '(^|^w+://(localhost|[^/:]+|([0-9]{1,3}.){3}[0-9]{1,3})?(:[0-9]+)?)(/.*)?$'
                 description: 'If provided, Settle will POST to this URI when the status of the payment request changes, using the message mechanism described in the introduction. The data in the object part of the message is the same as what can be retrieved by calling `GET` on the **/payment_request/{tid}/outcome/** resource URI.'
               cid:
                 type: string
-                default: null
                 description: Customer ID to be used for KID payments.
               currency:
                 $ref: ../models/Currency.v1.yaml
@@ -883,7 +862,6 @@ components:
               display_message_uri:
                 type: string
                 description: Messages that can be used to inform the POS operator about the progress of the payment request will be posted to this URI if provided.
-                default: null
               expires_in:
                 type: integer
                 default: 21600
@@ -891,7 +869,6 @@ components:
                 maximum: 2592000
               failure_return_uri:
                 type: string
-                default: null
                 pattern: '(^|^w+://(localhost|[^/:]+|([0-9]{1,3}.){3}[0-9]{1,3})?(:[0-9]+)?)(/.*)?$'
                 description: Return URL if payment failed.
               line_items:
@@ -913,21 +890,17 @@ components:
               required_scope_text:
                 type: string
                 description: Text that is shown to user when asked for permission. This can contain line breaks and the text has to fit on smartphones screens.
-                default: null
                 maxLength: 150
               success_return_uri:
                 type: string
                 pattern: '(^|^w+://(localhost|[^/:]+|([0-9]{1,3}.){3}[0-9]{1,3})?(:[0-9]+)?)(/.*)?$'
-                default: null
                 description: Return URL if payment successful.
               text:
                 type: string
                 description: Text that is shown to user when asked to pay. This can contain line breaks and the text has to fit on smartphones screens.
-                default: null
               uri:
                 type: string
                 description: 'If payment request was posted without a customer, user can claim it on this URI.'
-                default: null
               scope:
                 $ref: ../models/Scope.v1.yaml
             required:
@@ -1083,11 +1056,9 @@ components:
             properties:
               callback_uri:
                 type: string
-                default: null
                 description: URI called by Settle when user scans shortlink.
               serial_number:
                 type: string
-                default: null
                 description: Serial number on printed QR codes.This field is only used when registering printed stickers issued by Settle.
                 deprecated: true
       description: ''
@@ -1230,13 +1201,6 @@ components:
                 type: string
               success_return_uri:
                 type: string
-            required:
-              - customer
-              - legal_terms_url
-              - text
-              - date_expires
-              - optional_scope
-              - scope
     permissions.request.outcome.get:
       description: Example response
       content:
@@ -1296,7 +1260,7 @@ components:
                 text: 'null'
                 callback_uri: 'null'
                 scope: 'null'
-                expires_in: 21600
+                expires_in: '21600'
                 failure_return_uri: 'null'
                 success_return_uri: 'null'
                 legal_terms_url: 'null'
@@ -1338,9 +1302,6 @@ components:
                 maxLength: 64
               pubkey:
                 $ref: ../models/PubKey.yaml
-            required:
-              - id
-              - key_type
     apiKeys.list:
       description: Example response
       content:
@@ -1561,19 +1522,16 @@ components:
           schema:
             description: ''
             type: object
+            x-examples:
+              example-1:
+                currency: NOK
+                amount: 99998000
             properties:
               currency:
                 type: string
                 minLength: 1
               amount:
                 type: number
-            required:
-              - currency
-              - amount
-            x-examples:
-              example-1:
-                currency: NOK
-                amount: 99998000
     payment.request.create:
       description: Example response
       content:
@@ -1591,8 +1549,6 @@ components:
                 minLength: 1
               uri:
                 nullable: true
-            required:
-              - id
     payment.send.create:
       description: Example response
       content:
@@ -1608,15 +1564,13 @@ components:
           schema:
             description: ''
             type: object
+            x-examples:
+              example-1:
+                id: loremIpsu
             properties:
               id:
                 type: string
                 minLength: 1
-            required:
-              - id
-            x-examples:
-              example-1:
-                id: loremIpsu
     shortlink.create:
       description: Example response
       content:
@@ -1624,15 +1578,13 @@ components:
           schema:
             description: ''
             type: object
+            x-examples:
+              example-1:
+                id: h3lBe
             properties:
               id:
                 type: string
                 minLength: 1
-            required:
-              - id
-            x-examples:
-              example-1:
-                id: h3lBe
     payment.request.get:
       description: Example response
       content:
@@ -1640,13 +1592,33 @@ components:
           schema:
             description: ''
             type: object
+            x-examples:
+              example-1:
+                customer: null
+                line_items: []
+                success_return_uri: null
+                date_expires: '2022-01-10 14:24:57'
+                additional_edit: false
+                text: null
+                failure_return_uri: null
+                required_scope: ''
+                uri: null
+                currency: NOK
+                amount: 10000
+                display_message_uri: null
+                max_scan_age: 60
+                allow_credit: true
+                pos_id: '123456789'
+                pos_tid: '987654321'
+                id: pmqmzfv1adsr
+                callback_uri: null
+                additional_amount: 0
             properties:
               customer: {}
               line_items:
                 type: array
                 items:
-                  required: []
-                  properties: {}
+                  type: object
               success_return_uri: {}
               date_expires:
                 type: string
@@ -1680,40 +1652,6 @@ components:
               callback_uri: {}
               additional_amount:
                 type: number
-            required:
-              - line_items
-              - date_expires
-              - additional_edit
-              - required_scope
-              - currency
-              - amount
-              - max_scan_age
-              - allow_credit
-              - pos_id
-              - pos_tid
-              - id
-              - additional_amount
-            x-examples:
-              example-1:
-                customer: null
-                line_items: []
-                success_return_uri: null
-                date_expires: '2022-01-10 14:24:57'
-                additional_edit: false
-                text: null
-                failure_return_uri: null
-                required_scope: ''
-                uri: null
-                currency: NOK
-                amount: 10000
-                display_message_uri: null
-                max_scan_age: 60
-                allow_credit: true
-                pos_id: '123456789'
-                pos_tid: '987654321'
-                id: pmqmzfv1adsr
-                callback_uri: null
-                additional_amount: 0
     payment.request.outcome.get:
       description: Example response
       content:
@@ -1721,16 +1659,38 @@ components:
           schema:
             description: ''
             type: object
+            x-examples:
+              example-1:
+                status: pending
+                customer: null
+                refunds: []
+                auth_amount: 0
+                auth_additional_amount: 0
+                credit: false
+                captures: []
+                pos_id: '123456789'
+                date_modified: '2022-01-10 08:24:57'
+                date_expires: '2022-01-10 14:24:57'
+                currency: NOK
+                amount: 10000
+                interchange_fee: 0
+                status_code: 1003
+                tid: pmqmzfv1adsr
+                attachment_uri: 'https://api.sandbox.settle.eu/_ah/upload/AMmfu6aJmdsTrs3QS2Y2sPh-nEX3HpG2nNCfOAHMwwpp5Blxqi68f0NVy93YxWtDAd7bS2HjF5jlpHR5xkqQsbSE7N224xCVdNT-mVuuzD9XgpAugK3poLZ0QZdVhpoI6KEzea5uG7Aa27wkgL1-15LyNIr3UGFFQH6MkuhdbirvYXFRwQWgoNhEuEnjIDch2iso31q8dT7oQaGsSJCb0IBAUeWv9YsP6NmaWAEFR7xUdsTX7nT7u2WCTDtFH_zRHWtZRRY_yMHJRlTb-hZSsGiK5idWCYWOQw94-QzBlAdsXrNrQfADmfEtEQpi4kZ8V9285MJRQoqVBgxL3wyZaO-C91B5gxDpnK9z16VntWseOI9HOUqvCSE/ALBNUaYAAAAAYdvyINhYhp1MWSAiLlX3MfjCpEaibCYg/'
+                pos_tid: '987654321'
+                permissions: null
+                transaction_fee: 0
+                additional_amount: 0
             properties:
               status:
                 type: string
                 minLength: 1
-              customer: {}
+              customer:
+                type: string
               refunds:
                 type: array
                 items:
-                  required: []
-                  properties: {}
+                  type: object
               auth_amount:
                 type: number
               auth_additional_amount:
@@ -1740,8 +1700,7 @@ components:
               captures:
                 type: array
                 items:
-                  required: []
-                  properties: {}
+                  type: object
               pos_id:
                 type: string
                 minLength: 1
@@ -1769,52 +1728,12 @@ components:
               pos_tid:
                 type: string
                 minLength: 1
-              permissions: {}
+              permissions:
+                type: string
               transaction_fee:
                 type: number
               additional_amount:
                 type: number
-            required:
-              - status
-              - refunds
-              - auth_amount
-              - auth_additional_amount
-              - credit
-              - captures
-              - pos_id
-              - date_modified
-              - date_expires
-              - currency
-              - amount
-              - interchange_fee
-              - status_code
-              - tid
-              - attachment_uri
-              - pos_tid
-              - transaction_fee
-              - additional_amount
-            x-examples:
-              example-1:
-                status: pending
-                customer: null
-                refunds: []
-                auth_amount: 0
-                auth_additional_amount: 0
-                credit: false
-                captures: []
-                pos_id: '123456789'
-                date_modified: '2022-01-10 08:24:57'
-                date_expires: '2022-01-10 14:24:57'
-                currency: NOK
-                amount: 10000
-                interchange_fee: 0
-                status_code: 1003
-                tid: pmqmzfv1adsr
-                attachment_uri: 'https://api.sandbox.settle.eu/_ah/upload/AMmfu6aJmdsTrs3QS2Y2sPh-nEX3HpG2nNCfOAHMwwpp5Blxqi68f0NVy93YxWtDAd7bS2HjF5jlpHR5xkqQsbSE7N224xCVdNT-mVuuzD9XgpAugK3poLZ0QZdVhpoI6KEzea5uG7Aa27wkgL1-15LyNIr3UGFFQH6MkuhdbirvYXFRwQWgoNhEuEnjIDch2iso31q8dT7oQaGsSJCb0IBAUeWv9YsP6NmaWAEFR7xUdsTX7nT7u2WCTDtFH_zRHWtZRRY_yMHJRlTb-hZSsGiK5idWCYWOQw94-QzBlAdsXrNrQfADmfEtEQpi4kZ8V9285MJRQoqVBgxL3wyZaO-C91B5gxDpnK9z16VntWseOI9HOUqvCSE/ALBNUaYAAAAAYdvyINhYhp1MWSAiLlX3MfjCpEaibCYg/'
-                pos_tid: '987654321'
-                permissions: null
-                transaction_fee: 0
-                additional_amount: 0
     payment.request.list:
       description: Example response
       content:
@@ -1822,102 +1741,6 @@ components:
           schema:
             description: ''
             type: object
-            properties:
-              cursor:
-                type: object
-                properties:
-                  next_cursor:
-                    type: string
-                    minLength: 1
-                  prev_cursor: {}
-                required:
-                  - next_cursor
-              items:
-                type: array
-                uniqueItems: true
-                minItems: 1
-                items:
-                  required:
-                    - total_requested
-                    - status_code
-                    - total_captured
-                    - currency
-                    - message
-                    - total
-                    - category
-                    - fee
-                    - tid
-                    - order_status
-                    - acceptance_type
-                    - status
-                    - total_refund
-                    - is_refund
-                    - link
-                    - created
-                    - modified
-                    - situation
-                    - net_amount
-                  properties:
-                    phone_number: {}
-                    total_requested:
-                      type: number
-                    status_code:
-                      type: number
-                    total_captured:
-                      type: number
-                    currency:
-                      type: string
-                      minLength: 1
-                    message:
-                      type: string
-                    total:
-                      type: number
-                    expected_payout_date: {}
-                    category:
-                      type: string
-                      minLength: 1
-                    fee:
-                      type: number
-                    tid:
-                      type: string
-                      minLength: 1
-                    order_status:
-                      type: string
-                      minLength: 1
-                    acceptance_type:
-                      type: string
-                      minLength: 1
-                    status:
-                      type: string
-                      minLength: 1
-                    order_id: {}
-                    total_refund:
-                      type: number
-                    is_refund:
-                      type: boolean
-                    link:
-                      type: string
-                      minLength: 1
-                    phone_number_last_four_digits: {}
-                    refunds:
-                      type: array
-                      items:
-                        required: []
-                        properties: {}
-                    created:
-                      type: string
-                      minLength: 1
-                    modified:
-                      type: string
-                      minLength: 1
-                    situation:
-                      type: string
-                      minLength: 1
-                    net_amount:
-                      type: number
-            required:
-              - cursor
-              - items
             x-examples:
               example-1:
                 cursor:
@@ -2404,6 +2227,77 @@ components:
                     modified: '2021-10-12 10:26:07'
                     situation: p2m
                     net_amount: 0
+            properties:
+              cursor:
+                type: object
+                properties:
+                  next_cursor:
+                    type: string
+                    minLength: 1
+                  prev_cursor: {}
+              items:
+                type: array
+                uniqueItems: true
+                minItems: 1
+                items:
+                  type: object
+                  properties:
+                    phone_number: {}
+                    total_requested:
+                      type: number
+                    status_code:
+                      type: number
+                    total_captured:
+                      type: number
+                    currency:
+                      type: string
+                      minLength: 1
+                    message:
+                      type: string
+                    total:
+                      type: number
+                    expected_payout_date: {}
+                    category:
+                      type: string
+                      minLength: 1
+                    fee:
+                      type: number
+                    tid:
+                      type: string
+                      minLength: 1
+                    order_status:
+                      type: string
+                      minLength: 1
+                    acceptance_type:
+                      type: string
+                      minLength: 1
+                    status:
+                      type: string
+                      minLength: 1
+                    order_id: {}
+                    total_refund:
+                      type: number
+                    is_refund:
+                      type: boolean
+                    link:
+                      type: string
+                      minLength: 1
+                    phone_number_last_four_digits: {}
+                    refunds:
+                      type: array
+                      items:
+                        type: object
+                    created:
+                      type: string
+                      minLength: 1
+                    modified:
+                      type: string
+                      minLength: 1
+                    situation:
+                      type: string
+                      minLength: 1
+                    net_amount:
+                      type: number
     payment.send.outcome.get:
       description: Example response
       content:
@@ -2411,6 +2305,20 @@ components:
           schema:
             description: ''
             type: object
+            x-examples:
+              example-1:
+                object:
+                  idempotency_id: fghghd5465fgdhdf6g5h4
+                  payer: 5rg1dkk8
+                  currency: NOK
+                  timestamp: '2022-01-10 08:43:00'
+                  require_identified: true
+                  id: p2cb32b8efc0
+                  payee: 'msisdn:4798052301'
+                  amount: 10000
+                  payer_status: pending
+                  chat_text: ''
+                type: payment
             properties:
               object:
                 type: object
@@ -2442,37 +2350,9 @@ components:
                     minLength: 1
                   chat_text:
                     type: string
-                required:
-                  - idempotency_id
-                  - payer
-                  - currency
-                  - timestamp
-                  - require_identified
-                  - id
-                  - payee
-                  - amount
-                  - payer_status
-                  - chat_text
               type:
                 type: string
                 minLength: 1
-            required:
-              - object
-              - type
-            x-examples:
-              example-1:
-                object:
-                  idempotency_id: fghghd5465fgdhdf6g5h4
-                  payer: 5rg1dkk8
-                  currency: NOK
-                  timestamp: '2022-01-10 08:43:00'
-                  require_identified: true
-                  id: p2cb32b8efc0
-                  payee: 'msisdn:4798052301'
-                  amount: 10000
-                  payer_status: pending
-                  chat_text: ''
-                type: payment
     shortlink.list:
       description: Example response
       content:
@@ -2502,8 +2382,6 @@ components:
               next:
                 type: string
                 nullable: true
-            required:
-              - uris
     shortlink.get:
       description: Example response
       content:
@@ -2543,17 +2421,6 @@ components:
             description: ''
             minItems: 1
             uniqueItems: true
-            items:
-              type: object
-              required:
-                - code
-                - name
-              properties:
-                code:
-                  type: number
-                name:
-                  type: string
-                  minLength: 1
             x-examples:
               example-1:
                 - code: 413
@@ -2708,6 +2575,14 @@ components:
                   name: DIBS_D2_ERROR_BASE
                 - code: 5901
                   name: INSUFFICIENT_MCASH_BALANCE
+            items:
+              type: object
+              properties:
+                code:
+                  type: number
+                name:
+                  type: string
+                  minLength: 1
     statusCodes.get:
       description: Example response
       content:
@@ -2715,19 +2590,16 @@ components:
           schema:
             description: ''
             type: object
+            x-examples:
+              example-1:
+                code: 1001
+                name: SWITCHING_PROTOCOLS
             properties:
               code:
                 type: number
               name:
                 type: string
                 minLength: 1
-            required:
-              - code
-              - name
-            x-examples:
-              example-1:
-                code: 1001
-                name: SWITCHING_PROTOCOLS
     permissions.request.create:
       description: Example response
       content:
@@ -2735,6 +2607,16 @@ components:
           schema:
             description: ''
             type: object
+            x-examples:
+              example-1:
+                customer: 'null'
+                text: 'null'
+                callback_uri: 'null'
+                scope: string
+                expires_in: '21600'
+                failure_return_uri: 'null'
+                success_return_uri: 'null'
+                legal_terms_url: 'null'
             properties:
               customer:
                 type: string
@@ -2760,25 +2642,6 @@ components:
               legal_terms_url:
                 type: string
                 minLength: 1
-            required:
-              - customer
-              - text
-              - callback_uri
-              - scope
-              - expires_in
-              - failure_return_uri
-              - success_return_uri
-              - legal_terms_url
-            x-examples:
-              example-1:
-                customer: 'null'
-                text: 'null'
-                callback_uri: 'null'
-                scope: string
-                expires_in: '21600'
-                failure_return_uri: 'null'
-                success_return_uri: 'null'
-                legal_terms_url: 'null'
     pos.list:
       description: Example response
       content:
@@ -2814,6 +2677,15 @@ components:
           schema:
             description: ''
             type: object
+            x-examples:
+              example-1:
+                location:
+                  latitude: 24.4686
+                  longitude: -115.5839
+                  accuracy: 1
+                type: store
+                id: 9469f42f
+                name: Fantastic Granite Ball 3
             properties:
               location:
                 type: object
@@ -2824,10 +2696,6 @@ components:
                     type: number
                   accuracy:
                     type: number
-                required:
-                  - latitude
-                  - longitude
-                  - accuracy
               type:
                 type: string
                 minLength: 1
@@ -2837,20 +2705,6 @@ components:
               name:
                 type: string
                 minLength: 1
-            required:
-              - location
-              - type
-              - id
-              - name
-            x-examples:
-              example-1:
-                location:
-                  latitude: 24.4686
-                  longitude: -115.5839
-                  accuracy: 1
-                type: store
-                id: 9469f42f
-                name: Fantastic Granite Ball 3
     settlement.list:
       description: Example response
       content:
@@ -2973,9 +2827,6 @@ components:
               next:
                 type: string
                 minLength: 1
-            required:
-              - uris
-              - next
     settlement.get:
       description: Example response
       content:

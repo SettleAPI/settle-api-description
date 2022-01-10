@@ -12,7 +12,6 @@ properties:
     description: This text will be displayed in a button in the web to open the respective link.
   show_on:
     type: string
-    default: 'null'
     enum:
       - pending
       - ok
