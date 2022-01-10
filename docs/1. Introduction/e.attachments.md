@@ -26,6 +26,7 @@ The supported MIME-types and their respective schemas are:
 
 ```json json_schema
 {
+  "title": "Attachments"
   "type": "object",
   "properties": {
     "store_name": {
@@ -35,10 +36,6 @@ The supported MIME-types and their respective schemas are:
     "organization_number": {
       "type": "string"
       "description": "Organization number, e.g. "987654321"."
-    },
-    "items": {
-      "type": "Item"
-      "description": "Settle item lists. Will be rendered for the user in the Settle app."
     },
     "lorem": {
       "type": "string"
