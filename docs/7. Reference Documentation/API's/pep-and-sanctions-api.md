@@ -1,7 +1,8 @@
+[![License](https://img.shields.io/badge/license-MIT%202-brightgreen.svg)](https://github.com/SettleAPI/pep-and-sanctions-api/blob/master/LICENSE)
+
 # PEP and Sanctions API
 
-Search for persons and companies of political, criminal, or economic interest in datasets from:
-
+**Search for persons and companies of political, criminal, or economic interest in datasets from:**
 - [EveryPolitician.org](https://everypolitician.org/)
 - [OpenSanctions.org](https://www.opensanctions.org/).
 
