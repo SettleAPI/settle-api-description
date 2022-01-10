@@ -2667,7 +2667,7 @@ components:
             properties:
               id:
                 type: string
-    permissions.request.get.200:
+    permissions.request.get:
       description: Example response
       content:
         application/json:
@@ -2676,47 +2676,54 @@ components:
             type: object
             x-examples:
               example-1:
-                customer: 'null'
-                text: 'null'
-                callback_uri: 'null'
-                scope: string
-                legal_terms_url: string
-                expires_in: '21600'
+                customer: '4798052301'
+                pos_id: null
+                legal_terms_url: 'https://legal-terms.com/'
+                text: ' for pos_tid '
+                date_expires: '2022-01-10 15:10:29'
+                failure_return_uri: null
+                optional_scope: '[]'
+                scope: '[u''openid'', u''phone'']'
+                pos_tid: null
+                callback_uri: null
+                success_return_uri: null
             properties:
               customer:
-                $ref: ../models/PersonIdentifier.v1.yaml
-              text:
                 type: string
-                description: Text that is shown to user when asked for permission. This can contain linebreaks and the text has to fit on smartphones screens.
-                default: 'null'
-              callback_uri:
+                minLength: 1
+              pos_id:
                 type: string
-                description: 'If provided, Settle will POST to this URI when the status of the permission request changes. The data transferred in the POST are the same as what can be retrieved by calling GET on the resource URI.'
-                default: 'null'
-              scope:
-                type: string
-                description: 'Space-delimited list of scopes. Any of: "openid" (static id), "profile" (name), "phone", "email", "shipping_address", "identity_documentation".'
-                default: 'null'
-              expires_in:
-                type: number
-              failure_return_uri:
-                type: string
-                default: 'null'
-                description: Return URL if permission is denied.
-              success_return_uri:
-                type: string
-                default: 'null'
-                description: Return URL if permission request is approved.
               legal_terms_url:
                 type: string
-                default: 'null'
-                description: The URL for the terms and conditions provided for the permissions request.
+                minLength: 1
+              text:
+                type: string
+                minLength: 1
+              date_expires:
+                type: string
+                minLength: 1
+              failure_return_uri:
+                type: string
+              optional_scope:
+                type: string
+                minLength: 1
+              scope:
+                type: string
+                minLength: 1
+              pos_tid:
+                type: string
+              callback_uri:
+                type: string
+              success_return_uri:
+                type: string
             required:
               - customer
-              - scope
               - legal_terms_url
+              - text
+              - date_expires
+              - optional_scope
               - scope
-    permissions.request.outcome.get.200:
+    permissions.request.outcome.get:
       description: Example response
       content:
         application/json:
@@ -2725,51 +2732,49 @@ components:
             type: object
             x-examples:
               example-1:
-                customer: 'null'
-                text: 'null'
-                callback_uri: 'null'
-                scope: string
-                legal_terms_url: string
-                expires_in: '21600'
+                status: pending
+                pos_id: null
+                user_info: null
+                access_token: null
+                id_token: null
+                expires_in: null
+                token_type: Bearer
+                currency: null
+                transaction_fee: 0
+                scope: null
+                rid: cb6c6q8n4feomc0lzvysk974mswh9vdw
+                pos_tid: null
+                refresh_token: null
             properties:
-              access_token:
-                type: string
-                description: This access token can be used as a Bearer token to access /ouath2/v1/userinfo
-              id_token:
-                type: string
-                description: A JWT that contains identity information about the user that is digitally signed
-              token_type:
-                type: string
-                description: 'Type of access token, at this time it will always be Bearer'
-              expires_in:
-                type: integer
-                description: Lifetime in seconds of the access token
-              refresh_token:
-                type: string
-                description: Refresh token used to issue new access token after expiration
-              scope:
-                type: string
-                description: Space separated string with the scopes of the permission request
-              currency:
-                type: string
-                description: Currency for fee
-              transaction_fee:
-                type: integer
-                description: Permission fee to be deducted from settlement
               status:
                 type: string
-                description: 'Status of the permission request. Can be one of the following values: pending, ok, request_expired, rejected, cancelled, revoked'
+                minLength: 1
               pos_id:
                 type: string
-                description: The POS id provided for permission request. Unused for now
-              pos_tid:
+              user_info:
                 type: string
-                description: The POS tid provided for permission request. Unused for now
+              access_token:
+                type: string
+              id_token:
+                type: string
+              expires_in:
+                type: string
+              token_type:
+                type: string
+                minLength: 1
+              currency:
+                type: string
+              transaction_fee:
+                type: number
+              scope:
+                type: string
               rid:
                 type: string
-                description: Request id
-              user_info:
-                $ref: ../models/UserInfo.yaml
+                minLength: 1
+              pos_tid:
+                type: string
+              refresh_token:
+                type: string
           examples:
             Example:
               value:
@@ -3040,10 +3045,49 @@ components:
       content:
         application/json:
           schema:
+            description: ''
+            type: object
+            properties:
+              currency:
+                type: string
+                minLength: 1
+              amount:
+                type: number
+            required:
+              - currency
+              - amount
+            x-examples:
+              example-1:
+                currency: NOK
+                amount: 99998000
+    payment.request.create:
+      description: Example response
+      content:
+        application/json:
+          schema:
+            description: ''
+            type: object
+            x-examples:
+              example-1:
+                id: pmqmzfv1adsr
+                uri: null
             properties:
               id:
                 type: string
-    payment.request.create:
+                minLength: 1
+              uri:
+                nullable: true
+            required:
+              - id
+    payment.send.create:
+      description: Example response
+      content:
+        application/json:
+          schema:
+            properties:
+              id:
+                type: string
+    pos.create:
       description: Example response
       content:
         application/json:
@@ -3054,13 +3098,1173 @@ components:
               id:
                 type: string
                 minLength: 1
-              uri: {}
             required:
               - id
             x-examples:
               example-1:
-                id: pmqmzfv1adsr
+                id: loremIpsu
+    shortlink.create:
+      description: Example response
+      content:
+        application/json:
+          schema:
+            description: ''
+            type: object
+            properties:
+              id:
+                type: string
+                minLength: 1
+            required:
+              - id
+            x-examples:
+              example-1:
+                id: h3lBe
+    payment.request.get:
+      description: Example response
+      content:
+        application/json:
+          schema:
+            description: ''
+            type: object
+            properties:
+              customer: {}
+              line_items:
+                type: array
+                items:
+                  required: []
+                  properties: {}
+              success_return_uri: {}
+              date_expires:
+                type: string
+                minLength: 1
+              additional_edit:
+                type: boolean
+              text: {}
+              failure_return_uri: {}
+              required_scope:
+                type: string
+              uri: {}
+              currency:
+                type: string
+                minLength: 1
+              amount:
+                type: number
+              display_message_uri: {}
+              max_scan_age:
+                type: number
+              allow_credit:
+                type: boolean
+              pos_id:
+                type: string
+                minLength: 1
+              pos_tid:
+                type: string
+                minLength: 1
+              id:
+                type: string
+                minLength: 1
+              callback_uri: {}
+              additional_amount:
+                type: number
+            required:
+              - line_items
+              - date_expires
+              - additional_edit
+              - required_scope
+              - currency
+              - amount
+              - max_scan_age
+              - allow_credit
+              - pos_id
+              - pos_tid
+              - id
+              - additional_amount
+            x-examples:
+              example-1:
+                customer: null
+                line_items: []
+                success_return_uri: null
+                date_expires: '2022-01-10 14:24:57'
+                additional_edit: false
+                text: null
+                failure_return_uri: null
+                required_scope: ''
                 uri: null
+                currency: NOK
+                amount: 10000
+                display_message_uri: null
+                max_scan_age: 60
+                allow_credit: true
+                pos_id: '123456789'
+                pos_tid: '987654321'
+                id: pmqmzfv1adsr
+                callback_uri: null
+                additional_amount: 0
+    payment.request.outcome.get:
+      description: Example response
+      content:
+        application/json:
+          schema:
+            description: ''
+            type: object
+            properties:
+              status:
+                type: string
+                minLength: 1
+              customer: {}
+              refunds:
+                type: array
+                items:
+                  required: []
+                  properties: {}
+              auth_amount:
+                type: number
+              auth_additional_amount:
+                type: number
+              credit:
+                type: boolean
+              captures:
+                type: array
+                items:
+                  required: []
+                  properties: {}
+              pos_id:
+                type: string
+                minLength: 1
+              date_modified:
+                type: string
+                minLength: 1
+              date_expires:
+                type: string
+                minLength: 1
+              currency:
+                type: string
+                minLength: 1
+              amount:
+                type: number
+              interchange_fee:
+                type: number
+              status_code:
+                type: number
+              tid:
+                type: string
+                minLength: 1
+              attachment_uri:
+                type: string
+                minLength: 1
+              pos_tid:
+                type: string
+                minLength: 1
+              permissions: {}
+              transaction_fee:
+                type: number
+              additional_amount:
+                type: number
+            required:
+              - status
+              - refunds
+              - auth_amount
+              - auth_additional_amount
+              - credit
+              - captures
+              - pos_id
+              - date_modified
+              - date_expires
+              - currency
+              - amount
+              - interchange_fee
+              - status_code
+              - tid
+              - attachment_uri
+              - pos_tid
+              - transaction_fee
+              - additional_amount
+            x-examples:
+              example-1:
+                status: pending
+                customer: null
+                refunds: []
+                auth_amount: 0
+                auth_additional_amount: 0
+                credit: false
+                captures: []
+                pos_id: '123456789'
+                date_modified: '2022-01-10 08:24:57'
+                date_expires: '2022-01-10 14:24:57'
+                currency: NOK
+                amount: 10000
+                interchange_fee: 0
+                status_code: 1003
+                tid: pmqmzfv1adsr
+                attachment_uri: 'https://api.sandbox.settle.eu/_ah/upload/AMmfu6aJmdsTrs3QS2Y2sPh-nEX3HpG2nNCfOAHMwwpp5Blxqi68f0NVy93YxWtDAd7bS2HjF5jlpHR5xkqQsbSE7N224xCVdNT-mVuuzD9XgpAugK3poLZ0QZdVhpoI6KEzea5uG7Aa27wkgL1-15LyNIr3UGFFQH6MkuhdbirvYXFRwQWgoNhEuEnjIDch2iso31q8dT7oQaGsSJCb0IBAUeWv9YsP6NmaWAEFR7xUdsTX7nT7u2WCTDtFH_zRHWtZRRY_yMHJRlTb-hZSsGiK5idWCYWOQw94-QzBlAdsXrNrQfADmfEtEQpi4kZ8V9285MJRQoqVBgxL3wyZaO-C91B5gxDpnK9z16VntWseOI9HOUqvCSE/ALBNUaYAAAAAYdvyINhYhp1MWSAiLlX3MfjCpEaibCYg/'
+                pos_tid: '987654321'
+                permissions: null
+                transaction_fee: 0
+                additional_amount: 0
+    payment.request.list:
+      description: Example response
+      content:
+        application/json:
+          schema:
+            description: ''
+            type: object
+            properties:
+              cursor:
+                type: object
+                properties:
+                  next_cursor:
+                    type: string
+                    minLength: 1
+                  prev_cursor: {}
+                required:
+                  - next_cursor
+              items:
+                type: array
+                uniqueItems: true
+                minItems: 1
+                items:
+                  required:
+                    - total_requested
+                    - status_code
+                    - total_captured
+                    - currency
+                    - message
+                    - total
+                    - category
+                    - fee
+                    - tid
+                    - order_status
+                    - acceptance_type
+                    - status
+                    - total_refund
+                    - is_refund
+                    - link
+                    - created
+                    - modified
+                    - situation
+                    - net_amount
+                  properties:
+                    phone_number: {}
+                    total_requested:
+                      type: number
+                    status_code:
+                      type: number
+                    total_captured:
+                      type: number
+                    currency:
+                      type: string
+                      minLength: 1
+                    message:
+                      type: string
+                    total:
+                      type: number
+                    expected_payout_date: {}
+                    category:
+                      type: string
+                      minLength: 1
+                    fee:
+                      type: number
+                    tid:
+                      type: string
+                      minLength: 1
+                    order_status:
+                      type: string
+                      minLength: 1
+                    acceptance_type:
+                      type: string
+                      minLength: 1
+                    status:
+                      type: string
+                      minLength: 1
+                    order_id: {}
+                    total_refund:
+                      type: number
+                    is_refund:
+                      type: boolean
+                    link:
+                      type: string
+                      minLength: 1
+                    phone_number_last_four_digits: {}
+                    refunds:
+                      type: array
+                      items:
+                        required: []
+                        properties: {}
+                    created:
+                      type: string
+                      minLength: 1
+                    modified:
+                      type: string
+                      minLength: 1
+                    situation:
+                      type: string
+                      minLength: 1
+                    net_amount:
+                      type: number
+            required:
+              - cursor
+              - items
+            x-examples:
+              example-1:
+                cursor:
+                  next_cursor: Cm8KJAoXbGFzdF9ub3RhYmxlX2V2ZW50X3RpbWUSCQj63JCw1MTzAhJDahJofnNldHRsZS1jb3JlLWRlbW9yLQsSDFBheW1lbnRTaGFyZCICNjUMCxIHUGF5bWVudCIMcDZneWV6ZWYydmoxDBgAIAE=
+                  prev_cursor: null
+                items:
+                  - phone_number: null
+                    total_requested: 10000
+                    status_code: 1003
+                    total_captured: 0
+                    currency: NOK
+                    message: ''
+                    total: 10000
+                    expected_payout_date: null
+                    category: PENDING
+                    fee: 0
+                    tid: pmqmzfv1adsr
+                    order_status: PENDING
+                    acceptance_type: settle_api
+                    status: pending
+                    order_id: null
+                    total_refund: 0
+                    is_refund: false
+                    link: /merchant/v1/payment_request/pmqmzfv1adsr/
+                    phone_number_last_four_digits: null
+                    refunds: []
+                    created: '2022-01-10 08:24:57'
+                    modified: '2022-01-10 08:24:57'
+                    situation: p2m
+                    net_amount: 0
+                  - phone_number: null
+                    total_requested: 100000
+                    status_code: 5006
+                    total_captured: 0
+                    currency: NOK
+                    message: Bananas
+                    total: 100000
+                    expected_payout_date: null
+                    category: REJECTED
+                    fee: 0
+                    tid: p25x6egzrprh
+                    order_status: PENDING
+                    acceptance_type: settle_api
+                    status: fail
+                    order_id: null
+                    total_refund: 0
+                    is_refund: false
+                    link: /merchant/v1/payment_request/p25x6egzrprh/
+                    phone_number_last_four_digits: '2301'
+                    refunds: []
+                    created: '2021-10-14 22:07:32'
+                    modified: '2021-10-15 00:36:38'
+                    situation: p2m
+                    net_amount: 0
+                  - phone_number: null
+                    total_requested: 100000
+                    status_code: 3008
+                    total_captured: 0
+                    currency: NOK
+                    message: Bananas
+                    total: 100000
+                    expected_payout_date: null
+                    category: PENDING
+                    fee: 0
+                    tid: ppw18135e3f7
+                    order_status: PENDING
+                    acceptance_type: settle_api
+                    status: auth
+                    order_id: null
+                    total_refund: 0
+                    is_refund: false
+                    link: /merchant/v1/payment_request/ppw18135e3f7/
+                    phone_number_last_four_digits: '2301'
+                    refunds: []
+                    created: '2021-10-14 21:48:01'
+                    modified: '2021-10-14 21:48:24'
+                    situation: p2m
+                    net_amount: 0
+                  - phone_number: null
+                    total_requested: 100000
+                    status_code: 5006
+                    total_captured: 0
+                    currency: NOK
+                    message: Bananas
+                    total: 100000
+                    expected_payout_date: null
+                    category: REJECTED
+                    fee: 0
+                    tid: p34wq7dre95j
+                    order_status: PENDING
+                    acceptance_type: settle_api
+                    status: fail
+                    order_id: null
+                    total_refund: 0
+                    is_refund: false
+                    link: /merchant/v1/payment_request/p34wq7dre95j/
+                    phone_number_last_four_digits: '2301'
+                    refunds: []
+                    created: '2021-10-14 21:44:09'
+                    modified: '2021-10-14 21:44:26'
+                    situation: p2m
+                    net_amount: 0
+                  - phone_number: null
+                    total_requested: 100000
+                    status_code: 5006
+                    total_captured: 0
+                    currency: NOK
+                    message: Bananas
+                    total: 100000
+                    expected_payout_date: null
+                    category: REJECTED
+                    fee: 0
+                    tid: p9hg30xmg2fr
+                    order_status: PENDING
+                    acceptance_type: settle_api
+                    status: fail
+                    order_id: null
+                    total_refund: 0
+                    is_refund: false
+                    link: /merchant/v1/payment_request/p9hg30xmg2fr/
+                    phone_number_last_four_digits: '2301'
+                    refunds: []
+                    created: '2021-10-14 21:42:26'
+                    modified: '2021-10-14 21:42:38'
+                    situation: p2m
+                    net_amount: 0
+                  - phone_number: null
+                    total_requested: 100000
+                    status_code: 5006
+                    total_captured: 0
+                    currency: NOK
+                    message: Bananas
+                    total: 100000
+                    expected_payout_date: null
+                    category: REJECTED
+                    fee: 0
+                    tid: p0t5f33desae
+                    order_status: PENDING
+                    acceptance_type: settle_api
+                    status: fail
+                    order_id: null
+                    total_refund: 0
+                    is_refund: false
+                    link: /merchant/v1/payment_request/p0t5f33desae/
+                    phone_number_last_four_digits: '2301'
+                    refunds: []
+                    created: '2021-10-14 21:33:09'
+                    modified: '2021-10-14 21:33:25'
+                    situation: p2m
+                    net_amount: 0
+                  - phone_number: null
+                    total_requested: 100000
+                    status_code: 5006
+                    total_captured: 0
+                    currency: NOK
+                    message: Bananas
+                    total: 100000
+                    expected_payout_date: null
+                    category: REJECTED
+                    fee: 0
+                    tid: pphn4xrz33f7
+                    order_status: PENDING
+                    acceptance_type: settle_api
+                    status: fail
+                    order_id: null
+                    total_refund: 0
+                    is_refund: false
+                    link: /merchant/v1/payment_request/pphn4xrz33f7/
+                    phone_number_last_four_digits: '2301'
+                    refunds: []
+                    created: '2021-10-14 21:27:36'
+                    modified: '2021-10-14 21:27:54'
+                    situation: p2m
+                    net_amount: 0
+                  - phone_number: null
+                    total_requested: 100000
+                    status_code: 5006
+                    total_captured: 0
+                    currency: NOK
+                    message: Bananas
+                    total: 100000
+                    expected_payout_date: null
+                    category: REJECTED
+                    fee: 0
+                    tid: pzme29qawkwp
+                    order_status: PENDING
+                    acceptance_type: settle_api
+                    status: fail
+                    order_id: null
+                    total_refund: 0
+                    is_refund: false
+                    link: /merchant/v1/payment_request/pzme29qawkwp/
+                    phone_number_last_four_digits: '2301'
+                    refunds: []
+                    created: '2021-10-14 21:26:33'
+                    modified: '2021-10-14 21:26:44'
+                    situation: p2m
+                    net_amount: 0
+                  - phone_number: null
+                    total_requested: 100000
+                    status_code: 5006
+                    total_captured: 0
+                    currency: NOK
+                    message: Bananas
+                    total: 100000
+                    expected_payout_date: null
+                    category: REJECTED
+                    fee: 0
+                    tid: pf9qwbgk1q25
+                    order_status: PENDING
+                    acceptance_type: settle_api
+                    status: fail
+                    order_id: null
+                    total_refund: 0
+                    is_refund: false
+                    link: /merchant/v1/payment_request/pf9qwbgk1q25/
+                    phone_number_last_four_digits: '2301'
+                    refunds: []
+                    created: '2021-10-14 21:24:08'
+                    modified: '2021-10-14 21:24:20'
+                    situation: p2m
+                    net_amount: 0
+                  - phone_number: null
+                    total_requested: 100000
+                    status_code: 5006
+                    total_captured: 0
+                    currency: NOK
+                    message: Bananas
+                    total: 100000
+                    expected_payout_date: null
+                    category: REJECTED
+                    fee: 0
+                    tid: pvwwaak304ph
+                    order_status: PENDING
+                    acceptance_type: settle_api
+                    status: fail
+                    order_id: null
+                    total_refund: 0
+                    is_refund: false
+                    link: /merchant/v1/payment_request/pvwwaak304ph/
+                    phone_number_last_four_digits: '2301'
+                    refunds: []
+                    created: '2021-10-14 21:21:04'
+                    modified: '2021-10-14 21:21:45'
+                    situation: p2m
+                    net_amount: 0
+                  - phone_number: null
+                    total_requested: 100000
+                    status_code: 5006
+                    total_captured: 0
+                    currency: NOK
+                    message: Bananas
+                    total: 100000
+                    expected_payout_date: null
+                    category: REJECTED
+                    fee: 0
+                    tid: pb3mn43dcyb5
+                    order_status: PENDING
+                    acceptance_type: settle_api
+                    status: fail
+                    order_id: null
+                    total_refund: 0
+                    is_refund: false
+                    link: /merchant/v1/payment_request/pb3mn43dcyb5/
+                    phone_number_last_four_digits: '2301'
+                    refunds: []
+                    created: '2021-10-13 09:38:17'
+                    modified: '2021-10-13 09:38:33'
+                    situation: p2m
+                    net_amount: 0
+                  - phone_number: null
+                    total_requested: 100000
+                    status_code: 5006
+                    total_captured: 0
+                    currency: NOK
+                    message: Bananas
+                    total: 100000
+                    expected_payout_date: null
+                    category: REJECTED
+                    fee: 0
+                    tid: pgrjkcbce5w3
+                    order_status: PENDING
+                    acceptance_type: settle_api
+                    status: fail
+                    order_id: null
+                    total_refund: 0
+                    is_refund: false
+                    link: /merchant/v1/payment_request/pgrjkcbce5w3/
+                    phone_number_last_four_digits: '2301'
+                    refunds: []
+                    created: '2021-10-13 09:35:23'
+                    modified: '2021-10-13 09:37:34'
+                    situation: p2m
+                    net_amount: 0
+                  - phone_number: null
+                    total_requested: 100000
+                    status_code: 5006
+                    total_captured: 0
+                    currency: NOK
+                    message: Bananas
+                    total: 100000
+                    expected_payout_date: null
+                    category: REJECTED
+                    fee: 0
+                    tid: p545e1szz4bs
+                    order_status: PENDING
+                    acceptance_type: settle_api
+                    status: fail
+                    order_id: null
+                    total_refund: 0
+                    is_refund: false
+                    link: /merchant/v1/payment_request/p545e1szz4bs/
+                    phone_number_last_four_digits: '2301'
+                    refunds: []
+                    created: '2021-10-12 12:08:24'
+                    modified: '2021-10-12 12:08:40'
+                    situation: p2m
+                    net_amount: 0
+                  - phone_number: null
+                    total_requested: 100000
+                    status_code: 5006
+                    total_captured: 0
+                    currency: NOK
+                    message: Bananas
+                    total: 100000
+                    expected_payout_date: null
+                    category: REJECTED
+                    fee: 0
+                    tid: pw7de5mwd01y
+                    order_status: PENDING
+                    acceptance_type: settle_api
+                    status: fail
+                    order_id: null
+                    total_refund: 0
+                    is_refund: false
+                    link: /merchant/v1/payment_request/pw7de5mwd01y/
+                    phone_number_last_four_digits: '2301'
+                    refunds: []
+                    created: '2021-10-12 12:03:45'
+                    modified: '2021-10-12 12:04:06'
+                    situation: p2m
+                    net_amount: 0
+                  - phone_number: null
+                    total_requested: 100000
+                    status_code: 5006
+                    total_captured: 0
+                    currency: NOK
+                    message: Bananas
+                    total: 100000
+                    expected_payout_date: null
+                    category: REJECTED
+                    fee: 0
+                    tid: pf69dpb14at0
+                    order_status: PENDING
+                    acceptance_type: settle_api
+                    status: fail
+                    order_id: null
+                    total_refund: 0
+                    is_refund: false
+                    link: /merchant/v1/payment_request/pf69dpb14at0/
+                    phone_number_last_four_digits: '2301'
+                    refunds: []
+                    created: '2021-10-12 12:01:29'
+                    modified: '2021-10-12 12:01:42'
+                    situation: p2m
+                    net_amount: 0
+                  - phone_number: null
+                    total_requested: 100000
+                    status_code: 5006
+                    total_captured: 0
+                    currency: NOK
+                    message: Bananas
+                    total: 100000
+                    expected_payout_date: null
+                    category: REJECTED
+                    fee: 0
+                    tid: phrnqca9m0er
+                    order_status: PENDING
+                    acceptance_type: settle_api
+                    status: fail
+                    order_id: null
+                    total_refund: 0
+                    is_refund: false
+                    link: /merchant/v1/payment_request/phrnqca9m0er/
+                    phone_number_last_four_digits: '2301'
+                    refunds: []
+                    created: '2021-10-12 11:44:33'
+                    modified: '2021-10-12 11:45:11'
+                    situation: p2m
+                    net_amount: 0
+                  - phone_number: null
+                    total_requested: 100000
+                    status_code: 5006
+                    total_captured: 0
+                    currency: NOK
+                    message: Bananas
+                    total: 100000
+                    expected_payout_date: null
+                    category: REJECTED
+                    fee: 0
+                    tid: ph82xsdts6fk
+                    order_status: PENDING
+                    acceptance_type: settle_api
+                    status: fail
+                    order_id: null
+                    total_refund: 0
+                    is_refund: false
+                    link: /merchant/v1/payment_request/ph82xsdts6fk/
+                    phone_number_last_four_digits: '2301'
+                    refunds: []
+                    created: '2021-10-12 11:42:29'
+                    modified: '2021-10-12 11:43:40'
+                    situation: p2m
+                    net_amount: 0
+                  - phone_number: null
+                    total_requested: 100000
+                    status_code: 5006
+                    total_captured: 0
+                    currency: NOK
+                    message: Bananas
+                    total: 100000
+                    expected_payout_date: null
+                    category: REJECTED
+                    fee: 0
+                    tid: p5wj5pj68c2c
+                    order_status: PENDING
+                    acceptance_type: settle_api
+                    status: fail
+                    order_id: null
+                    total_refund: 0
+                    is_refund: false
+                    link: /merchant/v1/payment_request/p5wj5pj68c2c/
+                    phone_number_last_four_digits: '2301'
+                    refunds: []
+                    created: '2021-10-12 11:28:27'
+                    modified: '2021-10-12 11:29:50'
+                    situation: p2m
+                    net_amount: 0
+                  - phone_number: null
+                    total_requested: 100000
+                    status_code: 5006
+                    total_captured: 0
+                    currency: NOK
+                    message: Bananas
+                    total: 100000
+                    expected_payout_date: null
+                    category: REJECTED
+                    fee: 0
+                    tid: p0ehepvecfr3
+                    order_status: PENDING
+                    acceptance_type: settle_api
+                    status: fail
+                    order_id: null
+                    total_refund: 0
+                    is_refund: false
+                    link: /merchant/v1/payment_request/p0ehepvecfr3/
+                    phone_number_last_four_digits: '2301'
+                    refunds: []
+                    created: '2021-10-12 10:40:33'
+                    modified: '2021-10-12 10:41:15'
+                    situation: p2m
+                    net_amount: 0
+                  - phone_number: null
+                    total_requested: 100000
+                    status_code: 5006
+                    total_captured: 0
+                    currency: NOK
+                    message: Bananas
+                    total: 100000
+                    expected_payout_date: null
+                    category: REJECTED
+                    fee: 0
+                    tid: p6gyezef2vj1
+                    order_status: PENDING
+                    acceptance_type: settle_api
+                    status: fail
+                    order_id: null
+                    total_refund: 0
+                    is_refund: false
+                    link: /merchant/v1/payment_request/p6gyezef2vj1/
+                    phone_number_last_four_digits: '2301'
+                    refunds: []
+                    created: '2021-10-12 10:25:44'
+                    modified: '2021-10-12 10:26:07'
+                    situation: p2m
+                    net_amount: 0
+    payment.send.outcome.get:
+      description: Example response
+      content:
+        application/json:
+          schema:
+            description: ''
+            type: object
+            properties:
+              object:
+                type: object
+                properties:
+                  idempotency_id:
+                    type: string
+                    minLength: 1
+                  payer:
+                    type: string
+                    minLength: 1
+                  currency:
+                    type: string
+                    minLength: 1
+                  timestamp:
+                    type: string
+                    minLength: 1
+                  require_identified:
+                    type: boolean
+                  id:
+                    type: string
+                    minLength: 1
+                  payee:
+                    type: string
+                    minLength: 1
+                  amount:
+                    type: number
+                  payer_status:
+                    type: string
+                    minLength: 1
+                  chat_text:
+                    type: string
+                required:
+                  - idempotency_id
+                  - payer
+                  - currency
+                  - timestamp
+                  - require_identified
+                  - id
+                  - payee
+                  - amount
+                  - payer_status
+                  - chat_text
+              type:
+                type: string
+                minLength: 1
+            required:
+              - object
+              - type
+            x-examples:
+              example-1:
+                object:
+                  idempotency_id: fghghd5465fgdhdf6g5h4
+                  payer: 5rg1dkk8
+                  currency: NOK
+                  timestamp: '2022-01-10 08:43:00'
+                  require_identified: true
+                  id: p2cb32b8efc0
+                  payee: 'msisdn:4798052301'
+                  amount: 10000
+                  payer_status: pending
+                  chat_text: ''
+                type: payment
+    shortlink.list:
+      description: Example response
+      content:
+        application/json:
+          schema:
+            description: ''
+            type: object
+            x-examples:
+              example-1:
+                prev: null
+                uris:
+                  - 'https://api.sandbox.settle.eu/merchant/v1/shortlink/-NejK/'
+                  - 'https://api.sandbox.settle.eu/merchant/v1/shortlink/EyHdU/'
+                  - 'https://api.sandbox.settle.eu/merchant/v1/shortlink/h3lBe/'
+                  - 'https://api.sandbox.settle.eu/merchant/v1/shortlink/lLFfN/'
+                  - 'https://api.sandbox.settle.eu/merchant/v1/shortlink/ouO0A/'
+                  - 'https://api.sandbox.settle.eu/merchant/v1/shortlink/xhTGU/'
+                next: null
+            properties:
+              prev:
+                type: string
+                nullable: true
+              uris:
+                type: array
+                items:
+                  type: object
+              next:
+                type: string
+                nullable: true
+            required:
+              - uris
+    shortlink.get:
+      description: Example response
+      content:
+        application/json:
+          schema:
+            description: ''
+            type: object
+            x-examples:
+              example-1:
+                is_active: true
+                label: null
+                shortlink_value: 'http://settle.eu/s/xhTGU/'
+                serial_number: null
+                id: xhTGU
+                callback_uri: null
+            properties:
+              is_active:
+                type: boolean
+              label:
+                type: string
+              shortlink_value:
+                type: string
+                minLength: 1
+              serial_number:
+                type: string
+              id:
+                type: string
+                minLength: 1
+              callback_uri:
+                type: string
+    statusCodes.list:
+      description: Example response
+      content:
+        application/json:
+          schema:
+            type: array
+            description: ''
+            minItems: 1
+            uniqueItems: true
+            items:
+              type: object
+              required:
+                - code
+                - name
+              properties:
+                code:
+                  type: number
+                name:
+                  type: string
+                  minLength: 1
+            x-examples:
+              example-1:
+                - code: 413
+                  name: REQUEST_ENTITY_TOO_LARGE
+                - code: 1000
+                  name: CONTINUE
+                - code: 1001
+                  name: SWITCHING_PROTOCOLS
+                - code: 1002
+                  name: REQUESTING
+                - code: 1003
+                  name: PENDING
+                - code: 1004
+                  name: FUNDING
+                - code: 1005
+                  name: REQUEST_RECEIVED
+                - code: 1006
+                  name: PAYMENT_PENDING
+                - code: 2000
+                  name: OK
+                - code: 2001
+                  name: CREATED
+                - code: 2002
+                  name: ACCEPTED
+                - code: 2003
+                  name: NON_AUTHORITATIVE_INFORMATION
+                - code: 2004
+                  name: NO_CONTENT
+                - code: 2005
+                  name: RESET_CONTENT
+                - code: 2006
+                  name: PARTIAL_CONTENT
+                - code: 2201
+                  name: PRETEND_OK
+                - code: 2300
+                  name: OK_PRESENT_ON_BANK_STATEMENT
+                - code: 2400
+                  name: REFUND
+                - code: 2401
+                  name: PARTIAL_REFUND
+                - code: 3000
+                  name: MULTIPLE_CHOICES
+                - code: 3001
+                  name: MOVED_PERMANENTLY
+                - code: 3002
+                  name: FOUND
+                - code: 3003
+                  name: SEE_OTHER
+                - code: 3004
+                  name: NOT_MODIFIED
+                - code: 3005
+                  name: USER_PROXY
+                - code: 3007
+                  name: TEMPORARY_REDIRECT
+                - code: 3008
+                  name: AUTH
+                - code: 4000
+                  name: BAD_REQUEST
+                - code: 4001
+                  name: UNAUTHORIZED
+                - code: 4002
+                  name: PAYMENT_REQUIRED
+                - code: 4004
+                  name: NOT_FOUND
+                - code: 4005
+                  name: METHOD_NOT_ALLOWED
+                - code: 4006
+                  name: NOT_ACCEPTABLE
+                - code: 4007
+                  name: PROXY_AUTHENTICATION_REQUIRED
+                - code: 4008
+                  name: REQUEST_TIMEOUT
+                - code: 4009
+                  name: CONFLICT
+                - code: 4010
+                  name: GONE
+                - code: 4011
+                  name: LENGTH_REQUIRED
+                - code: 4012
+                  name: PRECONDITION_FAILED
+                - code: 4014
+                  name: REQUEST_URI_TOO_LONG
+                - code: 4015
+                  name: UNSUPPORTED_MEDIA_TYPE
+                - code: 4016
+                  name: REQUESTED_RANGE_NOT_SATISFIABLE
+                - code: 4017
+                  name: EXPECTATION_FAILED
+                - code: 4018
+                  name: FAIL
+                - code: 4019
+                  name: ABORTED
+                - code: 5000
+                  name: INTERNAL_SERVER_ERROR
+                - code: 5001
+                  name: NOT_IMPLEMENTED
+                - code: 5002
+                  name: BAD_GATEWAY
+                - code: 5003
+                  name: SERVICE_UNAVAILABLE
+                - code: 5004
+                  name: GATEWAY_TIMEOUT
+                - code: 5005
+                  name: HTTP_VERSION_NOT_SUPPORTED
+                - code: 5006
+                  name: REJECTED
+                - code: 5007
+                  name: INSUFFICIENT_FUNDS
+                - code: 5008
+                  name: AMOUNT_LIMIT_EXCEEDED
+                - code: 5009
+                  name: PERIODIC_AMOUNT_LIMIT_EXCEEDED
+                - code: 5010
+                  name: LOGICAL_DUPLICATE
+                - code: 5011
+                  name: REQUEST_EXPIRED
+                - code: 5012
+                  name: AUTH_EXPIRED
+                - code: 5020
+                  name: ACCOUNT_CLOSED_FOR_DEPOSIT
+                - code: 5021
+                  name: INVALID_CREDIT_ACCOUNT
+                - code: 5022
+                  name: MISSING_CID
+                - code: 5023
+                  name: CREDIT_ACCOUNT_REQUIRES_CID
+                - code: 5101
+                  name: DAILY_LIMIT_EXCEEDED
+                - code: 5102
+                  name: ACCOUNT_DEACTIVATED
+                - code: 5200
+                  name: MANUAL_RESOLUTION_DUE_TO_BUG
+                - code: 5210
+                  name: BUG_MCASH_OK_BUT_MW_PENDING
+                - code: 5211
+                  name: REFUND_NEEDS_MANUAL_RESOLUTION
+                - code: 5212
+                  name: TRANSFER_NEEDS_MANUAL_RESOLUTION
+                - code: 5213
+                  name: MISSING_TRANSACTION_ID
+                - code: 5214
+                  name: PENDING_IN_TRANSACTION_LOG
+                - code: 5215
+                  name: MISSING_TRANSACTION_IN_SETTLEMENT_LOG
+                - code: 5216
+                  name: TRANSACTION_MISMATCH
+                - code: 5217
+                  name: MAX_DEVIATION_REACHED
+                - code: 5300
+                  name: EVRY_BASE
+                - code: 5400
+                  name: DIBS_D2_ERROR_BASE
+                - code: 5901
+                  name: INSUFFICIENT_MCASH_BALANCE
+    statusCodes.get:
+      description: Example response
+      content:
+        application/json:
+          schema:
+            description: ''
+            type: object
+            properties:
+              code:
+                type: number
+              name:
+                type: string
+                minLength: 1
+            required:
+              - code
+              - name
+            x-examples:
+              example-1:
+                code: 1001
+                name: SWITCHING_PROTOCOLS
+    permissions.request.create:
+      description: Example response
+      content:
+        application/json:
+          schema:
+            description: ''
+            type: object
+            properties:
+              customer:
+                type: string
+                minLength: 1
+              text:
+                type: string
+                minLength: 1
+              callback_uri:
+                type: string
+                minLength: 1
+              scope:
+                type: string
+                minLength: 1
+              expires_in:
+                type: string
+                minLength: 1
+              failure_return_uri:
+                type: string
+                minLength: 1
+              success_return_uri:
+                type: string
+                minLength: 1
+              legal_terms_url:
+                type: string
+                minLength: 1
+            required:
+              - customer
+              - text
+              - callback_uri
+              - scope
+              - expires_in
+              - failure_return_uri
+              - success_return_uri
+              - legal_terms_url
+            x-examples:
+              example-1:
+                customer: 'null'
+                text: 'null'
+                callback_uri: 'null'
+                scope: string
+                expires_in: '21600'
+                failure_return_uri: 'null'
+                success_return_uri: 'null'
+                legal_terms_url: 'null'
 tags:
   - name: Authentication
   - name: Info
