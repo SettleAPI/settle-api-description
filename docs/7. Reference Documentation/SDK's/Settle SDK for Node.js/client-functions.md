@@ -1,6 +1,6 @@
 # Settle SDK for Node.js Client Functions
 
-> See the [Settle SDK for Node.js Reference Documentation](./ZG9jOjM0ODQwMjA2-overview) for instructions on installation and generic use.
+> For instructions on installation and generic use of the **Settle SDK for Node.js**, see the [Reference Documentation](./ZG9jOjM0ODQwMjA2-overview).
 
 ## Authentication
 
