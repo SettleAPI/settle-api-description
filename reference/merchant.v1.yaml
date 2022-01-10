@@ -76,7 +76,7 @@ paths:
         - Authentication
       responses:
         '200':
-          description: OK
+          $ref: '#/components/responses/apiKeys.list'
         '400':
           $ref: '#/components/responses/400'
         '401':
@@ -2837,6 +2837,190 @@ components:
             required:
               - id
               - key_type
+    apiKeys.list:
+      description: Example response
+      content:
+        application/json:
+          schema:
+            description: ''
+            type: object
+            properties:
+              items:
+                type: array
+                uniqueItems: true
+                minItems: 1
+                items:
+                  required:
+                    - has_secret
+                    - label
+                    - key_type
+                    - netmask
+                    - pubkey
+                    - id
+                  properties:
+                    has_secret:
+                      type: boolean
+                    label:
+                      type: string
+                      minLength: 1
+                    key_type:
+                      type: string
+                      minLength: 1
+                    netmask:
+                      type: string
+                    pubkey:
+                      type: string
+                      minLength: 1
+                    id:
+                      type: string
+                      minLength: 1
+            required:
+              - items
+            x-examples:
+              example-1:
+                items:
+                  - has_secret: true
+                    label: Explo 01
+                    key_type: rsa_user
+                    netmask: ''
+                    pubkey: |-
+                      -----BEGIN PUBLIC KEY-----
+                      MIGJAoGBAIbNMX0v1hlsBnTPdyMBwzi4IPksc2yK5Ctv+qNtK5pQX+8W1b4oxBzy86GfAPG9
+                      hAUiSgnoahat2i9L1z7ey7+rhDuMbViiiJvCocXyiNyvOTts2XkwLGbO0mD3/Lp8MudcpmHp
+                      JbzM5GrfZMnYk/dvtmxnWQDRMPvBH/l1dlMzAgMBAAE=
+                      -----END PUBLIC KEY-----
+                    id: 1408wick2806211406
+                  - has_secret: true
+                    label: Explo 02
+                    key_type: rsa_user
+                    netmask: ''
+                    pubkey: |-
+                      -----BEGIN PUBLIC KEY-----
+                      MIGJAoGBAIbNMX0v1hlsBnTPdyMBwzi4IPksc2yK5Ctv+qNtK5pQX+8W1b4oxBzy86GfAPG9
+                      hAUiSgnoahat2i9L1z7ey7+rhDuMbViiiJvCocXyiNyvOTts2XkwLGbO0mD3/Lp8MudcpmHp
+                      JbzM5GrfZMnYk/dvtmxnWQDRMPvBH/l1dlMzAgMBAAE=
+                      -----END PUBLIC KEY-----
+                    id: 1408wick2806211411
+                  - has_secret: false
+                    label: Settle Send
+                    key_type: rsa_generated
+                    netmask: ''
+                    pubkey: |-
+                      -----BEGIN PUBLIC KEY-----
+                      MIGJAoGBAIbNMX0v1hlsBnTPdyMBwzi4IPksc2yK5Ctv+qNtK5pQX+8W1b4oxBzy86GfAPG9
+                      hAUiSgnoahat2i9L1z7ey7+rhDuMbViiiJvCocXyiNyvOTts2XkwLGbO0mD3/Lp8MudcpmHp
+                      JbzM5GrfZMnYk/dvtmxnWQDRMPvBH/l1dlMzAgMBAAE=
+                      -----END PUBLIC KEY-----
+                    id: 3cjbz91k
+                  - has_secret: true
+                    label: Postman Secret
+                    key_type: secret
+                    netmask: ''
+                    pubkey: ''
+                    id: 4tqhfxr4
+                  - has_secret: false
+                    label: M2P
+                    key_type: rsa_generated
+                    netmask: ''
+                    pubkey: |-
+                      -----BEGIN PUBLIC KEY-----
+                      MIGJAoGBAJTUc+ACSE9y8r9CRdHxS6EVS4Flyy+DrInsy2/AlakC/hHeYGHx0fkoEGqi3zWc
+                      8dfwZKWaA1BZaTdYJdk7Iyf4w0NYJ4reVYU84Z04hqDujnhX+RG0km15/nE0aNeZg3b18h+n
+                      q/4KbIMf91kDziuBpYyyd9/yXyhXeQa/O9QFAgMBAAE=
+                      -----END PUBLIC KEY-----
+                    id: akp1pptd
+                  - has_secret: true
+                    label: null
+                    key_type: secret
+                    netmask: ''
+                    pubkey: ''
+                    id: cw1408wick
+                  - has_secret: false
+                    label: Hooray
+                    key_type: rsa_generated
+                    netmask: ''
+                    pubkey: |-
+                      -----BEGIN PUBLIC KEY-----
+                      MIGJAoGBAIY3WCbj1qgTt7anB55510mwsEQk6DrmYKFaXMoXoGsoD+8LuGlZhuPD8iOkKpNf
+                      /bQx8vpKxbg+QvpuhArS3EDSMAnNeDJOl7ZTZ0S6YRC0BtL/44lPnkio19XoIHB9Ij5uIrj1
+                      v06QRyFeI6hIYJ14O08hvIvPsdfsgBcOaovfAgMBAAE=
+                      -----END PUBLIC KEY-----
+                    id: p10ncdy7
+                  - has_secret: false
+                    label: asdfasdf
+                    key_type: rsa_generated
+                    netmask: ''
+                    pubkey: |-
+                      -----BEGIN PUBLIC KEY-----
+                      MIGJAoGBAKmaBR3vXQpvMpqZdRB9TfWfi457wwtzUSZn1J6TMRtkS6QwuGMujqa5qArZkGlE
+                      Csd8YZKMsKaY2zvSwOtj98Jn+7G1V9C534SGxlpjWWbPn9OIVrKWaM5oHLncDUxUhlDGNsoq
+                      UR5HSTpzn37PZL11yODLdZNiq/sf2OFi6F0bAgMBAAE=
+                      -----END PUBLIC KEY-----
+                    id: qqbxweky
+                  - has_secret: false
+                    label: Postman RSA
+                    key_type: rsa_generated
+                    netmask: ''
+                    pubkey: |-
+                      -----BEGIN PUBLIC KEY-----
+                      MIGJAoGBANRZod+hTA4roH28wfslT4Ds21aPn6OWfbPq7amng+zMB9zAk97/EpV548AmF1jN
+                      kKmY3dsnyGeVqR9ARrj1Hto7NqGude7ldoTSoNmbrgwKjpXpt19tHdruhiri9gO+fOlWo1kP
+                      7WxVoUuwGgU0OHAOq9iiLrNtT4oDiDUHbjCjAgMBAAE=
+                      -----END PUBLIC KEY-----
+                    id: rye4391d
+                  - has_secret: false
+                    label: 'My Awesome RSA Key #99'
+                    key_type: rsa_generated
+                    netmask: ''
+                    pubkey: ''
+                    id: test_2507210932
+                  - has_secret: false
+                    label: 'My Awesome RSA Key #100'
+                    key_type: rsa_generated
+                    netmask: ''
+                    pubkey: ''
+                    id: test_2507210934
+                  - has_secret: false
+                    label: 'My Awesome RSA Key #101'
+                    key_type: rsa_generated
+                    netmask: ''
+                    pubkey: ''
+                    id: test_2507210935
+                  - has_secret: true
+                    label: Node.js
+                    key_type: secret
+                    netmask: ''
+                    pubkey: ''
+                    id: wy96k5bh
+                  - has_secret: true
+                    label: Readme.io
+                    key_type: secret
+                    netmask: ''
+                    pubkey: ''
+                    id: xjm0eqtn
+                  - has_secret: false
+                    label: delete me
+                    key_type: rsa_generated
+                    netmask: ''
+                    pubkey: |-
+                      -----BEGIN PUBLIC KEY-----
+                      MIGJAoGBAKe8yRPNix5iN/KIMn+Qxmu7ymPRRW7GdmE/rIiJiUGYtIs8MXP+6KI3/JtTcfVH
+                      OPNiGzyyvE96Ge6zweESfJokslUhyJGSQkodShMGvpaOAl8W4r6tYbMs8urduj9CBKeDSdm6
+                      MBpnGnixsh3vrp1c4xCIIZD2j0rGD9+uDNshAgMBAAE=
+                      -----END PUBLIC KEY-----
+                    id: ywnrxcmp
+                  - has_secret: false
+                    label: Postman RSA (scripts)
+                    key_type: rsa_user
+                    netmask: ''
+                    pubkey: |-
+                      -----BEGIN PUBLIC KEY-----
+                      MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCPR5Hzv2KGwsDWDVZJtGOCU3HZ
+                      1k3OO4CwMu6cNl4MQVReeYuZKcFmxwVurQyO+mjAFUrwcpA7qhPDSlFwRbg/H/C6
+                      2U77GQL+tRot3oY952R9l5hXG/6rscs2ntKJhqigJ0/QAfLl4G7I6xhQ9TFZ/+Vt
+                      rSCjEt15qV1CfqWtpwIDAQAB
+                      -----END PUBLIC KEY-----
+                    id: zdc17354
 tags:
   - name: Authentication
   - name: Info
