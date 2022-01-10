@@ -57,17 +57,13 @@ The supported MIME-types and their respective schemas are:
     "payments": {
       "$ref": "/models/ReceiptPayments.yaml"
     },
+    "currency": {
+      "$ref": "/models/Currency.v1.yaml"
+    },
   }
 }
 ```
 
-### currency
-
-- **Type**: `string`
-
-The currency of amounts on this receipt.
-
-####
 
 ### gross
 
