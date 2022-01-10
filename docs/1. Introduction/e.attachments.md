@@ -59,6 +59,7 @@ The supported MIME-types and their respective schemas are:
     },
   }
 }
+```
 
 ### currency
 
