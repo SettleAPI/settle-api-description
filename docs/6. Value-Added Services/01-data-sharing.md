@@ -17,7 +17,7 @@ When a Customer visits the store, you would benefit if the Electronic Cash Regis
 5. The ECR identifies that the Customer has previously bought 6 cups of coffee and that this cup of coffee is free (or whatever other reward procedure is implemented and relevant, including nudging the Customer to spend more to get a free gift etc).
 6. The ECR updates the bill, discounting the coffee 100% and finalizes the sale.
 
-For details on the payment part of the procedure, please refer to the [payments use cases](../merchant-api/ZG9jOjMyNjUzNjM5-settle-at-checkout).
+For details on the payment part of the procedure, please refer to the [payments use cases](./ZG9jOjM0ODE0Nzg5-settle-at-checkout).
 
 ## Subscribing to a newsletter
 
@@ -25,4 +25,4 @@ When you need the email address of a Customer, you can collect it instantly with
 
 In a physical, digital, mobile or desktop environment, you can have the customer scan the QR or click the button, or even issue the request directly to their phone number if you have it on file.
 
-For more information on Data Sharing, check out our article on [Permission Requests](../merchant-api/ZG9jOjMyNTkzNjQ3-permission-request).
+For more information on Data Sharing, check out our article on [Permission Requests](./ZG9jOjM0ODE0NTky-permission-request).
