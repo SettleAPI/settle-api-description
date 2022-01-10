@@ -4,7 +4,8 @@ info:
   version: '1.0'
   contact:
     name: Settle Group
-    email: support+dev@settle.eu
+    email: settle.eu
+    url: 'https://settle.eu/contact'
   license:
     name: MIT
     url: 'https://raw.githubusercontent.com/SettleAPI/settle-api-description/main/LICENSE'
