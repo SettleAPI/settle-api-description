@@ -389,10 +389,7 @@ merchant.pos.update('pos_id', {
 ### Delete POS Resource
 
 ```js
-merchant.pos.delete('pos_id', {
-  "name": "string",
-  "type": "webshop",
-})
+merchant.pos.delete('pos_id')
     .then(success => {
         // do something with 'success'
     }, failure => {
@@ -415,7 +412,137 @@ merchant.pos.delete('pos_id', {
 
 ## Settlements
 
+### Get Settlement
+
+```js
+merchant.settlement.get()
+    .then(success => {
+        // do something with 'success'
+    }, failure => {
+        console.log(failure);
+    });
+```
+[Reference Documentation for `merchant.settlement.get`](./b3A6MTUzOTU0MjQ-merchant-settlement-get)
+
+
+#### Parameters
+```json json_schema
+{
+  "type": "object",
+  "properties": {
+    "settlement_id": {
+      "type": "string",
+      "description": "The ID of the settlement to retrieve."
+    }
+  }
+}
+```
+
 ## Shortlinks
+
+### Create New Shortlink
+
+```js
+merchant.shortlink.create({
+  "callback_uri": null
+})
+    .then(success => {
+        // do something with 'success'
+    }, failure => {
+        console.log(failure);
+    });
+```
+[Reference Documentation for `merchant.shortlink.create`](./b3A6MTUzOTU0Mjk-merchant-shortlink-create)
+
+
+### List All ShortLinks
+
+```js
+merchant.shortlink.list()
+    .then(success => {
+        // do something with 'success'
+    }, failure => {
+        console.log(failure);
+    });
+```
+[Reference Documentation for `merchant.shortlink.list`](./b3A6MTUzOTU0Mjg-merchant-shortlink-list)
+
+
+### Get ShortLink
+
+```js
+merchant.shortlink.get('shortlink_id')
+    .then(success => {
+        // do something with 'success'
+    }, failure => {
+        console.log(failure);
+    });
+```
+#### Parameters
+```json json_schema
+{
+  "type": "object",
+  "properties": {
+    "shortlink_id": {
+      "type": "string",
+      "description": "ShortLink ID assigned by Settle."
+    }
+  }
+}
+```
+[Reference Documentation for `merchant.shortlink.get`](./b3A6MTUzOTU0MzA-merchant-shortlink-get)
+
+
+### Update ShortLink
+
+```js
+merchant.shortlink.update('shortlink_id', {
+  "callback_uri": "https://example.com/callback/"
+})
+    .then(success => {
+        // do something with 'success'
+    }, failure => {
+        console.log(failure);
+    });
+```
+#### Parameters
+```json json_schema
+{
+  "type": "object",
+  "properties": {
+    "shortlink_id": {
+      "type": "string",
+      "description": "ShortLink ID assigned by Settle."
+    }
+  }
+}
+```
+[Reference Documentation for `merchant.shortlink.update`](./b3A6MTUzOTU0MzE-merchant-shortlink-update)
+
+
+### Delete ShortLink
+
+```js
+merchant.shortlink.delete('shortlink_id')
+    .then(success => {
+        // do something with 'success'
+    }, failure => {
+        console.log(failure);
+    });
+```
+#### Parameters
+```json json_schema
+{
+  "type": "object",
+  "properties": {
+    "shortlink_id": {
+      "type": "string",
+      "description": "ShortLink ID assigned by Settle."
+    }
+  }
+}
+```
+[Reference Documentation for `merchant.shortlink.delete`](./b3A6MTUzOTU0MzI-merchant-shortlink-delete)
 
 ### Status Codes
 
