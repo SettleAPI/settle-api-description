@@ -65,40 +65,34 @@
     },
     {
       "type": "group",
-      "title": "2.1 Getting Started",
+      "title": "Getting Started",
       "items": [
         {
           "type": "item",
           "title": "The Sandbox environment",
-          "uri": "docs/2. Guides/2.1 Getting Started/01-the-sandbox-environment.md"
+          "uri": "docs/2. Guides/Getting Started/01-the-sandbox-environment.md"
         },
         {
           "type": "item",
           "title": "Set up a business account",
-          "uri": "docs/2. Guides/2.1 Getting Started/02-set-up-a-business-account.md"
+          "uri": "docs/2. Guides/Getting Started/02-set-up-a-business-account.md"
         },
         {
           "type": "item",
           "title": "Install and use Postman for testing the Settle API",
-          "uri": "docs/2. Guides/2.1 Getting Started/03-test-the-settle-api-with-postman.md"
+          "uri": "docs/2. Guides/Getting Started/03-test-the-settle-api-with-postman.md"
         },
         {
           "type": "item",
           "title": "Getting ready for Production",
-          "uri": "docs/2. Guides/2.1 Getting Started/04-get-ready-for-production.md"
+          "uri": "docs/2. Guides/Getting Started/04-get-ready-for-production.md"
         }
       ]
     },
     {
-      "type": "group",
-      "title": "2.2 Callback Verification",
-      "items": [
-        {
-          "type": "item",
-          "title": "Verifying Callback Signatures with Node.js",
-          "uri": "docs/2. Guides/2.2 Callback Verification/verifying-callback-signatures-with-node.md"
-        }
-      ]
+      "type": "item",
+      "title": "Verifying Callback Signatures with Node.js",
+      "uri": "docs/2. Guides/verifying-callback-signatures-with-node.md"
     },
     {
       "type": "divider",
@@ -261,14 +255,31 @@
       "title": "SDK's",
       "items": [
         {
-          "type": "item",
+          "type": "group",
           "title": "Settle SDK for Node.js",
-          "uri": "docs/7. Reference Documentation/SDK's/settle-sdk-for-node/README.md"
+          "items": [
+            {
+              "type": "item",
+              "title": "Overview",
+              "uri": "docs/7. Reference Documentation/SDK's/Settle SDK for Node.js/a.introduction.md"
+            },
+            {
+              "type": "item",
+              "title": "Settle SDK for Node.js Client Functions",
+              "uri": "docs/7. Reference Documentation/SDK's/Settle SDK for Node.js/client-functions.md"
+            }
+          ]
         },
         {
-          "type": "item",
+          "type": "group",
           "title": "Settle SDK for PHP",
-          "uri": "docs/7. Reference Documentation/SDK's/settle-sdk-php.md"
+          "items": [
+            {
+              "type": "item",
+              "title": "Overview",
+              "uri": "docs/7. Reference Documentation/SDK's/Settle SDK for PHP/a.introduction.md"
+            }
+          ]
         }
       ]
     },
