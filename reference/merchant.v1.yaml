@@ -2224,67 +2224,6 @@ components:
       description: Permission request id assigned by Settle
   examples: {}
   requestBodies:
-    payment.send:
-      content:
-        application/json:
-          schema:
-            description: ''
-            type: object
-            x-examples:
-              example-1:
-                payer:
-                  type: string
-                  description: The merchant ID of the sender
-                payee:
-                  $ref: ../models/PersonIdentifier.v1.yaml
-                idempotency_id:
-                  type: string
-                  description: Unique id for each payment request.
-                currency:
-                  $ref: ../models/Currency.v1.yaml
-                amount:
-                  $ref: ../models/MoneyInteger.v1.yaml
-                chat_text:
-                  type: string
-                  description: Message presented to the user with the payment.
-                expires_in:
-                  type: string
-                  description: 'Number of seconds the funds can not be claimed immediately, how long will they be available before being returned to the sender. Default is three (3) days.'
-                required_identified:
-                  type: boolean
-                  default: false
-                  description: Option to request the recipient to have a verified identity in order to receive the funds.
-            properties:
-              payer:
-                type: string
-                description: The merchant ID of the sender.
-              payee:
-                $ref: ../models/PersonIdentifier.v1.yaml
-              idempotency_id:
-                type: string
-                description: Unique id for each payment request.
-              currency:
-                $ref: ../models/Currency.v1.yaml
-              amount:
-                $ref: ../models/MoneyInteger.v1.yaml
-              chat_text:
-                type: string
-                description: Message presented to the user with the payment.
-              expires_in:
-                type: string
-                description: 'Number of seconds the funds can not be claimed immediately, how long will they be available before being returned to the sender. Default is three (3) days.'
-              required_identified:
-                type: boolean
-                description: Option to request the recipient to have a verified identity in order to receive the funds.
-                default: false
-            required:
-              - payer
-              - payee
-              - idempotency_id
-              - currency
-              - amount
-          examples: {}
-      description: 'Send payment. **Please note** that using the same `idempotency_id` again in a new request will only result in the retrieval of the first resulting Transaction ID (`tid`), not a new payment, mnng it is safe to retry payment requests in case of network loss.'
     permissions.request.create:
       content:
         application/json:
