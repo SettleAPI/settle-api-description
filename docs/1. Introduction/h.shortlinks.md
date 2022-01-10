@@ -33,7 +33,7 @@ Because of security considerations when opening external URIs inside the Settle 
 There are currently no API endpoints for managing trusted domains, please contact Settle support to register domain that should be visible inside app.
 
 ## Shortlink Management
-To be able to receive scans, one must first [register a shortlink](../merchant-api/b3A6MTUzOTU0Mjk-merchant-shortlink-create).
+To be able to receive scans, one must first [register a shortlink](./b3A6MTUzOTU0Mjk-merchant-shortlink-create).
 
 #
 
@@ -78,7 +78,7 @@ Content-Type: application/json
 }
 ```
 
-For a complete specification of the JSON request object, see the [Short Dynamic Link API Reference]().
+For a complete specification of the JSON request object, see the [Short Dynamic Link API Reference](./ZG9jOjM0ODE0Nzk4-short-dynamic-links-api).
 
 ### Request limits
 
