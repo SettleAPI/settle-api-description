@@ -71,7 +71,7 @@ servers:
 paths:
   /api_key:
     get:
-      summary: List API Keys
+      summary: merchant.apiKeys.list
       tags:
         - Authentication
       responses:
@@ -81,11 +81,11 @@ paths:
           $ref: '#/components/responses/400'
         '401':
           $ref: '#/components/responses/401'
-      operationId: 2.merchant.apiKeys.list
+      operationId: merchant.apiKeys.list
       description: List Merchant API Keys
     post:
-      summary: Create API Key
-      operationId: 1.merchant.apiKeys.create
+      summary: merchant.apiKeys.create
+      operationId: merchant.apiKeys.create
       responses:
         '201':
           $ref: '#/components/responses/apiKeys.create'
@@ -106,7 +106,7 @@ paths:
       - $ref: '#/components/parameters/api_user_id'
     put:
       summary: merchant.apiKeys.update
-      operationId: 4.merchant.apiKeys.update
+      operationId: merchant.apiKeys.update
       responses:
         '204':
           $ref: '#/components/responses/204'
@@ -121,7 +121,7 @@ paths:
         $ref: '#/components/requestBodies/apiKeys.update'
     delete:
       summary: merchant.apiKeys.delete
-      operationId: 5.merchant.apiKeys.delete
+      operationId: merchant.apiKeys.delete
       responses:
         '204':
           description: No Content
@@ -132,7 +132,7 @@ paths:
         - Authentication
     get:
       summary: merchant.apiKeys.get
-      operationId: 3.merchant.apiKeys.get
+      operationId: merchant.apiKeys.get
       responses:
         '200':
           $ref: '#/components/responses/apiKeys.get'
@@ -210,6 +210,8 @@ paths:
       responses:
         '200':
           $ref: '#/components/responses/payment.request.get'
+        '401':
+          $ref: '#/components/responses/401'
       description: Retrieve payment request info
       tags:
         - Payments
@@ -385,6 +387,8 @@ paths:
           description: No Content
         '400':
           description: 'Bad request, validation error'
+        '401':
+          $ref: '#/components/responses/401'
       description: Update POS resource
       tags:
         - Pos
@@ -396,6 +400,8 @@ paths:
       responses:
         '204':
           description: No Content
+        '401':
+          $ref: '#/components/responses/401'
       description: Delete POS
       tags:
         - Pos
@@ -419,7 +425,6 @@ paths:
         - Merchant
       operationId: merchant.profile.get
       description: Get merchant info
-      deprecated: true
       x-internal: true
   '/merchant_lookup/{lookup_id}':
     parameters:
@@ -432,8 +437,6 @@ paths:
       tags:
         - Merchant
       x-internal: true
-      deprecated: true
-  /sales_summary: {}
   /settlement:
     get:
       summary: merchant.settlement.list
@@ -487,29 +490,16 @@ paths:
       summary: merchant.settlement.account.update
       operationId: merchant.settlement.account.update
       description: Updates a SettlementAccount
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/settlement.account.update'
-        description: Updates a SettlementAccount.
       tags:
         - Settlement
-      deprecated: true
       x-internal: true
   /settlement_report:
     get:
       summary: merchant.settlement.report.get
       tags:
         - Settlement
-      responses:
-        '200':
-          $ref: '#/components/responses/settlement.report.get.200'
-        '401':
-          $ref: '#/components/responses/401'
       operationId: merchant.settlement.report.get
       description: Endpoint accepts arguments for filtering the list of settlements and can omit empty settlements.
-      deprecated: true
       x-internal: true
   /shortlink:
     get:
@@ -529,9 +519,11 @@ paths:
       operationId: merchant.shortlink.create
       responses:
         '201':
-          $ref: '#/components/responses/shortlink.create.201'
+          $ref: '#/components/responses/shortlink.create'
         '400':
           $ref: '#/components/responses/shortlink.create.400'
+        '401':
+          $ref: '#/components/responses/401'
       description: Register new shortlink.
       tags:
         - Shortlink
@@ -572,6 +564,8 @@ paths:
       responses:
         '204':
           $ref: '#/components/responses/204'
+        '401':
+          $ref: '#/components/responses/401'
       description: Delete shortlink
       tags:
         - Shortlink
@@ -581,18 +575,10 @@ paths:
       tags:
         - Self Service Portal
       responses:
-        '201':
-          $ref: '#/components/responses/ssp.users.create.201'
         '409':
           $ref: '#/components/responses/ssp.users.create.409'
       operationId: merchant.ssp.users.create
       description: Creates a MerchantSspUser.
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/ssp.users.create'
-        description: 'Returns 201 CREATED (unless a user with the same email already exists, which results in a 409 CONFLICT response).'
       x-internal: true
     get:
       summary: merchant.ssp.users.list
@@ -600,9 +586,6 @@ paths:
         - Self Service Portal
       operationId: merchant.ssp.users.list
       description: Lists Merchant SSP Users.
-      responses:
-        '200':
-          $ref: '#/components/responses/ssp.users.get.200'
       x-internal: true
   '/merchant_ssp_user/{merchant_ssp_user_id}':
     parameters:
@@ -615,9 +598,6 @@ paths:
       summary: merchant.ssp.users.get
       tags:
         - Self Service Portal
-      responses:
-        '200':
-          $ref: '#/components/responses/ssp.users.get.200'
       operationId: merchant.ssp.users.get
       description: Gets a MerchantSspUser.
       x-internal: true
@@ -4457,14 +4437,6 @@ components:
             properties:
               payout_details:
                 type: object
-                required:
-                  - payout
-                  - gross
-                  - unsettled_fees_before
-                  - currency
-                  - unsettled_fees_after
-                  - net
-                  - billed
                 properties:
                   payout:
                     type: number
@@ -4489,15 +4461,6 @@ components:
                   type: object
               settlement_summary:
                 type: object
-                required:
-                  - gross
-                  - taxcode
-                  - interchange
-                  - additional_amount_total
-                  - currency
-                  - fees
-                  - net
-                  - amount_total
                 properties:
                   gross:
                     type: number
@@ -4513,13 +4476,6 @@ components:
                     minLength: 1
                   fees:
                     type: object
-                    required:
-                      - settlement_fee
-                      - transaction_fee_vat
-                      - scope_fee_vat
-                      - settlement_fee_vat
-                      - scope_fee
-                      - transaction_fee
                     properties:
                       settlement_fee:
                         type: number
@@ -4547,13 +4503,6 @@ components:
               id:
                 type: string
                 minLength: 1
-            required:
-              - payout_details
-              - scope_log_uris
-              - settlement_summary
-              - date_created
-              - transaction_log_uris
-              - id
 tags:
   - name: Authentication
   - name: Info
