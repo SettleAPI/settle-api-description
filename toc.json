@@ -241,6 +241,39 @@
     },
     {
       "type": "group",
+      "title": "SDK's",
+      "items": [
+        {
+          "type": "group",
+          "title": "Settle SDK for Node.js",
+          "items": [
+            {
+              "type": "item",
+              "title": "Inroduction",
+              "uri": "docs/7. Reference Documentation/SDK's/Settle SDK for Node.js/a.introduction.md"
+            },
+            {
+              "type": "item",
+              "title": "Client Functions",
+              "uri": "docs/7. Reference Documentation/SDK's/Settle SDK for Node.js/client-functions.md"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "title": "Settle SDK for PHP",
+          "items": [
+            {
+              "type": "item",
+              "title": "Introduction",
+              "uri": "docs/7. Reference Documentation/SDK's/Settle SDK for PHP/a.introduction.md"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "group",
       "title": "API's",
       "items": [
         {
@@ -511,39 +544,6 @@
               "type": "item",
               "title": "VatSalesTableEntry",
               "uri": "models/VatSalesTableEntry.yaml"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "type": "group",
-      "title": "SDK's",
-      "items": [
-        {
-          "type": "group",
-          "title": "Settle SDK for Node.js",
-          "items": [
-            {
-              "type": "item",
-              "title": "Inroduction",
-              "uri": "docs/7. Reference Documentation/SDK's/Settle SDK for Node.js/a.introduction.md"
-            },
-            {
-              "type": "item",
-              "title": "Settle SDK for Node.js Client Functions",
-              "uri": "docs/7. Reference Documentation/SDK's/Settle SDK for Node.js/client-functions.md"
-            }
-          ]
-        },
-        {
-          "type": "group",
-          "title": "Settle SDK for PHP",
-          "items": [
-            {
-              "type": "item",
-              "title": "Introduction",
-              "uri": "docs/7. Reference Documentation/SDK's/Settle SDK for PHP/a.introduction.md"
             }
           ]
         }
