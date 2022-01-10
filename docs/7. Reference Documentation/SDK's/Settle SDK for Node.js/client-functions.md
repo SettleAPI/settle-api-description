@@ -232,7 +232,186 @@ merchant.payment.request.update('tid', {
 ```
 [Reference Documentation for `merchant.payment.request.update`](./b3A6MTUzOTU0MTQ-merchant-payment-request-get)
 
+
+### Get single Payment Request Outcome
+
+```js
+merchant.payment.request.outcome.get('tid')
+    .then(success => {
+        // do something with 'success'
+    }, failure => {
+        console.log(failure);
+    });
+```
+#### Parameters
+```json json_schema
+{
+  "type": "object",
+  "properties": {
+    "tid": {
+      "type": "string",
+      "description": "Transaction ID assigned by Settle."
+    }
+  }
+}
+```
+[Reference Documentation for `merchant.payment.request.outcome.get`](./b3A6ODY5MDgzNQ-merchant-payment-request-outcome-get)
+
+
+### Send New Payment
+
+```js
+merchant.payment.send.create({
+  "payer": "string",
+  "payee": "null",
+  "idempotency_id": "string",
+  "currency": "string",
+  "amount": 0,
+})
+    .then(success => {
+        // do something with 'success'
+    }, failure => {
+        console.log(failure);
+    });
+```
+[Reference Documentation for `merchant.payment.send.create`](./b3A6MTUzOTU0Mzc-merchant-payment-send-create)
+
+
+### Get Sent Payment Outcome
+
+```js
+merchant.payment.send.outcome.get('tid')
+    .then(success => {
+        // do something with 'success'
+    }, failure => {
+        console.log(failure);
+    });
+```
+#### Parameters
+```json json_schema
+{
+  "type": "object",
+  "properties": {
+    "tid": {
+      "type": "string",
+      "description": "Transaction ID assigned by Settle."
+    }
+  }
+}
+```
+[Reference Documentation for `merchant.payment.send.outcome.get`](./b3A6MTUzOTU0Mzg-merchant-payment-send-outcome-get)
+
 ## POS
+
+### Create New POS Resource
+
+```js
+merchant.pos.create({
+  "name": "string",
+  "type": "webshop",
+  "location": [59.912270, 10.735820, 1],
+  "id": "string"
+})
+    .then(success => {
+        // do something with 'success'
+    }, failure => {
+        console.log(failure);
+    });
+```
+[Reference Documentation for `merchant.pos.create`](./b3A6MTUzOTU0MTU-merchant-pos-create)
+
+
+### List all POS Resources
+
+```js
+merchant.pos.list()
+    .then(success => {
+        // do something with 'success'
+    }, failure => {
+        console.log(failure);
+    });
+```
+[Reference Documentation for `merchant.pos.list`](./b3A6MTUzOTU0MTY-merchant-pos-list)
+
+
+### Get Single POS Resource
+
+```js
+merchant.pos.get('pos_id')
+    .then(success => {
+        // do something with 'success'
+    }, failure => {
+        console.log(failure);
+    });
+```
+#### Parameters
+```json json_schema
+{
+  "type": "object",
+  "properties": {
+    "pos_id": {
+      "type": "string",
+      "description": "POS id as chosen on registration."
+    }
+  }
+}
+```
+[Reference Documentation for `merchant.pos.get`](./b3A6MTUzOTU0MTk-merchant-pos-get)
+
+
+### Update Single POS Resource
+
+```js
+merchant.pos.update('pos_id', {
+  "name": "string",
+  "type": "webshop",
+})
+    .then(success => {
+        // do something with 'success'
+    }, failure => {
+        console.log(failure);
+    });
+```
+#### Parameters
+```json json_schema
+{
+  "type": "object",
+  "properties": {
+    "pos_id": {
+      "type": "string",
+      "description": "POS id as chosen on registration."
+    }
+  }
+}
+```
+[Reference Documentation for `merchant.pos.update`](./b3A6MTUzOTU0MTc-merchant-pos-update)
+
+### Delete Single POS Resource
+
+```js
+merchant.pos.delete('pos_id', {
+  "name": "string",
+  "type": "webshop",
+})
+    .then(success => {
+        // do something with 'success'
+    }, failure => {
+        console.log(failure);
+    });
+```
+#### Parameters
+```json json_schema
+{
+  "type": "object",
+  "properties": {
+    "pos_id": {
+      "type": "string",
+      "description": "POS id as chosen on registration."
+    }
+  }
+}
+```
+[Reference Documentation for `merchant.pos.delete`](./b3A6MTUzOTU0MTg-merchant-pos-delete)
 
 ## Settlements
 
@@ -265,7 +444,7 @@ xxxxx()
 {
   "type": "object",
   "properties": {
-    "xxxxx": {
+    "xxxx": {
       "type": "string",
       "description": "xxxxx"
     }
