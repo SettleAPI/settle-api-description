@@ -23,7 +23,7 @@ merchant.apiKeys.create({
     });
 ```
 
-[Reference Documentation for `merchant.apiKeys.create`](./ZG9jOjM0ODM3NTEw-node-js-sdk-for-connecting-to-the-settle-payment-platform)
+[Reference Documentation for `merchant.apiKeys.create`](./b3A6MTUzOTU0MDk-merchant-api-keys-create)
 <br><br>
 
 
