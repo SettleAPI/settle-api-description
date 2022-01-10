@@ -168,105 +168,11 @@ paths:
         Create a Payment Request.
 
         The call is idempotent; that is, if one posts the same pos_id and pos_tid twice, only one payment request is created.
-      parameters:
-        - schema:
-            type: string
-            default: application/vnd.mcash.api.merchant.v1+json
-          in: header
-          name: Accept
-          required: true
-        - schema:
-            type: string
-            default: application/json
-          in: header
-          name: Content-Type
-          required: true
-        - schema:
-            type: string
-            example: fzkmhy0q
-          in: header
-          name: X-Auka-Merchant
-          required: true
-          description: This header should contain the Settle ID of the merchant as returned in the id field of the merchant endpoint.
-        - schema:
-            type: string
-            example: wtvrad79
-          in: header
-          name: X-Auka-User
-          required: true
-          description: The ID (username) of the user/client doing the request on behalf of the merchant. Users are created by the merchant through the Self Service Portal or by the integrator using the user endpoint. Each user has is an ID locally unique for the merchant and is assigned a shared secret and/or a RSA public key that is used for authentication.
-        - schema:
-            type: string
-            example: '2021-03-28 18:06:05'
-          in: header
-          name: X-Auka-Timestamp
-          required: true
-          description: 'The current UTC time. The time format is YYYY-MM-DD hh:mm:ss.'
-        - schema:
-            type: string
-            example: SHA256=47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=
-          in: header
-          name: X-Auka-Content-Digest
-          required: true
-          description: 'The base64 encoded hash digest of the request body. If the body is empty, the hash should be computed on an empty string. The value of the header should be on the form {algorithm (uppercase)}={digest value}.'
-        - schema:
-            type: string
-            example: RSA-SHA256 R/O6YTy/QBgxHpNxSGCDKg8TKONtCof0jVDuqAkdLGsEdLrDQO7+9EZnDZ+x/Ce0e/F+dTfgbBujKN1zRoZzw2mlStIxTa9/kKTQ4IEZH+ym9z9dv6ZA+R17JN+/yT56O1O50pQbhIfk4ibln4bf3iwkodyP2fFIuBZ74CUeS0Q=
-          in: header
-          name: Authorization
-          required: true
-          description: The value of this field depends on what kind of authentication scheme is being used. Currently the supported schemes are SECRET and RSA-SHA256.
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/payment.request.create'
-            examples:
-              Example:
-                value:
-                  action: SALE
-                  additional_amount: 0
-                  additional_edit: false
-                  allow_credit: true
-                  amount: 0
-                  callback_uri: 'null'
-                  cid: 'null'
-                  currency:
-                    alph_code: 'null'
-                    num_code: 3
-                  customer: 'null'
-                  display_message_uri: 'null'
-                  expires_in: 21600
-                  failure_return_uri: 'null'
-                  line_items:
-                    product_id: string
-                    description: string
-                    metadata:
-                      key: string
-                      value: string
-                    vat_rate: 'null'
-                    quantity: string
-                    vat: 0
-                    item_cost: 0
-                    total: 0
-                  links:
-                    uri: 'null'
-                    caption: 'null'
-                    show_on: 'null'
-                  max_scan_age: 60
-                  pos_id: string
-                  pos_tid: string
-                  required_scope:
-                    scopes: address
-                  required_scope_text: 'null'
-                  success_return_uri: 'null'
-                  text: 'null'
-                  uri: 'null'
-                  'null': string
-                  scope:
-                    scopes: address
+      parameters: []
       tags:
         - Payments
+      requestBody:
+        $ref: '#/components/requestBodies/payment.request.create'
     get:
       summary: merchant.payment.request.list
       operationId: merchant.payment.request.list
@@ -2501,6 +2407,102 @@ components:
             required:
               - id
               - key_type
+    payment.request.create:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              action:
+                type: string
+                description: 'Action to perform, the main difference is what it looks like in App UI.'
+                enum:
+                  - SALE
+                  - AUTH
+                  - sale
+                  - auth
+              additional_amount:
+                $ref: ../models/MoneyInteger.v1.yaml
+              additional_edit:
+                type: boolean
+                default: false
+                description: Whether user is allowed to additional amount for gratuity or similar.
+              allow_credit:
+                type: boolean
+                description: Whether to allow credit payment for this payment request. Credit incurs interchange.
+              amount:
+                $ref: ../models/MoneyInteger.v1.yaml
+              callback_uri:
+                type: string
+                default: null
+                pattern: '(^|^w+://(localhost|[^/:]+|([0-9]{1,3}.){3}[0-9]{1,3})?(:[0-9]+)?)(/.*)?$'
+                description: 'If provided, Settle will POST to this URI when the status of the payment request changes, using the message mechanism described in the introduction. The data in the object part of the message is the same as what can be retrieved by calling `GET` on the **/payment_request/{tid}/outcome/** resource URI.'
+              cid:
+                type: string
+                default: null
+                description: Customer ID to be used for KID payments.
+              currency:
+                $ref: ../models/Currency.v1.yaml
+              customer:
+                $ref: ../models/PersonIdentifier.v1.yaml
+              display_message_uri:
+                type: string
+                description: Messages that can be used to inform the POS operator about the progress of the payment request will be posted to this URI if provided.
+                default: null
+              expires_in:
+                type: integer
+                default: 21600
+                minimum: 0
+                maximum: 2592000
+              failure_return_uri:
+                type: string
+                default: null
+                pattern: '(^|^w+://(localhost|[^/:]+|([0-9]{1,3}.){3}[0-9]{1,3})?(:[0-9]+)?)(/.*)?$'
+                description: Return URL if payment failed.
+              line_items:
+                $ref: ../models/LineItem.v1.yaml
+              links:
+                $ref: ../models/PaymentRequestLink.v1.yaml
+              pos_id:
+                type: string
+                description: 'The POS this payment request originates from, used for informing user about origin.'
+                maxLength: 64
+                pattern: '^[a-zA-Z0-9_.-]+$'
+              pos_tid:
+                type: string
+                description: Local transaction id for POS. This must be unique for the POS.
+                pattern: '^[a-zA-Z0-9_.-]+$'
+                maxLength: 64
+              required_scope:
+                $ref: ../models/Scope.v1.yaml
+              required_scope_text:
+                type: string
+                description: Text that is shown to user when asked for permission. This can contain line breaks and the text has to fit on smartphones screens.
+                default: null
+                maxLength: 150
+              success_return_uri:
+                type: string
+                pattern: '(^|^w+://(localhost|[^/:]+|([0-9]{1,3}.){3}[0-9]{1,3})?(:[0-9]+)?)(/.*)?$'
+                default: null
+                description: Return URL if payment successful.
+              text:
+                type: string
+                description: Text that is shown to user when asked to pay. This can contain line breaks and the text has to fit on smartphones screens.
+                default: null
+              uri:
+                type: string
+                description: 'If payment request was posted without a customer, user can claim it on this URI.'
+                default: null
+              scope:
+                $ref: ../models/Scope.v1.yaml
+            required:
+              - action
+              - allow_credit
+              - amount
+              - currency
+              - pos_id
+              - pos_tid
+      description: 'A payment request goes through several stages. After being registered, the customer can either reject or authorize. An authorization is valid for 3 days, but can be reauthorized before it expires to be valid for 3 new days. Once authorized, it can be captured to be included in the next settlement.'
   responses:
     '200':
       description: OK

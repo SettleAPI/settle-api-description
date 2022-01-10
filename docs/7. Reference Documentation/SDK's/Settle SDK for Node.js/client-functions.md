@@ -148,6 +148,63 @@ merchant.balance.get()
 
 ## Payments
 
+### Create New Payment Request
+
+```js
+merchant.payment.request.create({
+  "action": "SALE",
+  "allow_credit": true,
+  "amount": 0,
+  "currency": {
+    "alph_code": "null",
+    "num_code": 3
+  },
+  "customer": "null",
+  "display_message_uri": "null",
+  "expires_in": 21600,
+  "failure_return_uri": "null",
+  "line_items": {
+    "product_id": "string",
+    "description": "string",
+    "metadata": {
+      "key": "string",
+      "value": "string"
+    },
+    "vat_rate": "null",
+    "quantity": "string",
+    "vat": 0,
+    "item_cost": 0,
+    "total": 0
+  },
+  "links": {
+    "uri": "null",
+    "caption": "null",
+    "show_on": "null"
+  },
+  "max_scan_age": 60,
+  "pos_id": "string",
+  "pos_tid": "string",
+  "required_scope": {
+    "scopes": "address"
+  },
+  "required_scope_text": "null",
+  "success_return_uri": "null",
+  "text": "null",
+  "uri": "null",
+  "null": "string",
+  "scope": {
+    "scopes": "address"
+  }
+})
+    .then(success => {
+        // do something with 'success'
+    }, failure => {
+        console.log(failure);
+    });
+```
+[Reference Documentation for `merchant.payment.request.create`](./b3A6ODY4MjgyNA-merchant-payment-request-create)
+<br><br>
+
 ## POS
 
 ## Settlements
