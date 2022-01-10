@@ -263,8 +263,8 @@ mobileNumber | Mobile number which the payment request is sent to.
 successPrefix | URL for redirecting users after successful payment.
 failurePrefix | URL for redirecting users after failed payment.
 callbackPrefix | Merchant hosted endpoint where Settle will send transaction updates. 
-action | Action to perform on payment request. [What is this?](url)
-currency | The currency used for the payment. [What is this?](../merchant-api/c2NoOjQwNjM0Ng-currency)
+action | Action to perform on payment request. [What is this?](./settleapis/b3A6ODY4MjgyNA-merchant-payment-request-create#request-body)
+currency | The currency used for the payment. [What is this?](./settleapis/c2NoOjQwNjM0Ng-currency)
 
 <!-- theme: success -->
 > #### Tip
