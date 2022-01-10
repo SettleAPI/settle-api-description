@@ -51,34 +51,14 @@ The supported MIME-types and their respective schemas are:
     "store": {
       "$ref": "/models/Store.yaml"
     },
+    "receipt_items": {
+      "$ref": "/models/ReceiptItems.yaml"
+    },
+    "payments": {
+      "$ref": "/models/ReceiptPayments.yaml"
+    },
   }
 }
-
-
-
-### store
-
-- **Type**: `Store`
-
-Information about the Store.
-
-####
-
-### receipt_items
-
-- **Type**: `ReceiptItems`
-
-Receipt items.
-
-#### 
-
-### payments
-
-- **Type**: `ReceiptPayments`
-
-Payments.
-
-####
 
 ### currency
 
