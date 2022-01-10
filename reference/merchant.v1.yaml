@@ -115,6 +115,8 @@ paths:
       description: Update API Key
       tags:
         - Authentication
+      requestBody:
+        $ref: '#/components/requestBodies/apiKeys.update'
     delete:
       summary: merchant.apiKeys.delete
       operationId: merchant.apiKeys.delete
@@ -151,57 +153,10 @@ paths:
 
         The call is idempotent; that is, if one posts the same pos_id and pos_tid twice, only one payment request is created.
       parameters: []
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/payment.request.create'
-            examples:
-              Example:
-                value:
-                  action: SALE
-                  additional_amount: 0
-                  additional_edit: false
-                  allow_credit: true
-                  amount: 0
-                  callback_uri: 'null'
-                  cid: 'null'
-                  currency:
-                    alph_code: 'null'
-                    num_code: 3
-                  customer: 'null'
-                  display_message_uri: 'null'
-                  expires_in: 21600
-                  failure_return_uri: 'null'
-                  line_items:
-                    product_id: string
-                    description: string
-                    metadata:
-                      key: string
-                      value: string
-                    vat_rate: 'null'
-                    quantity: string
-                    vat: 0
-                    item_cost: 0
-                    total: 0
-                  links:
-                    uri: 'null'
-                    caption: 'null'
-                    show_on: 'null'
-                  max_scan_age: 60
-                  pos_id: string
-                  pos_tid: string
-                  required_scope:
-                    scopes: address
-                  required_scope_text: 'null'
-                  success_return_uri: 'null'
-                  text: 'null'
-                  uri: 'null'
-                  'null': string
-                  scope:
-                    scopes: address
       tags:
         - Payments
+      requestBody:
+        $ref: '#/components/requestBodies/payment.request.create'
     get:
       summary: merchant.payment.request.list
       operationId: merchant.payment.request.list
@@ -237,16 +192,11 @@ paths:
         The call is idempotent; that is, if one posts the same amount, additional_amount and capture_id twice with action CAPTURE, only one capture is performed. Similarly, if one posts twice with action CAPTURE without any amount stated, to capture the full amount, only one full capture is performed.
 
         Note that the REFUND action will require that the API call is made with the KEY authorization mode, not SECRET.
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/payment.request.update'
-            examples:
-              example-1: {}
       tags:
         - Payments
       parameters: []
+      requestBody:
+        $ref: '#/components/requestBodies/payment.request.update'
     get:
       summary: merchant.payment.request.get
       operationId: merchant.payment.request.get
@@ -337,11 +287,7 @@ paths:
       tags:
         - Payments
       requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/payment.send.create'
-        description: ''
+        $ref: '#/components/requestBodies/payment.send.create'
   '/payment_send/{tid}/outcome':
     parameters:
       - $ref: '#/components/parameters/tid'
@@ -472,13 +418,10 @@ paths:
                     error_description: POS with ID "5rg1dkk8|9469f42f-8acf-43a8-ac28-bb64c8a994bd" already exists
       description: Create POS resource
       parameters: []
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/pos.create'
       tags:
         - Pos
+      requestBody:
+        $ref: '#/components/requestBodies/pos.create'
     get:
       summary: merchant.pos.list
       operationId: merchant.pos.list
@@ -500,13 +443,10 @@ paths:
         '400':
           description: 'Bad request, validation error'
       description: Update POS resource
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/pos.update'
       tags:
         - Pos
+      requestBody:
+        $ref: '#/components/requestBodies/pos.update'
     delete:
       summary: merchant.pos.delete
       operationId: merchant.pos.delete
@@ -633,13 +573,10 @@ paths:
         '400':
           $ref: '#/components/responses/shortlink.create.400'
       description: Register new shortlink.
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/shortlink.create'
       tags:
         - Shortlink
+      requestBody:
+        $ref: '#/components/requestBodies/shortlink.create'
   '/shortlink/{shortlink_id}':
     parameters:
       - $ref: '#/components/parameters/shortlink_id'
@@ -663,13 +600,10 @@ paths:
         '400':
           $ref: '#/components/responses/shortlink.update.400'
       description: Update existing shortlink registration.
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/shortlink.update'
       tags:
         - Shortlink
+      requestBody:
+        $ref: '#/components/requestBodies/shortlink.update'
     delete:
       summary: merchant.shortlink.delete
       operationId: merchant.shortlink.delete
@@ -829,10 +763,7 @@ paths:
       tags:
         - Permission Requests
       requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/permissions.request.create'
+        $ref: '#/components/requestBodies/permissions.request.create'
   '/permission_request/{rid}':
     parameters:
       - $ref: '#/components/parameters/rid'
