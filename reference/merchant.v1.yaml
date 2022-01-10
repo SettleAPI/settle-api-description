@@ -35,7 +35,7 @@ info:
     ### merchant.payment.request
     - [merchant.payment.request.create](./b3A6ODY4MjgyNA-merchant-payment-request-create)
     - [merchant.payment.request.list](./b3A6MTUzOTU0MTE-merchant-payment-request-list)
-    - [merchant.payment.request.update](,/b3A6OTM1MjI5OA-merchant-payment-request-update)
+    - [merchant.payment.request.update](./b3A6OTM1MjI5OA-merchant-payment-request-update)
     - [merchant.payment.request.get](./b3A6MTUzOTU0MTQ-merchant-payment-request-get)
 
     ### merchant.payment.request.outcome
