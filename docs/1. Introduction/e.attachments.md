@@ -60,6 +60,21 @@ The supported MIME-types and their respective schemas are:
     "currency": {
       "$ref": "/models/Currency.v1.yaml"
     },
+    "register": {
+      "type": "string",
+      "description": "Cash register/POS identifier."
+    },
+    "register": {
+      "type": "string",
+      "description": "Cash register/POS identifier."
+    },
+    "register": {
+      "type": "string",
+      "description": "Cash register/POS identifier."
+    },
+    "image/png": {
+      "description": "No schema. Maximum size of 1 MB."
+    },
   }
 }
 ```
