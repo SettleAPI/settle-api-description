@@ -26,7 +26,7 @@ The supported MIME-types and their respective schemas are:
 
 ```json json_schema
 {
-  "title": "User",
+  "title": "Attachments",
   "type": "object",
   "properties": {
     "store_name": {
@@ -39,49 +39,22 @@ The supported MIME-types and their respective schemas are:
     },
     "items": {
       "$ref": "/models/Item.yaml"
-    }
+    },
+    "cashier": {
+      "type": "string",
+      "description": "Seller ID or seller name."
+    },
+    "register": {
+      "type": "string",
+      "description": "Cash register/POS identifier."
+    },
+    "store": {
+      "$ref": "/models/Store.yaml"
+    },
   }
 }
 
-### store_name
 
-- **Type**: `string`
-
-Information about the store.
-
-####
-
-### organization_number
-
-- **Type**: `string`
-
-Organization number, e.g. "987654321".
-
-####
-
-### items
-
-- **Type**: `Item`
-
-Settle item lists. Will be rendered for the user in the Settle app.
-
-#### 
-
-### cashier
-
-- **Type**: `string`
-
-Seller ID or seller name.
-
-#### 
-
-### register
-
-- **Type**: `string`
-
-Cash register/POS identifier.
-
-#### 
 
 ### store
 
