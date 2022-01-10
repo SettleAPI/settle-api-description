@@ -23,14 +23,14 @@ info:
     The above services has the following resources, and all methods below are relative to its parent method (service endpoint).
 
     ### Authentication
-    - [merchant.apiKeys.create](./b3A6MTUzOTU0MDk-merchant-api-keys-create)
-    - [merchant.apiKeys.list](./b3A6MTUzOTU0MDg-merchant-api-keys-list)
-    - [merchant.apiKeys.get](./b3A6MTUzOTU0NDQ-merchant-api-keys-get)
-    - [merchant.apiKeys.update](./b3A6MTUzOTU0NDI-merchant-api-keys-update)
-    - [merchant.apiKeys.delete](./b3A6MTUzOTU0NDM-merchant-api-keys-delete)
+    - [`merchant.apiKeys.create`](./b3A6MTUzOTU0MDk-merchant-api-keys-create)
+    - [`merchant.apiKeys.list`](./b3A6MTUzOTU0MDg-merchant-api-keys-list)
+    - [`merchant.apiKeys.get`](./b3A6MTUzOTU0NDQ-merchant-api-keys-get)
+    - [`merchant.apiKeys.update`](./b3A6MTUzOTU0NDI-merchant-api-keys-update)
+    - [`merchant.apiKeys.delete`](./b3A6MTUzOTU0NDM-merchant-api-keys-delete)
 
     ### Balance
-    - [merchant.balance.get](./b3A6MTUzOTU0NDE-merchant-balance-get)
+    - [`merchant.balance.get`](./b3A6MTUzOTU0NDE-merchant-balance-get)
 
     ### Payments
     - [merchant.payment.request.create](./b3A6ODY4MjgyNA-merchant-payment-request-create)
