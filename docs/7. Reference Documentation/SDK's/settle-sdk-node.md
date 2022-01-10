@@ -18,7 +18,7 @@ This SDK is divided into two parts:
 
 `npm i settle-sdk-node`
 
-## Config
+### Config
 
 In your projects  **root folder**, create a file named `config.js` containing the following code:
 
@@ -46,7 +46,7 @@ module.exports = {
 method.function().then(success, failure)
 ```
 
-## Client Example
+### Client Example
 
 ```js
 const settle = require('settle-sdk-node');
@@ -60,7 +60,7 @@ merchant.api_keys.list()
   });
 ```
 
-## Handler Example
+### Handler Example
 
 ```js
 const { handler } = require('settle-sdk-node')
@@ -70,10 +70,13 @@ app.post( '/', ( req, res, next ) => {
     res.sendStatus( 200 );
 });
 ```
+####
 
-## Client Functions
+# Client Functions
 
-### Authentication
+## Authentication
+
+### [merchant.apiKeys.create](./b3A6MTUzOTU0MDk-merchant-api-keys-create)
 
 ```js title="Create new API Key"
 merchant.apiKeys.create({
@@ -110,8 +113,6 @@ merchant.apiKeys.get()
     });
 ```
 #####
-dfgfg
-#####
 ```js title="Update single API Key"
 merchant.apiKeys.update('api_user_id',{
 
@@ -121,6 +122,18 @@ merchant.apiKeys.update('api_user_id',{
     }, failure => {
         console.log(failure);
     });
+```
+#### Parameters
+```json json_schema
+{
+  "type": "object",
+  "properties": {
+    "api_user_id": {
+      "type": "string",
+      "description": "API Key ID created by either Settle or Merchant."
+    }
+  }
+}
 ```
 
 
