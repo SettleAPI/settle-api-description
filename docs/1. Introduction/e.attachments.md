@@ -24,22 +24,67 @@ The supported MIME-types and their respective schemas are:
 
 `application/vnd.mcash.itemlist.v1+json`
 
+```json json_schema
+{
+  "type": "object",
+  "properties": {
+    "store_name": {
+      "type": "string"
+      "description": "Information about the store."
+    },
+    "organization_number": {
+      "type": "string"
+      "description": "Organization number, e.g. "987654321"."
+    },
+    "items": {
+      "type": "Item"
+      "description": "Settle item lists. Will be rendered for the user in the Settle app."
+    },
+    "lorem": {
+      "type": "string"
+      "description": "lorem"
+    },
+    "lorem": {
+      "type": "string"
+      "description": "lorem"
+    },
+    "lorem": {
+      "type": "string"
+      "description": "lorem"
+    },
+    "lorem": {
+      "type": "string"
+      "description": "lorem"
+    },
+    "lorem": {
+      "type": "string"
+      "description": "lorem"
+    },
+    "lorem": {
+      "type": "string"
+      "description": "lorem"
+    },
+    "lorem": {
+      "type": "string"
+      "description": "lorem"
+    },
+    "lorem": {
+      "type": "string"
+      "description": "lorem"
+    },
+    "lorem": {
+      "type": "string"
+      "description": "lorem"
+    },
+    "lorem": {
+      "type": "string"
+      "description": "lorem"
+    },
+  }
+}
+```
 
-### store_name
 
-- **Type**: `string`
-
-Information about the store.
-
-####
-
-### organization_number
-
-- **Type**: `string`
-
-Organization number, e.g. "987654321".
-
-####
 
 ### items
 
