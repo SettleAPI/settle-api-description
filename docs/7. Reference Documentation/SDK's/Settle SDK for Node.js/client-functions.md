@@ -51,6 +51,18 @@ merchant.apiKeys.get('api_user_id')
         console.log(failure);
     });
 ```
+#### Parameters
+```json json_schema
+{
+  "type": "object",
+  "properties": {
+    "api_user_id": {
+      "type": "string",
+      "description": "API Key ID created by either Settle or Merchant."
+    }
+  }
+}
+```
 [Reference Documentation for `merchant.apiKeys.get`](./b3A6MTUzOTU0NDQ-merchant-api-keys-get)
 <br><br>
 
@@ -82,12 +94,30 @@ merchant.apiKeys.update('api_user_id',{
 [Reference Documentation for `merchant.apiKeys.update`](./b3A6MTUzOTU0NDI-merchant-api-keys-update)
 <br><br>
 
+### Delete single API Key
 
-
-**Update** single **API Key** with [`merchant.apiKeys.update`]()
-
-
-**Delete** single **API Key** with [`merchant.apiKeys.delete`]()
+```js
+merchant.apiKeys.delete('api_user_id')
+    .then(success => {
+        // do something with 'success'
+    }, failure => {
+        console.log(failure);
+    });
+```
+#### Parameters
+```json json_schema
+{
+  "type": "object",
+  "properties": {
+    "api_user_id": {
+      "type": "string",
+      "description": "API Key ID created by either Settle or Merchant."
+    }
+  }
+}
+```
+[Reference Documentation for `merchant.apiKeys.delete`](./b3A6MTUzOTU0NDM-merchant-api-keys-delete)
+<br><br>
 
 ## Balance
 
