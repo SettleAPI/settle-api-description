@@ -2264,7 +2264,7 @@ components:
               - legal_terms_url
               - customer
               - scope
-      description: Create Permission Request
+      description: ''
     apiKeys.create:
       content:
         application/json:
@@ -2575,7 +2575,7 @@ components:
             required:
               - name
               - type
-      description: Update POS resource
+      description: ''
     shortlink.create:
       content:
         application/json:
@@ -2591,7 +2591,7 @@ components:
                 default: null
                 description: Serial number on printed QR codes.This field is only used when registering printed stickers issued by Settle.
                 deprecated: true
-      description: Register new shortlink.
+      description: ''
     shortlink.update:
       content:
         application/json:
@@ -2602,7 +2602,7 @@ components:
                 type: string
                 default: 'null'
                 description: URI called by Settle when user scans shortlink.
-      description: Update existing shortlink registration.
+      description: ''
   responses:
     '200':
       description: OK
