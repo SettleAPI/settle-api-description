@@ -150,54 +150,7 @@ paths:
         Create a Payment Request.
 
         The call is idempotent; that is, if one posts the same pos_id and pos_tid twice, only one payment request is created.
-      parameters:
-        - schema:
-            type: string
-            default: application/vnd.mcash.api.merchant.v1+json
-          in: header
-          name: Accept
-          required: true
-        - schema:
-            type: string
-            default: application/json
-          in: header
-          name: Content-Type
-          required: true
-        - schema:
-            type: string
-            example: fzkmhy0q
-          in: header
-          name: X-Auka-Merchant
-          required: true
-          description: This header should contain the Settle ID of the merchant as returned in the id field of the merchant endpoint.
-        - schema:
-            type: string
-            example: wtvrad79
-          in: header
-          name: X-Auka-User
-          required: true
-          description: The ID (username) of the user/client doing the request on behalf of the merchant. Users are created by the merchant through the Self Service Portal or by the integrator using the user endpoint. Each user has is an ID locally unique for the merchant and is assigned a shared secret and/or a RSA public key that is used for authentication.
-        - schema:
-            type: string
-            example: '2021-03-28 18:06:05'
-          in: header
-          name: X-Auka-Timestamp
-          required: true
-          description: 'The current UTC time. The time format is YYYY-MM-DD hh:mm:ss.'
-        - schema:
-            type: string
-            example: SHA256=47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=
-          in: header
-          name: X-Auka-Content-Digest
-          required: true
-          description: 'The base64 encoded hash digest of the request body. If the body is empty, the hash should be computed on an empty string. The value of the header should be on the form {algorithm (uppercase)}={digest value}.'
-        - schema:
-            type: string
-            example: RSA-SHA256 R/O6YTy/QBgxHpNxSGCDKg8TKONtCof0jVDuqAkdLGsEdLrDQO7+9EZnDZ+x/Ce0e/F+dTfgbBujKN1zRoZzw2mlStIxTa9/kKTQ4IEZH+ym9z9dv6ZA+R17JN+/yT56O1O50pQbhIfk4ibln4bf3iwkodyP2fFIuBZ74CUeS0Q=
-          in: header
-          name: Authorization
-          required: true
-          description: The value of this field depends on what kind of authentication scheme is being used. Currently the supported schemes are SECRET and RSA-SHA256.
+      parameters: []
       requestBody:
         content:
           application/json:
@@ -2482,6 +2435,43 @@ components:
                 $ref: ../models/PubKey.yaml
             required:
               - id
+              - key_type
+    apiKeys.update:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              label:
+                type: string
+                description: User given name to API Key.
+              key_type:
+                type: string
+                enum:
+                  - secret
+                  - rsa_generated
+                  - rsa_user
+                description: Type of API Key to create.
+              roles:
+                type: string
+                description: 'Role. Value in user, superuser (case insensitive).'
+                enum:
+                  - 'null'
+                  - user
+                  - superuser
+                  - integrator
+                default: 'null'
+              netmask:
+                type: string
+                description: 'Limit user connections by netmask, for example 192.168.1.0/24.'
+              secret:
+                type: string
+                description: Secret used when authenticating with Settle.
+                minLength: 8
+                maxLength: 64
+              pubkey:
+                $ref: ../models/PubKey.yaml
+            required:
               - key_type
   responses:
     '200':
