@@ -2569,6 +2569,89 @@ components:
               - pos_id
               - pos_tid
       description: 'A payment request goes through several stages. After being registered, the customer can either reject or authorize. An authorization is valid for 3 days, but can be reauthorized before it expires to be valid for 3 new days. Once authorized, it can be captured to be included in the next settlement.'
+    payment.request.update:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              display_message_uri:
+                type: string
+                description: Messages that can be used to inform the POS operator about the progress of the payment request will be POSTed to this URI if provided.
+              callback_uri:
+                type: string
+                description: 'If provided, Settle will POST to this URI when the status of the payment request changes, using the message mechanism described in the introduction. The data in the "object" part of the message is the same as what can be retrieved by calling GET on the "/payment_request/{tid}/outcome/" resource URI.'
+              line_items:
+                $ref: ../models/LineItem.v1.yaml
+              action:
+                type: string
+                enum:
+                  - reauth
+                  - capture
+                  - abort
+                  - release
+                  - refund
+                description: Action to perform.
+              amount:
+                $ref: ../models/MoneyInteger.v1.yaml
+              additional_amount:
+                $ref: ../models/MoneyInteger.v1.yaml
+              capture_id:
+                type: string
+                pattern: '^[a-zA-Z0-9_.-]+$'
+                description: 'Local id for capture. Must be set if amount is set, otherwise capture_id must be unset. Ignored unless action is capture. Required if amount, additional_amount, currency are set.'
+              refund_id:
+                type: string
+                description: 'Local id for refund. Must be set if amount is set, otherwise capture_id must be unset.Ignored unless action is refund.Required if amount, additional_amount, currency are set.'
+                pattern: '^[a-zA-Z0-9_.-]+$'
+              currency:
+                $ref: ../models/Currency.v1.yaml
+              text:
+                type: string
+                description: Text that is shown to user upon a refund. This can contain linebreaks and the text has to fit on smartphones screens.
+            required:
+              - currency
+      description: |-
+        Capturing an authorized payment or reauthorizing is done with the action field.
+
+        The call is idempotent; that is, if one posts the same amount, `additional_amount` and `capture_id` twice with action CAPTURE, only one capture is performed. Similarly, if one posts twice with action `CAPTURE` without any amount stated, to capture the full amount, only one full capture is performed.
+
+        Note that the `REFUND` action will require that the API call is made with the KEY authorization mode, not SECRET.
+    payment.send.create:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              payer:
+                type: string
+                description: The merchant ID of the sender.
+              payee:
+                $ref: ../models/PersonIdentifier.v1.yaml
+              idempotency_id:
+                type: string
+                description: Unique id for each payment request.
+              currency:
+                $ref: ../models/Currency.v1.yaml
+              amount:
+                $ref: ../models/MoneyInteger.v1.yaml
+              chat_text:
+                type: string
+                description: Message presented to the user with the payment.
+              expires_in:
+                type: string
+                description: 'Number of seconds the funds can not be claimed immediately, how long will they be available before being returned to the sender. Default is three (3) days.'
+              required_identified:
+                type: boolean
+                description: Option to request the recipient to have a verified identity in order to receive the funds.
+                default: false
+            required:
+              - payer
+              - payee
+              - idempotency_id
+              - currency
+              - amount
+      description: '**Please note** that using the same `idempotency_id` again in a new request will only result in the retrieval of the first resulting Transaction ID (`tid`), not a new payment, making it is safe to retry payment requests in case of network loss.'
   responses:
     '200':
       description: OK
