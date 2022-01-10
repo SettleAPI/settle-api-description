@@ -110,6 +110,8 @@ paths:
       responses:
         '204':
           $ref: '#/components/responses/204'
+        '401':
+          $ref: '#/components/responses/401'
         '404':
           $ref: '#/components/responses/404'
       description: Update API Key
@@ -123,6 +125,8 @@ paths:
       responses:
         '204':
           description: No Content
+        '401':
+          $ref: '#/components/responses/401'
       description: Delete API Key
       tags:
         - Authentication
@@ -132,6 +136,8 @@ paths:
       responses:
         '200':
           $ref: '#/components/responses/apiKeys.get'
+        '401':
+          $ref: '#/components/responses/401'
       description: Get API Key
       tags:
         - Authentication
@@ -146,6 +152,8 @@ paths:
           $ref: '#/components/responses/payment.request.create'
         '400':
           description: 'Bad Request, validation error.'
+        '401':
+          $ref: '#/components/responses/401'
         '409':
           description: Conflict; `pos_id` and/or `pos_tid` already used for a Payment Request.
       description: |-
@@ -162,13 +170,10 @@ paths:
       operationId: merchant.payment.request.list
       responses:
         '200':
-          $ref: '#/components/responses/payment.request.list.200'
+          $ref: '#/components/responses/payment.request.list'
+        '401':
+          $ref: '#/components/responses/401'
       description: List Payment Requests
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/payment.request.list'
       tags:
         - Payments
   '/payment_request/{tid}':
@@ -182,6 +187,8 @@ paths:
           description: 'OK, (no content).'
         '400':
           description: 'Bad Request, illegal input.'
+        '401':
+          $ref: '#/components/responses/401'
         '409':
           description: 'Conflict, illegal action at this time (capture before authorization, abort after capture).'
       description: |-
@@ -202,14 +209,8 @@ paths:
       operationId: merchant.payment.request.get
       responses:
         '200':
-          description: OK
+          $ref: '#/components/responses/payment.request.get'
       description: Retrieve payment request info
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/payment.request.get'
-        description: Retrieve payment request info
       tags:
         - Payments
   '/payment_request/{tid}/outcome':
@@ -219,7 +220,9 @@ paths:
       summary: merchant.payment.request.outcome.get
       responses:
         '200':
-          description: OK
+          $ref: '#/components/responses/payment.request.outcome.get'
+        '401':
+          $ref: '#/components/responses/401'
         '404':
           description: TID not found (or unauthorized for this merchant)
       operationId: merchant.payment.request.outcome.get
@@ -231,29 +234,12 @@ paths:
         If the callback URI registered for the payment request was secure (https), the contents of this form was sent along with the callback. If the callback URI was insecure, a notification pointing to this endpoint was sent instead.
       tags:
         - Payments
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/payment.request.outcome.get'
-        description: Retrieve payment request outcome
   /payment_send:
     post:
       summary: merchant.payment.send.create
       responses:
         '201':
-          description: Created
-          content:
-            application/json:
-              schema:
-                description: ''
-                type: object
-                x-examples:
-                  example-1:
-                    id: p8bgxt1a0rzp
-                properties:
-                  id:
-                    type: string
+          $ref: '#/components/responses/payment.send.create'
         '400':
           description: Bad Request
           content:
@@ -295,56 +281,9 @@ paths:
       summary: merchant.payment.send.outcome.get
       responses:
         '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                description: ''
-                type: object
-                x-examples:
-                  example-1:
-                    object:
-                      idempotency_id: 63de8b62-dac3-4ec1-8da3-1093e561583a
-                      payer: 5rg1dkk8
-                      currency: NOK
-                      timestamp: '2021-06-22 09:14:26'
-                      require_identified: false
-                      id: p13fjg6py9jw
-                      payee: 'msisdn:4798052301'
-                      amount: 1000
-                      payer_status: ok
-                      chat_text: Cumque illo ut est ex unde.
-                    type: payment
-                properties:
-                  object:
-                    type: object
-                    properties:
-                      idempotency_id:
-                        type: string
-                        minLength: 1
-                      payer:
-                        $ref: ../models/PersonIdentifier.v1.yaml
-                      currency:
-                        $ref: ../models/Currency.v1.yaml
-                      timestamp:
-                        type: string
-                        minLength: 1
-                      require_identified:
-                        type: boolean
-                      id:
-                        type: string
-                        minLength: 1
-                      payee:
-                        type: string
-                        minLength: 1
-                      amount:
-                        $ref: ../models/MoneyInteger.v1.yaml
-                      payer_status:
-                        type: string
-                        minLength: 1
-                      chat_text:
-                        type: string
-                        minLength: 1
+          $ref: '#/components/responses/payment.send.outcome.get'
+        '401':
+          $ref: '#/components/responses/401'
         '404':
           description: Not Found
           content:
@@ -387,9 +326,11 @@ paths:
       operationId: merchant.pos.create
       responses:
         '201':
-          $ref: '#/components/responses/pos.create.201'
+          $ref: '#/components/responses/pos.create'
         '400':
           description: 'Bad Request, validation error'
+        '401':
+          $ref: '#/components/responses/401'
         '409':
           description: Conflict
           content:
@@ -427,7 +368,9 @@ paths:
       operationId: merchant.pos.list
       responses:
         '200':
-          $ref: '#/components/responses/pos.list.200'
+          $ref: '#/components/responses/pos.list'
+        '401':
+          $ref: '#/components/responses/401'
       description: List all Point of Sales for merchant.
       tags:
         - Pos
@@ -461,7 +404,9 @@ paths:
       operationId: merchant.pos.get
       responses:
         '200':
-          $ref: '#/components/responses/pos.get.200'
+          $ref: '#/components/responses/pos.get'
+        '401':
+          $ref: '#/components/responses/401'
       description: Retrieve POS info.
       tags:
         - Pos
@@ -472,15 +417,10 @@ paths:
       summary: merchant.profile.get
       tags:
         - Merchant
-      responses: {}
       operationId: merchant.profile.get
       description: Get merchant info
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/profile.get'
       deprecated: true
+      x-internal: true
   '/merchant_lookup/{lookup_id}':
     parameters:
       - $ref: '#/components/parameters/lookup_id'
@@ -491,8 +431,19 @@ paths:
       description: Handle merchant lookup on secondary ID. This is endpoint can only be used by integrators.
       tags:
         - Merchant
+      x-internal: true
+      deprecated: true
   /sales_summary: {}
-  /settlement: {}
+  /settlement:
+    get:
+      summary: merchant.settlement.list
+      operationId: merchant.settlement.list
+      responses:
+        '200':
+          $ref: '#/components/responses/settlement.list'
+        '401':
+          $ref: '#/components/responses/401'
+      description: List Settlements
   '/settlement/{settlement_id}':
     parameters:
       - $ref: '#/components/parameters/settlement_id'
@@ -502,7 +453,9 @@ paths:
         - Settlement
       responses:
         '200':
-          $ref: '#/components/responses/settlement.get.200'
+          $ref: '#/components/responses/settlement.get'
+        '401':
+          $ref: '#/components/responses/401'
         '404':
           $ref: '#/components/responses/settlement.get.404'
       operationId: merchant.settlement.get
@@ -512,7 +465,9 @@ paths:
       summary: merchant.settlement.latest.get
       responses:
         '200':
-          $ref: '#/components/responses/settlement.latest.get.200'
+          $ref: '#/components/responses/settlement.get'
+        '401':
+          $ref: '#/components/responses/401'
         '404':
           description: Not Found
       operationId: merchant.settlement.latest.get
@@ -520,8 +475,7 @@ paths:
         This endpoint redirects to the latest Settlement.
 
         Whenever a new Settlement is generated, this reference is automatically updated.
-      deprecated: true
-      x-internal: true
+      x-internal: false
       tags:
         - Settlement
   '/settlement_account/{settlement_account_id}':
@@ -549,6 +503,8 @@ paths:
       responses:
         '200':
           $ref: '#/components/responses/settlement.report.get.200'
+        '401':
+          $ref: '#/components/responses/401'
       operationId: merchant.settlement.report.get
       description: Endpoint accepts arguments for filtering the list of settlements and can omit empty settlements.
       deprecated: true
@@ -563,7 +519,9 @@ paths:
       description: List shortlink registrations.
       responses:
         '200':
-          $ref: '#/components/responses/shortlink.list.200'
+          $ref: '#/components/responses/shortlink.list'
+        '401':
+          $ref: '#/components/responses/401'
     post:
       summary: merchant.shortlink.create
       operationId: merchant.shortlink.create
@@ -586,19 +544,21 @@ paths:
         - Shortlink
       responses:
         '200':
-          $ref: '#/components/responses/shortlink.get.200'
+          $ref: '#/components/responses/shortlink.get'
+        '401':
+          $ref: '#/components/responses/401'
       operationId: merchant.shortlink.get
       description: Retrieve registered shortlink info.
     put:
       summary: merchant.shortlink.update
       operationId: merchant.shortlink.update
       responses:
-        '200':
-          $ref: '#/components/responses/shortlink.update.200'
         '204':
           $ref: '#/components/responses/shortlink.update.204'
         '400':
           $ref: '#/components/responses/shortlink.update.400'
+        '401':
+          $ref: '#/components/responses/401'
       description: Update existing shortlink registration.
       tags:
         - Shortlink
@@ -609,7 +569,7 @@ paths:
       operationId: merchant.shortlink.delete
       responses:
         '204':
-          $ref: '#/components/responses/shortlink.delete.204'
+          $ref: '#/components/responses/204'
       description: Delete shortlink
       tags:
         - Shortlink
@@ -642,28 +602,6 @@ paths:
         '200':
           $ref: '#/components/responses/ssp.users.get.200'
       x-internal: true
-  /status_code:
-    get:
-      summary: merchant.statusCodes.list
-      tags:
-        - Status Codes
-      responses:
-        '200':
-          $ref: '#/components/responses/statusCodes.list.200'
-      operationId: merchant.statusCodes.list
-      description: List Status Codes
-  '/status_code/{status_code}':
-    parameters:
-      - $ref: '#/components/parameters/status_code'
-    get:
-      summary: merchant.statusCodes.get
-      tags:
-        - Status Codes
-      responses:
-        '200':
-          $ref: '#/components/responses/statusCodes.get.200'
-      operationId: merchant.statusCodes.get
-      description: Get details about a spesific Status Code
   '/merchant_ssp_user/{merchant_ssp_user_id}':
     parameters:
       - schema:
@@ -694,6 +632,28 @@ paths:
       x-internal: true
       tags:
         - Self Service Portal
+  /status_code:
+    get:
+      summary: merchant.statusCodes.list
+      tags:
+        - Status Codes
+      responses:
+        '200':
+          $ref: '#/components/responses/statusCodes.list'
+      operationId: merchant.statusCodes.list
+      description: List Status Codes
+  '/status_code/{status_code}':
+    parameters:
+      - $ref: '#/components/parameters/status_code'
+    get:
+      summary: merchant.statusCodes.get
+      tags:
+        - Status Codes
+      responses:
+        '200':
+          $ref: '#/components/responses/statusCodes.get'
+      operationId: merchant.statusCodes.get
+      description: Get details about a spesific Status Code
   '/merchant/{merchant_id}/balance':
     parameters:
       - name: merchant_id
@@ -709,36 +669,23 @@ paths:
       responses:
         '200':
           $ref: '#/components/responses/balance.get'
+        '401':
+          $ref: '#/components/responses/401'
       operationId: merchant.balance.get
       description: Get Merchant Account Balance
-  '/merchant/{merchant_id}/logo':
-    parameters:
-      - $ref: '#/components/parameters/merchant_id'
   /permission_request:
     post:
       summary: merchant.permissions.request.create
       operationId: merchant.permissions.request.create
       responses:
         '200':
-          description: 'OK, identical permission request already created'
+          $ref: '#/components/responses/permissions.request.create'
         '201':
-          description: Permission request created
-          content:
-            application/json:
-              schema:
-                description: ''
-                type: object
-                properties:
-                  id:
-                    type: string
-                    minLength: 1
-                required:
-                  - id
-                x-examples:
-                  example-1:
-                    id: vrqx1f7hp4pbvqgwecxhuwv3hbngnb6a
+          $ref: '#/components/responses/permissions.request.create'
         '400':
           description: 'Bad request, validation error'
+        '401':
+          $ref: '#/components/responses/401'
         '404':
           description: Permission request not found
       description: |-
@@ -758,7 +705,9 @@ paths:
         - Permission Requests
       responses:
         '200':
-          $ref: '#/components/responses/permissions.request.get.200'
+          $ref: '#/components/responses/permissions.request.get'
+        '401':
+          $ref: '#/components/responses/401'
         '404':
           description: Permission request not found
       operationId: merchant.permissions.request.get
@@ -771,7 +720,9 @@ paths:
       operationId: merchant.permissions.request.outcome.get
       responses:
         '200':
-          $ref: '#/components/responses/permissions.request.outcome.get.200'
+          $ref: '#/components/responses/permissions.request.outcome.get'
+        '401':
+          $ref: '#/components/responses/401'
         '404':
           description: Permission request not found
       description: Get the outcome of the permission request
@@ -4265,6 +4216,342 @@ components:
                 failure_return_uri: 'null'
                 success_return_uri: 'null'
                 legal_terms_url: 'null'
+    pos.list:
+      description: Example response
+      content:
+        application/json:
+          schema:
+            description: ''
+            type: object
+            x-examples:
+              example-1:
+                prev: null
+                uris:
+                  - 'https://api.sandbox.settle.eu/merchant/v1/pos/9469f42f/'
+                  - 'https://api.sandbox.settle.eu/merchant/v1/pos/9469f42f-8acf-43a8-ac28/'
+                  - 'https://api.sandbox.settle.eu/merchant/v1/pos/9469f42f-8acf-43a8-ac28-bb64c8a994bd/'
+                  - 'https://api.sandbox.settle.eu/merchant/v1/pos/loremIpsu/'
+                  - 'https://api.sandbox.settle.eu/merchant/v1/pos/mQ79T/'
+                next: null
+            properties:
+              prev:
+                type: string
+                nullable: true
+              uris:
+                type: array
+                items:
+                  type: object
+              next:
+                type: string
+                nullable: true
+    pos.get:
+      description: Example response
+      content:
+        application/json:
+          schema:
+            description: ''
+            type: object
+            properties:
+              location:
+                type: object
+                properties:
+                  latitude:
+                    type: number
+                  longitude:
+                    type: number
+                  accuracy:
+                    type: number
+                required:
+                  - latitude
+                  - longitude
+                  - accuracy
+              type:
+                type: string
+                minLength: 1
+              id:
+                type: string
+                minLength: 1
+              name:
+                type: string
+                minLength: 1
+            required:
+              - location
+              - type
+              - id
+              - name
+            x-examples:
+              example-1:
+                location:
+                  latitude: 24.4686
+                  longitude: -115.5839
+                  accuracy: 1
+                type: store
+                id: 9469f42f
+                name: Fantastic Granite Ball 3
+    settlement.list:
+      description: Example response
+      content:
+        application/json:
+          schema:
+            description: ''
+            type: object
+            x-examples:
+              example-1:
+                prev: null
+                uris:
+                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/1/'
+                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/2/'
+                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/3/'
+                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/4/'
+                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/5/'
+                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/6/'
+                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/7/'
+                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/8/'
+                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/9/'
+                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/10/'
+                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/11/'
+                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/12/'
+                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/13/'
+                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/14/'
+                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/15/'
+                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/16/'
+                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/17/'
+                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/18/'
+                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/19/'
+                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/20/'
+                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/21/'
+                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/22/'
+                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/23/'
+                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/24/'
+                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/25/'
+                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/26/'
+                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/27/'
+                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/28/'
+                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/29/'
+                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/30/'
+                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/31/'
+                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/32/'
+                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/33/'
+                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/34/'
+                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/35/'
+                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/36/'
+                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/37/'
+                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/38/'
+                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/39/'
+                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/40/'
+                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/41/'
+                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/42/'
+                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/43/'
+                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/44/'
+                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/45/'
+                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/46/'
+                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/47/'
+                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/48/'
+                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/49/'
+                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/50/'
+                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/51/'
+                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/52/'
+                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/53/'
+                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/54/'
+                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/55/'
+                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/56/'
+                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/57/'
+                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/58/'
+                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/59/'
+                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/60/'
+                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/61/'
+                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/62/'
+                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/63/'
+                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/64/'
+                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/65/'
+                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/66/'
+                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/67/'
+                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/68/'
+                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/69/'
+                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/70/'
+                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/71/'
+                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/72/'
+                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/73/'
+                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/74/'
+                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/75/'
+                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/76/'
+                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/77/'
+                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/78/'
+                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/79/'
+                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/80/'
+                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/81/'
+                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/82/'
+                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/83/'
+                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/84/'
+                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/85/'
+                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/86/'
+                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/87/'
+                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/88/'
+                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/89/'
+                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/90/'
+                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/91/'
+                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/92/'
+                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/93/'
+                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/94/'
+                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/95/'
+                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/96/'
+                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/97/'
+                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/98/'
+                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/99/'
+                  - 'https://api.sandbox.settle.eu/merchant/v1/settlement/100/'
+                next: 'https://api.sandbox.settle.eu/merchant/v1/settlement/?start=101'
+            properties:
+              prev:
+                type: string
+              uris:
+                type: array
+                items:
+                  type: object
+              next:
+                type: string
+                minLength: 1
+            required:
+              - uris
+              - next
+    settlement.get:
+      description: Example response
+      content:
+        application/json:
+          schema:
+            description: ''
+            type: object
+            x-examples:
+              example-1:
+                payout_details:
+                  payout: 0
+                  gross: 0
+                  invoice_id: null
+                  unsettled_fees_before: -13
+                  currency: NOK
+                  unsettled_fees_after: -13
+                  net: 0
+                  billed: 0
+                scope_log_uris:
+                  - 'https://storage.googleapis.com/mcash_reports/permission_report_deprecated.csv?Expires=1644399559&GoogleAccessId=settle-core-demo%40appspot.gserviceaccount.com&Signature=SapXG1ddaM5PivbRCniHOfmhTzfy86221rvV41ET2Xp3ck6aE5TRIEA5aXwUPgpfXIR2DMhmwHpQOOrarRQvhNjbLx%2FiDr2ah%2FP8ZAbGAROJRfcHIs2nGQ0hlKoyTmjAcaVF4xmnp6IpLASYo%2FSvOibyGHPo5QPl1GSdDV8PcsRPev7HnkZnMpDKzetZpHfFfDYc0sTucqlS3o%2FQw11MJV7nGT%2FodocrFdwsJOHY7g%2Fejuo2g0PhnZpneztWOhXpmchaB36QjdNXoIHTi2azRKQi1vXG7Ox059iRbiyJum2asTp43ZPD95T%2Bnja2wjZlK34jlG%2FOFhUwhYh3Fv9FxQ%3D%3D'
+                settlement_summary:
+                  gross: 0
+                  taxcode: 'NO:2013'
+                  interchange: 0
+                  additional_amount_total: 0
+                  currency: NOK
+                  fees:
+                    settlement_fee: 0
+                    transaction_fee_vat: 0
+                    scope_fee_vat: 0
+                    settlement_fee_vat: 0
+                    scope_fee: 0
+                    transaction_fee: 0
+                  net: 0
+                  amount_total: 0
+                date_created: '2020-12-10 23:00:00'
+                transaction_log_uris:
+                  - 'https://storage.googleapis.com/settle-core-demo-m0816u6q_reports/settlement-5rg1dkk8-2020-12-09-4.csv?Expires=1644399559&GoogleAccessId=settle-core-demo%40appspot.gserviceaccount.com&Signature=BwE1zVa5ZBrhB%2Blh6cSuD3kiSOnIiJYRy5f5UhFTz6rbztCPtDRuka5%2BSpZwaFiZRiYUBzv9yVwTPDQBYMPbVwHWBfOnY%2FNz5ieGvFFKltxLwTNtNEvw53bm%2FOzsHuHfAkO9NT1kGA8sPVbz5%2FZZAJ3HMa%2F1n4L1kUwc1hVLbj2Au%2BmBT1tQ5%2FdwxC9D9fr6JJiSv7rd1HW4on0kdiJU%2FHaT%2BpDYcLe3qxk75xmwJGyY9jIABkMkId%2FR43TNAy8uPsM1nBXGnCxoAbZXMfhrx51l0C%2Btp0cR%2F%2BAVqYymyA6eiIGtZZt9UwTrPaBI9CviYM1AVKqf73aE4wjSbxh%2FaQ%3D%3D'
+                id: '4'
+            properties:
+              payout_details:
+                type: object
+                required:
+                  - payout
+                  - gross
+                  - unsettled_fees_before
+                  - currency
+                  - unsettled_fees_after
+                  - net
+                  - billed
+                properties:
+                  payout:
+                    type: number
+                  gross:
+                    type: number
+                  invoice_id:
+                    type: string
+                  unsettled_fees_before:
+                    type: number
+                  currency:
+                    type: string
+                    minLength: 1
+                  unsettled_fees_after:
+                    type: number
+                  net:
+                    type: number
+                  billed:
+                    type: number
+              scope_log_uris:
+                type: array
+                items:
+                  type: object
+              settlement_summary:
+                type: object
+                required:
+                  - gross
+                  - taxcode
+                  - interchange
+                  - additional_amount_total
+                  - currency
+                  - fees
+                  - net
+                  - amount_total
+                properties:
+                  gross:
+                    type: number
+                  taxcode:
+                    type: string
+                    minLength: 1
+                  interchange:
+                    type: number
+                  additional_amount_total:
+                    type: number
+                  currency:
+                    type: string
+                    minLength: 1
+                  fees:
+                    type: object
+                    required:
+                      - settlement_fee
+                      - transaction_fee_vat
+                      - scope_fee_vat
+                      - settlement_fee_vat
+                      - scope_fee
+                      - transaction_fee
+                    properties:
+                      settlement_fee:
+                        type: number
+                      transaction_fee_vat:
+                        type: number
+                      scope_fee_vat:
+                        type: number
+                      settlement_fee_vat:
+                        type: number
+                      scope_fee:
+                        type: number
+                      transaction_fee:
+                        type: number
+                  net:
+                    type: number
+                  amount_total:
+                    type: number
+              date_created:
+                type: string
+                minLength: 1
+              transaction_log_uris:
+                type: array
+                items:
+                  type: object
+              id:
+                type: string
+                minLength: 1
+            required:
+              - payout_details
+              - scope_log_uris
+              - settlement_summary
+              - date_created
+              - transaction_log_uris
+              - id
 tags:
   - name: Authentication
   - name: Info
