@@ -76,11 +76,7 @@ app.post( '/', ( req, res, next ) => {
 
 ## Authentication
 
-### [Create new API Key](./b3A6MTUzOTU0MDk-merchant-api-keys-create)
-
-#### [merchant.apiKeys.create](./b3A6MTUzOTU0MDk-merchant-api-keys-create)
-
-```js title="merchant.apiKeys.create"
+```js title="Create new API Key"
 merchant.apiKeys.create({
   "id": "string",
   "label": "string",
@@ -96,7 +92,10 @@ merchant.apiKeys.create({
         console.log(failure);
     });
 ```
-#####
+
+[Reference Documentation for `merchant.apiKeys.create`](./b3A6MTUzOTU0MDk-merchant-api-keys-create)
+<br><br>
+
 ```js title="List all API Keys"
 merchant.apiKeys.list()
     .then(success => {
@@ -105,7 +104,9 @@ merchant.apiKeys.list()
         console.log(failure);
     });
 ```
-#####
+[Reference Documentation for `xxxxx`](xxxxx)
+<br><br>
+
 ```js title="Get single API Key"
 merchant.apiKeys.get()
     .then(success => {
@@ -114,7 +115,9 @@ merchant.apiKeys.get()
         console.log(failure);
     });
 ```
-#####
+[Reference Documentation for `xxxxx`](xxxxx)
+<br><br>
+
 ```js title="Update single API Key"
 merchant.apiKeys.update('api_user_id',{
 
@@ -137,6 +140,8 @@ merchant.apiKeys.update('api_user_id',{
   }
 }
 ```
+[Reference Documentation for `xxxxx`](xxxxx)
+<br><br>
 
 
 
