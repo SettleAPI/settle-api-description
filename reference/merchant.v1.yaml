@@ -81,11 +81,11 @@ paths:
           $ref: '#/components/responses/400'
         '401':
           $ref: '#/components/responses/401'
-      operationId: merchant.apiKeys.list
+      operationId: 2.merchant.apiKeys.list
       description: List Merchant API Keys
     post:
       summary: Create API Key
-      operationId: merchant.apiKeys.create
+      operationId: 1.merchant.apiKeys.create
       responses:
         '201':
           $ref: '#/components/responses/apiKeys.create'
@@ -106,7 +106,7 @@ paths:
       - $ref: '#/components/parameters/api_user_id'
     put:
       summary: merchant.apiKeys.update
-      operationId: merchant.apiKeys.update
+      operationId: 4.merchant.apiKeys.update
       responses:
         '204':
           $ref: '#/components/responses/204'
@@ -121,7 +121,7 @@ paths:
         $ref: '#/components/requestBodies/apiKeys.update'
     delete:
       summary: merchant.apiKeys.delete
-      operationId: merchant.apiKeys.delete
+      operationId: 5.merchant.apiKeys.delete
       responses:
         '204':
           description: No Content
@@ -132,7 +132,7 @@ paths:
         - Authentication
     get:
       summary: merchant.apiKeys.get
-      operationId: merchant.apiKeys.get
+      operationId: 3.merchant.apiKeys.get
       responses:
         '200':
           $ref: '#/components/responses/apiKeys.get'
