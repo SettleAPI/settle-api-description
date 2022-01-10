@@ -176,6 +176,7 @@ paths:
       description: List Payment Requests
       tags:
         - Payments
+      parameters: []
   '/payment_request/{tid}':
     parameters:
       - $ref: '#/components/parameters/tid'
