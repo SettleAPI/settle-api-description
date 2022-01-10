@@ -76,9 +76,11 @@ app.post( '/', ( req, res, next ) => {
 
 ## Authentication
 
-### [merchant.apiKeys.create](./b3A6MTUzOTU0MDk-merchant-api-keys-create)
+### [Create new API Key](./b3A6MTUzOTU0MDk-merchant-api-keys-create)
 
-```js title="Create new API Key"
+#### [merchant.apiKeys.create](./b3A6MTUzOTU0MDk-merchant-api-keys-create)
+
+```js title="merchant.apiKeys.create"
 merchant.apiKeys.create({
   "id": "string",
   "label": "string",
