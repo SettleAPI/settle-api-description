@@ -30,7 +30,7 @@ All parameters are optional unless otherwise specified.
   "properties": {
     "shortLink": {
       "type": "string",
-      "description": "Settle [ShortLink](../merchant-api/ZG9jOjMyNTk1MzQx-short-links)."
+      "description": "Settle [ShortLink](./ZG9jOjM0ODE0NTkz-short-links)."
     },
     "environment": {
       "type": "string",
