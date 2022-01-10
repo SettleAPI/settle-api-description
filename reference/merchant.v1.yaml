@@ -84,7 +84,7 @@ paths:
       operationId: merchant.apiKeys.list
       description: List Merchant API Keys
     post:
-      summary: merchant.apiKeys.create
+      summary: Create API Key
       operationId: merchant.apiKeys.create
       responses:
         '201':
