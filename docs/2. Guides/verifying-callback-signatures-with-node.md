@@ -33,7 +33,7 @@ const ngrok = require('ngrok');
 const app = express();
 const dateTime = Date.now();
 
-const customer = '4798765432' // do not use 47 or 00 before country code.
+const customer = '4798765432' // do not use + or 00 before country code.
 app.use(handler('sandbox'))
 
 app.post('/', (req, res, next) => {
