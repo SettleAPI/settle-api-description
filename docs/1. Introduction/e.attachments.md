@@ -60,50 +60,21 @@ The supported MIME-types and their respective schemas are:
     "currency": {
       "$ref": "/models/Currency.v1.yaml"
     },
-    "register": {
+    "gross": {
       "type": "string",
-      "description": "Cash register/POS identifier."
+      "description": "Gross amount before discounts."
     },
-    "register": {
+    "discount": {
       "type": "string",
-      "description": "Cash register/POS identifier."
+      "description": "Discount on the gross."
     },
-    "register": {
+    "net": {
       "type": "string",
       "description": "Cash register/POS identifier."
     },
     "image/png": {
-      "description": "No schema. Maximum size of 1 MB."
+      "description": "gross - discount."
     },
   }
 }
 ```
-
-
-### gross
-
-- **Type**: `string`
-
-Gross amount before discounts.
-
-####
-
-### discount
-
-- **Type**: `string`
-
-Discount on the gross.
-
-####
-
-### net
-
-- **Type**: `string`
-
-gross - discount.
-
-####
-
-### image/png
-
-No schema. Maximum size of 1 MB.
