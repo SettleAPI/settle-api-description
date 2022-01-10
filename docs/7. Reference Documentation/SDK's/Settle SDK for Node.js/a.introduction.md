@@ -59,6 +59,10 @@ app.post( '/', ( req, res, next ) => {
 
 ### Step 4 — Using Client Functions
 
+```js title="Basic Client Function usage"
+method.function().then(success, failure)
+```
+#####
 ```js title="List all API Keys Example"
 const settle = require('settle-sdk-node');
 const merchant = settle.merchant;
@@ -71,13 +75,7 @@ merchant.api_keys.list()
   });
 ```
 
-#### Basic Client Function Usage
-
-```js
-method.function().then(success, failure)
-```
-
-For a full overview of all available Client Functions, see our article on [how to use Client Functions in the Settle SDK for Node.js](./ZG9jOjM0ODQwMjA4-using-the-client-functions).
+> For a full overview of all available **Client Functions**, see our article on [how to use Client Functions in the Settle SDK for Node.js](./ZG9jOjM0ODQwMjA4-using-the-client-functions).
 
 
 <!-- ### OAuth 2.0 Authorization Framework - Coming Soon
