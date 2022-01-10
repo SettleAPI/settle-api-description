@@ -2652,6 +2652,87 @@ components:
               - currency
               - amount
       description: '**Please note** that using the same `idempotency_id` again in a new request will only result in the retrieval of the first resulting Transaction ID (`tid`), not a new payment, making it is safe to retry payment requests in case of network loss.'
+    pos.create:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+                description: The ID of the POS that is to be created. Has to be unique for the merchant.
+                maxLength: 100
+              type:
+                type: string
+                description: POS type.
+                enum:
+                  - store
+                  - webshop
+                  - mobile
+                  - vending
+                  - poster
+              name:
+                type: string
+                description: 'Human-readable name of the POS, used for displaying payment request origin to end user.'
+                maxLength: 100
+              location:
+                $ref: ../models/Location.yaml
+            required:
+              - id
+              - type
+              - name
+    pos.update:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              name:
+                type: string
+                description: 'Human-readable name of the POS, used for displaying payment request origin to end user.'
+                maxLength: 100
+              type:
+                type: string
+                description: POS type.
+                enum:
+                  - store
+                  - webshop
+                  - mobile
+                  - vending
+                  - poster
+              location:
+                $ref: ../models/Location.yaml
+            required:
+              - name
+              - type
+      description: Update POS resource
+    shortlink.create:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              callback_uri:
+                type: string
+                default: null
+                description: URI called by Settle when user scans shortlink.
+              serial_number:
+                type: string
+                default: null
+                description: Serial number on printed QR codes.This field is only used when registering printed stickers issued by Settle.
+                deprecated: true
+      description: Register new shortlink.
+    shortlink.update:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              callback_uri:
+                type: string
+                default: 'null'
+                description: URI called by Settle when user scans shortlink.
+      description: Update existing shortlink registration.
   responses:
     '200':
       description: OK
