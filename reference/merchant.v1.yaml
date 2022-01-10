@@ -2246,14 +2246,7 @@ components:
               next:
                 type: string
                 default: 'null'
-  securitySchemes:
-    Authorization:
-      type: http
-      scheme: basic
-      description: |-
-        The value of this field depends on what kind of authentication scheme is being used. The currently supported schemes are **SECRET** and **RSA-SHA256**.
-
-        The typical form of this header is `Authorization: auth_scheme auth_data`
+  securitySchemes: {}
   parameters:
     merchant_id:
       name: merchant_id
@@ -2741,3 +2734,4 @@ tags:
 x-settle-merchant: This header should contain the Settle ID of the merchant as listed in the Settle Business Portal.
 x-settle-user: The ID (username) of the user / client making the request on behalf of the merchant. Users are created by the merchant through the Settle for Business portal or by the integrator using the user endpoint. Each user has a locally unique ID for the merchant and is assigned a shared secret and / or an RSA public key that is used for authentication.
 x-settle-integrator: Only used as a replacement for the `X-Settle-User` header when integrators act as a proxy on behalf of merchant clients. The value of this field is the ID issued to the integrator by Settle. When this header is used only authentication using RSA signatures is allowed (and thus not secret) and Settle will check the signature against the public key of the integrator.
+security: []
