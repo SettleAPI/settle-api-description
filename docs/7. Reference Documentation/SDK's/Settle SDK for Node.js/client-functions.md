@@ -37,21 +37,21 @@ merchant.apiKeys.list()
         console.log(failure);
     });
 ```
-[Reference Documentation for `xxxxx`](xxxxx)
+[Reference Documentation for `merchant.apiKeys.list`](./b3A6MTUzOTU0MDg-merchant-api-keys-list)
 <br><br>
 
 
 ### Get single API Key
 
 ```js
-merchant.apiKeys.get()
+merchant.apiKeys.get('api_user_id')
     .then(success => {
         // do something with 'success'
     }, failure => {
         console.log(failure);
     });
 ```
-[Reference Documentation for `xxxxx`](xxxxx)
+[Reference Documentation for `merchant.apiKeys.get`](./b3A6MTUzOTU0NDQ-merchant-api-keys-get)
 <br><br>
 
 
@@ -79,7 +79,7 @@ merchant.apiKeys.update('api_user_id',{
   }
 }
 ```
-[Reference Documentation for `xxxxx`](xxxxx)
+[Reference Documentation for `merchant.apiKeys.update`](./b3A6MTUzOTU0NDI-merchant-api-keys-update)
 <br><br>
 
 
