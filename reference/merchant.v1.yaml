@@ -71,7 +71,7 @@ servers:
 paths:
   /api_key:
     get:
-      summary: 2.merchant.apiKeys.list
+      summary: merchant.apiKeys.list
       tags:
         - Authentication
       responses:
@@ -84,7 +84,7 @@ paths:
       operationId: merchant.apiKeys.list
       description: List Merchant API Keys
     post:
-      summary: 1. merchant.apiKeys.create
+      summary: merchant.apiKeys.create
       operationId: merchant.apiKeys.create
       responses:
         '201':
@@ -417,27 +417,6 @@ paths:
       description: Retrieve POS info.
       tags:
         - Pos
-  '/merchant/{merchant_id}':
-    parameters:
-      - $ref: '#/components/parameters/merchant_id'
-    get:
-      summary: merchant.profile.get
-      tags:
-        - Merchant
-      operationId: merchant.profile.get
-      description: Get merchant info
-      x-internal: true
-  '/merchant_lookup/{lookup_id}':
-    parameters:
-      - $ref: '#/components/parameters/lookup_id'
-    get:
-      summary: merchant.profile.lookup
-      responses: {}
-      operationId: merchant.profile.lookup
-      description: Handle merchant lookup on secondary ID. This is endpoint can only be used by integrators.
-      tags:
-        - Merchant
-      x-internal: true
   /settlement:
     get:
       summary: merchant.settlement.list
@@ -484,24 +463,6 @@ paths:
       x-internal: false
       tags:
         - Settlement
-  '/settlement_account/{settlement_account_id}':
-    parameters:
-      - $ref: '#/components/parameters/settlement_account_id'
-    put:
-      summary: merchant.settlement.account.update
-      operationId: merchant.settlement.account.update
-      description: Updates a SettlementAccount
-      tags:
-        - Settlement
-      x-internal: true
-  /settlement_report:
-    get:
-      summary: merchant.settlement.report.get
-      tags:
-        - Settlement
-      operationId: merchant.settlement.report.get
-      description: Endpoint accepts arguments for filtering the list of settlements and can omit empty settlements.
-      x-internal: true
   /shortlink:
     get:
       summary: merchant.shortlink.list
@@ -570,51 +531,6 @@ paths:
       description: Delete shortlink
       tags:
         - Shortlink
-  /merchant_ssp_user:
-    post:
-      summary: merchant.ssp.users.create
-      tags:
-        - Self Service Portal
-      responses:
-        '409':
-          $ref: '#/components/responses/ssp.users.create.409'
-      operationId: merchant.ssp.users.create
-      description: Creates a MerchantSspUser.
-      x-internal: true
-    get:
-      summary: merchant.ssp.users.list
-      tags:
-        - Self Service Portal
-      operationId: merchant.ssp.users.list
-      description: Lists Merchant SSP Users.
-      x-internal: true
-  '/merchant_ssp_user/{merchant_ssp_user_id}':
-    parameters:
-      - schema:
-          type: string
-        name: merchant_ssp_user_id
-        in: path
-        required: true
-    get:
-      summary: merchant.ssp.users.get
-      tags:
-        - Self Service Portal
-      operationId: merchant.ssp.users.get
-      description: Gets a MerchantSspUser.
-      x-internal: true
-    delete:
-      summary: merchant.ssp.users.delete
-      operationId: merchant.ssp.users.delete
-      responses:
-        '204':
-          description: No Content
-      description: |-
-        Deletes a MerchantSspUser and returns 204 NO CONTENT
-
-        Currently only deletes if MerchantSspUser does not have any LegalEntities to avoid side effects Used to avoid inconsistencies between core and merchant console.
-      x-internal: true
-      tags:
-        - Self Service Portal
   /status_code:
     get:
       summary: merchant.statusCodes.list
