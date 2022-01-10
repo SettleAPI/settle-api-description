@@ -9,10 +9,10 @@ An easy to use **SDK** for **Node.js** with all the best practices to kickstart 
 
 ## Features
 
-This SDK is divided into two parts:
+### This SDK is divided into two parts:
 
-* **Client** - Simplifies calling the Settle APIs by handling signing and authorization.
-* **Handler** - [Express.js](https://expressjs.com/) compatible middleware that verifies signatures of incoming callbacks from Settle.
+* **Client** — Simplifies calling the Settle API by handling request signing and authorization.
+* **Handler** — [Express.js](https://expressjs.com/) compatible middleware that verifies signatures of incoming callbacks from Settle.
 
 ## Usage
 
