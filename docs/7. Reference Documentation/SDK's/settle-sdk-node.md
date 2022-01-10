@@ -16,7 +16,7 @@ This SDK is divided into two parts:
 
 ## Client Functions
 
-### Merchant API - Available Now
+### Merchant API
 - [merchant.api_keys](https://settle.dev/api/reference/rest/v1/merchant.apiKeys/)
 - [merchant.balance](https://settle.dev/api/reference/rest/v1/merchant.balance/)
 - [merchant.logo](https://settle.dev/api/reference/rest/v1/merchant.logo/)
