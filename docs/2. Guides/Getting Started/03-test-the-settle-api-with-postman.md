@@ -223,7 +223,7 @@ The Postman collection will appear in the left sidebar.
 
 ##### 3. Insert Values
 
-The Postman environment comes prefilled with some values, but there are still some required values which you must enter manually. For a complete overview over such values and where to find them, see [Postman Variable Overview](https://support.settle.eu/hc/en-150/articles/4406890104849-Test-APIs-with-Postman#h_01FFGFEG581SYVCMZ63VDKXFSR).
+The Postman environment comes prefilled with some values, but there are still some required values which you must enter manually. For a complete overview over such values and where to find them, see [Postman Variable Overview](#postman-variables-overview).
 
   - Click `Edit` and paste in values for each variable.
 
@@ -243,7 +243,7 @@ You can generate snippets of code in various languages that will help you do thi
 
 This is an overview of where to obtain Postman values for each of our APIs.
 
-Follow the instructions in [this article](../merchant-api/ZG9jOjMyNTk5ODQ0-set-up-a-business-account) to create and obtain your Sandbox values.
+Follow the instructions in [this article](./ZG9jOjM0ODE0NTcz-the-sandbox-environment) to create and obtain your Sandbox values.
 
 
 #### Common Variables
