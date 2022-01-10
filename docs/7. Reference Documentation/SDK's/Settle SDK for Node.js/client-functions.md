@@ -121,6 +121,31 @@ merchant.apiKeys.delete('api_user_id')
 
 ## Balance
 
+### Get Merchant Balance
+
+```js
+merchant.balance.get()
+    .then(success => {
+        // do something with 'success'
+    }, failure => {
+        console.log(failure);
+    });
+```
+#### Parameters
+```json json_schema
+{
+  "type": "object",
+  "properties": {
+    "merchant_id": {
+      "type": "string",
+      "description": "Merchant id assigned by Settle."
+    }
+  }
+}
+```
+[Reference Documentation for `merchant.balance.get`](./b3A6MTUzOTU0NDE-merchant-balance-get)
+<br><br>
+
 ## Payments
 
 ## POS
@@ -137,3 +162,30 @@ merchant.apiKeys.delete('api_user_id')
 - [merchant.permissions.request.get](./b3A6Mjk5NjUxNjA-merchant-permissions-request-get)
 - [merchant.permissions.request.outcome.get](./b3A6MzE5MjkxOTE-merchant-permissions-request-outcome-get)
 
+
+### XXXXX
+
+```js
+xxxxx()
+    .then(success => {
+        // do something with 'success'
+    }, failure => {
+        console.log(failure);
+    });
+```
+[Reference Documentation for `xxxxx`](.xxxxx)
+<br><br>
+
+
+#### Parameters
+```json json_schema
+{
+  "type": "object",
+  "properties": {
+    "xxxxx": {
+      "type": "string",
+      "description": "xxxxx"
+    }
+  }
+}
+```
