@@ -7,7 +7,7 @@
     },
     {
       "type": "divider",
-      "title": "Introduction"
+      "title": "1. Introduction"
     },
     {
       "type": "item",
@@ -61,42 +61,48 @@
     },
     {
       "type": "divider",
-      "title": "Guides"
+      "title": "2. Guides"
     },
     {
       "type": "group",
-      "title": "Getting Started",
+      "title": "2.1 Getting Started",
       "items": [
         {
           "type": "item",
           "title": "The Sandbox environment",
-          "uri": "docs/2. Guides/Getting Started/01-the-sandbox-environment.md"
+          "uri": "docs/2. Guides/2.1 Getting Started/01-the-sandbox-environment.md"
         },
         {
           "type": "item",
           "title": "Set up a business account",
-          "uri": "docs/2. Guides/Getting Started/02-set-up-a-business-account.md"
+          "uri": "docs/2. Guides/2.1 Getting Started/02-set-up-a-business-account.md"
         },
         {
           "type": "item",
           "title": "Install and use Postman for testing the Settle API",
-          "uri": "docs/2. Guides/Getting Started/03-test-the-settle-api-with-postman.md"
+          "uri": "docs/2. Guides/2.1 Getting Started/03-test-the-settle-api-with-postman.md"
         },
         {
           "type": "item",
           "title": "Getting ready for Production",
-          "uri": "docs/2. Guides/Getting Started/04-get-ready-for-production.md"
+          "uri": "docs/2. Guides/2.1 Getting Started/04-get-ready-for-production.md"
         }
       ]
     },
     {
-      "type": "item",
-      "title": "Verifying Callback Signatures with Node.js",
-      "uri": "docs/2. Guides/verifying-callback-signatures-with-node.md"
+      "type": "group",
+      "title": "2.2 Callback Verification",
+      "items": [
+        {
+          "type": "item",
+          "title": "Verifying Callback Signatures with Node.js",
+          "uri": "docs/2. Guides/2.2 Callback Verification/verifying-callback-signatures-with-node.md"
+        }
+      ]
     },
     {
       "type": "divider",
-      "title": "Developer Tools"
+      "title": "4. Developer Tools"
     },
     {
       "type": "item",
@@ -139,7 +145,7 @@
     },
     {
       "type": "group",
-      "title": "Online Payments",
+      "title": "1. Online Payments",
       "items": [
         {
           "type": "item",
@@ -160,7 +166,7 @@
     },
     {
       "type": "group",
-      "title": "In-Store Payments",
+      "title": "2. In-Store Payments",
       "items": [
         {
           "type": "item",
@@ -171,7 +177,7 @@
     },
     {
       "type": "group",
-      "title": "In-App Payments",
+      "title": "3. In-App Payments",
       "items": [
         {
           "type": "item",
@@ -182,7 +188,7 @@
     },
     {
       "type": "group",
-      "title": "Custom Solutions",
+      "title": "4. Custom Solutions",
       "items": [
         {
           "type": "item",
@@ -218,7 +224,7 @@
     },
     {
       "type": "divider",
-      "title": "Value-Added Services"
+      "title": "6. Value-Added Services"
     },
     {
       "type": "item",
@@ -237,23 +243,7 @@
     },
     {
       "type": "divider",
-      "title": "Reference Documentation"
-    },
-    {
-      "type": "group",
-      "title": "SDK's",
-      "items": [
-        {
-          "type": "item",
-          "title": "Settle SDK for Node",
-          "uri": "docs/7. Reference Documentation/SDK's/settle-sdk-node.md"
-        },
-        {
-          "type": "item",
-          "title": "Settle SDK for Php",
-          "uri": "docs/7. Reference Documentation/SDK's/settle-sdk-php.md"
-        }
-      ]
+      "title": "7. Reference Documentation"
     },
     {
       "type": "group",
@@ -261,256 +251,305 @@
       "items": [
         {
           "type": "item",
-          "title": "Settle Merchant Api",
-          "uri": "reference/merchant.v1.yaml"
-        },
-        {
-          "type": "item",
           "title": "Short Dynamic Links API",
           "uri": "docs/7. Reference Documentation/API's/short-dynamic-links-api.md"
-        },
+        }
+      ]
+    },
+    {
+      "type": "group",
+      "title": "SDK's",
+      "items": [
         {
           "type": "group",
-          "title": "Types",
+          "title": "settle-sdk-for-node",
           "items": [
             {
               "type": "item",
-              "title": "AccessTokenResponse",
-              "uri": "models/AccessTokenResponse.v1.yaml"
+              "title": "Settle SDK for Node.js Client Functions",
+              "uri": "docs/7. Reference Documentation/SDK's/settle-sdk-for-node/client-functions.md"
             },
             {
               "type": "item",
-              "title": "Capture",
-              "uri": "models/Capture.yaml"
-            },
-            {
-              "type": "item",
-              "title": "Currency",
-              "uri": "models/Currency.v1.yaml"
-            },
-            {
-              "type": "item",
-              "title": "Cursor",
-              "uri": "models/Cursor.yaml"
-            },
-            {
-              "type": "item",
-              "title": "Date",
-              "uri": "models/Date.yaml"
-            },
-            {
-              "type": "item",
-              "title": "DateTime",
-              "uri": "models/DateTime.yaml"
-            },
-            {
-              "type": "item",
-              "title": "Fee",
-              "uri": "models/Fee.yaml"
-            },
-            {
-              "type": "item",
-              "title": "IdentityDocumentation",
-              "uri": "models/IdentityDocumentation.yaml"
-            },
-            {
-              "type": "item",
-              "title": "JSON",
-              "uri": "models/JSON.v1.yaml"
-            },
-            {
-              "type": "item",
-              "title": "LineItem",
-              "uri": "models/LineItem.v1.yaml"
-            },
-            {
-              "type": "item",
-              "title": "LineItemMetadata",
-              "uri": "models/LineItemMetadata.v1.yaml"
-            },
-            {
-              "type": "item",
-              "title": "Location",
-              "uri": "models/Location.yaml"
-            },
-            {
-              "type": "item",
-              "title": "MerchantProfileRegistration",
-              "uri": "models/MerchantProfileRegistration.yaml"
-            },
-            {
-              "type": "item",
-              "title": "Money",
-              "uri": "models/Money.v1.yaml"
-            },
-            {
-              "type": "item",
-              "title": "MoneyInteger",
-              "uri": "models/MoneyInteger.v1.yaml"
-            },
-            {
-              "type": "item",
-              "title": "Name",
-              "uri": "models/Name.yaml"
-            },
-            {
-              "type": "item",
-              "title": "NameResponse",
-              "uri": "models/NameResponse.yaml"
-            },
-            {
-              "type": "item",
-              "title": "NdbKey",
-              "uri": "models/NdbKey.yaml"
-            },
-            {
-              "type": "item",
-              "title": "NullableBoolean",
-              "uri": "models/NullableBoolean.yaml"
-            },
-            {
-              "type": "item",
-              "title": "PaymentRequestLink",
-              "uri": "models/PaymentRequestLink.v1.yaml"
-            },
-            {
-              "type": "item",
-              "title": "PaymentRequestListItem",
-              "uri": "models/PaymentRequestListItem.yaml"
-            },
-            {
-              "type": "item",
-              "title": "PayoutDetail",
-              "uri": "models/PayoutDetail.yaml"
-            },
-            {
-              "type": "item",
-              "title": "PersonIdentifier",
-              "uri": "models/PersonIdentifier.v1.yaml"
-            },
-            {
-              "type": "item",
-              "title": "Product",
-              "uri": "models/Product.yaml"
-            },
-            {
-              "type": "item",
-              "title": "ProductSalesTable",
-              "uri": "models/ProductSalesTable.yaml"
-            },
-            {
-              "type": "item",
-              "title": "ProductSalesTableEntry",
-              "uri": "models/ProductSalesTableEntry.yaml"
-            },
-            {
-              "type": "item",
-              "title": "PubKey",
-              "uri": "models/PubKey.yaml"
-            },
-            {
-              "type": "item",
-              "title": "QuantitySum",
-              "uri": "models/QuantitySum.yaml"
-            },
-            {
-              "type": "item",
-              "title": "Refund",
-              "uri": "models/Refund.yaml"
-            },
-            {
-              "type": "item",
-              "title": "ReportSummary",
-              "uri": "models/ReportSummary.yaml"
-            },
-            {
-              "type": "item",
-              "title": "RunningSum",
-              "uri": "models/RunningSum.yaml"
-            },
-            {
-              "type": "item",
-              "title": "SalesSummaryProduct",
-              "uri": "models/SalesSummaryProduct.yaml"
-            },
-            {
-              "type": "item",
-              "title": "Scope",
-              "uri": "models/Scope.v1.yaml"
-            },
-            {
-              "type": "item",
-              "title": "Select",
-              "uri": "models/Select.yaml"
-            },
-            {
-              "type": "item",
-              "title": "SelectMultiple",
-              "uri": "models/SelectMultiple.yaml"
-            },
-            {
-              "type": "item",
-              "title": "SettlementAccountFrequency",
-              "uri": "models/SettlementAccountFrequency.yaml"
-            },
-            {
-              "type": "item",
-              "title": "SettlementListItem",
-              "uri": "models/SettlementListItem.yaml"
-            },
-            {
-              "type": "item",
-              "title": "SettlementListReportContext",
-              "uri": "models/SettlementListReportContext.yaml"
-            },
-            {
-              "type": "item",
-              "title": "SettlementListSummary",
-              "uri": "models/SettlementListSummary.yaml"
-            },
-            {
-              "type": "item",
-              "title": "SettlementPayout",
-              "uri": "models/SettlementPayout.yaml"
-            },
-            {
-              "type": "item",
-              "title": "ShippingAdddress",
-              "uri": "models/ShippingAddress.yaml"
-            },
-            {
-              "type": "item",
-              "title": "Sum",
-              "uri": "models/Sum.yaml"
-            },
-            {
-              "type": "item",
-              "title": "Time",
-              "uri": "models/Time.yaml"
-            },
-            {
-              "type": "item",
-              "title": "TimeDelta",
-              "uri": "models/TimeDelta.yaml"
-            },
-            {
-              "type": "item",
-              "title": "UserInfo",
-              "uri": "models/UserInfo.yaml"
-            },
-            {
-              "type": "item",
-              "title": "VatSalesTable",
-              "uri": "models/VatSalesTable.yaml"
-            },
-            {
-              "type": "item",
-              "title": "VatSalesTableEntry",
-              "uri": "models/VatSalesTableEntry.yaml"
+              "title": "Node.js SDK for connecting to the Settle Payment Platform",
+              "uri": "docs/7. Reference Documentation/SDK's/settle-sdk-for-node/README.md"
             }
           ]
+        },
+        {
+          "type": "item",
+          "title": "PHP SDK for connecting to the Settle Payment Platform",
+          "uri": "docs/7. Reference Documentation/SDK's/settle-sdk-php.md"
         }
       ]
+    },
+    {
+      "type": "divider",
+      "title": "APIS"
+    },
+    {
+      "type": "item",
+      "title": "merchant",
+      "uri": "reference/merchant.v1.yaml"
+    },
+    {
+      "type": "divider",
+      "title": "Schemas"
+    },
+    {
+      "type": "item",
+      "title": "AccessTokenResponse",
+      "uri": "models/AccessTokenResponse.v1.yaml"
+    },
+    {
+      "type": "item",
+      "title": "Capture",
+      "uri": "models/Capture.yaml"
+    },
+    {
+      "type": "item",
+      "title": "Currency",
+      "uri": "models/Currency.v1.yaml"
+    },
+    {
+      "type": "item",
+      "title": "Cursor",
+      "uri": "models/Cursor.yaml"
+    },
+    {
+      "type": "item",
+      "title": "Date",
+      "uri": "models/Date.yaml"
+    },
+    {
+      "type": "item",
+      "title": "DateTime",
+      "uri": "models/DateTime.yaml"
+    },
+    {
+      "type": "item",
+      "title": "Fee",
+      "uri": "models/Fee.yaml"
+    },
+    {
+      "type": "item",
+      "title": "IdentityDocumentation",
+      "uri": "models/IdentityDocumentation.yaml"
+    },
+    {
+      "type": "item",
+      "title": "Item",
+      "uri": "models/Item.yaml"
+    },
+    {
+      "type": "item",
+      "title": "JSON",
+      "uri": "models/JSON.v1.yaml"
+    },
+    {
+      "type": "item",
+      "title": "LineItem",
+      "uri": "models/LineItem.v1.yaml"
+    },
+    {
+      "type": "item",
+      "title": "LineItemMetadata",
+      "uri": "models/LineItemMetadata.v1.yaml"
+    },
+    {
+      "type": "item",
+      "title": "Location",
+      "uri": "models/Location.yaml"
+    },
+    {
+      "type": "item",
+      "title": "MerchantProfileRegistration",
+      "uri": "models/MerchantProfileRegistration.yaml"
+    },
+    {
+      "type": "item",
+      "title": "Money",
+      "uri": "models/Money.v1.yaml"
+    },
+    {
+      "type": "item",
+      "title": "MoneyInteger",
+      "uri": "models/MoneyInteger.v1.yaml"
+    },
+    {
+      "type": "item",
+      "title": "Name",
+      "uri": "models/Name.yaml"
+    },
+    {
+      "type": "item",
+      "title": "NameResponse",
+      "uri": "models/NameResponse.yaml"
+    },
+    {
+      "type": "item",
+      "title": "NdbKey",
+      "uri": "models/NdbKey.yaml"
+    },
+    {
+      "type": "item",
+      "title": "NullableBoolean",
+      "uri": "models/NullableBoolean.yaml"
+    },
+    {
+      "type": "item",
+      "title": "PaymentRequestLink",
+      "uri": "models/PaymentRequestLink.v1.yaml"
+    },
+    {
+      "type": "item",
+      "title": "PaymentRequestListItem",
+      "uri": "models/PaymentRequestListItem.yaml"
+    },
+    {
+      "type": "item",
+      "title": "PayoutDetail",
+      "uri": "models/PayoutDetail.yaml"
+    },
+    {
+      "type": "item",
+      "title": "PersonIdentifier",
+      "uri": "models/PersonIdentifier.v1.yaml"
+    },
+    {
+      "type": "item",
+      "title": "Product",
+      "uri": "models/Product.yaml"
+    },
+    {
+      "type": "item",
+      "title": "ProductSalesTable",
+      "uri": "models/ProductSalesTable.yaml"
+    },
+    {
+      "type": "item",
+      "title": "ProductSalesTableEntry",
+      "uri": "models/ProductSalesTableEntry.yaml"
+    },
+    {
+      "type": "item",
+      "title": "PubKey",
+      "uri": "models/PubKey.yaml"
+    },
+    {
+      "type": "item",
+      "title": "QuantitySum",
+      "uri": "models/QuantitySum.yaml"
+    },
+    {
+      "type": "item",
+      "title": "ReceiptItems",
+      "uri": "models/ReceiptItems.yaml"
+    },
+    {
+      "type": "item",
+      "title": "ReceiptPayments",
+      "uri": "models/ReceiptPayments.yaml"
+    },
+    {
+      "type": "item",
+      "title": "Refund",
+      "uri": "models/Refund.yaml"
+    },
+    {
+      "type": "item",
+      "title": "ReportSummary",
+      "uri": "models/ReportSummary.yaml"
+    },
+    {
+      "type": "item",
+      "title": "RunningSum",
+      "uri": "models/RunningSum.yaml"
+    },
+    {
+      "type": "item",
+      "title": "SalesSummaryProduct",
+      "uri": "models/SalesSummaryProduct.yaml"
+    },
+    {
+      "type": "item",
+      "title": "Scope",
+      "uri": "models/Scope.v1.yaml"
+    },
+    {
+      "type": "item",
+      "title": "Select",
+      "uri": "models/Select.yaml"
+    },
+    {
+      "type": "item",
+      "title": "SelectMultiple",
+      "uri": "models/SelectMultiple.yaml"
+    },
+    {
+      "type": "item",
+      "title": "SettlementAccountFrequency",
+      "uri": "models/SettlementAccountFrequency.yaml"
+    },
+    {
+      "type": "item",
+      "title": "SettlementListItem",
+      "uri": "models/SettlementListItem.yaml"
+    },
+    {
+      "type": "item",
+      "title": "SettlementListReportContext",
+      "uri": "models/SettlementListReportContext.yaml"
+    },
+    {
+      "type": "item",
+      "title": "SettlementListSummary",
+      "uri": "models/SettlementListSummary.yaml"
+    },
+    {
+      "type": "item",
+      "title": "SettlementPayout",
+      "uri": "models/SettlementPayout.yaml"
+    },
+    {
+      "type": "item",
+      "title": "ShippingAdddress",
+      "uri": "models/ShippingAddress.yaml"
+    },
+    {
+      "type": "item",
+      "title": "Store",
+      "uri": "models/Store.yaml"
+    },
+    {
+      "type": "item",
+      "title": "Sum",
+      "uri": "models/Sum.yaml"
+    },
+    {
+      "type": "item",
+      "title": "Time",
+      "uri": "models/Time.yaml"
+    },
+    {
+      "type": "item",
+      "title": "TimeDelta",
+      "uri": "models/TimeDelta.yaml"
+    },
+    {
+      "type": "item",
+      "title": "UserInfo",
+      "uri": "models/UserInfo.yaml"
+    },
+    {
+      "type": "item",
+      "title": "VatSalesTable",
+      "uri": "models/VatSalesTable.yaml"
+    },
+    {
+      "type": "item",
+      "title": "VatSalesTableEntry",
+      "uri": "models/VatSalesTableEntry.yaml"
     }
   ]
 }
