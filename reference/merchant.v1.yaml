@@ -5,7 +5,7 @@ info:
   contact:
     name: Settle Group
     email: settle.eu
-    url: 'https://settle.eu/contact'
+    url: 'https://settle.eu/developer/'
   license:
     name: MIT
     url: 'https://raw.githubusercontent.com/SettleAPI/settle-api-description/main/LICENSE'
