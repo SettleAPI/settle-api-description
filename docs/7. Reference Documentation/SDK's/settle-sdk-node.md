@@ -16,23 +16,31 @@ This SDK is divided into two parts:
 
 ## Client Functions
 
-### Merchant API
-- [merchant.api_keys](https://settle.dev/api/reference/rest/v1/merchant.apiKeys/)
-- [merchant.balance](https://settle.dev/api/reference/rest/v1/merchant.balance/)
-- [merchant.logo](https://settle.dev/api/reference/rest/v1/merchant.logo/)
-- [merchant.payment.request](https://settle.dev/api/reference/rest/v1/merchant.payment.request/)
-- [merchant.payment.request.outcome](https://settle.dev/api/reference/rest/v1/merchant.payment.request.outcome/)
-- [merchant.payment.send](https://settle.dev/api/reference/rest/v1/merchant.payment.send/)
-- [merchant.payment.send.outcome](https://settle.dev/api/reference/rest/v1/merchant.payment.send.outcome/)
-- [merchant.pos](https://settle.dev/api/reference/rest/v1/merchant.pos/)
-- [merchant.profile](https://settle.dev/api/reference/rest/v1/merchant.profile/)
-- [merchant.sales.summary](https://settle.dev/api/reference/rest/v1/merchant.sales.summary/)
-- [merchant.settlement](https://settle.dev/api/reference/rest/v1/merchant.settlement/)
-- [merchant.settlement.account](https://settle.dev/api/reference/rest/v1/merchant.settlement.account/)
-- [merchant.settlement.latest](https://settle.dev/api/reference/rest/v1/merchant.settlement.latest/)
-- [merchant.settlement.report](https://settle.dev/api/reference/rest/v1/merchant.settlement.report/)
-- [merchant.shortlink](https://settle.dev/api/reference/rest/v1/merchant.shortlink/)
-- [merchant.statusCodes](https://settle.dev/api/reference/rest/v1/merchant.statusCodes/)
+### Authentication
+
+- [`merchant.apiKeys.create`]()
+- [`merchant.apiKeys.list`]()
+- [`merchant.apiKeys.get`]()
+- [`merchant.apiKeys.update`]()
+- [`merchant.apiKeys.delete`]()
+
+### Balance
+
+### Payments
+
+### POS
+
+### Settlements
+
+### Shortlinks
+
+### Status Codes
+
+### Permission Requests
+
+- [merchant.permissions.request.create](./b3A6Mjk5NjUxNTk-merchant-permissions-request-create)
+- [merchant.permissions.request.get](./b3A6Mjk5NjUxNjA-merchant-permissions-request-get)
+- [merchant.permissions.request.outcome.get](./b3A6MzE5MjkxOTE-merchant-permissions-request-outcome-get)
 
 <!-- ### OAuth 2.0 Authorization Framework - Coming Soon
 
@@ -42,11 +50,6 @@ This SDK is divided into two parts:
 - [oauth2.error](https://settle.dev/api/reference/rest/v1/oauth2.error/)
 - [oauth2.qrImage](https://settle.dev/api/reference/rest/v1/oauth2.qrImage/)
 - [oauth2.user.info](https://settle.dev/api/reference/rest/v1/oauth2.user.info/) -->
-
-### Permissions API
-- [users.permissions.request.create](./b3A6Mjk5NjUxNTk-merchant-permissions-request-create)
-- [users.permissions.request.get](./b3A6Mjk5NjUxNjA-merchant-permissions-request-get)
-- [users.permissions.request.outcome.get](./b3A6MzE5MjkxOTE-merchant-permissions-request-outcome-get)
 
 
 ## Installation
