@@ -74,7 +74,7 @@ app.post( '/', ( req, res, next ) => {
 
 ## Client Functions
 
-See our article on [using the Settle SDK for Node.js Client Functions](./ZG9jOjM0ODM3NTEx-settle-sdk-for-node-js-client-functions)
+See our article on using the [Settle SDK for Node.js Client Functions](./ZG9jOjM0ODM3NTEx-settle-sdk-for-node-js-client-functions)
 
 
 <!-- ### OAuth 2.0 Authorization Framework - Coming Soon
