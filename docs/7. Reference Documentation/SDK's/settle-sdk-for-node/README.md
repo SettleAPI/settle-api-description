@@ -72,101 +72,10 @@ app.post( '/', ( req, res, next ) => {
 ```
 ####
 
-# Client Functions
+## Client Functions
 
-## Authentication
+See our article on [using the Settle SDK for Node.js Client Functions]()
 
-```js title="Create new API Key"
-merchant.apiKeys.create({
-  "id": "string",
-  "label": "string",
-  "key_type": "secret",
-  "roles": "null",
-  "netmask": "string",
-  "secret": "stringst",
-  "pubkey": "string"
-})
-    .then(success => {
-        // do something with 'success'
-    }, failure => {
-        console.log(failure);
-    });
-```
-
-[Reference Documentation for `merchant.apiKeys.create`](./b3A6MTUzOTU0MDk-merchant-api-keys-create)
-<br><br>
-
-```js title="List all API Keys"
-merchant.apiKeys.list()
-    .then(success => {
-        // do something with 'success'
-    }, failure => {
-        console.log(failure);
-    });
-```
-[Reference Documentation for `xxxxx`](xxxxx)
-<br><br>
-
-```js title="Get single API Key"
-merchant.apiKeys.get()
-    .then(success => {
-        // do something with 'success'
-    }, failure => {
-        console.log(failure);
-    });
-```
-[Reference Documentation for `xxxxx`](xxxxx)
-<br><br>
-
-```js title="Update single API Key"
-merchant.apiKeys.update('api_user_id',{
-
-})
-    .then(success => {
-        // do something with 'success'
-    }, failure => {
-        console.log(failure);
-    });
-```
-#### Parameters
-```json json_schema
-{
-  "type": "object",
-  "properties": {
-    "api_user_id": {
-      "type": "string",
-      "description": "API Key ID created by either Settle or Merchant."
-    }
-  }
-}
-```
-[Reference Documentation for `xxxxx`](xxxxx)
-<br><br>
-
-
-
-**Update** single **API Key** with [`merchant.apiKeys.update`]()
-
-
-**Delete** single **API Key** with [`merchant.apiKeys.delete`]()
-
-### Balance
-
-### Payments
-
-### POS
-
-### Settlements
-
-### Shortlinks
-
-### Status Codes
-
-### Permission Requests
-
-- [merchant.permissions.request.create](./b3A6Mjk5NjUxNTk-merchant-permissions-request-create)
-- [merchant.permissions.request.get](./b3A6Mjk5NjUxNjA-merchant-permissions-request-get)
-- [merchant.permissions.request.outcome.get](./b3A6MzE5MjkxOTE-merchant-permissions-request-outcome-get)
 
 <!-- ### OAuth 2.0 Authorization Framework - Coming Soon
 
