@@ -4,7 +4,7 @@
 
 View API objects, methods, attributes and responses.
 
-[Read the Settle API Reference Documentation](../merchant-api)
+[Read the Settle API Reference Documentation](reference/merchant.v1.yaml)
 
 ####
  
@@ -18,7 +18,7 @@ View every command and flag in our command-line interface.
 
 ### Dynamic Links API Reference
 
-Generate short and shareable [Short Dynamic Links](../merchant-api/ZG9jOjMyNTk1MzQx-short-links#short-dynamic-links) from [ShortLinks](../merchant-api/ZG9jOjMyNTk1MzQx-short-links).
+Generate short and shareable [Short Dynamic Links](./ZG9jOjM0ODE0Nzk4-short-dynamic-links-api) from [ShortLinks](./ZG9jOjM0ODE0NTkz-short-links).
 
 <!-- TODO - Add link -->
 Read the Short Dynamic Links Documentation
