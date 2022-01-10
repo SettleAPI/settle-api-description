@@ -14,13 +14,17 @@ This SDK is divided into two parts:
 * **Client** - Simplifies calling the Settle APIs by handling signing and authorization.
 * **Handler** - [Express.js](https://expressjs.com/) compatible middleware that verifies signatures of incoming callbacks from Settle.
 
-## Installation
+## Usage
+
+### Step 1 — Install the SDK
+
+Add the `settle-sdk-node` NPM package to you project.
 
 ```bash
 npm i settle-sdk-node
 ```
 
-### Config
+### Step 2 — Configure the SDK
 
 In your projects  **root folder**, create a file named `config.js` containing the following code:
 
@@ -42,11 +46,9 @@ module.exports = {
 }
 ```
 
-## Usage
+### Step 3 — Initialize the Handler Function
 
-### Handler Example
-
-```js
+```js title="Handler Example"
 const { handler } = require('settle-sdk-node')
 app.use(handler('sandbox'))
 app.post( '/', ( req, res, next ) => {
@@ -55,9 +57,9 @@ app.post( '/', ( req, res, next ) => {
 });
 ```
 
-### Client Example
+### Step 4 — Using Client Functions
 
-```js
+```js title="List all API Keys Example"
 const settle = require('settle-sdk-node');
 const merchant = settle.merchant;
 
@@ -69,13 +71,13 @@ merchant.api_keys.list()
   });
 ```
 
-#### Client Functions
+#### Basic Client Function Usage
 
 ```js
 method.function().then(success, failure)
 ```
 
-See our article on [how to use Client Functions in the Settle SDK for Node.js](./ZG9jOjM0ODQwMjA4-using-the-client-functions).
+For a full overview of all available Client Functions, see our article on [how to use Client Functions in the Settle SDK for Node.js](./ZG9jOjM0ODQwMjA4-using-the-client-functions).
 
 
 <!-- ### OAuth 2.0 Authorization Framework - Coming Soon
