@@ -16,7 +16,9 @@ This SDK is divided into two parts:
 
 ## Installation
 
-`npm i settle-sdk-node`
+```bash
+npm i settle-sdk-node
+```
 
 ### Config
 
