@@ -4,7 +4,6 @@ info:
   version: '1.0'
   contact:
     name: Settle Group
-    url: 'https://settle.eu'
     email: support+dev@settle.eu
   license:
     name: MIT
