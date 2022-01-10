@@ -444,6 +444,8 @@ paths:
         '401':
           $ref: '#/components/responses/401'
       description: List Settlements
+      tags:
+        - Settlement
   '/settlement/{settlement_id}':
     parameters:
       - $ref: '#/components/parameters/settlement_id'
