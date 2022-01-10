@@ -42,8 +42,15 @@ module.exports = {
 
 ## Usage
 
+### Handler Example
+
 ```js
-method.function().then(success, failure)
+const { handler } = require('settle-sdk-node')
+app.use(handler('sandbox'))
+app.post( '/', ( req, res, next ) => {
+    console.log( 'Settle says:\n%s', req.body );
+    res.sendStatus( 200 );
+});
 ```
 
 ### Client Example
@@ -60,21 +67,13 @@ merchant.api_keys.list()
   });
 ```
 
-### Handler Example
+#### Client Functions
 
 ```js
-const { handler } = require('settle-sdk-node')
-app.use(handler('sandbox'))
-app.post( '/', ( req, res, next ) => {
-    console.log( 'Settle says:\n%s', req.body );
-    res.sendStatus( 200 );
-});
+method.function().then(success, failure)
 ```
-####
 
-## Client Functions
-
-See our article on using the [Settle SDK for Node.js Client Functions](./ZG9jOjM0ODQwMjA4-using-the-client-functions).
+See our article on [how to use Client Functions in the Settle SDK for Node.js](./ZG9jOjM0ODQwMjA4-using-the-client-functions).
 
 
 <!-- ### OAuth 2.0 Authorization Framework - Coming Soon
