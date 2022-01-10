@@ -265,7 +265,7 @@
             },
             {
               "type": "item",
-              "title": "Settle SDK for Node.js Client Functions",
+              "title": "Using the Client Functions",
               "uri": "docs/7. Reference Documentation/SDK's/Settle SDK for Node.js/client-functions.md"
             }
           ]
