@@ -221,7 +221,7 @@ API clients can associate some resources with a callback_uri in order to enable 
 
 In general, the error response body consists of an `error_type`, an `error_description` and some `error_details`. This example shows a request and then the response for validation errors 👇
 
-```http title="Request"
+```Http title="Request"
 POST /test/ HTTP/1.1
 Host: callbackserver.test
 Content-Type: application/vnd.mcash.api.merchant.v1+json

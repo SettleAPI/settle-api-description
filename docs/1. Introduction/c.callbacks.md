@@ -23,7 +23,7 @@ For a callback made using a secure protocol one would use an HTTPS URL for the *
 
 `https://callbackserver.test/notification/qWeR/`
 
-```http title="Example request"
+```Http title="Example request"
 POST /notification/qWeR/ HTTP/1.1
 Host: callbackserver.test
 Content-Type: application/json
@@ -50,7 +50,7 @@ For insecure protocols, Settle will only send non-sensitive meta-information. On
 
 `http://callbackserver.test/notification/qWeR/`
 
-```http title="Example request"
+```Http title="Example request"
 POST /notification/qWeR HTTP/1.1
 Host: callbackserver.test
 Content-Type: application/json
@@ -66,13 +66,13 @@ Content-Type: application/json
 
 Here the URL field contains a URL that points to an endpoint on a Settle server where the object part can be retrieved using an HTTPS `GET` request:
 
-```http title="Request"
+```Http title="Request"
 GET /my_resource/1/ HTTP/1.1
 HOST: server.test
 ```
 #
 
-```http title="Response"
+```Http title="Response"
 HTTP/1.1 200 OK
 Content-Type: application/json
 

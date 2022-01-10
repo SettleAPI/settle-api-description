@@ -40,7 +40,7 @@ Below is an example of a request where user **POS1** is doing an HTTP `POST` to 
 
 The secret is **MySecretPassword** and the request body is `{"text": "Hello world"}`.
 
-```http
+```Http
 POST /some/resource/ HTTP/1.1
 HOST: server.test
 Accept: application/vnd.mcash.api.merchant.v1+json
@@ -93,7 +93,7 @@ In addition, the following requirements apply:
 - Headers whose names don't start with X-Settle- are excluded.
 
 
-```http title="Reusing the example in the previous section"
+```Http title="Reusing the example in the previous section"
 POST /some/resource/ HTTP/1.1
 HOST: server.test
 Accept: application/vnd.mcash.api.merchant.v1+json

@@ -56,7 +56,7 @@ To create a Short Dynamic Link, make an HTTP POST request to the dynamiclinks en
 
 To create Short Dynamic Links for testing, use `"environment": "sandbox"`.
 
-```http title="Example"
+```Http title="Example"
 POST https://dynamiclinks.settle.dev/api/create/
 Content-Type: application/json
 
