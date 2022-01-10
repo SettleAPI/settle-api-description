@@ -34,20 +34,19 @@ This SDK is divided into two parts:
 - [merchant.shortlink](https://settle.dev/api/reference/rest/v1/merchant.shortlink/)
 - [merchant.statusCodes](https://settle.dev/api/reference/rest/v1/merchant.statusCodes/)
 
-### OAuth 2.0 Authorization Framework - Coming Soon
+<!-- ### OAuth 2.0 Authorization Framework - Coming Soon
 
 - [oauth2.auth.code](https://settle.dev/api/reference/rest/v1/oauth2.auth.code/)
 - [oauth2.auth.request](https://settle.dev/api/reference/rest/v1/oauth2.auth.request/)
 - [oauth2.auth.token](https://settle.dev/api/reference/rest/v1/oauth2.auth.token/)
 - [oauth2.error](https://settle.dev/api/reference/rest/v1/oauth2.error/)
 - [oauth2.qrImage](https://settle.dev/api/reference/rest/v1/oauth2.qrImage/)
-- [oauth2.user.info](https://settle.dev/api/reference/rest/v1/oauth2.user.info/)
+- [oauth2.user.info](https://settle.dev/api/reference/rest/v1/oauth2.user.info/) -->
 
-### Permissions API - Coming Soon
-- [users.permissions](https://settle.dev/api/reference/rest/v1/users.permissions/)
-- [users.permissions.request](https://settle.dev/api/reference/rest/v1/users.permissions.request/)
-- [users.permissions.request.outcome](https://settle.dev/api/reference/rest/v1/users.permissions.request.outcome/)
-- [users.permissions.scope](https://settle.dev/api/reference/rest/v1/users.permissions.scope/)
+### Permissions API
+- [users.permissions.request.create](./b3A6Mjk5NjUxNTk-merchant-permissions-request-create)
+- [users.permissions.request.get](./b3A6Mjk5NjUxNjA-merchant-permissions-request-get)
+- [users.permissions.request.outcome.get](./b3A6MzE5MjkxOTE-merchant-permissions-request-outcome-get)
 
 
 ## Installation
