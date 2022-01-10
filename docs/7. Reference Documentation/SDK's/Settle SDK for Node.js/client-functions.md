@@ -546,11 +546,17 @@ merchant.shortlink.delete('shortlink_id')
 
 ## Status Codes
 
-## Permission Requests
+### List All Status Codes
 
-- [merchant.permissions.request.create](./b3A6Mjk5NjUxNTk-merchant-permissions-request-create)
-- [merchant.permissions.request.get](./b3A6Mjk5NjUxNjA-merchant-permissions-request-get)
-- [merchant.permissions.request.outcome.get](./b3A6MzE5MjkxOTE-merchant-permissions-request-outcome-get)
+```js
+merchant.statusCodes.list()
+    .then(success => {
+        // do something with 'success'
+    }, failure => {
+        console.log(failure);
+    });
+```
+[Reference Documentation for `merchant.statusCodes.list`](./b3A6MTUzOTU0MzU-merchant-status-codes-list)
 
 
 ### XXXXX
@@ -563,9 +569,6 @@ xxxxx()
         console.log(failure);
     });
 ```
-[Reference Documentation for `xxxxx`](.xxxxx)
-
-
 #### Parameters
 ```json json_schema
 {
@@ -574,6 +577,40 @@ xxxxx()
     "xxxx": {
       "type": "string",
       "description": "xxxxx"
+    }
+  }
+}
+```
+[Reference Documentation for `xxxxx`](.xxxxx)
+
+## Permission Requests
+
+- [merchant.permissions.request.create](./b3A6Mjk5NjUxNTk-merchant-permissions-request-create)
+- [merchant.permissions.request.get](./b3A6Mjk5NjUxNjA-merchant-permissions-request-get)
+- [merchant.permissions.request.outcome.get](./b3A6MzE5MjkxOTE-merchant-permissions-request-outcome-get)
+
+
+### XXXXX
+
+```js
+merchant.statusCodes.get('status_code')
+    .then(success => {
+        // do something with 'success'
+    }, failure => {
+        console.log(failure);
+    });
+```
+[Reference Documentation for `merchant.statusCodes.get`](./b3A6MTUzOTU0MzY-merchant-status-codes-get)
+
+
+#### Parameters
+```json json_schema
+{
+  "type": "object",
+  "properties": {
+    "status_code": {
+      "type": "string",
+      "description": "Status Code provided by Settle."
     }
   }
 }
