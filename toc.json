@@ -287,11 +287,6 @@
           "uri": "docs/7. Reference Documentation/API's/short-dynamic-links-api.md"
         },
         {
-          "type": "item",
-          "title": "🔎 PEP and Sanctions API",
-          "uri": "docs/7. Reference Documentation/API's/pep-and-sanctions-api.md"
-        },
-        {
           "type": "group",
           "title": "Models",
           "items": [
