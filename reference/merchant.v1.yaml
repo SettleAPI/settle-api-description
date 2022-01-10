@@ -71,7 +71,7 @@ servers:
 paths:
   /api_key:
     get:
-      summary: merchant.apiKeys.list
+      summary: 2.merchant.apiKeys.list
       tags:
         - Authentication
       responses:
@@ -84,7 +84,7 @@ paths:
       operationId: merchant.apiKeys.list
       description: List Merchant API Keys
     post:
-      summary: merchant.apiKeys.create
+      summary: 1. merchant.apiKeys.create
       operationId: merchant.apiKeys.create
       responses:
         '201':
