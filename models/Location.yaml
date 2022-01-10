@@ -1,18 +1,11 @@
-title: Location
-type: object
-description: 'A geographical point, specified by floating-point latitude and longitude coordinates together with an accuracy measurement in meters.'
-properties:
-  latitude:
-    default: null
-    type: number
-    description: Latitude
-  longitude:
-    type: number
-    default: null
-    description: Longitude
-  accuracy:
-    type: number
-    default: null
-    description: Accuracy in meters.
-x-tags:
-  - complex-types
+type: array
+description: ''
+minItems: 3
+uniqueItems: true
+x-examples:
+  example-1:
+    - 2.1
+    - 1.2
+    - 1
+items:
+  type: object
