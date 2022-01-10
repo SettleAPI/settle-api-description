@@ -62,7 +62,7 @@ info:
     ### Permissions Requests
     - [Create Permissions Request](./b3A6Mjk5NjUxNTk-merchant-permissions-request-create)
     - [Get Permissions Request](./b3A6Mjk5NjUxNjA-merchant-permissions-request-get)
-    - [Get Permissions Request Outcome](./merchant-api/b3A6MzE5MjkxOTE-merchant-permissions-request-outcome-get)
+    - [Get Permissions Request Outcome](./b3A6MzE5MjkxOTE-merchant-permissions-request-outcome-get)
 servers:
   - url: 'https://api.sandbox.settle.eu/merchant/v1'
     description: Sandbox
