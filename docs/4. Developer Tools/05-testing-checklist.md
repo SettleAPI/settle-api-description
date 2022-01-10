@@ -18,8 +18,8 @@ Regardless of integration type and use case, we recommend that you check at leas
 5. Make sure you support REFUND (both full and partial).
 6. Ensure you have graceful error handling.
 7. Ensure you can deal with multiple simultaneous customers:
-    1. Do you use static or dynamic [Shortlink](/merchant-api/b3A6MTUzOTU0Mjk-merchant-shortlink-create) / QR Code?
-    2. Do you use Argstring appended to [Shortlink](/merchant-api/b3A6MTUzOTU0Mjk-merchant-shortlink-create) / QR Code?
+    1. Do you use static or dynamic [Shortlink](./b3A6MTUzOTU0Mjk-merchant-shortlink-create) / QR Code?
+    2. Do you use Argstring appended to [Shortlink](./b3A6MTUzOTU0Mjk-merchant-shortlink-create) / QR Code?
 
 ####
 

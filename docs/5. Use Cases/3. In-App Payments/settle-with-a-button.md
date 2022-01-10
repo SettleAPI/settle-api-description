@@ -8,7 +8,7 @@ This use case is based on the premise that you already have a mobile app and tha
 2. The app presents the `Pay with Settle` button.
 3. When the button is clicked, the Customer Initiated transaction flow starts:
     1. The Settle App is launched (app switch).
-    2. The Settle App delivers the contents of the button ([Shortlink](/merchant-api/ZG9jOjMyNTk1MzQx-short-links)) to the Settle Server.
+    2. The Settle App delivers the contents of the button ([Shortlink](./ZG9jOjM0ODE0NTkz-short-links)) to the Settle Server.
     3. The Settle Server identifies what Merchant owns the Shortlink and makes the event (that a `scan` has happened) available to the Merchant App through the Settle API.
 
     > #### Advanced Options

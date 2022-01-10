@@ -10,7 +10,7 @@ This use case is based on the premise that you already have a webshop or website
 
 ### How we would implement this use case
 
-1. Refer to the [Settle at Checkout](../docs/merchant-api/ZG9jOjMyNjUzNjM0-settle-at-checkout) use case for details on how to collect and perform payment requests using a Customer's phone number.
+1. Refer to the [Settle at Checkout](./ZG9jOjM0ODE0Nzg2-settle-at-checkout) use case for details on how to collect and perform payment requests using a Customer's phone number.
 2. Once you have the Customer’s phone number on file, you can issue a Payment Request at your convenience. Typical scenarios include:
 
     1. The customer is trying to access paid content.
