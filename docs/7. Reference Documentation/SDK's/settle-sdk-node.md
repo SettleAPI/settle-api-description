@@ -14,44 +14,6 @@ This SDK is divided into two parts:
 * **Client** - Simplifies calling the Settle APIs by handling signing and authorization.
 * **Handler** - [Express.js](https://expressjs.com/) compatible middleware that verifies signatures of incoming callbacks from Settle.
 
-## Client Functions
-
-### Authentication
-
-- [`merchant.apiKeys.create`]()
-- [`merchant.apiKeys.list`]()
-- [`merchant.apiKeys.get`]()
-- [`merchant.apiKeys.update`]()
-- [`merchant.apiKeys.delete`]()
-
-### Balance
-
-### Payments
-
-### POS
-
-### Settlements
-
-### Shortlinks
-
-### Status Codes
-
-### Permission Requests
-
-- [merchant.permissions.request.create](./b3A6Mjk5NjUxNTk-merchant-permissions-request-create)
-- [merchant.permissions.request.get](./b3A6Mjk5NjUxNjA-merchant-permissions-request-get)
-- [merchant.permissions.request.outcome.get](./b3A6MzE5MjkxOTE-merchant-permissions-request-outcome-get)
-
-<!-- ### OAuth 2.0 Authorization Framework - Coming Soon
-
-- [oauth2.auth.code](https://settle.dev/api/reference/rest/v1/oauth2.auth.code/)
-- [oauth2.auth.request](https://settle.dev/api/reference/rest/v1/oauth2.auth.request/)
-- [oauth2.auth.token](https://settle.dev/api/reference/rest/v1/oauth2.auth.token/)
-- [oauth2.error](https://settle.dev/api/reference/rest/v1/oauth2.error/)
-- [oauth2.qrImage](https://settle.dev/api/reference/rest/v1/oauth2.qrImage/)
-- [oauth2.user.info](https://settle.dev/api/reference/rest/v1/oauth2.user.info/) -->
-
-
 ## Installation
 
 `npm i settle-sdk-node`
@@ -81,7 +43,7 @@ module.exports = {
 ## Usage
 
 ```js
-merchant.api_keys.list().then(success, failure)
+method.function().then(success, failure)
 ```
 
 ## Client Example
@@ -108,6 +70,93 @@ app.post( '/', ( req, res, next ) => {
     res.sendStatus( 200 );
 });
 ```
+
+## Client Functions
+
+### Authentication
+
+```js title="Create new API Key"
+merchant.apiKeys.create({
+  "id": "string",
+  "label": "string",
+  "key_type": "secret",
+  "roles": "null",
+  "netmask": "string",
+  "secret": "stringst",
+  "pubkey": "string"
+})
+    .then(success => {
+        // do something with 'success'
+    }, failure => {
+        console.log(failure);
+    });
+```
+#####
+```js title="List all API Keys"
+merchant.apiKeys.list()
+    .then(success => {
+        // do something with 'success'
+    }, failure => {
+        console.log(failure);
+    });
+```
+#####
+```js title="Get single API Key"
+merchant.apiKeys.get()
+    .then(success => {
+        // do something with 'success'
+    }, failure => {
+        console.log(failure);
+    });
+```
+#####
+dfgfg
+#####
+```js title="Update single API Key"
+merchant.apiKeys.update('api_user_id',{
+
+})
+    .then(success => {
+        // do something with 'success'
+    }, failure => {
+        console.log(failure);
+    });
+```
+
+
+
+**Update** single **API Key** with [`merchant.apiKeys.update`]()
+
+
+**Delete** single **API Key** with [`merchant.apiKeys.delete`]()
+
+### Balance
+
+### Payments
+
+### POS
+
+### Settlements
+
+### Shortlinks
+
+### Status Codes
+
+### Permission Requests
+
+- [merchant.permissions.request.create](./b3A6Mjk5NjUxNTk-merchant-permissions-request-create)
+- [merchant.permissions.request.get](./b3A6Mjk5NjUxNjA-merchant-permissions-request-get)
+- [merchant.permissions.request.outcome.get](./b3A6MzE5MjkxOTE-merchant-permissions-request-outcome-get)
+
+<!-- ### OAuth 2.0 Authorization Framework - Coming Soon
+
+- [oauth2.auth.code](https://settle.dev/api/reference/rest/v1/oauth2.auth.code/)
+- [oauth2.auth.request](https://settle.dev/api/reference/rest/v1/oauth2.auth.request/)
+- [oauth2.auth.token](https://settle.dev/api/reference/rest/v1/oauth2.auth.token/)
+- [oauth2.error](https://settle.dev/api/reference/rest/v1/oauth2.error/)
+- [oauth2.qrImage](https://settle.dev/api/reference/rest/v1/oauth2.qrImage/)
+- [oauth2.user.info](https://settle.dev/api/reference/rest/v1/oauth2.user.info/) -->
+
 
 ## Open Source and Contribution
 
