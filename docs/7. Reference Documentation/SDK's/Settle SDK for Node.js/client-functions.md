@@ -558,8 +558,107 @@ merchant.statusCodes.list()
 ```
 [Reference Documentation for `merchant.statusCodes.list`](./b3A6MTUzOTU0MzU-merchant-status-codes-list)
 
+### Get Status Code
 
-### XXXXX
+```js
+merchant.statusCodes.get('status_code')
+    .then(success => {
+        // do something with 'success'
+    }, failure => {
+        console.log(failure);
+    });
+```
+#### Parameters
+```json json_schema
+{
+  "type": "object",
+  "properties": {
+    "status_code": {
+      "type": "string",
+      "description": "Status Code provided by Settle."
+    }
+  }
+}
+```
+[Reference Documentation for `merchant.statusCodes.get`](./b3A6MTUzOTU0MzY-merchant-status-codes-get)
+
+
+## Permission Requests
+
+### Create New Permissions Request
+
+```js
+merchant.permissions.request.create({
+  "customer": "4798765432",
+  "scope": ["openid", "email"],
+  "failure_return_uri": "https://example.com/failure",
+  "success_return_uri": "https://example.com/success",
+  "legal_terms_url": "string"
+})
+    .then(success => {
+        // do something with 'success'
+    }, failure => {
+        console.log(failure);
+    });
+```
+[Reference Documentation for `merchant.permissions.request.create`](./b3A6Mjk5NjUxNTk-merchant-permissions-request-create)
+
+
+### Get Permissions Request
+
+```js
+merchant.permissions.request.get('rid')
+    .then(success => {
+        // do something with 'success'
+    }, failure => {
+        console.log(failure);
+    });
+```
+#### Parameters
+```json json_schema
+{
+  "type": "object",
+  "properties": {
+    "rid": {
+      "type": "string",
+      "description": "Permission Request ID assigned by Settle"
+    }
+  }
+}
+```
+[Reference Documentation for `merchant.permissions.request.get`](./b3A6Mjk5NjUxNjA-merchant-permissions-request-get)
+
+
+### Get Permissions Request Outcome
+
+```js
+merchant.permissions.request.outcome.get('rid')
+    .then(success => {
+        // do something with 'success'
+    }, failure => {
+        console.log(failure);
+    });
+```
+#### Parameters
+```json json_schema
+{
+  "type": "object",
+  "properties": {
+    "rid": {
+      "type": "string",
+      "description": "Permission Request ID assigned by Settle"
+    }
+  }
+}
+```
+[Reference Documentation for `merchant.permissions.request.outcome.get`](./b3A6MzE5MjkxOTE-merchant-permissions-request-outcome-get)
+
+
+
+
+
+
+<!-- ### XXXXX
 
 ```js
 xxxxx()
@@ -576,42 +675,9 @@ xxxxx()
   "properties": {
     "xxxx": {
       "type": "string",
-      "description": "xxxxx"
+      "description": "xxxxxxx"
     }
   }
 }
 ```
-[Reference Documentation for `xxxxx`](.xxxxx)
-
-## Permission Requests
-
-- [merchant.permissions.request.create](./b3A6Mjk5NjUxNTk-merchant-permissions-request-create)
-- [merchant.permissions.request.get](./b3A6Mjk5NjUxNjA-merchant-permissions-request-get)
-- [merchant.permissions.request.outcome.get](./b3A6MzE5MjkxOTE-merchant-permissions-request-outcome-get)
-
-
-### Get Status Code
-
-```js
-merchant.statusCodes.get('status_code')
-    .then(success => {
-        // do something with 'success'
-    }, failure => {
-        console.log(failure);
-    });
-```
-[Reference Documentation for `merchant.statusCodes.get`](./b3A6MTUzOTU0MzY-merchant-status-codes-get)
-
-
-#### Parameters
-```json json_schema
-{
-  "type": "object",
-  "properties": {
-    "status_code": {
-      "type": "string",
-      "description": "Status Code provided by Settle."
-    }
-  }
-}
-```
+[Reference Documentation for `xxxxx`](.xxxxxx) -->
