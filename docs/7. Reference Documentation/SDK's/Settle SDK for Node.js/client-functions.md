@@ -412,7 +412,7 @@ merchant.pos.delete('pos_id')
 
 ## Settlements
 
-### Get Settlement
+### Get Merchant Settlement
 
 ```js
 merchant.settlement.get()
@@ -544,9 +544,9 @@ merchant.shortlink.delete('shortlink_id')
 ```
 [Reference Documentation for `merchant.shortlink.delete`](./b3A6MTUzOTU0MzI-merchant-shortlink-delete)
 
-### Status Codes
+## Status Codes
 
-### Permission Requests
+## Permission Requests
 
 - [merchant.permissions.request.create](./b3A6Mjk5NjUxNTk-merchant-permissions-request-create)
 - [merchant.permissions.request.get](./b3A6Mjk5NjUxNjA-merchant-permissions-request-get)
