@@ -7,6 +7,6 @@ If you need help with your Settle integration, we’re here for you.
 
 > #### Note
 >
-> If you need help with your integration, from the community or our support team, we highly recommend that you include a copy of your request(s) and response. Also, if you haven't done so already, check out our [guide on how to use Postman](url).
+> If you need help with your integration, from the community or our support team, we highly recommend that you include a copy of your request(s) and response. Also, if you haven't done so already, check out our [guide on how to use Postman](./ZG9jOjM0ODE0NTc1-install-and-use-postman-for-testing-the-settle-api).
 
 
