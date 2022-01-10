@@ -131,7 +131,7 @@ paths:
       operationId: merchant.apiKeys.get
       responses:
         '200':
-          description: OK
+          $ref: '#/components/responses/apiKeys.get'
       description: Get API Key
       tags:
         - Authentication
@@ -2796,7 +2796,7 @@ components:
                 failure_return_uri: 'null'
                 success_return_uri: 'null'
                 legal_terms_url: 'null'
-    apiKeys.create.201:
+    apiKeys.create:
       description: API Key Created
       content:
         application/json:
@@ -3013,6 +3013,50 @@ components:
                     id:
                       type: string
                       minLength: 1
+    apiKeys.get:
+      description: Example response
+      content:
+        application/json:
+          schema:
+            description: ''
+            type: object
+            properties:
+              has_secret:
+                type: boolean
+              label:
+                type: string
+                minLength: 1
+              key_type:
+                type: string
+                minLength: 1
+              netmask:
+                type: string
+              pubkey:
+                type: string
+                minLength: 1
+              id:
+                type: string
+                minLength: 1
+            required:
+              - has_secret
+              - label
+              - key_type
+              - netmask
+              - pubkey
+              - id
+            x-examples:
+              example-1:
+                has_secret: true
+                label: Explo 01
+                key_type: rsa_user
+                netmask: ''
+                pubkey: |-
+                  -----BEGIN PUBLIC KEY-----
+                  MIGJAoGBAIbNMX0v1hlsBnTPdyMBwzi4IPksc2yK5Ctv+qNtK5pQX+8W1b4oxBzy86GfAPG9
+                  hAUiSgnoahat2i9L1z7ey7+rhDuMbViiiJvCocXyiNyvOTts2XkwLGbO0mD3/Lp8MudcpmHp
+                  JbzM5GrfZMnYk/dvtmxnWQDRMPvBH/l1dlMzAgMBAAE=
+                  -----END PUBLIC KEY-----
+                id: 1408wick2806211406
 tags:
   - name: Authentication
   - name: Info
