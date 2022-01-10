@@ -261,24 +261,13 @@
       "title": "SDK's",
       "items": [
         {
-          "type": "group",
-          "title": "settle-sdk-for-node",
-          "items": [
-            {
-              "type": "item",
-              "title": "Settle SDK for Node.js Client Functions",
-              "uri": "docs/7. Reference Documentation/SDK's/settle-sdk-for-node/client-functions.md"
-            },
-            {
-              "type": "item",
-              "title": "Node.js SDK for connecting to the Settle Payment Platform",
-              "uri": "docs/7. Reference Documentation/SDK's/settle-sdk-for-node/README.md"
-            }
-          ]
+          "type": "item",
+          "title": "Settle SDK for Node.js",
+          "uri": "docs/7. Reference Documentation/SDK's/settle-sdk-for-node/client-functions.md"
         },
         {
           "type": "item",
-          "title": "PHP SDK for connecting to the Settle Payment Platform",
+          "title": "Settle SDK for PHP",
           "uri": "docs/7. Reference Documentation/SDK's/settle-sdk-php.md"
         }
       ]
