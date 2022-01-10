@@ -6,7 +6,7 @@ This usually happens every weekday. How transactions and fees are included in ea
 
 While there is no direct relation between settlement and ledger reports, the downloadable CSV files have the same format.
 
-The [settlement](./b3A6MTUzOTU0MjQ-merchant-settlement-get) endpoint provides per-transaction and per-permission request logs, as well as summary information and information about money paid out.
+The [merchant.settlement.get](./b3A6MTUzOTU0MjQ-merchant-settlement-get) method provides per-transaction and per-permission request logs, as well as summary information and information about money paid out.
 
 ## Summaries
 
