@@ -80,11 +80,11 @@ Once you have signed up in our Sandbox environment you need to create API Creden
     1. In the menu on the left click Integration and then Add key.
     2. In the pop-up window, give this key a name (for example ‘Test key’) and choose what type of API authentication method you want to use. You can choose to authenticate using keys you generate yourself. Keys that Settle generates for you, or simply a shared secret.
 
-    > #### Note
+    > ##### Note
     >
-    > Some API calls require a higher level of authirization than a shared secret, see [API Authentication](../merchant-api/ZG9jOjMyMjU5OTk2-api-authentication) levels for more information.
+    > Some API calls require a higher level of authirization than a shared secret, see [API Authentication](./ZG9jOjM0NzM5OTk4-api-authentication) levels for more information.
 
-      #### RSA2(SHA256) Signature keys: RSA2 key value
+      ##### RSA2(SHA256) Signature keys: RSA2 key value
 
       To add a new RSA2 signature, take one of the following steps:
 
