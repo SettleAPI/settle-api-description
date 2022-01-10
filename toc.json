@@ -260,12 +260,12 @@
           "items": [
             {
               "type": "item",
-              "title": "Overview",
+              "title": "Node.js SDK for connecting to the Settle Payment Platform",
               "uri": "docs/7. Reference Documentation/SDK's/Settle SDK for Node.js/a.introduction.md"
             },
             {
               "type": "item",
-              "title": "Using the Client Functions",
+              "title": "Settle SDK for Node.js Client Functions",
               "uri": "docs/7. Reference Documentation/SDK's/Settle SDK for Node.js/client-functions.md"
             }
           ]
@@ -276,7 +276,7 @@
           "items": [
             {
               "type": "item",
-              "title": "Overview",
+              "title": "PHP SDK for connecting to the Settle Payment Platform",
               "uri": "docs/7. Reference Documentation/SDK's/Settle SDK for PHP/a.introduction.md"
             }
           ]
@@ -358,7 +358,7 @@
     },
     {
       "type": "item",
-      "title": "Location",
+      "title": "Location.yaml",
       "uri": "models/Location.yaml"
     },
     {
