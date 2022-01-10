@@ -590,7 +590,7 @@ xxxxx()
 - [merchant.permissions.request.outcome.get](./b3A6MzE5MjkxOTE-merchant-permissions-request-outcome-get)
 
 
-### XXXXX
+### Get Status Code
 
 ```js
 merchant.statusCodes.get('status_code')
