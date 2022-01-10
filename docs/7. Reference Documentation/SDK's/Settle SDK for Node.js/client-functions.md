@@ -38,7 +38,7 @@ merchant.apiKeys.list()
 ```
 [Reference Documentation for `merchant.apiKeys.list`](./b3A6MTUzOTU0MDg-merchant-api-keys-list)
 
-### Get single API Key
+### Get API Key
 
 ```js
 merchant.apiKeys.get('api_user_id')
@@ -63,7 +63,7 @@ merchant.apiKeys.get('api_user_id')
 [Reference Documentation for `merchant.apiKeys.get`](./b3A6MTUzOTU0NDQ-merchant-api-keys-get)
 
 
-### Update single API Key
+### Update API Key
 
 ```js
 merchant.apiKeys.update('api_user_id', {
@@ -89,7 +89,7 @@ merchant.apiKeys.update('api_user_id', {
 ```
 [Reference Documentation for `merchant.apiKeys.update`](./b3A6MTUzOTU0NDI-merchant-api-keys-update)
 
-### Delete single API Key
+### Delete API Key
 
 ```js
 merchant.apiKeys.delete('api_user_id')
@@ -180,7 +180,7 @@ merchant.payment.request.list()
 [Reference Documentation for `merchant.payment.request.list`](./b3A6MTUzOTU0MTE-merchant-payment-request-list)
 
 
-### Get single Payment Request
+### Get Payment Request
 
 ```js
 merchant.payment.request.get('tid')
@@ -204,7 +204,7 @@ merchant.payment.request.get('tid')
 ```
 [Reference Documentation for `merchant.payment.request.get`](./b3A6MTUzOTU0MTQ-merchant-payment-request-get)
 
-### Update single Payment Request
+### Update Payment Request
 
 ```js
 merchant.payment.request.update('tid', {
@@ -233,7 +233,7 @@ merchant.payment.request.update('tid', {
 [Reference Documentation for `merchant.payment.request.update`](./b3A6MTUzOTU0MTQ-merchant-payment-request-get)
 
 
-### Get single Payment Request Outcome
+### Get Payment Request Outcome
 
 ```js
 merchant.payment.request.outcome.get('tid')
@@ -334,7 +334,7 @@ merchant.pos.list()
 [Reference Documentation for `merchant.pos.list`](./b3A6MTUzOTU0MTY-merchant-pos-list)
 
 
-### Get Single POS Resource
+### Get POS Resource
 
 ```js
 merchant.pos.get('pos_id')
@@ -359,7 +359,7 @@ merchant.pos.get('pos_id')
 [Reference Documentation for `merchant.pos.get`](./b3A6MTUzOTU0MTk-merchant-pos-get)
 
 
-### Update Single POS Resource
+### Update POS Resource
 
 ```js
 merchant.pos.update('pos_id', {
@@ -386,7 +386,7 @@ merchant.pos.update('pos_id', {
 ```
 [Reference Documentation for `merchant.pos.update`](./b3A6MTUzOTU0MTc-merchant-pos-update)
 
-### Delete Single POS Resource
+### Delete POS Resource
 
 ```js
 merchant.pos.delete('pos_id', {
