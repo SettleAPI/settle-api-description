@@ -25,7 +25,7 @@ You can download ngrok here: https://ngrok.com/download.
 ## Example
 This example is set to use the default demo data included in the Settle SDK for Node.js. To use your own values see the reference docs.
 
-```
+```js
 const {handler, merchant} = require('settle-sdk-node')
 const express = require('express');
 const ngrok = require('ngrok');
