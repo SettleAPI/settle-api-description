@@ -3,9 +3,13 @@ info:
   title: Short Dynamic Links API
   version: '1.0'
   description: |
+    You can use the Short Dynamic Links REST API to generate Short Dynamic Links from ShortLinks. See the [ShortLinks and Short Dynamic Links article](./ZG9jOjM0ODE0NTkz-short-links) article to get started.
+
     ## HTTP Request
 
-    ### `POST https://dynamiclinks.settle.dev/api/create`
+    ```Http
+    POST https://dynamiclinks.settle.dev/api/create
+    ```
 
     #
 
@@ -94,147 +98,27 @@ info:
     }
     ```
   summary: 'You can use the Short Dynamic Links REST API to generate Short Dynamic Links from ShortLinks. See the [ShortLinks and Short Dynamic Links article](./ZG9jOjM0ODE0NTkz-short-links) article to get started.'
+  contact:
+    name: Settle Group
+    url: 'https://www.settle.eu/developer'
+    email: support+dev@settle.eu
+  license:
+    identifier: MIT
+    name: MIT
 servers:
-  - url: 'http://localhost:3000'
+  - url: 'https://dynamiclinks.settle.dev/api/'
 paths:
-  '/users/{userId}':
-    parameters:
-      - schema:
-          type: integer
-        name: userId
-        in: path
-        required: true
-        description: Id of an existing user.
+  /create:
     get:
-      summary: Get User Info by User ID
+      summary: Your GET endpoint
       tags: []
       responses:
-        '200':
-          description: User Found
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/User'
-              examples:
-                Get User Alice Smith:
-                  value:
-                    id: 142
-                    firstName: Alice
-                    lastName: Smith
-                    email: alice.smith@gmail.com
-                    dateOfBirth: '1997-10-31'
-                    emailVerified: true
-                    signUpDate: '2019-08-24'
-        '404':
-          description: User Not Found
-      operationId: get-users-userId
-      description: Retrieve the information of the user with the matching user ID.
-    patch:
-      summary: Update User Information
-      operationId: patch-users-userId
-      responses:
-        '200':
-          description: User Updated
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/User'
-              examples:
-                Updated User Rebecca Baker:
-                  value:
-                    id: 13
-                    firstName: Rebecca
-                    lastName: Baker
-                    email: rebecca@gmail.com
-                    dateOfBirth: '1985-10-02'
-                    emailVerified: false
-                    createDate: '2019-08-24'
-        '404':
-          description: User Not Found
-        '409':
-          description: Email Already Taken
-      description: Update the information of an existing user.
+        '201':
+          $ref: '#/components/responses/create'
+      operationId: get-create
+      description: Create new Short Dynamic Link
       requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                firstName:
-                  type: string
-                lastName:
-                  type: string
-                email:
-                  type: string
-                  description: 'If a new email is given, the user''s email verified property will be set to false.'
-                dateOfBirth:
-                  type: string
-            examples:
-              Update First Name:
-                value:
-                  firstName: Rebecca
-              Update Email:
-                value:
-                  email: rebecca@gmail.com
-              Update Last Name & Date of Birth:
-                value:
-                  lastName: Baker
-                  dateOfBirth: '1985-10-02'
-        description: Patch user properties to update.
-  /user:
-    post:
-      summary: Create New User
-      operationId: post-user
-      responses:
-        '200':
-          description: User Created
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/User'
-              examples:
-                New User Bob Fellow:
-                  value:
-                    id: 12
-                    firstName: Bob
-                    lastName: Fellow
-                    email: bob.fellow@gmail.com
-                    dateOfBirth: '1996-08-24'
-                    emailVerified: false
-                    createDate: '2020-11-18'
-        '400':
-          description: Missing Required Information
-        '409':
-          description: Email Already Taken
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                firstName:
-                  type: string
-                lastName:
-                  type: string
-                email:
-                  type: string
-                dateOfBirth:
-                  type: string
-                  format: date
-              required:
-                - firstName
-                - lastName
-                - email
-                - dateOfBirth
-            examples:
-              Create User Bob Fellow:
-                value:
-                  firstName: Bob
-                  lastName: Fellow
-                  email: bob.fellow@gmail.com
-                  dateOfBirth: '1996-08-24'
-        description: Post the necessary fields for the API to create a new user.
-      description: Create a new user.
+        $ref: '#/components/requestBodies/create'
 components:
   schemas:
     User:
@@ -277,3 +161,60 @@ components:
         - lastName
         - email
         - emailVerified
+  requestBodies:
+    create:
+      content:
+        application/json:
+          schema:
+            description: ''
+            type: object
+            x-examples:
+              example-1:
+                shortLink: 'https://settle.eu/s/gSpEb/pos123/'
+                environment: production
+            properties:
+              shortLink:
+                type: string
+                minLength: 1
+                description: 'Settle [ShortLink](./ZG9jOjM0ODE0NTkz-short-links).'
+              environment:
+                type: string
+                minLength: 1
+                description: The environment where you want to create the Short Dynamic Link.
+                enum:
+                  - sandbox
+                  - production
+              socialTitle:
+                type: string
+                description: The title to use when the Dynamic Link is shared in a social post.
+              socialDescription:
+                type: string
+                description: The description to use when the Dynamic Link is shared in a social post.
+              socialImageLink:
+                type: string
+                description: The URL to an image related to this link.
+            required:
+              - shortLink
+              - environment
+      description: All parameters are optional unless otherwise specified.
+  responses:
+    create:
+      description: Example response
+      content:
+        application/json:
+          schema:
+            description: ''
+            type: object
+            x-examples:
+              example-1:
+                shortDynamicLink: 'https://get.settle.eu/Vv3H'
+                previewDynamicLink: 'https://get.settle.eu/Vv3H?d=1'
+            properties:
+              shortDynamicLink:
+                type: string
+                minLength: 1
+                description: The generated Dynamic Link.
+              previewDynamicLink:
+                type: string
+                minLength: 1
+                description: A link to a flowchart of the Dynamic Link's behavior.
