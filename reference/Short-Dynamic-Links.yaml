@@ -109,58 +109,17 @@ servers:
   - url: 'https://dynamiclinks.settle.dev/api/'
 paths:
   /create:
-    get:
-      summary: Your GET endpoint
-      tags: []
+    post:
+      summary: shortDynamicLink.create
+      operationId: shortDynamicLink.create
       responses:
         '201':
           $ref: '#/components/responses/create'
-      operationId: get-create
       description: Create new Short Dynamic Link
       requestBody:
         $ref: '#/components/requestBodies/create'
 components:
-  schemas:
-    User:
-      title: User
-      type: object
-      description: ''
-      examples:
-        - id: 142
-          firstName: Alice
-          lastName: Smith
-          email: alice.smith@gmail.com
-          dateOfBirth: '1997-10-31'
-          emailVerified: true
-          signUpDate: '2019-08-24'
-      properties:
-        id:
-          type: integer
-          description: Unique identifier for the given user.
-        firstName:
-          type: string
-        lastName:
-          type: string
-        email:
-          type: string
-          format: email
-        dateOfBirth:
-          type: string
-          format: date
-          example: '1997-10-31'
-        emailVerified:
-          type: boolean
-          description: Set to true if the user's email has been verified.
-        createDate:
-          type: string
-          format: date
-          description: The date that the user was created.
-      required:
-        - id
-        - firstName
-        - lastName
-        - email
-        - emailVerified
+  schemas: {}
   requestBodies:
     create:
       content:
