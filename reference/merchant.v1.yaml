@@ -1,6 +1,6 @@
 openapi: 3.0.0
 info:
-  title: merchant
+  title: Settle Merchant API
   version: '1.0'
   contact:
     name: Settle Group
