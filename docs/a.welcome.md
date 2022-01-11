@@ -8,7 +8,7 @@ Here are some popular use-cases for your inspiration.
 Settle at Checkout | Buy Now with Settle | Settle with a Button
 :-------:|:--------:|:-------:
  This use case is based on the premise that you already have a webshop (application) and that you want to offer Settle as a way for your customers to pay at the checkout. | This use case is based on the premise that you already have a webshop (application) and that you want to offer Settle users the ability to buy items from your webshop, blazingly fast, with absolutely no forms to fill or checkout steps | This use case is based on the premise that you already have a mobile app and that you want to offer Settle as a way for your customers to pay for items or services offered in your app.
- [Learn more](./ZG9jOjM0NzQwMDIy-settle-at-checkout) | [Learn more](./ZG9jOjM0NzQwMDIz-buy-now-with-settle) | [Learn more](./ZG9jOjM0NzQwMDI2-settle-with-a-button)
+ [Learn more](./ZG9jOjM0ODE0Nzg2-settle-at-checkout) | [Learn more](./ZG9jOjM0ODE0Nzg3-buy-now-with-settle) | [Learn more](./ZG9jOjM0ODE0Nzkw-settle-with-a-button)
 
 
 ## Why integrate?
