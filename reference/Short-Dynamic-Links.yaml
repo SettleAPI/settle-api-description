@@ -157,10 +157,15 @@ components:
             required:
               - shortLink
               - environment
+          examples:
+            Example:
+              value:
+                shortLink: 'https://settle.eu/s/gSpEb/pos123/'
+                environment: production
       description: All parameters are optional unless otherwise specified.
   responses:
     create:
-      description: Example response
+      description: Short Dynamic Link created
       content:
         application/json:
           schema:
@@ -173,9 +178,12 @@ components:
             properties:
               shortDynamicLink:
                 type: string
-                minLength: 1
                 description: The generated Dynamic Link.
               previewDynamicLink:
                 type: string
-                minLength: 1
                 description: A link to a flowchart of the Dynamic Link's behavior.
+          examples:
+            Example:
+              value:
+                shortDynamicLink: 'https://get.settle.eu/Vv3H'
+                previewDynamicLink: 'https://get.settle.eu/Vv3H?d=1'
