@@ -278,6 +278,11 @@
       "items": [
         {
           "type": "item",
+          "title": "Introduction",
+          "uri": "reference/a.introduction.md"
+        },
+        {
+          "type": "item",
           "title": "Merchant API",
           "uri": "reference/merchant.v1.yaml"
         },
