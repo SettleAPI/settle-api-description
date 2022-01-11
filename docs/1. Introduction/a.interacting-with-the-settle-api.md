@@ -314,7 +314,7 @@ Clients are expected to include media type in the `Accept` header listing types 
 All requests to the Settle API must include an `X-Settle-User` header.
 
 <!-- theme: warning -->
-> #### Exeption
+> #### Exception
 >
 > Except when an Integrator is acting as a proxy on behalf of a Merchant client. In that case, the `X-Settle-Integrator` header is used instead. [See above](#a-note-on-settle-api-users).
 
