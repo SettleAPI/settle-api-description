@@ -240,6 +240,11 @@
       "title": "Reference Documentation"
     },
     {
+      "type": "item",
+      "title": "Introduction",
+      "uri": "reference/a.introduction.md"
+    },
+    {
       "type": "group",
       "title": "SDK's",
       "items": [
@@ -276,11 +281,6 @@
       "type": "group",
       "title": "API's",
       "items": [
-        {
-          "type": "item",
-          "title": "Introduction",
-          "uri": "reference/a.introduction.md"
-        },
         {
           "type": "item",
           "title": "Merchant API",
