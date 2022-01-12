@@ -923,7 +923,6 @@ components:
                 failure_return_uri: string
                 pos_id: string
                 pos_tid: string
-                required_scope_text: string
                 success_return_uri: string
       description: 'A payment request goes through several stages. After being registered, the customer can either reject or authorize. An authorization is valid for 3 days, but can be reauthorized before it expires to be valid for 3 new days. Once authorized, it can be captured to be included in the next settlement.'
     payment.request.update:
