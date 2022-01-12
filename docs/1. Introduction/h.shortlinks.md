@@ -78,7 +78,7 @@ Content-Type: application/json
 }
 ```
 
-For a complete specification of the JSON request object, see the [Short Dynamic Link API Reference](./ZG9jOjM0ODE0Nzk4-short-dynamic-links-api).
+For a complete specification of the JSON request object, see the [Short Dynamic Link API Reference](./YXBpOjM1MDY4NTEz-short-dynamic-links-api).
 
 ### Request limits
 
