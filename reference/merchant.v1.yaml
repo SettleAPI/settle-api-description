@@ -2956,6 +2956,24 @@ components:
               id:
                 type: string
                 minLength: 1
+    payment.request.update:
+      description: Example response
+      content:
+        application/json:
+          schema:
+            properties:
+              id:
+                type: string
+          examples:
+            Capture Payment:
+              value:
+                id: string
+            Refund Payment (full):
+              value:
+                id: string
+            Refund Payment (partial):
+              value:
+                id: string
 tags:
   - name: Authentication
   - name: Info

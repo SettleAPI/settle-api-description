@@ -145,7 +145,7 @@ merchant.balance.get()
 
 ```js
 merchant.payment.request.create({
-  "action": "SALE",
+  "action": "AUTH",
   "allow_credit": true,
   "amount": 0,
   "currency": "string",
@@ -208,7 +208,7 @@ merchant.payment.request.get('tid')
 
 ```js
 merchant.payment.request.update('tid', {
-  "action": "refund",
+  "action": "string",
   "amount": 0,
   "currency": "string",
 })
@@ -230,8 +230,34 @@ merchant.payment.request.update('tid', {
   }
 }
 ```
-[Reference Documentation for `merchant.payment.request.update`](./b3A6MTUzOTU0MTQ-merchant-payment-request-get)
+[Reference Documentation for `merchant.payment.request.update`](./b3A6OTM1MjI5OA-merchant-payment-request-update)
 
+
+### Capture Payment
+
+```js
+merchant.payment.capture('tid', {
+  "action": "CAPTURE",
+})
+    .then(success => {
+        // do something with 'success'
+    }, failure => {
+        console.log(failure);
+    });
+```
+#### Parameters
+```json json_schema
+{
+  "type": "object",
+  "properties": {
+    "tid": {
+      "type": "string",
+      "description": "Transaction ID assigned by Settle."
+    }
+  }
+}
+```
+[Reference Documentation for `merchant.payment.capture`](./b3A6OTM1MjI5OA-merchant-payment-request-update)
 
 ### Get Payment Request Outcome
 
@@ -257,6 +283,63 @@ merchant.payment.request.outcome.get('tid')
 ```
 [Reference Documentation for `merchant.payment.request.outcome.get`](./b3A6ODY5MDgzNQ-merchant-payment-request-outcome-get)
 
+
+### Refund Captured Payment (full)
+
+```js
+merchant.payment.refund.full('tid', {
+  "action": "REFUND",
+})
+    .then(success => {
+        // do something with 'success'
+    }, failure => {
+        console.log(failure);
+    });
+```
+#### Parameters
+```json json_schema
+{
+  "type": "object",
+  "properties": {
+    "tid": {
+      "type": "string",
+      "description": "Transaction ID assigned by Settle."
+    }
+  }
+}
+```
+[Reference Documentation for `merchant.payment.refund.full`](./b3A6OTM1MjI5OA-merchant-payment-request-update)
+
+
+### Refund Captured Payment (partial)
+
+```js
+merchant.payment.refund.partial('tid', {
+  "action": "REFUND",
+  "refund_id": "string",
+  "currency": "string",
+  "amount": number,
+  "additional_amount": number
+})
+    .then(success => {
+        // do something with 'success'
+    }, failure => {
+        console.log(failure);
+    });
+```
+#### Parameters
+```json json_schema
+{
+  "type": "object",
+  "properties": {
+    "tid": {
+      "type": "string",
+      "description": "Transaction ID assigned by Settle."
+    }
+  }
+}
+```
+[Reference Documentation for `merchant.payment.refund.partial`](./b3A6OTM1MjI5OA-merchant-payment-request-update)
 
 ### Send New Payment
 
