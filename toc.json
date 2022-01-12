@@ -90,6 +90,17 @@
       ]
     },
     {
+      "type": "group",
+      "title": "Payments",
+      "items": [
+        {
+          "type": "item",
+          "title": "Request, Capture and Refund Payments",
+          "uri": "docs/2. Guides/Payments/request-capture-refund.md"
+        }
+      ]
+    },
+    {
       "type": "item",
       "title": "Verifying Callback Signatures with Node.js",
       "uri": "docs/2. Guides/verifying-callback-signatures-with-node.md"
