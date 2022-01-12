@@ -185,7 +185,7 @@ paths:
       operationId: merchant.payment.request.update
       responses:
         '204':
-          description: 'OK, (no content).'
+          $ref: '#/components/responses/payment.request.update'
         '400':
           description: 'Bad Request, illegal input.'
         '401':
@@ -967,6 +967,20 @@ components:
                 description: Text that is shown to user upon a refund. This can contain linebreaks and the text has to fit on smartphones screens.
             required:
               - currency
+          examples:
+            Capture Payment:
+              value:
+                action: CAPTURE
+            Refund Payment (full):
+              value:
+                action: REFUND
+            Refund Payment (partial):
+              value:
+                action: REFUND
+                refund_id: 1201221257-1
+                currency: NOK
+                amount: 2500
+                additional_amount: 0
       description: |-
         Capturing an authorized payment or reauthorizing is done with the action field.
 
@@ -2956,24 +2970,6 @@ components:
               id:
                 type: string
                 minLength: 1
-    payment.request.update:
-      description: Example response
-      content:
-        application/json:
-          schema:
-            properties:
-              id:
-                type: string
-          examples:
-            Capture Payment:
-              value:
-                id: string
-            Refund Payment (full):
-              value:
-                id: string
-            Refund Payment (partial):
-              value:
-                id: string
 tags:
   - name: Authentication
   - name: Info
