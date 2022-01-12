@@ -4,12 +4,10 @@
 
 ## Request New Payment
 
-[Reference Documentation for `merchant.payment.request.create`](./b3A6ODY4MjgyNA-merchant-payment-request-create)
-
 ### HTTP Request Header
 
 ```Http
-POST /merchant/v1/payment_request HTTP/1.1
+POST /merchant/v1/payment_request/ HTTP/1.1
 Content-Type: application/json
 Host: api.settle.eu
 ```
@@ -79,6 +77,9 @@ Host: api.settle.eu
   "required": ["action", "allow_credit", "amount", "currency", "customer", "pos_id", "pos_tid"]
 }
 ```
+See all available parameters in the [Reference Documentation](./b3A6ODY4MjgyNA-merchant-payment-request-create).
+
+
 ### Response Body
 
 ```json
@@ -142,12 +143,10 @@ When the [`customer`](#request-body) has responded to the Payment Request, Settl
 
 ## Capture Authorized Payment
 
-[Reference Documentation for `merchant.payment.capture`](./b3A6OTM1MjI5OA-merchant-payment-request-update)
-
 ### HTTP Request Header
 
 ```Http
-PUT /merchant/v1/payment_request/phavrb12fzb2 HTTP/1.1
+PUT /merchant/v1/payment_request/phavrb12fzb2/ HTTP/1.1
 Content-Type: application/json
 Host: api.settle.eu
 ```
@@ -188,6 +187,8 @@ In this case `phavrb12fzb2` = `tid`, aka the Transaction ID assigned by Settle.
   "required": ["action"]
 }
 ```
+
+See all available parameters in the [Reference Documentation](./b3A6OTM1MjI5OA-merchant-payment-request-update).
 
 ### Request Callback
 
@@ -234,3 +235,52 @@ Settle sent the following JSON content to the [`callback_uri`](./ZG9jOjM0ODE0NTg
   }
 }
 ```
+
+## Refund Captured Payment
+
+### HTTP Request Header
+
+```Http
+PUT /merchant/v1/payment_request/phavrb12fzb2/ HTTP/1.1
+Content-Type: application/json
+Host: api.settle.eu
+```
+
+In this case `phavrb12fzb2` = `tid`, aka the Transaction ID assigned by Settle.
+
+#### Path Parameters
+```json json_schema
+{
+  "type": "object",
+  "properties": {
+    "tid": {
+      "type": "string",
+      "description": "Transaction ID assigned by Settle."
+    }
+  },
+  "required": ["tid"]
+}
+```
+
+### Request Body
+
+```json
+{
+  "action": "REFUND",
+}
+```
+#### Query Parameters
+```json json_schema
+{
+  "type": "object",
+  "properties": {
+    "action": {
+      "type": "string",
+      "description": "Action to perform, the main difference is what it looks like in App UI."
+    }
+  },
+  "required": ["action"]
+}
+```
+
+See all available parameters in the [Reference Documentation](./b3A6OTM1MjI5OA-merchant-payment-request-update).
