@@ -2,7 +2,7 @@
 
 **In this article well look at how you can use the Settle Merchant API to Request, Capture and Refund payments.**
 
-## Create New Payment Request
+## Request New Payment
 
 [Reference Documentation for `merchant.payment.request.create`](./b3A6ODY4MjgyNA-merchant-payment-request-create)
 
