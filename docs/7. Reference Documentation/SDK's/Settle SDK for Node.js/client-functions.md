@@ -520,19 +520,9 @@ merchant.settlement.get('settlement_id')
 ### Create New Shortlink
 
 ```js
-merchant.shortlink.create('callback_uri')
+merchant.shortlink.create()
 ```
-#### Parameters
-```json json_schema
-{
-  "type": "object",
-  "properties": {
-    "callback_uri": {
-      "type": "string",
-      "description": "URI called by Settle when user scans shortlink."
-    }
-  }
-}
+
 [Reference Documentation for `merchant.shortlink.create`](./b3A6MTUzOTU0Mjk-merchant-shortlink-create)
 
 
@@ -569,9 +559,7 @@ merchant.shortlink.get('shortlink_id')
 ### Update ShortLink
 
 ```js
-merchant.shortlink.update('shortlink_id', {
-  "callback_uri": "string"
-})
+merchant.shortlink.update('shortlink_id', 'callback_uri')
 ```
 #### Parameters
 ```json json_schema
@@ -581,6 +569,10 @@ merchant.shortlink.update('shortlink_id', {
     "shortlink_id": {
       "type": "string",
       "description": "ShortLink ID assigned by Settle."
+    },
+    "callback_uri": {
+      "type": "string",
+      "description": "URI called by Settle when user scans shortlink."
     }
   },
   "required": ["shortlink_id"]
