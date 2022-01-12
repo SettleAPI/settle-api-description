@@ -16,11 +16,6 @@ merchant.apiKeys.create({
   "secret": "stringst",
   "pubkey": "string"
 })
-    .then(success => {
-        // do something with 'success'
-    }, failure => {
-        console.log(failure);
-    });
 ```
 
 [Reference Documentation for `merchant.apiKeys.create`](./b3A6MTUzOTU0MDk-merchant-api-keys-create)
@@ -30,11 +25,6 @@ merchant.apiKeys.create({
 
 ```js
 merchant.apiKeys.list()
-    .then(success => {
-        // do something with 'success'
-    }, failure => {
-        console.log(failure);
-    });
 ```
 [Reference Documentation for `merchant.apiKeys.list`](./b3A6MTUzOTU0MDg-merchant-api-keys-list)
 
@@ -42,11 +32,6 @@ merchant.apiKeys.list()
 
 ```js
 merchant.apiKeys.get('api_user_id')
-    .then(success => {
-        // do something with 'success'
-    }, failure => {
-        console.log(failure);
-    });
 ```
 #### Parameters
 ```json json_schema
@@ -67,14 +52,7 @@ merchant.apiKeys.get('api_user_id')
 ### Update API Key
 
 ```js
-merchant.apiKeys.update('api_user_id', {
-
-})
-    .then(success => {
-        // do something with 'success'
-    }, failure => {
-        console.log(failure);
-    });
+merchant.apiKeys.update('api_user_id')
 ```
 #### Parameters
 ```json json_schema
@@ -95,11 +73,6 @@ merchant.apiKeys.update('api_user_id', {
 
 ```js
 merchant.apiKeys.delete('api_user_id')
-    .then(success => {
-        // do something with 'success'
-    }, failure => {
-        console.log(failure);
-    });
 ```
 #### Parameters
 ```json json_schema
@@ -121,12 +94,7 @@ merchant.apiKeys.delete('api_user_id')
 ### Get Merchant Balance
 
 ```js
-merchant.balance.get()
-    .then(success => {
-        // do something with 'success'
-    }, failure => {
-        console.log(failure);
-    });
+merchant.balance.get('merchant_id')
 ```
 #### Parameters
 ```json json_schema
@@ -163,11 +131,6 @@ merchant.payment.request.create({
   "pos_id": "string",
   "pos_tid": "string",
 })
-    .then(success => {
-        // do something with 'success'
-    }, failure => {
-        console.log(failure);
-    });
 ```
 [Reference Documentation for `merchant.payment.request.create`](./b3A6ODY4MjgyNA-merchant-payment-request-create)
 
@@ -175,11 +138,6 @@ merchant.payment.request.create({
 
 ```js
 merchant.payment.request.list()
-    .then(success => {
-        // do something with 'success'
-    }, failure => {
-        console.log(failure);
-    });
 ```
 [Reference Documentation for `merchant.payment.request.list`](./b3A6MTUzOTU0MTE-merchant-payment-request-list)
 
@@ -188,11 +146,6 @@ merchant.payment.request.list()
 
 ```js
 merchant.payment.request.get('tid')
-    .then(success => {
-        // do something with 'success'
-    }, failure => {
-        console.log(failure);
-    });
 ```
 #### Parameters
 ```json json_schema
@@ -217,11 +170,6 @@ merchant.payment.request.update('tid', {
   "amount": 0,
   "currency": "string",
 })
-    .then(success => {
-        // do something with 'success'
-    }, failure => {
-        console.log(failure);
-    });
 ```
 #### Parameters
 ```json json_schema
@@ -270,11 +218,6 @@ merchant.payment.capture('tid', {
 
 ```js
 merchant.payment.capture('tid')
-    .then(success => {
-        // do something with 'success'
-    }, failure => {
-        console.log(failure);
-    });
 ```
 #### Parameters
 ```json json_schema
@@ -295,11 +238,6 @@ merchant.payment.capture('tid')
 
 ```js
 merchant.payment.request.outcome.get('tid')
-    .then(success => {
-        // do something with 'success'
-    }, failure => {
-        console.log(failure);
-    });
 ```
 #### Parameters
 ```json json_schema
@@ -347,11 +285,6 @@ merchant.payment.refund.full('tid', {
 
 ```js
 merchant.payment.refund.full('tid', 'message')
-    .then(success => {
-        // do something with 'success'
-    }, failure => {
-        console.log(failure);
-    });
 ```
 #### Parameters
 ```json json_schema
@@ -407,11 +340,6 @@ merchant.payment.refund.partial('tid', {
 
 ```js
 merchant.payment.refund.partial('tid', 'cur', 'amo', 'adamo', 'message')
-    .then(success => {
-        // do something with 'success'
-    }, failure => {
-        console.log(failure);
-    });
 ```
 #### Parameters
 ```json json_schema
@@ -454,11 +382,6 @@ merchant.payment.send.create({
   "currency": "string",
   "amount": 0,
 })
-    .then(success => {
-        // do something with 'success'
-    }, failure => {
-        console.log(failure);
-    });
 ```
 [Reference Documentation for `merchant.payment.send.create`](./b3A6MTUzOTU0Mzc-merchant-payment-send-create)
 
@@ -467,11 +390,6 @@ merchant.payment.send.create({
 
 ```js
 merchant.payment.send.outcome.get('tid')
-    .then(success => {
-        // do something with 'success'
-    }, failure => {
-        console.log(failure);
-    });
 ```
 #### Parameters
 ```json json_schema
@@ -498,11 +416,6 @@ merchant.pos.create({
   "location": [59.912270, 10.735820, 1],
   "id": "string"
 })
-    .then(success => {
-        // do something with 'success'
-    }, failure => {
-        console.log(failure);
-    });
 ```
 [Reference Documentation for `merchant.pos.create`](./b3A6MTUzOTU0MTU-merchant-pos-create)
 
@@ -511,11 +424,6 @@ merchant.pos.create({
 
 ```js
 merchant.pos.list()
-    .then(success => {
-        // do something with 'success'
-    }, failure => {
-        console.log(failure);
-    });
 ```
 [Reference Documentation for `merchant.pos.list`](./b3A6MTUzOTU0MTY-merchant-pos-list)
 
@@ -524,11 +432,6 @@ merchant.pos.list()
 
 ```js
 merchant.pos.get('pos_id')
-    .then(success => {
-        // do something with 'success'
-    }, failure => {
-        console.log(failure);
-    });
 ```
 #### Parameters
 ```json json_schema
@@ -539,7 +442,8 @@ merchant.pos.get('pos_id')
       "type": "string",
       "description": "POS id as chosen on registration."
     }
-  }
+  },
+  "required": ["pos_id"]
 }
 ```
 [Reference Documentation for `merchant.pos.get`](./b3A6MTUzOTU0MTk-merchant-pos-get)
@@ -552,11 +456,6 @@ merchant.pos.update('pos_id', {
   "name": "string",
   "type": "webshop",
 })
-    .then(success => {
-        // do something with 'success'
-    }, failure => {
-        console.log(failure);
-    });
 ```
 #### Parameters
 ```json json_schema
@@ -567,7 +466,8 @@ merchant.pos.update('pos_id', {
       "type": "string",
       "description": "POS id as chosen on registration."
     }
-  }
+  },
+  "required": ["pos_id"]
 }
 ```
 [Reference Documentation for `merchant.pos.update`](./b3A6MTUzOTU0MTc-merchant-pos-update)
@@ -576,11 +476,6 @@ merchant.pos.update('pos_id', {
 
 ```js
 merchant.pos.delete('pos_id')
-    .then(success => {
-        // do something with 'success'
-    }, failure => {
-        console.log(failure);
-    });
 ```
 #### Parameters
 ```json json_schema
@@ -591,7 +486,8 @@ merchant.pos.delete('pos_id')
       "type": "string",
       "description": "POS id as chosen on registration."
     }
-  }
+  },
+  "required": ["pos_id"]
 }
 ```
 [Reference Documentation for `merchant.pos.delete`](./b3A6MTUzOTU0MTg-merchant-pos-delete)
@@ -601,15 +497,8 @@ merchant.pos.delete('pos_id')
 ### Get Merchant Settlement
 
 ```js
-merchant.settlement.get()
-    .then(success => {
-        // do something with 'success'
-    }, failure => {
-        console.log(failure);
-    });
+merchant.settlement.get('settlement_id')
 ```
-[Reference Documentation for `merchant.settlement.get`](./b3A6MTUzOTU0MjQ-merchant-settlement-get)
-
 
 #### Parameters
 ```json json_schema
@@ -620,36 +509,38 @@ merchant.settlement.get()
       "type": "string",
       "description": "The ID of the settlement to retrieve."
     }
-  }
+  },
+  "required": ["settlement_id"]
 }
 ```
+[Reference Documentation for `merchant.settlement.get`](./b3A6MTUzOTU0MjQ-merchant-settlement-get)
 
 ## Shortlinks
 
 ### Create New Shortlink
 
 ```js
-merchant.shortlink.create({
-  "callback_uri": null
-})
-    .then(success => {
-        // do something with 'success'
-    }, failure => {
-        console.log(failure);
-    });
+merchant.shortlink.create('callback_uri')
 ```
+#### Parameters
+```json json_schema
+{
+  "type": "object",
+  "properties": {
+    "callback_uri": {
+      "type": "string",
+      "description": "URI called by Settle when user scans shortlink."
+    }
+  }
+}
 [Reference Documentation for `merchant.shortlink.create`](./b3A6MTUzOTU0Mjk-merchant-shortlink-create)
+
 
 
 ### List All ShortLinks
 
 ```js
 merchant.shortlink.list()
-    .then(success => {
-        // do something with 'success'
-    }, failure => {
-        console.log(failure);
-    });
 ```
 [Reference Documentation for `merchant.shortlink.list`](./b3A6MTUzOTU0Mjg-merchant-shortlink-list)
 
@@ -658,11 +549,6 @@ merchant.shortlink.list()
 
 ```js
 merchant.shortlink.get('shortlink_id')
-    .then(success => {
-        // do something with 'success'
-    }, failure => {
-        console.log(failure);
-    });
 ```
 #### Parameters
 ```json json_schema
@@ -673,7 +559,8 @@ merchant.shortlink.get('shortlink_id')
       "type": "string",
       "description": "ShortLink ID assigned by Settle."
     }
-  }
+  },
+  "required": ["shortlink_id"]
 }
 ```
 [Reference Documentation for `merchant.shortlink.get`](./b3A6MTUzOTU0MzA-merchant-shortlink-get)
@@ -683,13 +570,8 @@ merchant.shortlink.get('shortlink_id')
 
 ```js
 merchant.shortlink.update('shortlink_id', {
-  "callback_uri": "https://example.com/callback/"
+  "callback_uri": "string"
 })
-    .then(success => {
-        // do something with 'success'
-    }, failure => {
-        console.log(failure);
-    });
 ```
 #### Parameters
 ```json json_schema
@@ -700,7 +582,8 @@ merchant.shortlink.update('shortlink_id', {
       "type": "string",
       "description": "ShortLink ID assigned by Settle."
     }
-  }
+  },
+  "required": ["shortlink_id"]
 }
 ```
 [Reference Documentation for `merchant.shortlink.update`](./b3A6MTUzOTU0MzE-merchant-shortlink-update)
@@ -710,11 +593,6 @@ merchant.shortlink.update('shortlink_id', {
 
 ```js
 merchant.shortlink.delete('shortlink_id')
-    .then(success => {
-        // do something with 'success'
-    }, failure => {
-        console.log(failure);
-    });
 ```
 #### Parameters
 ```json json_schema
@@ -725,7 +603,8 @@ merchant.shortlink.delete('shortlink_id')
       "type": "string",
       "description": "ShortLink ID assigned by Settle."
     }
-  }
+  },
+  "required": ["shortlink_id"]
 }
 ```
 [Reference Documentation for `merchant.shortlink.delete`](./b3A6MTUzOTU0MzI-merchant-shortlink-delete)
@@ -736,11 +615,6 @@ merchant.shortlink.delete('shortlink_id')
 
 ```js
 merchant.statusCodes.list()
-    .then(success => {
-        // do something with 'success'
-    }, failure => {
-        console.log(failure);
-    });
 ```
 [Reference Documentation for `merchant.statusCodes.list`](./b3A6MTUzOTU0MzU-merchant-status-codes-list)
 
@@ -748,11 +622,6 @@ merchant.statusCodes.list()
 
 ```js
 merchant.statusCodes.get('status_code')
-    .then(success => {
-        // do something with 'success'
-    }, failure => {
-        console.log(failure);
-    });
 ```
 #### Parameters
 ```json json_schema
@@ -763,7 +632,8 @@ merchant.statusCodes.get('status_code')
       "type": "string",
       "description": "Status Code provided by Settle."
     }
-  }
+  },
+  "required": ["status_code"]
 }
 ```
 [Reference Documentation for `merchant.statusCodes.get`](./b3A6MTUzOTU0MzY-merchant-status-codes-get)
@@ -781,11 +651,6 @@ merchant.permissions.request.create({
   "success_return_uri": "https://example.com/success",
   "legal_terms_url": "string"
 })
-    .then(success => {
-        // do something with 'success'
-    }, failure => {
-        console.log(failure);
-    });
 ```
 [Reference Documentation for `merchant.permissions.request.create`](./b3A6Mjk5NjUxNTk-merchant-permissions-request-create)
 
@@ -794,11 +659,6 @@ merchant.permissions.request.create({
 
 ```js
 merchant.permissions.request.get('rid')
-    .then(success => {
-        // do something with 'success'
-    }, failure => {
-        console.log(failure);
-    });
 ```
 #### Parameters
 ```json json_schema
@@ -809,7 +669,8 @@ merchant.permissions.request.get('rid')
       "type": "string",
       "description": "Permission Request ID assigned by Settle"
     }
-  }
+  },
+  "required": ["rid"]
 }
 ```
 [Reference Documentation for `merchant.permissions.request.get`](./b3A6Mjk5NjUxNjA-merchant-permissions-request-get)
@@ -819,11 +680,6 @@ merchant.permissions.request.get('rid')
 
 ```js
 merchant.permissions.request.outcome.get('rid')
-    .then(success => {
-        // do something with 'success'
-    }, failure => {
-        console.log(failure);
-    });
 ```
 #### Parameters
 ```json json_schema
@@ -834,7 +690,8 @@ merchant.permissions.request.outcome.get('rid')
       "type": "string",
       "description": "Permission Request ID assigned by Settle"
     }
-  }
+  },
+  "required": ["rid"]
 }
 ```
 [Reference Documentation for `merchant.permissions.request.outcome.get`](./b3A6MzE5MjkxOTE-merchant-permissions-request-outcome-get)
