@@ -140,6 +140,11 @@
       "uri": "docs/4. Developer Tools/06-error-codes.md"
     },
     {
+      "type": "item",
+      "title": "Status Codes",
+      "uri": "docs/4. Developer Tools/08-status-codes.md"
+    },
+    {
       "type": "divider",
       "title": "Use Cases"
     },
