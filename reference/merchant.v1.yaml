@@ -539,10 +539,10 @@ paths:
 
         ## Status Code Description
 
-        #### `1003`
+        ### `1003`
         Payment has been created and awaits authorisation, meaning funding has been committed. It can also be rejected by the user, aborted by the merchant or simply expired after a set amount of time (2 days by default).
 
-        #### `3008`
+        ### `3008`
         Payment have been authorised, meaning Settle have secured funding from the user (either stored value account, debit/credit card, bank account, or line of credit).
 
         - The merchant can choose to capture the payment, meaning the funds will be included in the next settlement.
@@ -551,19 +551,19 @@ paths:
 
         If no action is taken by the merchant, the payment is expired after three days (status `5012`)
 
-        #### `2000`
+        ### `2000`
         Payment has been captured by the merchant, meaning the funds will be included in the next settlement.
 
-        #### `4019`
+        ### `4019`
         Payment request was aborted by the merchant, or the payment authorisation as released by the merchant.
 
-        #### `5006`
+        ### `5006`
         Payment request was rejected by the user.
 
-        #### `5012`
+        ### `5012`
         Payment authorisation was expired after merchant inactivity (three days).
 
-        #### `5011`
+        ### `5011`
         Payment request was expired after user inactivity (two days).
   '/status_code/{status_code}':
     parameters:
