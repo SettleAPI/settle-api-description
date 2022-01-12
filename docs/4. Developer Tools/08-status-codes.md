@@ -1,5 +1,7 @@
 # Status Code Description
 
+> To get a full list of available Status Codes, please see the [`merchant.statusCodes.list` Reference Documentation](./b3A6MTUzOTU0MzU-merchant-status-codes-list).
+
 
 ### 1003 - `PENDING`
 Payment has been created and awaits authorisation, meaning funding has been committed. It can also be rejected by the user, aborted by the merchant or simply expired after a set amount of time (2 days by default).
@@ -27,5 +29,3 @@ Payment request was expired after user inactivity (two days).
 
 ### 5012 - `AUTH_EXPIRED`
 Payment authorisation was expired after merchant inactivity (three days).
-
-To get a full list of available Status Codes, please see the [`merchant.statusCodes.list` Reference Documentation](./b3A6MTUzOTU0MzU-merchant-status-codes-list).
