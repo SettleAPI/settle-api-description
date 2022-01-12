@@ -1118,16 +1118,23 @@ components:
             type: object
             x-examples:
               example-1:
-                error_detail: null
+                error_detail:
+                  string_to_sign: 'POST|https://api.sandbox.settle.eu/merchant/v1/payment_request/|X-SETTLE-CONTENT-DIGEST=SHA256=g7gYfhu9W9wh/pKEA5EPBm2PNbz8V7gD+L5TVSHXFJo=&X-SETTLE-MERCHANT=5rg1dkk8&X-SETTLE-TIMESTAMP=2022-01-12 11:36:06&X-SETTLE-USER=6zzkbmyg'
                 error_type: Unauthorized
-                error_description: No X-Auka-Merchant header value
+                error_description: Invalid signature
             properties:
               error_detail:
-                type: string
+                type: object
+                properties:
+                  string_to_sign:
+                    type: string
+                    minLength: 1
               error_type:
                 type: string
+                minLength: 1
               error_description:
                 type: string
+                minLength: 1
     '404':
       description: Not found
       content:
