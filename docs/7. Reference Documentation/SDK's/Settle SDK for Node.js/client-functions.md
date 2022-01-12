@@ -57,7 +57,8 @@ merchant.apiKeys.get('api_user_id')
       "type": "string",
       "description": "API Key ID created by either Settle or Merchant."
     }
-  }
+  },
+  "required": ["api_user_id"]
 }
 ```
 [Reference Documentation for `merchant.apiKeys.get`](./b3A6MTUzOTU0NDQ-merchant-api-keys-get)
@@ -84,7 +85,8 @@ merchant.apiKeys.update('api_user_id', {
       "type": "string",
       "description": "API Key ID created by either Settle or Merchant."
     }
-  }
+  },
+  "required": ["api_user_id"]
 }
 ```
 [Reference Documentation for `merchant.apiKeys.update`](./b3A6MTUzOTU0NDI-merchant-api-keys-update)
@@ -108,7 +110,8 @@ merchant.apiKeys.delete('api_user_id')
       "type": "string",
       "description": "API Key ID created by either Settle or Merchant."
     }
-  }
+  },
+  "required": ["api_user_id"]
 }
 ```
 [Reference Documentation for `merchant.apiKeys.delete`](./b3A6MTUzOTU0NDM-merchant-api-keys-delete)
@@ -134,7 +137,8 @@ merchant.balance.get()
       "type": "string",
       "description": "Merchant id assigned by Settle."
     }
-  }
+  },
+  "required": ["merchant_id"]
 }
 ```
 [Reference Documentation for `merchant.balance.get`](./b3A6MTUzOTU0NDE-merchant-balance-get)
@@ -199,7 +203,8 @@ merchant.payment.request.get('tid')
       "type": "string",
       "description": "Transaction ID assigned by Settle."
     }
-  }
+  },
+  "required": ["tid"]
 }
 ```
 [Reference Documentation for `merchant.payment.request.get`](./b3A6MTUzOTU0MTQ-merchant-payment-request-get)
@@ -227,13 +232,14 @@ merchant.payment.request.update('tid', {
       "type": "string",
       "description": "Transaction ID assigned by Settle."
     }
-  }
+  },
+  "required": ["tid"]
 }
 ```
 [Reference Documentation for `merchant.payment.request.update`](./b3A6OTM1MjI5OA-merchant-payment-request-update)
 
 
-### Capture Payment
+<!-- ### Capture Payment
 
 ```js
 merchant.payment.capture('tid', {
@@ -254,7 +260,33 @@ merchant.payment.capture('tid', {
       "type": "string",
       "description": "Transaction ID assigned by Settle."
     }
-  }
+  },
+  "required": ["tid"]
+}
+```
+[Reference Documentation for `merchant.payment.capture`](./b3A6OTM1MjI5OA-merchant-payment-request-update) -->
+
+### Capture Payment
+
+```js
+merchant.payment.capture('tid')
+    .then(success => {
+        // do something with 'success'
+    }, failure => {
+        console.log(failure);
+    });
+```
+#### Parameters
+```json json_schema
+{
+  "type": "object",
+  "properties": {
+    "tid": {
+      "type": "string",
+      "description": "Transaction ID assigned by Settle."
+    }
+  },
+  "required": ["tid"]
 }
 ```
 [Reference Documentation for `merchant.payment.capture`](./b3A6OTM1MjI5OA-merchant-payment-request-update)
@@ -278,13 +310,14 @@ merchant.payment.request.outcome.get('tid')
       "type": "string",
       "description": "Transaction ID assigned by Settle."
     }
-  }
+  },
+  "required": ["tid"]
 }
 ```
 [Reference Documentation for `merchant.payment.request.outcome.get`](./b3A6ODY5MDgzNQ-merchant-payment-request-outcome-get)
 
 
-### Refund Captured Payment (full)
+<!-- ### Refund Captured Payment (full)
 
 ```js
 merchant.payment.refund.full('tid', {
@@ -308,10 +341,39 @@ merchant.payment.refund.full('tid', {
   }
 }
 ```
+[Reference Documentation for `merchant.payment.refund.full`](./b3A6OTM1MjI5OA-merchant-payment-request-update) -->
+
+### Refund Captured Payment (full)
+
+```js
+merchant.payment.refund.full('tid', 'message')
+    .then(success => {
+        // do something with 'success'
+    }, failure => {
+        console.log(failure);
+    });
+```
+#### Parameters
+```json json_schema
+{
+  "type": "object",
+  "properties": {
+    "tid": {
+      "type": "string",
+      "description": "Transaction ID assigned by Settle."
+    },
+    "message": {
+      "type": "string",
+      "description": "Text that is shown to user upon a refund. This can contain linebreaks and the text has to fit on smartphones screens."
+    }
+  },
+  "required": ["tid"]
+}
+```
 [Reference Documentation for `merchant.payment.refund.full`](./b3A6OTM1MjI5OA-merchant-payment-request-update)
 
 
-### Refund Captured Payment (partial)
+<!-- ### Refund Captured Payment (partial)
 
 ```js
 merchant.payment.refund.partial('tid', {
@@ -337,6 +399,47 @@ merchant.payment.refund.partial('tid', {
       "description": "Transaction ID assigned by Settle."
     }
   }
+}
+```
+[Reference Documentation for `merchant.payment.refund.partial`](./b3A6OTM1MjI5OA-merchant-payment-request-update) -->
+
+### Refund Captured Payment (partial)
+
+```js
+merchant.payment.refund.partial('tid', 'cur', 'amo', 'adamo', 'message')
+    .then(success => {
+        // do something with 'success'
+    }, failure => {
+        console.log(failure);
+    });
+```
+#### Parameters
+```json json_schema
+{
+  "type": "object",
+  "properties": {
+    "tid": {
+      "type": "string",
+      "description": "Transaction ID assigned by Settle."
+    },
+    "cur": {
+      "type": "string",
+      "description": "In schemas where a Currency field occurs it's value determines the currency used for the Money fields in the same schema. If the schema has a nested structure, the Currency field only affects the Money fields at the same nesting level. The currency field takes a string of 3 chars representing a currency code according to the [ISO 4217 standard](https://www.iso.org/iso-4217-currency-codes.html)"
+    },
+    "amo": {
+      "type": "string",
+      "description": "Type that represents a monetary amount as an integer. In schemas where one or more [Money](./c2NoOjUwMDYw-money) fields appears there will always be a [Currency](./c2NoOjQwNjM0Ng-currency) field present, that determines the currency of the Money fields."
+    },
+    "adamo": {
+      "type": "string",
+      "description": "Type that represents a monetary amount as an integer. In schemas where one or more [Money](./c2NoOjUwMDYw-money) fields appears there will always be a [Currency](./c2NoOjQwNjM0Ng-currency) field present, that determines the currency of the Money fields."
+    },
+    "message": {
+      "type": "string",
+      "description": "Text that is shown to user upon a refund. This can contain linebreaks and the text has to fit on smartphones screens."
+    }
+  },
+  "required": ["tid", "cur", "amo", "adamo"]
 }
 ```
 [Reference Documentation for `merchant.payment.refund.partial`](./b3A6OTM1MjI5OA-merchant-payment-request-update)
