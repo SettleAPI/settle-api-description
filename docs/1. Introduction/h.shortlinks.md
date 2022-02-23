@@ -7,28 +7,30 @@ When creating a Shortlink, a unique id will be returned for future references to
 ### Acceptance URL
 The Shortlink id can then be used construct a [Settle Acceptance URL](url) in the Shortlink format, called a Shortlink URL:
 
-  `http://settle.eu/s/<id>/<argstring>`
+  `http://settle.eu/s/<shortlink_id>/<argstring>`
 
-If visited directly in a browser, this Shortlink URL will always redirect the user to the generic [Settle Download page](url), regardless of the user having the Settle app installed or not. This flow is only meant as a fallback and is not intended to be the primary flow. See [Deeplink](url) for how to properly link users to the app.
+If visited directly in a browser, this Shortlink URL will always redirect the user to the generic [Settle Download page](url), regardless of the user having the Settle app installed or not. This flow is only meant as a fallback and is not intended to be the primary flow for Shortlink interactions. See [Deeplink](/ZG9jOjM0ODE0NTkz-short-links#deeplink) for how to properly link users to the app.
 
 ### QR code
-The Shortlink URL can be encoded in a regular ISO 18004 QR code which is recognised by the Settle app. There are many open source libraries capable of this, for example the excellent https://github.com/nayuki/QR-Code-generator with implementations for Java, TypeScript/JavaScript, Python, Rust, C++, and C.
+The Shortlink URL can be encoded in a regular ISO 18004 QR code which is recognised by the Settle app. There are many open source libraries capable of this, for example the excellent [Nayuki QR Code generator](https://github.com/nayuki/QR-Code-generator) with implementations for Java, TypeScript/JavaScript, Python, Rust, C++, and C.
 
-Please note that if the QR is not scanned with the Settle App directly, most devices will redirect the user to visit the Acceptance URL in their browser, leading to the generic [Settle Download page](url).
+Please note that if the QR is not scanned with the Settle App directly, the Acceptance URL will be opened in their native browser, leading to the generic [Settle Download page](https://settle.eu/download).
 
 Common use cases for the Shortlink QR is digitally displayed in desktop browsers, cash-register/pos-terminal displays, as well as printed stickers and magasines/newspapers prints.
 
 ### Deeplink
 When the interaction is set to a mobile browser or app, QR codes are not very conventient, unless the use case calls for a second mobile device to do the scan.
 
-In these cases, the Acceptance URL can be wrapped as a [Firebase Dynamic Link](url), which makes sure that users are directed to the app or their store, regardless of platform.
+In these cases, the Acceptance URL can be wrapped as a [Firebase Dynamic Link](https://firebase.google.com/products/dynamic-links), which makes sure that users are directed to the app or their store, regardless of platform.
 
-The link itself varies depending on whether it's a live production link, or used for testing on the [Sandbox environment](url).
+The link itself varies depending on whether it's a live production link, or used for testing on the [Sandbox environment](/ZG9jOjM0ODE0NTcz-the-sandbox-environment).
 
+### Deeplink format
 ```
 https://<base_url>?apn=<apn>&ibi=<ibi>&isi=<isi>&ius=<ius>&link=<percent_encoded_link>
 ```
 
+#### Environment config
 |          | Production                          | Sandbox                                  |
 |----------|-------------------------------------|------------------------------------------|
 | base_url | get.settle.eu                       | settledemo.page.link                     |
@@ -55,14 +57,18 @@ export const getLongDynamicLink = function (shortlinkUrl, config) {
   ].join('');
 }
 ```
-#### Example HTML
-A HTML link, styled as a button. 
+#### Example button
+The source HTML for link styled as a button. 
 ```
 <a class="button" href="https://settledemo.page.link?apn=eu.settle.app.sandbox&amp;ibi=eu.settle.app.sandbox&amp;isi=1453180781&amp;ius=eu.settle.app.firebaselink&amp;link=https%3A%2F%2Fsettle-demo%3A%2F%2Fqr%2Fhttp%3A%2F%2Fsettle.eu%2Fs%2F-USLh%2Fpos123%2F%3Fenv%3Dsandbox">Mobile friendly button (sandbox)</a>
 ```
 
-#### Resources
-Example implementation with automatic detection of desktop/mobile devices, displaying either a QR or a button depending on device can be found at [https://github.com/SettleAPI/settle.acceptance.js](https://github.com/SettleAPI/settle.acceptance.js)
+## Dealing with different devices on websites
+The safest and recommended approach is to serve both a QR code and a button for users when it cannot be determined on beforehand which is going to be needed, for users to choose for themselves what to do. In some cases there may be a need need to hide the QR or the button to the user. A one approach is to create rules based on the [User Agent](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/User-Agent), another is to set up rules for screen size, showing a link or button for small screens, and generate a QR code for large screens beyond a certain cutoff.
+
+### Example
+Here is an example implementation with automatic detection of desktop/mobile devices based on, displaying either a QR or a button depending on device can be found at [https://github.com/SettleAPI/settle.acceptance.js](https://github.com/SettleAPI/settle.acceptance.js)
+
 
 ## Shortlink scanned event
 When the Shortlink is created, the `callback_uri` parameter should contain the URL to a HTTP server capable of receiving a POST requests. When Settle detects a shortlink scan in the app, the `shortlink_scanned` event will be triggered.
