@@ -1,13 +1,113 @@
-# ShortLinks
+# Shortlinks
+The Settle Shortlink feature allows for Settle users to anonymously initiate interactions with Settle Merchants. Such interactions are called "scans", as shortlinks are typically encoded into QR codes that the user scans, but they can also be made into links and buttons depending on the use case. These interactions trigger an event that a Merchant service can listen to. A typical response is to use the anonymous customer identifier (scan token) from this event to either dispatch a payment request or permission request according to the use case.
 
-## ShortLink Scan Handler
+## Shortlink interactions
+When creating a Shortlink, a unique id will be returned for future references to this Shortlink.
 
-When user scans, Settle sends scan `id` and `argstring`, and can receive text and URL which can be transported back to the app. The URL opens in a web view inside the app if registered in list of trusted domains.
+### Acceptance URL
+The Shortlink id can then be used construct a [Settle Acceptance URL](url) in the Shortlink format, called a Shortlink URL:
 
-## Trusted Domains
-Because of security considerations when opening external URIs inside the Settle App, URIs or domains that will be opened in the app needs to be preapproved by Settle.
+  `http://settle.eu/s/<id>/<argstring>`
 
-There are currently no API endpoints for managing trusted domains, please contact Settle support to register domain that should be visible inside app.
+If visited directly in a browser, this Shortlink URL will always redirect the user to the generic [Settle Download page](url), regardless of the user having the Settle app installed or not. This flow is only meant as a fallback and is not intended to be the primary flow. See [Deeplink](url) for how to properly link users to the app.
+
+### QR code
+The Shortlink URL can be encoded in a regular ISO 18004 QR code which is recognised by the Settle app. There are many open source libraries capable of this, for example the excellent https://github.com/nayuki/QR-Code-generator with implementations for Java, TypeScript/JavaScript, Python, Rust, C++, and C.
+
+Please note that if the QR is not scanned with the Settle App directly, most devices will redirect the user to visit the Acceptance URL in their browser, leading to the generic [Settle Download page](url).
+
+Common use cases for the Shortlink QR is digitally displayed in desktop browsers, cash-register/pos-terminal displays, as well as printed stickers and magasines/newspapers prints.
+
+### Deeplink
+When the interaction is set to a mobile browser or app, QR codes are not very conventient, unless the use case calls for a second mobile device to do the scan.
+
+In these cases, the Acceptance URL can be wrapped as a [Firebase Dynamic Link](url), which makes sure that users are directed to the app or their store, regardless of platform.
+
+The link itself varies depending on whether it's a live production link, or used for testing on the [Sandbox environment](url).
+
+```
+https://<base_url>?apn=<apn>&ibi=<ibi>&isi=<isi>&ius=<ius>&link=<percent_encoded_link>
+```
+
+|          | Production                          | Sandbox                                  |
+|----------|-------------------------------------|------------------------------------------|
+| base_url | get.settle.eu                       | settledemo.page.link                     |
+| apn      | eu.settle.app                       | eu.settle.app.sandbox                    |
+| ibi      | eu.settle.app                       | eu.settle.app.sandbox                    |
+| isi      | 1440051902                          | 1453180781                               |
+| ius      | eu.settle.app.firebaselink          | eu.settle.app.firebaselink               |
+| link     | https://settle://qr/<ShortlinkUrl\> | https://settle-demo://qr/<ShortlinkUrl\> |
+
+Please note that the `link` parameter needs to be [percent encoded](https://en.wikipedia.org/wiki/Percent-encoding)
+
+
+#### Example deeplink generator
+Example implementation in Javascript
+```
+export const getLongDynamicLink = function (shortlinkUrl, config) {
+  return [
+    `https://${config.baseUrl}`,
+    `?apn=${config.apn}`,
+    `&ibi=${config.ibi}`,
+    `&isi=${config.isi}`,
+    `&ius=${config.ius}`,
+    `&link=${encodeURIComponent(`https://${config.env}://qr/${shortlinkUrl}`)}`,
+  ].join('');
+}
+```
+#### Example HTML
+A HTML link, styled as a button. 
+```
+<a class="button" href="https://settledemo.page.link?apn=eu.settle.app.sandbox&amp;ibi=eu.settle.app.sandbox&amp;isi=1453180781&amp;ius=eu.settle.app.firebaselink&amp;link=https%3A%2F%2Fsettle-demo%3A%2F%2Fqr%2Fhttp%3A%2F%2Fsettle.eu%2Fs%2F-USLh%2Fpos123%2F%3Fenv%3Dsandbox">Mobile friendly button (sandbox)</a>
+```
+
+#### Resources
+Example implementation with automatic detection of desktop/mobile devices, displaying either a QR or a button depending on device can be found at [https://github.com/SettleAPI/settle.acceptance.js](https://github.com/SettleAPI/settle.acceptance.js)
+
+## Shortlink scanned event
+When the Shortlink is created, the `callback_uri` parameter should contain the URL to a HTTP server capable of receiving a POST requests. When Settle detects a shortlink scan in the app, the `shortlink_scanned` event will be triggered.
+
+Please note that if the `callback_uri` is registered with `https`, there needs to be a valid certificate or else the scan will fail.
+
+## Event data
+The `shortlink_scanned` payload object contains `id` and `argstring`. 
+* The `id` is always a scan token, that can be used as the `customer` parameter in [payment requests](url) and [permission requests](url).
+* The `argstring` corresponds to the optional meta data that can be amended to the Shortlink URL. For example, it can be used to add a local POS id or transaction id to avoid having to do a lookup at a later point in the flow, after the callback has been received.
+
+### shortlink_scanned event
+Example of request body for POST to `callback_url`
+```
+{
+  meta: {
+    seqno: 0,
+    labels: [],
+    uri: null,
+    id: 'blswuhvXQTSHxOpsBVTVzA',
+    context: 'ctx:blswuhvXQTSHxOpsBVTVzA',
+    timestamp: '2021-10-12 13:06:35',
+    event: 'shortlink_scanned'
+  },
+  object: { id: 'token:5090629835330528', argstring: 'pos123' }
+}
+```
+
+## Flow examples
+### Shortlink based payment
+Assuming a Settle Shortlink and a Shortlink QR code has been created, then for each payment cycle:
+1. Customer scans Shortlink QR code.
+2. Settle calls back to POS middleware with customer identifier (scan token).
+3. POS creates payment request for customer identifier.
+4. Settle pushes payment request to the customer.
+5. Settle calls back to POS with outcome.
+
+### Shortlink based login
+Assuming a Settle Shortlink and a Shortlink QR code has been created, then for each login:
+1. Customer scans Shortlink QR code.
+2. Settle calls back to POS middleware with customer identifier (scan token).
+3. Website creates permission request for customer identifier.
+4. Settle pushes permission request to the customer.
+5. Settle calls back to POS with outcome.
+
 
 ## Shortlink Management
 
@@ -126,73 +226,4 @@ Host: api.settle.eu
 ```
 [Reference Documentation for `merchant.shortlink.delete`](./b3A6MTUzOTU0MzI-merchant-shortlink-delete)
 
-#
 
-## Short Dynamic Links
-
-With Short Dynamic Links, new and existing users of the Settle App get the best available experience for the platform they open a [ShortLink](#shortlink-scan-handler) on. If a user opens a Short Dynamic Link on iOS or Android, they're taken directly to the linked content in the Settle App. If a user opens the same Short Dynamic Link in a desktop browser, they'll be taken to a website with links to download the Settle App.
-
-In addition, Short Dynamic Links work across app installs; if a user opens a Short Dynamic Link on iOS or Android and doesn't have the Settle App installed, the user can be prompted to install it; then, after installation, the Settle App starts and can access the link.
-
-#### Short and shareable links
-Merchants can create Short Dynamic Links by using the [Short Dynamic Links REST API](./YXBpOjM1MDY4NTEz-short-dynamic-links-api). This API accepts a **ShortLink**, and returns a URL like the following example:
-
-```text
-https://get.settle.eu/WXYZ
-```
-
-Short Dynamic Links created with the API do not show up in the Settle Business Portal. Short Dynamic Links are intended for user-to-user sharing and marketing use cases.
-
-### Create New Short Dynamic Link
-
-To create a Short Dynamic Link, make an HTTP POST request to the dynamiclinks endpoint, specifying the ShortLink in the `shortLink` parameter and the environment in environment parameter.
-
-To create Short Dynamic Links for testing, use `"environment": "sandbox"`.
-
-```Http
-POST /api/create HTTP/1.1
-Content-Type: application/json
-Host: dynamiclinks.settle.dev
-
-{
-   "shortLink": "https://settle.eu/s/gSpEb/pos123/",
-   "environment": "production"
-}
-```
-#### Parameters
-```json json_schema
-{
-  "type": "object",
-  "properties": {
-    "shortLink": {
-      "type": "string",
-      "description": "Settle [ShortLink](/ZG9jOjM0ODE0NTkz-short-links)."
-    },
-    "environment": {
-      "type": "string",
-      "description": "The environment where you want to create the Short Dynamic Link.",
-      "enum": ["sandbox", "production"]
-    },
-    "socialTitle": {
-      "type": "string",
-      "description": "The title to use when the Dynamic Link is shared in a social post."
-    },
-    "socialDescription": {
-      "type": "string",
-      "description": "The description to use when the Dynamic Link is shared in a social post."
-    },
-    "socialImageLink": {
-      "type": "string",
-      "description": "The URL to an image related to this link."
-    },
-    
-  },
-  "required": ["shortLink", "environment"]
-}
-```
-
-[Reference Documentation for `shortDynamicLink.create`](./YXBpOjM1MDY4NTEz-short-dynamic-links-api)
-
-#### Request limits
-
-Requests are limited to **5 requests per IP address per second**.
