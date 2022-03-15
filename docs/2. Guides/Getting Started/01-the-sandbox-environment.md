@@ -29,30 +29,12 @@ With the Sandbox app installed on your phone, you can behave like a consumer, an
 
 ## Download the Settle Sandbox App:
 
-### iOS
-
-#### Desktop
-
-1. Scan this QR code to install **Apple TestFlight**
-  ![qrcode_testflight.apple.com.png](https://stoplight.io/api/v1/projects/cHJqOjUxMDI1/images/KjpdIyNmDoE)
-
-2. Inside TestFlight, install the Settle Sandbox app for iOS.
-
-#### Mobile
+### From iOS Mobile
 
 1. [Install Testflight](https://testflight.apple.com/join/9PXGEdpK)
 2. Inside TestFlight, install the Settle Sandbox app for iOS.
 
-### Android
-
-#### Desktop
-
-1. Scan this QR code to install the Settle Sandbox app for Android
-
-  ![qrcode_play.google.com.png](https://stoplight.io/api/v1/projects/cHJqOjUxMDI1/images/cQF1NuEKbA0)
-
-
-#### Mobile
+### From Android Mobile
 
 1. [Install the Settle Sandbox app for Android](https://play.google.com/apps/testing/eu.settle.app.sandbox)
 
@@ -60,7 +42,24 @@ With the Sandbox app installed on your phone, you can behave like a consumer, an
 >
 > Jailbroken/rooted devices or devices relying on Android app distribution outside of Google Play Store may not function properly. No support is provided for such use.
 
-####
+
+### From iOS Desktop
+
+1. Scan this QR code to install **Apple TestFlight**
+  ![qrcode_testflight.apple.com.png](https://stoplight.io/api/v1/projects/cHJqOjUxMDI1/images/KjpdIyNmDoE)
+
+2. Inside TestFlight, install the Settle Sandbox app for iOS.
+
+
+### From Android Desktop
+
+1. Scan this QR code to install the Settle Sandbox app for Android
+
+  ![qrcode_play.google.com.png](https://stoplight.io/api/v1/projects/cHJqOjUxMDI1/images/cQF1NuEKbA0)
+
+
+
+
 
 ## Card Numbers for testing
 Genuine card information cannot be used in the Settle Sandbox App.
@@ -69,6 +68,7 @@ Instead, use any of the following test card numbers. To pay with the Sandbox App
 
 Number | Brand | CVC | Date
 ---------|----------|---------|---------
+4111 1111 1111 1111 | Visa | Any 3 digits | Any future date
 4242 4242 4242 4242 | Visa | Any 3 digits | Any future date
 4000 0566 5566 5556 | Visa (debit) | Any 3 digits | Any future date
 5555 5555 5555 4444 | Mastercard | Any 3 digits | Any future date
