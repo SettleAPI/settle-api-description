@@ -47,6 +47,9 @@ With the Sandbox app installed on your phone, you can behave like a consumer, an
 #### From desktop device
 
 1. Scan this QR code to install **Apple TestFlight**
+<!--
+focus: false
+-->
   ![qrcode_testflight.apple.com.png](https://stoplight.io/api/v1/projects/cHJqOjUxMDI1/images/KjpdIyNmDoE)
 
 2. Inside TestFlight, install the Settle Sandbox app for iOS.
