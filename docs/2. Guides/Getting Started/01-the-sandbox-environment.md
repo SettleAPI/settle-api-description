@@ -6,8 +6,8 @@ The Settle Sandbox allows for the exploration of Settle products and features. I
 
 In the Sandbox, you can create requests and test responses from the APIs your application relies on. You can perform API tests based on your own requirements, such as create, cancel or refund a transaction.
 
-> ### Note
-> In the Sandbox environment:
+<!-- theme: note -->
+> #### Sandbox restrictions
 > - Transactions have no real monetary value.
 > - No actual monetary settlement will occur.
 > - Reconciliation files are for reference only.
@@ -16,22 +16,16 @@ In the Sandbox, you can create requests and test responses from the APIs your ap
 > - Beta features may be enabled.
 > - Cross-Border payments are only available within the Eurozone (sender and recipient must use the same currency).
 
-####
 
 ## The Settle Consumer App
 We highly recommend you test your integration from a Customer perspective.
 The Sandbox version of the Settle app for consumers is available for iOS and Android.
-With the Sandbox app installed on your phone, you can behave like a consumer, and test the full user experience of your integration.
+With the Sandbox app installed on your phone, you can test the customer journey, and the full user experience of your integration.
 
-> #### Note
->
->A common mistake is to use production applications with Sandbox and vice versa. There is no interoperability between environments. Make sure you test with the Sandbox mobile app and in the Sandbox environment before you also test production equivalents of both server and client-side. If you don't have access to the production mobile app due to jurisdictional limitations, please seek help from the community or our experts to make sure you get an end-to-end test run in a contained production environment before you go live.
-
-## Download the Settle Sandbox App
 
 ### Google Android
 
-<!-- theme: warning -->
+<!-- theme: danger -->
 > #### Temporary manual activation
 >
 > Becuase of a lot of normal users have mistaken the Sandbox app for the live version, we have been forced to temporarily close to open Sandbox enrolment via Google Play store, instead you have to send a request to support@settle.eu where you specify what email adresses you would like us to give Sandbox access. Testflight enrolment for iOS is still available.
@@ -47,12 +41,13 @@ With the Sandbox app installed on your phone, you can behave like a consumer, an
 #### From desktop device
 
 1. Scan this QR code to install **Apple TestFlight**
+2. Inside TestFlight, install the Settle Sandbox app for iOS.
 <!--
 focus: false
 -->
   ![qrcode_testflight.apple.com.png](https://stoplight.io/api/v1/projects/cHJqOjUxMDI1/images/KjpdIyNmDoE)
 
-2. Inside TestFlight, install the Settle Sandbox app for iOS.
+
 
 
 
