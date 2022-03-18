@@ -31,7 +31,8 @@ With the Sandbox app installed on your phone, you can behave like a consumer, an
 
 ### Google Android
 
-> #### Note
+<!-- theme: warning -->
+> #### Temporary manual activation
 >
 > Becuase of a lot of normal users have mistaken the Sandbox app for the live version, we have been forced to temporarily close to open Sandbox enrolment via Google Play store, instead you have to send a request to support@settle.eu where you specify what email adresses you would like us to give Sandbox access. Testflight enrolment for iOS is still available.
 
