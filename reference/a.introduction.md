@@ -8,4 +8,3 @@
 ## API's
 
 - [Settle Merchant API](./YXBpOjg1NDE5NDI-merchant-api)
-- [Short Dynamic Links API](./YXBpOjM1MDY4NTEz-short-dynamic-links-api)
