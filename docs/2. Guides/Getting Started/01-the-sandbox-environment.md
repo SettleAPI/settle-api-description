@@ -27,36 +27,28 @@ With the Sandbox app installed on your phone, you can behave like a consumer, an
 >
 >A common mistake is to use production applications with Sandbox and vice versa. There is no interoperability between environments. Make sure you test with the Sandbox mobile app and in the Sandbox environment before you also test production equivalents of both server and client-side. If you don't have access to the production mobile app due to jurisdictional limitations, please seek help from the community or our experts to make sure you get an end-to-end test run in a contained production environment before you go live.
 
-## Download the Settle Sandbox App:
+## Download the Settle Sandbox App
 
-### From iOS Mobile
+### Google Android
+
+> ### Warning
+>
+> Becuase of a lot of normal users have mistaken the Sandbox app for the live version, we have been forced to temporarily close to open Sandbox enrolment via Google Play store, instead you have to send a request to support@settle.eu where you specify what email adresses you would like us to give Sandbox access. Testflight enrolment for iOS is still available.
+
+
+### Apple iOS
+
+#### From mobile device
 
 1. [Install Testflight](https://testflight.apple.com/join/9PXGEdpK)
 2. Inside TestFlight, install the Settle Sandbox app for iOS.
 
-### From Android Mobile
-
-1. [Install the Settle Sandbox app for Android](https://play.google.com/apps/testing/eu.settle.app.sandbox)
-
-> #### Note
->
-> Jailbroken/rooted devices or devices relying on Android app distribution outside of Google Play Store may not function properly. No support is provided for such use.
-
-
-### From iOS Desktop
+#### From desktop device
 
 1. Scan this QR code to install **Apple TestFlight**
   ![qrcode_testflight.apple.com.png](https://stoplight.io/api/v1/projects/cHJqOjUxMDI1/images/KjpdIyNmDoE)
 
 2. Inside TestFlight, install the Settle Sandbox app for iOS.
-
-
-### From Android Desktop
-
-1. Scan this QR code to install the Settle Sandbox app for Android
-
-  ![qrcode_play.google.com.png](https://stoplight.io/api/v1/projects/cHJqOjUxMDI1/images/cQF1NuEKbA0)
-
 
 
 
