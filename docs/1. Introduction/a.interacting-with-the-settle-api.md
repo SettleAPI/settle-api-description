@@ -7,20 +7,17 @@ tags: [API Introduction]
 ## CRUD
 
 Creating, Retrieving, Updating and Deleting resources, aka **CRUD**, are achieved via HTTP requests to either list or detail endpoints, as follows:
-- #### Create
 
+#### Create
   A **POST** request to a either list endpoint, yielding a resource with a Settle-generated id, or to a detail endpoint, if an id field is specified in the input schema, yielding a resource with the supplied id.
 
-- #### Retrieve
-
+#### Retrieve
   A **GET** request to either the detail endpoint with a known resource id or the list endpoint, where supported, for a list of detail endpoint URLs of resources of that particular type.
 
-- #### Update
-
+#### Update
   A **PUT** request to the detail endpoint with an existing resource id.
 
-- #### Delete
-
+#### Delete
   A **DELETE** request for the detail endpoint with the known resource id.
 
 ####
