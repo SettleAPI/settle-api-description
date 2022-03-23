@@ -29,12 +29,9 @@ Creating, Retrieving, Updating and Deleting resources, aka **CRUD**, are achiev
 - A detail endpoint looks like `/my_resource/{id}/` where `{id}` is the unique ID of the resource residing at this endpoint.
 
 
+> All URLs need a trailing slash 
+
 ### Examples
-
-> #### Info
->
-> All URLs have a trailing slash by convention.
-
 ```text title="A list endpoint for POS 👇"
 https://api.settle.eu/merchant/v1/pos/
 
@@ -58,8 +55,7 @@ https://api.settle.eu/merchant/v1/pos/3y987j9o4o23/
 /merchant/v1/pos/
 ```
 
-> #### Info
-> For brevity's sake, our documentation will sometimes omit the version bit when specifying endpoint URLs, so `/merchant/v1/` would thus become `/pos/`.
+> For the sake of brevity, the documentation will sometimes omit the version bit when specifying endpoint URLs, so `/merchant/v1/pos/` would then be written as `/pos/`.
 
 ####
 
@@ -308,12 +304,10 @@ Clients are expected to include media type in the `Accept` header listing types 
 
 ## A Note on Settle API Users
 
-All requests to the Settle API must include an `X-Settle-User` header.
+All merchant requests to the Settle API must include an `X-Settle-User` header.
 
 <!-- theme: warning -->
-> #### Exception
->
-> Except when an Integrator is acting as a proxy on behalf of a Merchant client. In that case, the `X-Settle-Integrator` header is used instead. [See above](#a-note-on-settle-api-users).
+> When an Integrator is acting as a proxy on behalf of a Merchant client the `X-Settle-Integrator` header is used instead. [See above](#a-note-on-settle-api-users).
 
 API Users are assigned and created by the Merchant through the Settle for Business portal, or by the Integrator using the user endpoint.
 

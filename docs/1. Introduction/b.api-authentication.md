@@ -66,8 +66,6 @@ X-Settle-Timestamp | 	The current UTC time. The time format is `YYYY-MM-DD hh:mm
 X-Settle-Content-Digest | The base64 encoded hash digest of the request body. If the body is empty, the hash should be computed on an empty string.<br><br>The value of the header should be on the form algorithm **UPPERCASE={digest value}**. So, if the **SHA256** hashing algorithm is used on a request with empty body, the header will be:<br><br>`X-Settle-Content-Digest: SHA256=47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=`
 
 <!-- theme: warning -->
-> Note
->
 > Currently only the **SHA256** hashing algorithm is supported.
 
 
