@@ -303,16 +303,6 @@
           "uri": "reference/merchant.v1.yaml"
         },
         {
-          "type": "item",
-          "title": "Short Dynamic Links API",
-          "uri": "reference/Short-Dynamic-Links.yaml"
-        },
-        // {
-        //   "type": "item",
-        //   "title": "🔗 Short Dynamic Links API",
-        //   "uri": "docs/7. Reference Documentation/API's/short-dynamic-links-api.md"
-        // },
-        {
           "type": "group",
           "title": "Models",
           "items": [
