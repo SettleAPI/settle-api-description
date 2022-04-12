@@ -1,6 +1,11 @@
+---
+internal: true
+---
+
 # Attachments
 
 <!-- theme: warning -->
+
 > This functionality is not yet available in our API
 
 Typically the POS uploads an electronic receipt after the payment has been confirmed.
@@ -14,7 +19,7 @@ When an attachment URI has been acquired, any number of files can be uploaded by
 
 > #### Note
 >
-> Each upload is *"all or nothing"*. This means that if one or more files fails in a multi-file upload (e.g. due to failed server-side format validation), the entire upload will be discarded by Settle.
+> Each upload is _"all or nothing"_. This means that if one or more files fails in a multi-file upload (e.g. due to failed server-side format validation), the entire upload will be discarded by Settle.
 
 ## Supported mime-types
 
@@ -24,7 +29,7 @@ The supported MIME-types and their respective schemas are:
 
 `application/vnd.mcash.itemlist.v1+json`
 
-```json json_schema
+```json jsonSchema
 {
   "title": "Attachments",
   "type": "object",
