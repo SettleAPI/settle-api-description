@@ -1,3 +1,7 @@
+---
+internal: true
+---
+
 # Ledgers
 
 > **A ledger is a log of payment requests and permission requests.**
@@ -123,7 +127,7 @@ The transaction log CSV files can then be downloaded.
 
 In addition to the example above, there are a number of reserved columns for future use. API users should accept arbitrary data in these columns, but presently no data will be sent.
 
-For the table above, the file **myledger_23_154daad.csv** may contain:
+For the table above, the file **myledger\_23\_154daad.csv** may contain:
 
 ```text
 tid,sub_id,timestamp,action,type,customer,currency,amount,additional_amount,gross,fee,interchange,vat,taxcode,net,reserved1,reserved2,reserved3,reserved4
@@ -138,7 +142,7 @@ p8a7sdyfax4d,mycapt2,2013-09-10 13:20:37,capture,credit,token:goBlo8,NOK,50.00,0
 p8a7sdyfax4d,,2013-09-13 14:42:17,release,credit,token:goBlo8,NOK,50.00,5.00,0.00,0.00,0.00,0.00,NO:2013,0.00,,,
 ```
 
-While the second part in **myledger_23_1a4kjhg.csv** contains:
+While the second part in **myledger\_23\_1a4kjhg.csv** contains:
 
 ```text
 tid,sub_id,timestamp,action,type,customer,currency,amount,additional_amount,gross,fee,interchange,vat,taxcode,net,reserved1,reserved2,reserved3,reserved4
@@ -152,13 +156,12 @@ pa4kjhgw65yd,,2013-09-10 10:00:49,fail,,token:34_szQ,NOK,77.00,0.00,0.00,0.00,0.
 
 The permission request log is very similar to the transaction log. Again the records are first grouped by the ID and then sorted by timestamp. For a ledger report, a request is first `pending`, and then either `ok` or `fail`. Note that `ok` means that the customer has answered the request one way or another (it may be a decline to share information), while `fail` is a general failure of the request to be answered (e.g., expiration).
 
-
-rid | timestamp | status | customer | currency | fee | vat | taxcode
----------|----------|---------|---------|---------|---------|---------|---------
-as23rswas5sd | 2013-09-10 13:00:07 | pending | token:F_+z/3 | NOK | 0.00 | 0.00
-as23rswas5sd | 2013-09-10 13:00:10 | ok | token:F_+z/3 | NOK | 2.00 | 0.50 | NO:2013
-a6495av89wcv | 2013-08-10 23:43:45 | pending | token:Q/3+Ys | NOK | 0.00 | 0.00
-a6495av89wcv | 2013-08-10 23:45:10 | fail | token:Q/3+Ys | NOK | 1.00 | 0.25 | NO:2013
+| rid          | timestamp           | status  | customer     | currency | fee  | vat  | taxcode |
+| ------------ | ------------------- | ------- | ------------ | -------- | ---- | ---- | ------- |
+| as23rswas5sd | 2013-09-10 13:00:07 | pending | token:F_+z/3 | NOK      | 0.00 | 0.00 |         |
+| as23rswas5sd | 2013-09-10 13:00:10 | ok      | token:F_+z/3 | NOK      | 2.00 | 0.50 | NO:2013 |
+| a6495av89wcv | 2013-08-10 23:43:45 | pending | token:Q/3+Ys | NOK      | 0.00 | 0.00 |         |
+| a6495av89wcv | 2013-08-10 23:45:10 | fail    | token:Q/3+Ys | NOK      | 1.00 | 0.25 | NO:2013 |
 
 When Settle gives the Merchant a callback for an available report, or accesses the report endpoint, the response contains:
 
@@ -169,7 +172,7 @@ When Settle gives the Merchant a callback for an available report, or accesses t
 }
 ```
 
-As in the earlier case, the log can potentially be split over several CSV files. In the example above, the contents of **31_5s23rsw.csv** would be:
+As in the earlier case, the log can potentially be split over several CSV files. In the example above, the contents of **31\_5s23rsw\.csv** would be:
 
 ```text
 rid,timestamp,status,customer,currency,fee,vat,taxcode,reserved1,reserved2,reserved3,reserved4,reserved5
@@ -180,11 +183,3 @@ a6495av89wcv,2013-08-10 23:45:10,fail,token:Q/3+Ys,NOK,1.00,0.25,NO:2013,,,,,
 ```
 
 [Download example-transaction_log.csv](https://github.com/SettleAPI/settle-api-specification/blob/prod/docs/files/example-transaction_log.csv)
-
-
-
-
-
-
-
-
