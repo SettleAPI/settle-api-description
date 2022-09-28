@@ -1021,7 +1021,7 @@ components:
               - idempotency_id
               - currency
               - amount
-      description: '**Please note** that using the same `idempotency_id` again in a new request will only result in the retrieval of the first resulting Transaction ID (`tid`), not a new payment, making it is safe to retry payment requests in case of network loss.'
+      description: '**Please note** that using the same `idempotency_id` again in a new request will only result in the retrieval of the first resulting Transaction ID (`tid`), not a new payment, making it safe to retry payment requests in case of network loss.'
     pos.create:
       content:
         application/json:
